@@ -174,3 +174,14 @@ function copyResult(){
 window.onload = () => {
   console.log("Utilmint Engine Loaded Successfully");
 };
+
+function swapUnits(){
+
+  const from = document.getElementById("from");
+  const to = document.getElementById("to");
+
+  const temp = from.value;
+  from.value = to.value;
+  to.value = temp;
+
+}
