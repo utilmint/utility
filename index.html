@@ -8,73 +8,67 @@
 </head>
 <body>
 
-  <header class="header">
-    <div class="logo">All-in-One Utility Hub</div>
-    <div class="search-box">
-      <input type="text" placeholder="Search tools..." />
-    </div>
-    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-  </header>
+<header class="header">
+  <div class="logo">All-in-One Utility Hub</div>
 
-  <div class="container">
-
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-      <h3>Categories</h3>
-      <ul>
-        <li>PDF Tools</li>
-        <li>Image Tools</li>
-        <li>Calculators</li>
-        <li>Converters</li>
-        <li>Text Tools</li>
-        <li>Productivity Tools</li>
-        <li>File Tools</li>
-        <li>Finance Tools</li>
-        <li>Date & Time Tools</li>
-        <li>Education Tools</li>
-        <li>Developer Tools</li>
-        <li>SEO Tools</li>
-        <li>Social Media Tools</li>
-        <li>Color & CSS Tools</li>
-        <li>Browser Tools</li>
-        <li>Security Tools</li>
-        <li>Miscellaneous Tools</li>
-      </ul>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="main">
-      <h2>Explore Tools</h2>
-
-      <div class="grid">
-
-        <a href="#" class="card">PDF Tools</a>
-        <a href="#" class="card">Image Tools</a>
-        <a href="#" class="card">Calculators</a>
-        <a href="#" class="card">Converters</a>
-        <a href="#" class="card">Text Tools</a>
-        <a href="#" class="card">Productivity Tools</a>
-        <a href="#" class="card">File Tools</a>
-        <a href="#" class="card">Finance Tools</a>
-        <a href="#" class="card">Date & Time Tools</a>
-        <a href="#" class="card">Education Tools</a>
-        <a href="#" class="card">Developer Tools</a>
-        <a href="#" class="card">SEO Tools</a>
-        <a href="#" class="card">Social Media Tools</a>
-        <a href="#" class="card">Color & CSS Tools</a>
-        <a href="#" class="card">Browser Tools</a>
-        <a href="#" class="card">Security Tools</a>
-        <a href="#" class="card">Miscellaneous Tools</a>
-
-      </div>
-    </main>
-
+  <div class="search-box">
+    <input type="text" placeholder="Search tools..." />
   </div>
 
-  <footer class="footer">
-    <p>© 2026 All-in-One Utility Hub. All rights reserved.</p>
-  </footer>
+  <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+</header>
 
-  <script src="script.js"></script>
+<div class="container">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <h3>Categories</h3>
+
+    <ul>
+      <li onclick="loadCategory('home')">Home</li>
+      <li onclick="loadCategory('pdf')">PDF Tools</li>
+      <li onclick="loadCategory('image')">Image Tools</li>
+      <li onclick="loadCategory('calc')">Calculators</li>
+      <li onclick="loadCategory('convert')">Converters</li>
+      <li onclick="loadCategory('text')">Text Tools</li>
+      <li onclick="loadCategory('productivity')">Productivity</li>
+      <li onclick="loadCategory('file')">File Tools</li>
+      <li onclick="loadCategory('finance')">Finance Tools</li>
+      <li onclick="loadCategory('datetime')">Date & Time</li>
+      <li onclick="loadCategory('dev')">Developer Tools</li>
+      <li onclick="loadCategory('seo')">SEO Tools</li>
+      <li onclick="loadCategory('security')">Security Tools</li>
+      <li onclick="loadCategory('misc')">Miscellaneous</li>
+    </ul>
+  </aside>
+
+  <!-- RIGHT MAIN PANEL -->
+  <main class="main" id="mainContent">
+
+    <h2>Welcome to All-in-One Utility Hub</h2>
+
+    <p class="desc">
+      Select any category from the left panel to explore powerful online tools.
+      This platform provides fast, simple and free utilities for daily needs.
+    </p>
+
+    <div class="info-grid">
+      <div class="info-card">📄 PDF Processing</div>
+      <div class="info-card">🖼 Image Editing</div>
+      <div class="info-card">🧮 Smart Calculators</div>
+      <div class="info-card">🔁 File Converters</div>
+      <div class="info-card">⚡ Productivity Boosters</div>
+      <div class="info-card">🔐 Security Utilities</div>
+    </div>
+
+  </main>
+
+</div>
+
+<footer class="footer">
+  <p>© 2026 All-in-One Utility Hub. Built for productivity.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
