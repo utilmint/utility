@@ -454,6 +454,198 @@ setTimeout(() => {
 }, 500);
 
 </script>
+
+  <script>
+/* =========================
+   VARIABLES DATABASE (MOCK)
+========================= */
+
+const formulaDetails = {
+  1: {
+    variables: [
+      { name: "a", desc: "Coefficient of x²" },
+      { name: "b", desc: "Coefficient of x" },
+      { name: "c", desc: "Constant term" }
+    ],
+    explanation:
+      "The quadratic formula is used to find the roots of a quadratic equation.",
+    applications: [
+      "Physics motion equations",
+      "Engineering design",
+      "Projectile motion"
+    ],
+    examples: [
+      "Solve x² + 5x + 6 = 0",
+      "Solve 2x² - 4x - 6 = 0"
+    ]
+  },
+
+  2: {
+    variables: [
+      { name: "a", desc: "Base side" },
+      { name: "b", desc: "Height side" },
+      { name: "c", desc: "Hypotenuse" }
+    ],
+    explanation: "Relates sides of a right triangle.",
+    applications: ["Construction", "Navigation", "Physics"],
+    examples: ["3² + 4² = 5²"]
+  }
+};
+
+/* =========================
+   FORMULA DETAIL VIEW (SPA STYLE)
+========================= */
+
+function openFormula(id) {
+  const f = formulas.find(x => x.id === id);
+  const d = formulaDetails[id] || {
+    variables: [],
+    explanation: "No details available",
+    applications: [],
+    examples: []
+  };
+
+  document.body.innerHTML = `
+    ${navbarHTML()}
+
+    <div style="padding:30px">
+      ${breadcrumbHTML(f)}
+
+      <h1>${f.title}</h1>
+      <p style="color:var(--muted)">${f.category}</p>
+
+      <div class="card" style="margin-top:20px">
+        <h2>Formula</h2>
+        <div style="font-size:22px">
+          \\(${f.formula}\\)
+        </div>
+
+        <div style="margin-top:10px">
+          <button class="btn" onclick="copyFormula('${f.formula}')">Copy</button>
+          <button class="btn" onclick="window.print()">Print</button>
+          <button class="btn" onclick="shareFormula('${f.title}')">Share</button>
+        </div>
+      </div>
+
+      ${variablesTableHTML(d.variables)}
+
+      <div class="card">
+        <h2>Explanation</h2>
+        <p>${d.explanation}</p>
+      </div>
+
+      <div class="card">
+        <h2>Applications</h2>
+        <ul>${d.applications.map(a => `<li>${a}</li>`).join("")}</ul>
+      </div>
+
+      <div class="card">
+        <h2>Examples</h2>
+        <ul>${d.examples.map(e => `<li>${e}</li>`).join("")}</ul>
+      </div>
+
+      ${relatedFormulasHTML(f)}
+
+    </div>
+  `;
+
+  setTimeout(() => MathJax.typeset(), 300);
+}
+
+/* =========================
+   NAVBAR (REUSED)
+========================= */
+
+function navbarHTML() {
+  return `
+    <div class="navbar">
+      <div class="logo" onclick="location.reload()">FormulaHub</div>
+      <div class="nav-links">
+        <a href="#" onclick="location.reload()">Home</a>
+        <a href="#">Categories</a>
+        <a href="#">Converters</a>
+      </div>
+      <button class="btn" onclick="toggleTheme()">Theme</button>
+    </div>
+  `;
+}
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+function breadcrumbHTML(f) {
+  return `
+    <div style="color:var(--muted); margin-bottom:15px">
+      Home / ${f.category} / ${f.title}
+    </div>
+  `;
+}
+
+/* =========================
+   VARIABLES TABLE
+========================= */
+
+function variablesTableHTML(vars) {
+  if (!vars.length) return "";
+
+  return `
+    <div class="card">
+      <h2>Variables</h2>
+      <table style="width:100%; color:var(--text)">
+        ${vars.map(v => `
+          <tr>
+            <td><b>${v.name}</b></td>
+            <td style="color:var(--muted)">${v.desc}</td>
+          </tr>
+        `).join("")}
+      </table>
+    </div>
+  `;
+}
+
+/* =========================
+   RELATED FORMULAS
+========================= */
+
+function relatedFormulasHTML(current) {
+  const related = formulas
+    .filter(f => f.category === current.category && f.id !== current.id)
+    .slice(0, 3);
+
+  if (!related.length) return "";
+
+  return `
+    <div class="grid">
+      <div style="grid-column:1/-1">
+        <h2>Related Formulas</h2>
+      </div>
+      ${related.map(formulaCard).join("")}
+    </div>
+  `;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+function copyFormula(text) {
+  navigator.clipboard.writeText(text);
+  alert("Formula copied!");
+}
+
+function shareFormula(title) {
+  alert("Sharing: " + title);
+}
+
+/* =========================
+   RESTORE HOME (SIMPLE)
+========================= */
+
+function goHome() {
+  location.reload();
+}
+</script>
   
 </body>
 </html>
