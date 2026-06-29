@@ -646,6 +646,222 @@ function goHome() {
   location.reload();
 }
 </script>
+
+  <script>
+/* =========================
+   CALCULATORS (MOCK)
+========================= */
+
+const calculators = [
+  {
+    id: "simple_interest",
+    title: "Simple Interest Calculator",
+    fields: ["Principal", "Rate", "Time"],
+    formula: (p, r, t) => (p * r * t) / 100
+  },
+  {
+    id: "speed",
+    title: "Speed Calculator",
+    fields: ["Distance", "Time"],
+    formula: (d, t) => d / t
+  },
+  {
+    id: "area_circle",
+    title: "Area of Circle",
+    fields: ["Radius"],
+    formula: (r) => Math.PI * r * r
+  }
+];
+
+/* =========================
+   UNIT CONVERTERS (MOCK)
+========================= */
+
+const converters = [
+  {
+    id: "length",
+    title: "Length Converter",
+    units: {
+      meter: 1,
+      km: 0.001,
+      cm: 100,
+      mm: 1000
+    }
+  },
+  {
+    id: "mass",
+    title: "Mass Converter",
+    units: {
+      kg: 1,
+      g: 1000,
+      mg: 1000000
+    }
+  },
+  {
+    id: "time",
+    title: "Time Converter",
+    units: {
+      sec: 1,
+      min: 1 / 60,
+      hr: 1 / 3600
+    }
+  }
+];
+
+/* =========================
+   RENDER CALCULATOR UI
+========================= */
+
+function openCalculator(id) {
+  const calc = calculators.find(c => c.id === id);
+
+  document.body.innerHTML = `
+    ${navbarHTML()}
+
+    <div style="padding:30px">
+      <h1>${calc.title}</h1>
+
+      <div class="card">
+        ${calc.fields.map((f, i) => `
+          <div style="margin-bottom:10px">
+            <label>${f}</label><br/>
+            <input id="f${i}" type="number"
+              style="padding:10px;width:100%;margin-top:5px;
+              border-radius:10px;border:none"
+            />
+          </div>
+        `).join("")}
+
+        <button class="btn" onclick="calculate('${id}')">
+          Calculate
+        </button>
+
+        <h2 id="result" style="margin-top:20px"></h2>
+      </div>
+    </div>
+  `;
+}
+
+/* =========================
+   CALCULATE ENGINE
+========================= */
+
+function calculate(id) {
+  const calc = calculators.find(c => c.id === id);
+
+  const values = calc.fields.map((_, i) =>
+    parseFloat(document.getElementById("f" + i).value || 0)
+  );
+
+  const result = calc.formula(...values);
+
+  document.getElementById("result").innerText =
+    "Result: " + result.toFixed(4);
+}
+
+/* =========================
+   OPEN CONVERTER
+========================= */
+
+function openConverter(id) {
+  const c = converters.find(x => x.id === id);
+  const keys = Object.keys(c.units);
+
+  document.body.innerHTML = `
+    ${navbarHTML()}
+
+    <div style="padding:30px">
+      <h1>${c.title}</h1>
+
+      <div class="card">
+        <input id="val" type="number" placeholder="Enter value"
+          style="padding:10px;width:100%;margin-bottom:10px" />
+
+        <select id="from">
+          ${keys.map(k => `<option>${k}</option>`).join("")}
+        </select>
+
+        <select id="to">
+          ${keys.map(k => `<option>${k}</option>`).join("")}
+        </select>
+
+        <br/><br/>
+
+        <button class="btn" onclick="convert('${id}')">
+          Convert
+        </button>
+
+        <h2 id="convResult"></h2>
+      </div>
+    </div>
+  `;
+}
+
+/* =========================
+   CONVERT ENGINE
+========================= */
+
+function convert(id) {
+  const c = converters.find(x => x.id === id);
+
+  const val = parseFloat(document.getElementById("val").value || 0);
+  const from = document.getElementById("from").value;
+  const to = document.getElementById("to").value;
+
+  const base = val / c.units[from];
+  const result = base * c.units[to];
+
+  document.getElementById("convResult").innerText =
+    `Result: ${result}`;
+}
+
+/* =========================
+   ADD TO HOME BUTTONS
+========================= */
+
+setTimeout(() => {
+  const cards = document.querySelectorAll(".card");
+
+  cards.forEach((c, i) => {
+    if (i < calculators.length) {
+      const btn = document.createElement("button");
+      btn.className = "btn";
+      btn.innerText = "Open Calculator";
+      btn.onclick = () => openCalculator(calculators[i].id);
+      c.appendChild(document.createElement("br"));
+      c.appendChild(btn);
+    }
+  });
+}, 500);
+
+/* =========================
+   CONVERTER GRID ADD
+========================= */
+
+setTimeout(() => {
+  const container = document.createElement("div");
+  container.className = "grid";
+
+  container.innerHTML = `
+    <div style="grid-column:1/-1">
+      <h2 style="padding:0 20px">🔄 Unit Converters</h2>
+    </div>
+
+    ${converters.map(c => `
+      <div class="card">
+        <h3>${c.title}</h3>
+        <p style="color:var(--muted)">Convert instantly</p>
+        <button class="btn" onclick="openConverter('${c.id}')">
+          Open
+        </button>
+      </div>
+    `).join("")}
+  `;
+
+  document.body.appendChild(container);
+}, 700);
+
+</script>
   
 </body>
 </html>
