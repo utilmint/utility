@@ -1,140 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Utility Tools Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    /* ================= Typography & Base Styles ================= */
-    :root {
-      --bg: #f9f9f9;
-      --fg: #111;
-      --card-bg: #fff;
-      --card-hover: #eef;
-      --gap: 1rem;
-      --radius: 8px;
-      --transition: 0.2s ease-in-out;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #202124;
-        --fg: #e8eaed;
-        --card-bg: #303134;
-        --card-hover: #3c4043;
-      }
-    }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      font-size: 1rem; /* 16px */
-      line-height: 1.5;
-    }
-    h1, p { margin: 0 0 1rem; }
-    a { color: inherit; text-decoration: none; }
-    a:focus { outline: 3px solid #4d90fe; } /* focus indicator */
-
-    /* ================= Layout Grid ================= */
-    header { padding: 1rem; text-align: center; }
-    main { max-width: 1200px; margin: 0 auto; padding: 1rem; }
-    ul.card-grid {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: var(--gap);
-      /* Mobile-first: one column */
-      grid-template-columns: 1fr;
-    }
-    /* Tablet and up: multi-column */
-    @media (min-width: 600px) {
-      ul.card-grid {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      }
-    }
-    @media (min-width: 1200px) {
-      ul.card-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      }
-    }
-
-    /* ================= Card Styles ================= */
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 1.5rem;
-      text-align: center;
-      transition: transform var(--transition), box-shadow var(--transition);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .card:hover, .card:focus-within {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      background: var(--card-hover);
-    }
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 0.75rem;
-      fill: var(--fg);
-    }
-    .card-label {
-      font-size: 1.125rem;
-      font-weight: bold;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All-in-One Utility Hub</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <header>
-    <h1>Utility Tools Dashboard</h1>
+
+  <header class="header">
+    <div class="logo">All-in-One Utility Hub</div>
+    <div class="search-box">
+      <input type="text" placeholder="Search tools..." />
+    </div>
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
   </header>
-  <main>
-    <ul class="card-grid" role="list">
-      <!-- Each card as a link or button -->
-      <li role="listitem">
-        <a href="#pdf" class="card" aria-label="PDF Tools">
-          <!-- Sample inline SVG icon -->
-          <svg class="card-icon" aria-hidden="true" viewBox="0 0 64 64">
-            <!-- SVG path for PDF icon -->
-            <path d="M12 2h28l12 12v48H12z"></path><path d="M40 2v14h14"></path><text x="12" y="44" font-size="24">PDF</text>
-          </svg>
-          <span class="card-label">PDF Tools</span>
-        </a>
-      </li>
-      <li role="listitem">
-        <a href="#image" class="card" aria-label="Image Tools">
-          <svg class="card-icon" aria-hidden="true" viewBox="0 0 64 64">
-            <circle cx="32" cy="32" r="14"></circle><path d="M8 54h48V10H8z"></path>
-          </svg>
-          <span class="card-label">Image Tools</span>
-        </a>
-      </li>
-      <!-- Additional category cards... -->
-      <!-- For brevity, only two examples shown -->
-    </ul>
-  </main>
-  <script>
-    // ================= Keyboard Navigation (Optional) =================
-    // Example: Make arrow keys move focus between cards (if using role="grid")
-    document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.card');
-      cards.forEach((card, index) => {
-        card.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowRight' && index < cards.length - 1) {
-            cards[index+1].focus();
-            e.preventDefault();
-          }
-          if (e.key === 'ArrowLeft' && index > 0) {
-            cards[index-1].focus();
-            e.preventDefault();
-          }
-        });
-      });
-    });
-  </script>
+
+  <div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <h3>Categories</h3>
+      <ul>
+        <li>PDF Tools</li>
+        <li>Image Tools</li>
+        <li>Calculators</li>
+        <li>Converters</li>
+        <li>Text Tools</li>
+        <li>Productivity Tools</li>
+        <li>File Tools</li>
+        <li>Finance Tools</li>
+        <li>Date & Time Tools</li>
+        <li>Education Tools</li>
+        <li>Developer Tools</li>
+        <li>SEO Tools</li>
+        <li>Social Media Tools</li>
+        <li>Color & CSS Tools</li>
+        <li>Browser Tools</li>
+        <li>Security Tools</li>
+        <li>Miscellaneous Tools</li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <h2>Explore Tools</h2>
+
+      <div class="grid">
+
+        <a href="#" class="card">PDF Tools</a>
+        <a href="#" class="card">Image Tools</a>
+        <a href="#" class="card">Calculators</a>
+        <a href="#" class="card">Converters</a>
+        <a href="#" class="card">Text Tools</a>
+        <a href="#" class="card">Productivity Tools</a>
+        <a href="#" class="card">File Tools</a>
+        <a href="#" class="card">Finance Tools</a>
+        <a href="#" class="card">Date & Time Tools</a>
+        <a href="#" class="card">Education Tools</a>
+        <a href="#" class="card">Developer Tools</a>
+        <a href="#" class="card">SEO Tools</a>
+        <a href="#" class="card">Social Media Tools</a>
+        <a href="#" class="card">Color & CSS Tools</a>
+        <a href="#" class="card">Browser Tools</a>
+        <a href="#" class="card">Security Tools</a>
+        <a href="#" class="card">Miscellaneous Tools</a>
+
+      </div>
+    </main>
+
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 All-in-One Utility Hub. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
