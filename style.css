@@ -2,9 +2,10 @@
   --bg: #0b1220;
   --card: #121a2b;
   --text: #eaf0ff;
-  --muted: #93a4c7;
+  --muted: #9aa8c7;
   --accent: #4da3ff;
   --border: rgba(255,255,255,0.08);
+  --shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
 [data-theme="light"] {
@@ -12,37 +13,44 @@
   --card: #ffffff;
   --text: #0f172a;
   --muted: #475569;
+  --accent: #2563eb;
   --border: rgba(0,0,0,0.08);
+  --shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
 body {
   background: var(--bg);
   color: var(--text);
-  transition: 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
+  line-height: 1.5;
 }
 
 /* HEADER */
 .header {
   position: sticky;
   top: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
-  padding: 16px 24px;
+  align-items: center;
+  padding: 14px 22px;
   background: var(--card);
   border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
 }
 
 .nav a {
   margin: 0 10px;
   color: var(--text);
   text-decoration: none;
+  font-weight: 500;
   transition: 0.2s;
 }
 
@@ -50,62 +58,104 @@ body {
   color: var(--accent);
 }
 
-/* MAIN */
+/* MAIN LAYOUT */
 .main {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: auto;
-  padding: 20px;
+  padding: 25px;
 }
 
-/* CARD */
-.card {
+/* CONVERTER CARD */
+.converter {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  transition: 0.3s ease;
 }
 
-/* INPUTS */
-input, select {
+.converter h1 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+/* INPUT */
+input {
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 10px;
+  padding: 14px;
+  border-radius: 12px;
   border: 1px solid var(--border);
   background: transparent;
   color: var(--text);
+  font-size: 16px;
   outline: none;
+  margin-bottom: 12px;
 }
 
-/* ROW */
+/* SELECT ROW */
 .row {
   display: flex;
   gap: 10px;
   align-items: center;
+  margin-top: 10px;
 }
 
-/* BUTTONS */
-button {
+select {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+}
+
+/* SWAP BUTTON */
+#swap {
   padding: 10px 14px;
-  border: none;
   border-radius: 10px;
   background: var(--accent);
   color: white;
+  border: none;
   cursor: pointer;
-  transition: 0.2s;
+  transition: transform 0.2s ease;
 }
 
-button:hover {
-  transform: scale(1.05);
+#swap:hover {
+  transform: rotate(180deg);
 }
 
 /* RESULT */
 .result {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  font-size: 22px;
+  align-items: center;
+  margin-top: 18px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+#output {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* COPY BUTTON */
+#copy {
+  background: var(--accent);
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#copy:hover {
+  opacity: 0.85;
 }
 
 /* GRID */
@@ -113,28 +163,49 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 12px;
-  margin-top: 15px;
+  margin-top: 18px;
 }
 
 .grid div {
   background: var(--card);
   border: 1px solid var(--border);
+  border-radius: 14px;
   padding: 14px;
-  border-radius: 10px;
   text-align: center;
-  transition: 0.2s;
+  transition: 0.2s ease;
+  cursor: pointer;
 }
 
 .grid div:hover {
   transform: translateY(-4px);
   border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+/* SECTION */
+.section {
+  margin-top: 40px;
+}
+
+.section h2 {
+  margin-bottom: 15px;
 }
 
 /* TOOLS */
 .tools div {
-  padding: 12px;
-  margin: 8px 0;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 12px;
   background: var(--card);
   border: 1px solid var(--border);
+}
+
+/* BUTTON */
+.btn {
+  background: var(--accent);
+  border: none;
+  color: white;
+  padding: 10px 14px;
   border-radius: 10px;
+  cursor: pointer;
 }
