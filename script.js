@@ -2,7 +2,7 @@ const U = {
 
 Length: { m:1, km:1000, cm:0.01, mm:0.001, mi:1609.34, ft:0.3048 },
 
-Mass: { kg:1, g:0.001, lb:0.453592, oz:0.0283495 },
+Mass: { kg:1, g:0.001, mg:0.000001, lb:0.453592 },
 
 Time: { s:1, min:60, hr:3600, day:86400 },
 
@@ -52,40 +52,39 @@ Temperature: {}
 };
 
 const el = {
-  input: document.getElementById("input"),
-  cat: document.getElementById("category"),
-  from: document.getElementById("from"),
-  to: document.getElementById("to"),
-  out: document.getElementById("output"),
-  grid: document.getElementById("grid")
+  input: document.querySelector("#input"),
+  cat: document.querySelector("#category"),
+  from: document.querySelector("#from"),
+  to: document.querySelector("#to"),
+  out: document.querySelector("#output"),
+  grid: document.querySelector("#grid")
 };
 
 /* INIT */
 function init() {
-
   Object.keys(U).forEach(c => {
-    el.cat.innerHTML += `<option>${c}</option>`;
+    el.cat.innerHTML += `<option value="${c}">${c}</option>`;
     el.grid.innerHTML += `<div>${c}</div>`;
   });
 
   load("Length");
 }
 
-/* LOAD */
-function load(c) {
+/* LOAD UNITS */
+function load(cat) {
 
   el.from.innerHTML = "";
   el.to.innerHTML = "";
 
-  if (c === "Temperature") {
+  if (cat === "Temperature") {
     ["C","F","K"].forEach(v => {
-      el.from.innerHTML += `<option>${v}</option>`;
-      el.to.innerHTML += `<option>${v}</option>`;
+      el.from.innerHTML += `<option value="${v}">${v}</option>`;
+      el.to.innerHTML += `<option value="${v}">${v}</option>`;
     });
   } else {
-    Object.keys(U[c]).forEach(v => {
-      el.from.innerHTML += `<option>${v}</option>`;
-      el.to.innerHTML += `<option>${v}</option>`;
+    Object.keys(U[cat]).forEach(v => {
+      el.from.innerHTML += `<option value="${v}">${v}</option>`;
+      el.to.innerHTML += `<option value="${v}">${v}</option>`;
     });
   }
 
@@ -95,53 +94,58 @@ function load(c) {
 /* TEMP */
 function temp(v,f,t){
   if(f===t) return v;
+
   let c;
+
   if(f==="C") c=v;
   if(f==="F") c=(v-32)*5/9;
   if(f==="K") c=v-273.15;
+
   if(t==="C") return c;
-  if(t==="F") return c*9/5+32;
+  if(t==="F") return (c*9/5)+32;
   if(t==="K") return c+273.15;
 }
 
 /* CONVERT */
 function convert(){
 
-  let c = el.cat.value;
-  let v = parseFloat(el.input.value)||0;
-  let r;
+  const cat = el.cat.value;
+  const val = parseFloat(el.input.value) || 0;
 
-  if(c==="Temperature"){
-    r=temp(v,el.from.value,el.to.value);
+  let result;
+
+  if(cat === "Temperature"){
+    result = temp(val, el.from.value, el.to.value);
   } else {
-    let b=v*U[c][el.from.value];
-    r=b/U[c][el.to.value];
+    const base = val * U[cat][el.from.value];
+    result = base / U[cat][el.to.value];
   }
 
-  el.out.innerText = r.toFixed(6);
+  el.out.textContent = result.toFixed(6);
 }
 
 /* EVENTS */
-el.cat.onchange = e => load(e.target.value);
-el.input.oninput = convert;
-el.from.onchange = convert;
-el.to.onchange = convert;
+el.cat.addEventListener("change", e => load(e.target.value));
+el.input.addEventListener("input", convert);
+el.from.addEventListener("change", convert);
+el.to.addEventListener("change", convert);
 
 /* SWAP */
-document.getElementById("swap").onclick = ()=>{
-  [el.from.value,el.to.value]=[el.to.value,el.from.value];
+document.querySelector("#swap").addEventListener("click", () => {
+  [el.from.value, el.to.value] = [el.to.value, el.from.value];
   convert();
-};
+});
 
 /* COPY */
-document.getElementById("copy").onclick = ()=>{
-  navigator.clipboard.writeText(el.out.innerText);
-};
+document.querySelector("#copy").addEventListener("click", () => {
+  navigator.clipboard.writeText(el.out.textContent);
+});
 
 /* THEME */
-document.getElementById("themeToggle").onclick = ()=>{
+document.querySelector("#themeToggle").addEventListener("click", () => {
   document.body.dataset.theme =
-  document.body.dataset.theme==="light"?"dark":"light";
-};
+    document.body.dataset.theme === "light" ? "dark" : "light";
+});
 
+/* START */
 init();
