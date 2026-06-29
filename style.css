@@ -1,137 +1,168 @@
+/* =====================
+   DESIGN SYSTEM
+===================== */
+
 :root {
-  --bg: #0f172a;
-  --card: rgba(255,255,255,0.08);
-  --text: #e5e7eb;
+  --bg: #0b1220;
+  --card: #111a2e;
+  --text: #e6edf7;
+  --muted: #94a3b8;
   --primary: #38bdf8;
-  --accent: #22c55e;
+  --border: rgba(255,255,255,0.08);
 }
 
 [data-theme="light"] {
-  --bg: #f8fafc;
-  --card: white;
+  --bg: #f6f7fb;
+  --card: #ffffff;
   --text: #0f172a;
+  --muted: #475569;
+  --border: rgba(0,0,0,0.08);
 }
+
+/* =====================
+   BASE
+===================== */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: system-ui, sans-serif;
 }
 
 body {
+  font-family: system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
-  transition: 0.3s;
 }
 
-/* NAV */
-.nav {
+/* =====================
+   LAYOUT
+===================== */
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.panel {
+  margin: 40px 0;
+}
+
+/* =====================
+   TOP BAR
+===================== */
+
+.topbar {
   display: flex;
   justify-content: space-between;
-  padding: 16px 24px;
+  padding: 15px 25px;
   position: sticky;
   top: 0;
-  backdrop-filter: blur(10px);
-  background: rgba(0,0,0,0.2);
-}
-
-.nav-links a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: inherit;
-}
-
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.hero-content h1 {
-  font-size: 2.5rem;
-}
-
-.card {
-  max-width: 500px;
-  margin: 30px auto;
-  padding: 20px;
-  border-radius: 16px;
   background: var(--card);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  border-bottom: 1px solid var(--border);
 }
 
-/* INPUT */
-input, select {
+.nav a {
+  margin: 0 10px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* =====================
+   CONVERTER CARD
+===================== */
+
+.converter {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 25px;
+  border-radius: 16px;
+}
+
+.input-box input {
   width: 100%;
-  padding: 12px;
-  margin: 8px 0;
+  padding: 14px;
   border-radius: 10px;
-  border: none;
-  outline: none;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
 }
 
-/* GRID */
-.grid-3 {
+.select-grid {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
-  align-items: center;
-}
-
-.swap {
-  padding: 10px;
-  border-radius: 10px;
-  background: var(--primary);
-  color: white;
-}
-
-/* RESULT */
-.result {
   margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
-/* BUTTONS */
-button {
-  cursor: pointer;
-  border: none;
+select {
+  padding: 12px;
   border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+/* =====================
+   ACTIONS
+===================== */
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+button {
   padding: 10px 14px;
-}
-
-.primary {
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
   background: var(--primary);
-  color: white;
+  color: #000;
 }
 
-/* GRID */
+/* =====================
+   OUTPUT
+===================== */
+
+.output {
+  margin-top: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* =====================
+   GRID
+===================== */
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 12px;
-  padding: 20px;
 }
 
-.tile {
-  padding: 16px;
+.grid div {
+  padding: 18px;
   background: var(--card);
   border-radius: 12px;
+  border: 1px solid var(--border);
   text-align: center;
 }
 
-/* CTA */
-.cta {
-  text-align: center;
-  padding: 50px 20px;
+/* =====================
+   TOOLS
+===================== */
+
+.tools {
+  display: grid;
+  gap: 10px;
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  opacity: 0.7;
+.tools div {
+  padding: 14px;
+  background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
 }
