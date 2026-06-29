@@ -2,69 +2,323 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Utilmint Unit Converter</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Utilmint — The fastest, cleanest unit converter. 25 categories, instant results, zero clutter." />
+  <title>Utilmint — Unit Converter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
+<body class="dark-mode">
 
-<body>
-
-<header class="header">
-  <div class="logo">Utilmint</div>
-
-  <nav class="nav">
-    <a href="#converter">Converter</a>
-    <a href="#categories">Categories</a>
-    <a href="#tools">Tools</a>
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">Utilmint</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#converter-section">Converter</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#favorites-section">Favorites</a></li>
+        <li><a href="#learn">Learn</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">☀</button>
+        <a href="#converter-section" class="btn-cta">Start Converting</a>
+      </div>
+    </div>
   </nav>
 
-  <button id="themeToggle" class="btn">Theme</button>
-</header>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="container">
+      <div class="hero-tag">⚡ Instant · Accurate · Free</div>
+      <h1 class="hero-title">Convert anything.<br><span class="accent">Instantly.</span></h1>
+      <p class="hero-subtitle">25 unit categories. Zero page reloads. Precision you can trust.</p>
 
-<main class="main">
+      <!-- MAIN CONVERTER BOX -->
+      <div class="converter-card" id="converter-section">
+        <div class="converter-top">
+          <div class="category-selector">
+            <label>Category</label>
+            <select id="categorySelect"></select>
+          </div>
+        </div>
+        <div class="converter-body">
+          <div class="conv-field">
+            <label>From</label>
+            <select id="fromUnit"></select>
+            <input type="number" id="fromValue" placeholder="Enter value" autocomplete="off" />
+          </div>
+          <button class="swap-btn" id="swapBtn" title="Swap units">⇄</button>
+          <div class="conv-field">
+            <label>To</label>
+            <select id="toUnit"></select>
+            <div class="result-display" id="resultDisplay">
+              <span class="result-value" id="resultValue">—</span>
+              <button class="copy-btn" id="copyBtn" title="Copy result">⎘</button>
+            </div>
+          </div>
+        </div>
+        <div class="converter-footer">
+          <span class="formula-label" id="formulaLabel"></span>
+          <div class="quick-cats" id="quickCats"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- CONVERTER -->
-<section id="converter" class="card converter">
+  <!-- QUICK CATEGORY GRID -->
+  <section class="section" id="categories">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">All Categories</span>
+        <h2>25 conversion types, one place</h2>
+      </div>
+      <div class="category-grid" id="categoryGrid"></div>
+    </div>
+  </section>
 
-  <h1>Unit Converter</h1>
+  <!-- FEATURED CONVERSIONS -->
+  <section class="section featured-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Quick Picks</span>
+        <h2>Popular conversions</h2>
+      </div>
+      <div class="featured-grid">
+        <div class="featured-card" data-cat="Length" data-from="Inch" data-to="Centimeter" data-val="1">
+          <div class="feat-icon">📏</div>
+          <div class="feat-body">
+            <div class="feat-title">Inches → Centimeters</div>
+            <div class="feat-eq">1 in = <span class="feat-result">2.54</span> cm</div>
+          </div>
+          <button class="feat-try">Try Now</button>
+        </div>
+        <div class="featured-card" data-cat="Mass" data-from="Kilogram" data-to="Pound" data-val="1">
+          <div class="feat-icon">⚖️</div>
+          <div class="feat-body">
+            <div class="feat-title">Kilograms → Pounds</div>
+            <div class="feat-eq">1 kg = <span class="feat-result">2.2046</span> lb</div>
+          </div>
+          <button class="feat-try">Try Now</button>
+        </div>
+        <div class="featured-card" data-cat="Temperature" data-from="Celsius" data-to="Fahrenheit" data-val="0">
+          <div class="feat-icon">🌡️</div>
+          <div class="feat-body">
+            <div class="feat-title">Celsius → Fahrenheit</div>
+            <div class="feat-eq">0 °C = <span class="feat-result">32</span> °F</div>
+          </div>
+          <button class="feat-try">Try Now</button>
+        </div>
+        <div class="featured-card" data-cat="Length" data-from="Mile" data-to="Kilometer" data-val="1">
+          <div class="feat-icon">🗺️</div>
+          <div class="feat-body">
+            <div class="feat-title">Miles → Kilometers</div>
+            <div class="feat-eq">1 mi = <span class="feat-result">1.60934</span> km</div>
+          </div>
+          <button class="feat-try">Try Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <input id="input" type="number" placeholder="Enter value" />
+  <!-- POWER TOOLS -->
+  <section class="section power-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Power Tools</span>
+        <h2>Built for heavy use</h2>
+      </div>
+      <div class="tools-grid">
+        <div class="tool-card">
+          <div class="tool-icon">📋</div>
+          <h3>Conversion History</h3>
+          <p>Your last 20 conversions, auto-saved locally.</p>
+          <button class="tool-btn" id="openHistoryBtn">View History</button>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">⭐</div>
+          <h3>Favorites</h3>
+          <p>Pin unit pairs you use every day for instant access.</p>
+          <button class="tool-btn" id="openFavBtn">My Favorites</button>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">🔄</div>
+          <h3>Batch Convert</h3>
+          <p>Convert multiple values in one go — paste a list.</p>
+          <button class="tool-btn" id="openBatchBtn">Open Batch</button>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">⌨️</div>
+          <h3>Keyboard First</h3>
+          <p>Press Enter to convert, Tab to switch fields, Ctrl+S to save favorite.</p>
+          <div class="kbd-row">
+            <kbd>Enter</kbd><kbd>Tab</kbd><kbd>Ctrl+S</kbd>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <select id="category"></select>
+  <!-- FAVORITES SECTION -->
+  <section class="section" id="favorites-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Saved</span>
+        <h2>Your Favorites</h2>
+      </div>
+      <div class="favorites-list" id="favoritesList">
+        <div class="empty-state" id="favEmpty">
+          <span>⭐</span>
+          <p>No favorites yet. Press <kbd>Ctrl+S</kbd> while converting to save a pair.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="row">
-    <select id="from"></select>
-    <button id="swap">⇄</button>
-    <select id="to"></select>
+  <!-- LEARN SECTION -->
+  <section class="section learn-section" id="learn">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Learn</span>
+        <h2>Conversion guides</h2>
+      </div>
+      <div class="learn-grid">
+        <div class="learn-card">
+          <div class="learn-badge">📐</div>
+          <h3>Metric vs Imperial</h3>
+          <p>Why two systems? A quick history of measurement standards and where each dominates globally.</p>
+          <a href="#" class="learn-link">Read guide →</a>
+        </div>
+        <div class="learn-card">
+          <div class="learn-badge">🔢</div>
+          <h3>Conversion Formulas</h3>
+          <p>The core math behind temperature, pressure, and energy conversions — explained simply.</p>
+          <a href="#" class="learn-link">Read guide →</a>
+        </div>
+        <div class="learn-card">
+          <div class="learn-badge">🌍</div>
+          <h3>Real-World Usage</h3>
+          <p>From cooking to engineering — which units matter in which fields, and why.</p>
+          <a href="#" class="learn-link">Read guide →</a>
+        </div>
+        <div class="learn-card">
+          <div class="learn-badge">💡</div>
+          <h3>SI Base Units</h3>
+          <p>The seven fundamental units of the International System and how everything else derives from them.</p>
+          <a href="#" class="learn-link">Read guide →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-text">
+          <h2>Make every conversion effortless.</h2>
+          <p>25 categories. Instant results. Always free.</p>
+        </div>
+        <a href="#converter-section" class="btn-cta btn-cta-lg">👉 Open Unit Converter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <span class="logo-icon">⬡</span>
+            <span class="logo-text">Utilmint</span>
+          </a>
+          <p>Fast, accurate unit conversion for everyone.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+            <a href="#" aria-label="GitHub" class="social-link">⌥</a>
+            <a href="#" aria-label="LinkedIn" class="social-link">in</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Tools</h4>
+          <ul>
+            <li><a href="#converter-section">Unit Converter</a></li>
+            <li><a href="#favorites-section">Favorites</a></li>
+            <li><a href="#categories">All Categories</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#learn">Learn</a></li>
+            <li><a href="#">API Docs</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Utilmint. Built for precision.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODALS -->
+  <div class="modal-overlay" id="modalOverlay">
+    <!-- History Modal -->
+    <div class="modal" id="historyModal">
+      <div class="modal-header">
+        <h3>Conversion History</h3>
+        <button class="modal-close" data-close="historyModal">✕</button>
+      </div>
+      <div class="modal-body" id="historyList">
+        <div class="empty-state"><span>📋</span><p>No conversions yet.</p></div>
+      </div>
+      <div class="modal-footer">
+        <button class="tool-btn" id="clearHistoryBtn">Clear History</button>
+      </div>
+    </div>
+
+    <!-- Batch Modal -->
+    <div class="modal" id="batchModal">
+      <div class="modal-header">
+        <h3>Batch Converter</h3>
+        <button class="modal-close" data-close="batchModal">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="batch-controls">
+          <select id="batchCat"></select>
+          <select id="batchFrom"></select>
+          <span>→</span>
+          <select id="batchTo"></select>
+        </div>
+        <textarea id="batchInput" placeholder="Enter values, one per line:&#10;10&#10;25&#10;100"></textarea>
+        <button class="btn-cta" id="batchConvertBtn" style="width:100%;margin-top:12px">Convert All</button>
+        <div class="batch-results" id="batchResults"></div>
+      </div>
+    </div>
   </div>
 
-  <div class="result">
-    <span id="output">0</span>
-    <button id="copy">Copy</button>
-  </div>
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
 
-</section>
-
-<!-- CATEGORIES -->
-<section id="categories" class="section">
-  <h2>All Categories</h2>
-  <div class="grid" id="grid"></div>
-</section>
-
-<!-- TOOLS -->
-<section id="tools" class="section">
-  <h2>Tools</h2>
-
-  <div class="tools">
-    <div>✔ Real-time conversion</div>
-    <div>✔ Swap system</div>
-    <div>✔ 25 categories</div>
-    <div>✔ Dark mode</div>
-  </div>
-</section>
-
-</main>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
