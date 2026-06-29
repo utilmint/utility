@@ -1,216 +1,147 @@
-/* =========================
-   25 CATEGORY ENGINE
-========================= */
+const U = {
 
-const CONVERTER = {
+Length: { m:1, km:1000, cm:0.01, mm:0.001, mi:1609.34, ft:0.3048 },
 
-Length: {
-  m:1, km:1000, cm:0.01, mm:0.001, mi:1609.34, ft:0.3048, in:0.0254
-},
+Mass: { kg:1, g:0.001, lb:0.453592, oz:0.0283495 },
 
-Mass: {
-  kg:1, g:0.001, mg:0.000001, lb:0.453592, oz:0.0283495
-},
+Time: { s:1, min:60, hr:3600, day:86400 },
 
-Time: {
-  s:1, min:60, hr:3600, day:86400
-},
+Area: { m2:1, km2:1e6, acre:4046.86 },
 
-Temperature: {},
+Volume: { l:1, ml:0.001, m3:1000, gal:3.78541 },
 
-Area: {
-  m2:1, km2:1e6, cm2:0.0001, acre:4046.86
-},
+Speed: { mps:1, kph:0.277778, mph:0.44704 },
 
-Volume: {
-  l:1, ml:0.001, m3:1000, gal:3.78541
-},
+Acceleration: { mps2:1, g:9.81 },
 
-Speed: {
-  mps:1, kph:0.277778, mph:0.44704
-},
+Force: { N:1, kN:1000 },
 
-Acceleration: {
-  mps2:1, g:9.81
-},
+Pressure: { Pa:1, kPa:1000, atm:101325 },
 
-Force: {
-  N:1, kN:1000
-},
+Energy: { J:1, kJ:1000, kcal:4184, kWh:3600000 },
 
-Pressure: {
-  Pa:1, kPa:1000, bar:100000, atm:101325
-},
+Power: { W:1, kW:1000, hp:745.7 },
 
-Energy: {
-  J:1, kJ:1000, kcal:4184, kWh:3600000
-},
+Data: { B:1, KB:1024, MB:1024**2, GB:1024**3, TB:1024**4 },
 
-Power: {
-  W:1, kW:1000, hp:745.7
-},
+Frequency: { Hz:1, kHz:1000, MHz:1e6, GHz:1e9 },
 
-DataStorage: {
-  B:1, KB:1024, MB:1024**2, GB:1024**3, TB:1024**4
-},
+Angle: { rad:1, deg:0.0174533 },
 
-Frequency: {
-  Hz:1, kHz:1000, MHz:1e6, GHz:1e9
-},
+Fuel: { kmpl:1, mpg:0.425144 },
 
-Angle: {
-  rad:1, deg:0.0174533
-},
+Density: { kgm3:1, gcm3:1000 },
 
-FuelEconomy: {
-  kmpl:1, mpg:0.425144
-},
+Torque: { Nm:1, lbft:1.35582 },
 
-Density: {
-  kgm3:1, gcm3:1000
-},
+Current: { A:1, mA:0.001 },
 
-Torque: {
-  Nm:1, lbft:1.35582
-},
+Voltage: { V:1, kV:1000 },
 
-ElectricCurrent: {
-  A:1, mA:0.001
-},
+Resistance: { ohm:1, kohm:1000 },
 
-Voltage: {
-  V:1, kV:1000
-},
+Charge: { C:1, mC:0.001 },
 
-Resistance: {
-  ohm:1, kohm:1000, Mohm:1e6
-},
+Capacitance: { F:1, uF:1e-6 },
 
-ElectricCharge: {
-  C:1, mC:0.001
-},
+Magnetic: { T:1, mT:0.001 },
 
-Capacitance: {
-  F:1, uF:1e-6
-},
+Light: { cd:1, mcd:0.001 },
 
-MagneticField: {
-  T:1, mT:0.001
-},
-
-LuminousIntensity: {
-  cd:1, mcd:0.001
-}
-
+Temperature: {}
 };
 
-/* =========================
-   ELEMENTS
-========================= */
-
 const el = {
-  value: document.getElementById("value"),
+  input: document.getElementById("input"),
   cat: document.getElementById("category"),
   from: document.getElementById("from"),
   to: document.getElementById("to"),
-  result: document.getElementById("result")
+  out: document.getElementById("output"),
+  grid: document.getElementById("grid")
 };
 
-/* =========================
-   INIT
-========================= */
-
+/* INIT */
 function init() {
-  Object.keys(CONVERTER).forEach(c => {
+
+  Object.keys(U).forEach(c => {
     el.cat.innerHTML += `<option>${c}</option>`;
+    el.grid.innerHTML += `<div>${c}</div>`;
   });
 
-  loadUnits("Length");
+  load("Length");
 }
 
-/* =========================
-   LOAD UNITS
-========================= */
-
-function loadUnits(cat) {
+/* LOAD */
+function load(c) {
 
   el.from.innerHTML = "";
   el.to.innerHTML = "";
 
-  const units = CONVERTER[cat];
-
-  Object.keys(units).forEach(u => {
-    el.from.innerHTML += `<option>${u}</option>`;
-    el.to.innerHTML += `<option>${u}</option>`;
-  });
+  if (c === "Temperature") {
+    ["C","F","K"].forEach(v => {
+      el.from.innerHTML += `<option>${v}</option>`;
+      el.to.innerHTML += `<option>${v}</option>`;
+    });
+  } else {
+    Object.keys(U[c]).forEach(v => {
+      el.from.innerHTML += `<option>${v}</option>`;
+      el.to.innerHTML += `<option>${v}</option>`;
+    });
+  }
 
   convert();
 }
 
-/* =========================
-   TEMPERATURE
-========================= */
-
-function temp(v, f, t) {
-  if (f === t) return v;
-
+/* TEMP */
+function temp(v,f,t){
+  if(f===t) return v;
   let c;
-
-  if (f === "C") c = v;
-  if (f === "F") c = (v - 32) * 5/9;
-  if (f === "K") c = v - 273.15;
-
-  if (t === "C") return c;
-  if (t === "F") return (c * 9/5) + 32;
-  if (t === "K") return c + 273.15;
+  if(f==="C") c=v;
+  if(f==="F") c=(v-32)*5/9;
+  if(f==="K") c=v-273.15;
+  if(t==="C") return c;
+  if(t==="F") return c*9/5+32;
+  if(t==="K") return c+273.15;
 }
 
-/* =========================
-   CONVERT ENGINE
-========================= */
+/* CONVERT */
+function convert(){
 
-function convert() {
+  let c = el.cat.value;
+  let v = parseFloat(el.input.value)||0;
+  let r;
 
-  const cat = el.cat.value;
-  const val = parseFloat(el.value.value) || 0;
-
-  let out;
-
-  if (cat === "Temperature") {
-    out = temp(val, el.from.value, el.to.value);
+  if(c==="Temperature"){
+    r=temp(v,el.from.value,el.to.value);
   } else {
-    const base = val * CONVERTER[cat][el.from.value];
-    out = base / CONVERTER[cat][el.to.value];
+    let b=v*U[c][el.from.value];
+    r=b/U[c][el.to.value];
   }
 
-  el.result.innerText = out.toFixed(6);
+  el.out.innerText = r.toFixed(6);
 }
 
-/* =========================
-   EVENTS
-========================= */
-
-el.cat.onchange = (e) => loadUnits(e.target.value);
-el.value.oninput = convert;
+/* EVENTS */
+el.cat.onchange = e => load(e.target.value);
+el.input.oninput = convert;
 el.from.onchange = convert;
 el.to.onchange = convert;
 
 /* SWAP */
-document.getElementById("swap").onclick = () => {
-  [el.from.value, el.to.value] = [el.to.value, el.from.value];
+document.getElementById("swap").onclick = ()=>{
+  [el.from.value,el.to.value]=[el.to.value,el.from.value];
   convert();
 };
 
 /* COPY */
-document.getElementById("copy").onclick = () => {
-  navigator.clipboard.writeText(el.result.innerText);
+document.getElementById("copy").onclick = ()=>{
+  navigator.clipboard.writeText(el.out.innerText);
 };
 
 /* THEME */
-document.getElementById("themeBtn").onclick = () => {
+document.getElementById("themeToggle").onclick = ()=>{
   document.body.dataset.theme =
-    document.body.dataset.theme === "light" ? "dark" : "light";
+  document.body.dataset.theme==="light"?"dark":"light";
 };
 
-/* INIT */
 init();
