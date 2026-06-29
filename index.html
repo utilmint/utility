@@ -2,164 +2,151 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Utilmint Pro - Advanced Converter Suite</title>
+<title>Utilmint Pro</title>
 
 <style>
 /* =========================
-   UTILMINT GLOBAL STYLES
+   UTILMINT PRO STYLES
 ========================= */
 
 :root{
-    --bg:#0f172a;
-    --panel:#111827;
-    --btn:#1f2937;
-    --accent:#38bdf8;
-    --text:#ffffff;
+  --bg:#0f172a;
+  --panel:#111827;
+  --btn:#1f2937;
+  --text:#fff;
+  --accent:#38bdf8;
 }
 
 body.light{
-    --bg:#f1f5f9;
-    --panel:#ffffff;
-    --btn:#e2e8f0;
-    --text:#000000;
+  --bg:#f1f5f9;
+  --panel:#ffffff;
+  --btn:#e2e8f0;
+  --text:#000;
 }
 
 body{
-    margin:0;
-    font-family:Arial;
-    background:var(--bg);
-    color:var(--text);
-    transition:0.3s;
+  margin:0;
+  font-family:Arial;
+  background:var(--bg);
+  color:var(--text);
 }
 
-/* HEADER */
 header{
-    padding:18px;
-    background:var(--panel);
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
+  text-align:center;
+  padding:18px;
+  background:var(--panel);
+  font-size:22px;
+  font-weight:bold;
 }
 
-/* TOP BAR */
 .topbar{
-    display:flex;
-    justify-content:space-between;
-    padding:10px 20px;
-}
-
-/* BUTTON GRID */
-.grid{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    justify-content:center;
-    padding:20px;
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
 }
 
 button{
-    padding:10px 12px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    background:var(--btn);
-    color:var(--text);
-    transition:0.2s;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  background:var(--btn);
+  color:var(--text);
 }
 
 button:hover{
-    background:var(--accent);
-    color:black;
+  background:var(--accent);
+  color:black;
 }
 
-/* CONVERTER PANEL */
+.grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:center;
+  padding:20px;
+}
+
 .panel{
-    max-width:520px;
-    margin:20px auto;
-    background:var(--panel);
-    padding:20px;
-    border-radius:10px;
-    display:none;
+  max-width:520px;
+  margin:auto;
+  background:var(--panel);
+  padding:20px;
+  border-radius:10px;
+  display:none;
 }
 
 input,select{
-    width:100%;
-    padding:10px;
-    margin:8px 0;
-    border-radius:6px;
-    border:none;
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+  border-radius:6px;
+  border:none;
 }
 
 .result{
-    margin-top:10px;
-    font-size:18px;
-    color:var(--accent);
+  margin-top:10px;
+  color:var(--accent);
+  font-size:18px;
 }
 
-/* HISTORY BOX */
 .history{
-    max-width:520px;
-    margin:20px auto;
-    background:var(--panel);
-    padding:10px;
-    border-radius:10px;
-    font-size:14px;
-}
-
-/* SMALL TEXT */
-.small{
-    font-size:12px;
-    opacity:0.7;
+  max-width:520px;
+  margin:20px auto;
+  background:var(--panel);
+  padding:10px;
+  border-radius:10px;
+  font-size:13px;
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<header>UTILMINT PRO - Advanced Unit Converter Suite</header>
+<header>UTILMINT PRO - All-in-One Converter</header>
 
 <div class="topbar">
-<button onclick="toggleTheme()">Toggle Theme</button>
+<button onclick="toggleTheme()">Theme</button>
 <button onclick="clearHistory()">Clear History</button>
 </div>
 
-<!-- ================= BUTTON GRID ================= -->
+<!-- ================= BUTTONS ================= -->
 <div class="grid">
 
-<button onclick="openPanel('length')">Length</button>
-<button onclick="openPanel('mass')">Mass</button>
-<button onclick="openPanel('time')">Time</button>
-<button onclick="openPanel('temperature')">Temperature</button>
-<button onclick="openPanel('area')">Area</button>
-<button onclick="openPanel('volume')">Volume</button>
-<button onclick="openPanel('speed')">Speed</button>
-<button onclick="openPanel('acceleration')">Acceleration</button>
-<button onclick="openPanel('force')">Force</button>
-<button onclick="openPanel('pressure')">Pressure</button>
-<button onclick="openPanel('energy')">Energy</button>
-<button onclick="openPanel('power')">Power</button>
-<button onclick="openPanel('data')">Data</button>
-<button onclick="openPanel('frequency')">Frequency</button>
-<button onclick="openPanel('angle')">Angle</button>
-<button onclick="openPanel('fuel')">Fuel</button>
-<button onclick="openPanel('density')">Density</button>
-<button onclick="openPanel('torque')">Torque</button>
-<button onclick="openPanel('current')">Current</button>
-<button onclick="openPanel('voltage')">Voltage</button>
-<button onclick="openPanel('resistance')">Resistance</button>
-<button onclick="openPanel('charge')">Charge</button>
-<button onclick="openPanel('capacitance')">Capacitance</button>
-<button onclick="openPanel('magnetic')">Magnetic</button>
-<button onclick="openPanel('light')">Luminous</button>
+<button onclick="openBox('length')">Length</button>
+<button onclick="openBox('mass')">Mass</button>
+<button onclick="openBox('time')">Time</button>
+<button onclick="openBox('temperature')">Temperature</button>
+<button onclick="openBox('area')">Area</button>
+<button onclick="openBox('volume')">Volume</button>
+<button onclick="openBox('speed')">Speed</button>
+<button onclick="openBox('acceleration')">Acceleration</button>
+<button onclick="openBox('force')">Force</button>
+<button onclick="openBox('pressure')">Pressure</button>
+<button onclick="openBox('energy')">Energy</button>
+<button onclick="openBox('power')">Power</button>
+<button onclick="openBox('data')">Data</button>
+<button onclick="openBox('frequency')">Frequency</button>
+<button onclick="openBox('angle')">Angle</button>
+<button onclick="openBox('fuel')">Fuel</button>
+<button onclick="openBox('density')">Density</button>
+<button onclick="openBox('torque')">Torque</button>
+<button onclick="openBox('current')">Current</button>
+<button onclick="openBox('voltage')">Voltage</button>
+<button onclick="openBox('resistance')">Resistance</button>
+<button onclick="openBox('charge')">Charge</button>
+<button onclick="openBox('capacitance')">Capacitance</button>
+<button onclick="openBox('magnetic')">Magnetic</button>
+<button onclick="openBox('light')">Luminous</button>
 
 </div>
 
-<!-- ================= CONVERTER PANEL ================= -->
+<!-- ================= PANEL ================= -->
 <div class="panel" id="panel">
 
-<h3 id="title">Converter</h3>
+<h3 id="title"></h3>
 
-<input type="number" id="value" placeholder="Enter value">
+<input id="input" type="number" placeholder="Enter value">
 
 <select id="from"></select>
 <select id="to"></select>
@@ -168,26 +155,26 @@ input,select{
 
 <div class="result" id="result"></div>
 
-<div class="small">Utilmint Pro Engine v2.0</div>
 </div>
 
 <!-- ================= HISTORY ================= -->
 <div class="history" id="historyBox">
-<h4>Conversion History</h4>
+<h4>History</h4>
 <div id="history"></div>
 </div>
 
 <script>
 
 /* =========================
-   UTILMINT CONVERSION ENGINE
+   UNIT DATABASE
 ========================= */
 
 const U = {
+
 length:{m:1,km:1000,cm:0.01,mm:0.001,mile:1609.34},
 mass:{kg:1,g:0.001,mg:0.000001,lb:0.453592},
 time:{s:1,min:60,hr:3600},
-area:{m2:1,km2:1e6,cm2:0.0001},
+area:{m2:1,km2:1e6},
 volume:{m3:1,l:0.001,ml:0.000001},
 speed:{"m/s":1,"km/h":0.277778},
 acceleration:{"m/s2":1},
@@ -208,53 +195,51 @@ charge:{C:1,mC:0.001},
 capacitance:{F:1,uF:1e-6},
 magnetic:{T:1},
 light:{cd:1}
+
 };
 
 let current="";
-let historyList=[];
+let history=[];
 
 /* =========================
-   OPEN PANEL
+   OPEN BOX
 ========================= */
 
-function openPanel(type){
+function openBox(type){
 
 current=type;
 
 document.getElementById("panel").style.display="block";
 document.getElementById("title").innerText=type.toUpperCase();
 
-let from=document.getElementById("from");
-let to=document.getElementById("to");
+let f=document.getElementById("from");
+let t=document.getElementById("to");
 
-from.innerHTML="";
-to.innerHTML="";
+f.innerHTML="";
+t.innerHTML="";
 
 for(let x in U[type]){
-from.innerHTML+=`<option>${x}</option>`;
-to.innerHTML+=`<option>${x}</option>`;
+f.innerHTML+=`<option>${x}</option>`;
+t.innerHTML+=`<option>${x}</option>`;
 }
 
 }
 
 /* =========================
-   CONVERT FUNCTION
+   CONVERT ENGINE
 ========================= */
 
 function convert(){
 
-let val=parseFloat(document.getElementById("value").value);
+let val=parseFloat(document.getElementById("input").value);
 if(isNaN(val)) return;
 
 let f=document.getElementById("from").value;
 let t=document.getElementById("to").value;
 
-let res=0;
+let res=val * U[current][f] / U[current][t];
 
-/* base conversion */
-res = val * U[current][f] / U[current][t];
-
-/* temperature logic */
+/* temperature fix */
 if(current==="temperature"){
 if(f==="C"&&t==="F") res=(val*9/5)+32;
 if(f==="F"&&t==="C") res=(val-32)*5/9;
@@ -262,31 +247,29 @@ if(f==="C"&&t==="K") res=val+273.15;
 if(f==="K"&&t==="C") res=val-273.15;
 }
 
-/* show result */
 document.getElementById("result").innerText="Result: "+res;
 
-/* history */
-historyList.push(`${val} ${f} → ${res} ${t}`);
+history.push(`${val} ${f} → ${res} ${t}`);
 updateHistory();
 
 }
 
 /* =========================
-   HISTORY SYSTEM
+   HISTORY
 ========================= */
 
 function updateHistory(){
-document.getElementById("history").innerHTML=
-historyList.slice(-10).map(h=>"• "+h).join("<br>");
+document.getElementById("history").innerHTML =
+history.slice(-15).map(h=>"• "+h).join("<br>");
 }
 
 function clearHistory(){
-historyList=[];
+history=[];
 updateHistory();
 }
 
 /* =========================
-   THEME TOGGLE
+   THEME
 ========================= */
 
 function toggleTheme(){
