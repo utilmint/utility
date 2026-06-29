@@ -862,6 +862,187 @@ setTimeout(() => {
 }, 700);
 
 </script>
+
+  <script>
+/* =========================
+   ADVANCED CALCULATOR ENGINE
+   (Pure Frontend Logic)
+========================= */
+
+const calculators = [
+  {
+    id: "bmi",
+    title: "BMI Calculator",
+    fields: [
+      { name: "Weight (kg)", key: "w" },
+      { name: "Height (cm)", key: "h" }
+    ],
+    compute: ({ w, h }) => {
+      const m = h / 100;
+      return w / (m * m);
+    },
+    format: (r) => `BMI = ${r.toFixed(2)}`
+  },
+
+  {
+    id: "simple_interest",
+    title: "Simple Interest",
+    fields: [
+      { name: "Principal", key: "p" },
+      { name: "Rate (%)", key: "r" },
+      { name: "Time (years)", key: "t" }
+    ],
+    compute: ({ p, r, t }) => (p * r * t) / 100,
+    format: (r) => `Interest = ${r.toFixed(2)}`
+  },
+
+  {
+    id: "loan_emi",
+    title: "Loan EMI Calculator",
+    fields: [
+      { name: "Loan Amount", key: "p" },
+      { name: "Interest Rate (%)", key: "r" },
+      { name: "Months", key: "n" }
+    ],
+    compute: ({ p, r, n }) => {
+      const i = r / 12 / 100;
+      return (p * i * Math.pow(1 + i, n)) /
+             (Math.pow(1 + i, n) - 1);
+    },
+    format: (r) => `EMI = ${r.toFixed(2)}`
+  },
+
+  {
+    id: "speed",
+    title: "Speed Calculator",
+    fields: [
+      { name: "Distance (km)", key: "d" },
+      { name: "Time (hr)", key: "t" }
+    ],
+    compute: ({ d, t }) => d / t,
+    format: (r) => `Speed = ${r.toFixed(2)} km/h`
+  },
+
+  {
+    id: "percentage",
+    title: "Percentage Calculator",
+    fields: [
+      { name: "Value", key: "v" },
+      { name: "Total", key: "t" }
+    ],
+    compute: ({ v, t }) => (v / t) * 100,
+    format: (r) => `Percentage = ${r.toFixed(2)}%`
+  }
+];
+
+/* =========================
+   OPEN CALCULATOR UI
+========================= */
+
+function openCalculator(id) {
+  const c = calculators.find(x => x.id === id);
+
+  document.body.innerHTML = `
+    ${navbarHTML()}
+
+    <div style="padding:30px; max-width:800px; margin:auto">
+
+      <div class="card">
+        <h1>${c.title}</h1>
+        <p style="color:var(--muted)">Interactive Calculator</p>
+      </div>
+
+      <div class="card">
+        ${c.fields.map(f => `
+          <div style="margin-bottom:12px">
+            <label>${f.name}</label>
+            <input id="${f.key}" type="number"
+              style="
+                width:100%;
+                padding:12px;
+                margin-top:6px;
+                border-radius:12px;
+                border:none;
+                outline:none;
+              "
+              placeholder="Enter ${f.name}"
+            />
+          </div>
+        `).join("")}
+
+        <button class="btn" onclick="runCalc('${id}')">
+          Calculate
+        </button>
+
+        <div id="calcResult"
+          style="margin-top:20px;
+          font-size:20px;
+          font-weight:600;">
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/* =========================
+   RUN CALCULATION
+========================= */
+
+function runCalc(id) {
+  const c = calculators.find(x => x.id === id);
+
+  const inputs = {};
+  c.fields.forEach(f => {
+    inputs[f.key] = parseFloat(
+      document.getElementById(f.key).value || 0
+    );
+  });
+
+  const result = c.compute(inputs);
+
+  document.getElementById("calcResult").innerText =
+    c.format(result);
+}
+
+/* =========================
+   RENDER CALCULATOR GRID
+========================= */
+
+function renderCalculators() {
+  const container = document.createElement("div");
+  container.className = "grid";
+
+  container.innerHTML = `
+    <div style="grid-column:1/-1">
+      <h2 style="padding:0 20px">🧮 Calculators</h2>
+    </div>
+
+    ${calculators.map(c => `
+      <div class="card">
+        <h3>${c.title}</h3>
+        <p style="color:var(--muted)">
+          Interactive tool
+        </p>
+        <button class="btn"
+          onclick="openCalculator('${c.id}')">
+          Open
+        </button>
+      </div>
+    `).join("")}
+  `;
+
+  document.body.appendChild(container);
+}
+
+/* =========================
+   INIT
+========================= */
+
+setTimeout(() => {
+  renderCalculators();
+}, 600);
+
+</script>
   
 </body>
 </html>
