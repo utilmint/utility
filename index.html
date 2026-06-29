@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UtilityHub - Free Online Utility Tools</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f5f7fb;
+color:#333;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.container{
+width:90%;
+max-width:1300px;
+margin:auto;
+}
+
+/* NAVBAR */
+
+header{
+background:#fff;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+nav{
+height:75px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+font-size:30px;
+font-weight:700;
+color:#2563eb;
+}
+
+.search{
+flex:1;
+margin:0 40px;
+position:relative;
+}
+
+.search input{
+width:100%;
+padding:14px 20px;
+border-radius:50px;
+border:none;
+background:#eef2ff;
+font-size:15px;
+outline:none;
+}
+
+.login-btn{
+padding:12px 24px;
+background:#2563eb;
+color:#fff;
+border-radius:30px;
+font-weight:600;
+}
+
+/* HERO */
+
+.hero{
+margin:40px 0;
+background:linear-gradient(135deg,#2563eb,#4f46e5);
+color:white;
+padding:70px;
+border-radius:20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:18px;
+margin-bottom:35px;
+}
+
+.hero input{
+width:70%;
+max-width:700px;
+padding:18px;
+border:none;
+border-radius:50px;
+font-size:16px;
+outline:none;
+}
+
+.tags{
+margin-top:25px;
+display:flex;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap;
+}
+
+.tags span{
+background:rgba(255,255,255,.15);
+padding:10px 18px;
+border-radius:30px;
+font-size:14px;
+}
+
+/* SECTION */
+
+.section-title{
+font-size:32px;
+font-weight:700;
+margin:60px 0 25px;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px;
+}
+
+/* CATEGORY */
+
+.card{
+background:#fff;
+border-radius:16px;
+padding:30px;
+transition:.3s;
+box-shadow:0 5px 18px rgba(0,0,0,.08);
+cursor:pointer;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+.card h3{
+font-size:22px;
+margin-bottom:15px;
+}
+
+.card ul{
+list-style:none;
+}
+
+.card li{
+padding:6px 0;
+font-size:15px;
+color:#666;
+}
+
+/* POPULAR */
+
+.popular{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+}
+
+.popular div{
+background:white;
+padding:15px 22px;
+border-radius:50px;
+box-shadow:0 3px 10px rgba(0,0,0,.08);
+font-weight:500;
+}
+
+/* WHY */
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-bottom:70px;
+}
+
+.feature{
+background:white;
+padding:35px;
+text-align:center;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.feature h2{
+font-size:45px;
+margin-bottom:15px;
+}
+
+/* FOOTER */
+
+footer{
+background:#111827;
+color:#ddd;
+padding:50px 0;
+margin-top:60px;
+}
+
+.footer-grid{
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.footer-links{
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.footer-links a{
+color:#ddd;
+}
+
+.copy{
+margin-top:25px;
+font-size:14px;
+color:#aaa;
+}
+
+@media(max-width:900px){
+
+nav{
+flex-direction:column;
+height:auto;
+padding:20px 0;
+}
+
+.search{
+margin:20px 0;
+width:100%;
+}
+
+.hero{
+padding:40px 20px;
+}
+
+.hero h1{
+font-size:34px;
+}
+
+.hero input{
+width:100%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<nav>
+
+<div class="logo">🛠 UtilityHub</div>
+
+<div class="search">
+<input type="text" placeholder="Search 300+ tools...">
+</div>
+
+<a href="#" class="login-btn">Login</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<div class="container">
+
+<section class="hero">
+
+<h1>Everything You Need in One Place</h1>
+
+<p>Free online tools for PDF, Images, Calculators, Developers, SEO, Finance and much more.</p>
+
+<input placeholder="Search any tool...">
+
+<div class="tags">
+<span>Merge PDF</span>
+<span>Image Compressor</span>
+<span>QR Generator</span>
+<span>JSON Formatter</span>
+<span>Password Generator</span>
+</div>
+
+</section>
+
+<h2 class="section-title">🔥 Popular Tools</h2>
+
+<div class="popular">
+
+<div>Merge PDF</div>
+<div>Compress Image</div>
+<div>Age Calculator</div>
+<div>EMI Calculator</div>
+<div>QR Generator</div>
+<div>JSON Formatter</div>
+<div>Password Generator</div>
+<div>Word Counter</div>
+
+</div>
+
+<h2 class="section-title">📂 Tool Categories</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>📄 PDF Tools</h3>
+<ul>
+<li>Merge PDF</li>
+<li>Split PDF</li>
+<li>Compress PDF</li>
+<li>Word to PDF</li>
+<li>PDF to JPG</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🖼 Image Tools</h3>
+<ul>
+<li>Resize Image</li>
+<li>Compress Image</li>
+<li>Crop Image</li>
+<li>Remove Background</li>
+<li>Image Converter</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🧮 Calculators</h3>
+<ul>
+<li>BMI</li>
+<li>Age</li>
+<li>Percentage</li>
+<li>Loan</li>
+<li>GST</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🔄 Converters</h3>
+<ul>
+<li>Length</li>
+<li>Weight</li>
+<li>Currency</li>
+<li>Temperature</li>
+<li>Area</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>📝 Text Tools</h3>
+<ul>
+<li>Word Counter</li>
+<li>Case Converter</li>
+<li>Text Sorter</li>
+<li>Remove Duplicates</li>
+<li>Reverse Text</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>⚡ Productivity</h3>
+<ul>
+<li>Todo List</li>
+<li>Notes</li>
+<li>Pomodoro</li>
+<li>Calendar</li>
+<li>QR Generator</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>📁 File Tools</h3>
+<ul>
+<li>ZIP Creator</li>
+<li>ZIP Extractor</li>
+<li>File Splitter</li>
+<li>Checksum</li>
+<li>Rename Files</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>💰 Finance</h3>
+<ul>
+<li>SIP</li>
+<li>EMI</li>
+<li>Loan</li>
+<li>GST</li>
+<li>Retirement</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>📅 Date & Time</h3>
+<ul>
+<li>Age Calculator</li>
+<li>Date Difference</li>
+<li>Countdown</li>
+<li>Calendar</li>
+<li>Stopwatch</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🎓 Education</h3>
+<ul>
+<li>GPA</li>
+<li>CGPA</li>
+<li>Scientific Calculator</li>
+<li>Equation Solver</li>
+<li>Roman Numerals</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>💻 Developer</h3>
+<ul>
+<li>JSON Formatter</li>
+<li>Base64</li>
+<li>Regex Tester</li>
+<li>JWT Decoder</li>
+<li>UUID Generator</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>📈 SEO</h3>
+<ul>
+<li>Meta Generator</li>
+<li>Robots.txt</li>
+<li>Sitemap</li>
+<li>Keyword Checker</li>
+<li>Schema Generator</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>📱 Social Media</h3>
+<ul>
+<li>Hashtag Generator</li>
+<li>Caption Generator</li>
+<li>Thumbnail Downloader</li>
+<li>Link Shortener</li>
+<li>QR Generator</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🎨 Color & CSS</h3>
+<ul>
+<li>Color Picker</li>
+<li>HEX to RGB</li>
+<li>Gradient</li>
+<li>Box Shadow</li>
+<li>Border Radius</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🌐 Browser</h3>
+<ul>
+<li>IP Lookup</li>
+<li>Browser Info</li>
+<li>User Agent</li>
+<li>Cookies</li>
+<li>Device Info</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🔐 Security</h3>
+<ul>
+<li>Password Generator</li>
+<li>Password Checker</li>
+<li>SHA256</li>
+<li>MD5</li>
+<li>Hash Generator</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🎯 Miscellaneous</h3>
+<ul>
+<li>Random Number</li>
+<li>Coin Flip</li>
+<li>Dice Roller</li>
+<li>Morse Code</li>
+<li>Barcode</li>
+</ul>
+</div>
+
+</div>
+
+<h2 class="section-title">🆕 Recently Added</h2>
+
+<div class="popular">
+
+<div>AI Image Upscaler</div>
+<div>SVG Optimizer</div>
+<div>CSS Grid Generator</div>
+<div>Markdown Editor</div>
+<div>JWT Decoder</div>
+
+</div>
+
+<h2 class="section-title">⭐ Why Choose Us</h2>
+
+<div class="features">
+
+<div class="feature">
+<h2>⚡</h2>
+<h3>Fast</h3>
+<p>Instant processing with no waiting.</p>
+</div>
+
+<div class="feature">
+<h2>🆓</h2>
+<h3>Free</h3>
+<p>100% free online utility tools.</p>
+</div>
+
+<div class="feature">
+<h2>🔒</h2>
+<h3>Secure</h3>
+<p>Your files stay private and safe.</p>
+</div>
+
+<div class="feature">
+<h2>🚀</h2>
+<h3>No Registration</h3>
+<p>Start using tools immediately.</p>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+<h2>🛠 UtilityHub</h2>
+<p>Your all-in-one online toolkit.</p>
+</div>
+
+<div class="footer-links">
+<a href="#">About</a>
+<a href="#">Contact</a>
+<a href="#">Privacy</a>
+<a href="#">Terms</a>
+</div>
+
+</div>
+
+<div class="copy">
+© 2026 UtilityHub. All Rights Reserved.
+</div>
+
+</div>
+
+</footer>
+
+</body>
+</html>
