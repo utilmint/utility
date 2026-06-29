@@ -1,152 +1,93 @@
-function toggleSidebar() {
-  document.getElementById("sidebar").classList.toggle("active");
-}
+// NAVBAR ELEMENTS
+const navbar = document.getElementById("navbar");
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
+const navLinks = document.querySelectorAll(".nav-link");
 
-const main = document.getElementById("mainContent");
+// -----------------------------
+// 1. PAGE LOAD ANIMATION
+// -----------------------------
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    navbar.classList.add("loaded");
+  }, 200);
 
-/* CATEGORY DATA (RIGHT SIDE CONTENT) */
-const data = {
-  home: `
-    <h2>Welcome to All-in-One Utility Hub</h2>
-    <p class="desc">Select a category to explore tools.</p>
-    <div class="info-grid">
-      <div class="info-card">📄 PDF Tools</div>
-      <div class="info-card">🖼 Image Tools</div>
-      <div class="info-card">🧮 Calculators</div>
-      <div class="info-card">🔁 Converters</div>
-      <div class="info-card">⚡ Productivity</div>
-      <div class="info-card">🔐 Security</div>
-    </div>
-  `,
+  // stagger nav links
+  navLinks.forEach((link, index) => {
+    link.style.transitionDelay = `${index * 100}ms`;
+    link.style.opacity = "0";
+    link.style.transform = "translateY(-10px)";
 
-  pdf: `
-    <h2>PDF Tools</h2>
-    <div class="tool-grid">
-      <div class="tool-card">Merge PDF</div>
-      <div class="tool-card">Split PDF</div>
-      <div class="tool-card">Compress PDF</div>
-      <div class="tool-card">PDF to Word</div>
-      <div class="tool-card">Word to PDF</div>
-      <div class="tool-card">Protect PDF</div>
-    </div>
-  `,
+    setTimeout(() => {
+      link.style.opacity = "1";
+      link.style.transform = "translateY(0)";
+    }, 300 + index * 120);
+  });
+});
 
-  image: `
-    <h2>Image Tools</h2>
-    <div class="tool-grid">
-      <div class="tool-card">Resize Image</div>
-      <div class="tool-card">Compress Image</div>
-      <div class="tool-card">Convert Format</div>
-      <div class="tool-card">Remove Background</div>
-      <div class="tool-card">Crop Image</div>
-    </div>
-  `,
+// -----------------------------
+// 2. SCROLL BEHAVIOR
+// -----------------------------
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 20) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+});
 
-  calc: `
-    <h2>Calculators</h2>
-    <div class="tool-grid">
-      <div class="tool-card">Basic Calculator</div>
-      <div class="tool-card">Age Calculator</div>
-      <div class="tool-card">BMI Calculator</div>
-      <div class="tool-card">GST Calculator</div>
-    </div>
-  `,
+// -----------------------------
+// 3. MOBILE MENU TOGGLE
+// -----------------------------
+hamburger.addEventListener("click", () => {
+  navMenu.classList.toggle("open");
+});
 
-  convert: `
-    <h2>Converters</h2>
-    <div class="tool-grid">
-      <div class="tool-card">Currency Converter</div>
-      <div class="tool-card">Unit Converter</div>
-      <div class="tool-card">Length Converter</div>
-      <div class="tool-card">Weight Converter</div>
-    </div>
-  `,
+// Close menu on link click
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    navMenu.classList.remove("open");
+  });
+});
 
-  text: `
-    <h2>Text Tools</h2>
-    <div class="tool-grid">
-      <div class="tool-card">Word Counter</div>
-      <div class="tool-card">Case Converter</div>
-      <div class="tool-card">Remove Spaces</div>
-      <div class="tool-card">Text Formatter</div>
-    </div>
-  `,
+// -----------------------------
+// 4. ACTIVE LINK ON SCROLL
+// -----------------------------
+const sections = document.querySelectorAll("section");
 
-  productivity: `
-    <h2>Productivity Tools</h2>
-    <div class="tool-grid">
-      <div class="tool-card">To-Do List</div>
-      <div class="tool-card">Notes App</div>
-      <div class="tool-card">Password Generator</div>
-      <div class="tool-card">Timer</div>
-    </div>
-  `,
+window.addEventListener("scroll", () => {
+  let current = "";
 
-  file: `
-    <h2>File Tools</h2>
-    <div class="tool-grid">
-      <div class="tool-card">File Compressor</div>
-      <div class="tool-card">File Converter</div>
-      <div class="tool-card">File Splitter</div>
-    </div>
-  `,
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 120;
+    const sectionHeight = section.clientHeight;
 
-  finance: `
-    <h2>Finance Tools</h2>
-    <div class="tool-grid">
-      <div class="tool-card">Loan Calculator</div>
-      <div class="tool-card">Interest Calculator</div>
-      <div class="tool-card">Budget Planner</div>
-    </div>
-  `,
+    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      current = section.getAttribute("id");
+    }
+  });
 
-  datetime: `
-    <h2>Date & Time Tools</h2>
-    <div class="tool-grid">
-      <div class="tool-card">Current Time</div>
-      <div class="tool-card">Countdown Timer</div>
-      <div class="tool-card">Date Difference</div>
-    </div>
-  `,
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href").includes(current)) {
+      link.classList.add("active");
+    }
+  });
+});
 
-  dev: `
-    <h2>Developer Tools</h2>
-    <div class="tool-grid">
-      <div class="tool-card">JSON Formatter</div>
-      <div class="tool-card">Code Minifier</div>
-      <div class="tool-card">Base64 Encoder</div>
-    </div>
-  `,
+// -----------------------------
+// 5. SMOOTH SCROLL ENHANCEMENT
+// -----------------------------
+navLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
 
-  seo: `
-    <h2>SEO Tools</h2>
-    <div class="tool-grid">
-      <div class="tool-card">Meta Tag Checker</div>
-      <div class="tool-card">Keyword Generator</div>
-      <div class="tool-card">Backlink Checker</div>
-    </div>
-  `,
+    const targetId = link.getAttribute("href").substring(1);
+    const target = document.getElementById(targetId);
 
-  security: `
-    <h2>Security Tools</h2>
-    <div class="tool-grid">
-      <div class="tool-card">Password Strength</div>
-      <div class="tool-card">Hash Generator</div>
-      <div class="tool-card">Encrypt/Decrypt</div>
-    </div>
-  `,
-
-  misc: `
-    <h2>Miscellaneous Tools</h2>
-    <div class="tool-grid">
-      <div class="tool-card">QR Generator</div>
-      <div class="tool-card">Barcode Generator</div>
-      <div class="tool-card">Unit Tester</div>
-    </div>
-  `
-};
-
-/* LOAD CATEGORY INTO RIGHT PANEL */
-function loadCategory(key) {
-  main.innerHTML = data[key] || "<h2>Not Found</h2>";
-}
+    window.scrollTo({
+      top: target.offsetTop - 70,
+      behavior: "smooth"
+    });
+  });
+});
