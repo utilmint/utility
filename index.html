@@ -49,5 +49,71 @@
   <section id="blog" class="section"></section>
 
   <script src="script.js"></script>
+
+    <!-- HERO SECTION -->
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <!-- HEADLINE -->
+      <h1 class="hero-title">Instant Unit Conversions, Anytime.</h1>
+
+      <!-- SUBTEXT -->
+      <p class="hero-subtitle">
+        Convert length, weight, temperature, volume, speed, and more in seconds.
+      </p>
+
+      <!-- CONVERTER BOX -->
+      <div class="converter" id="converter">
+
+        <!-- INPUT -->
+        <input type="number" id="valueInput" placeholder="Enter value" autofocus />
+
+        <!-- FROM -->
+        <select id="fromUnit">
+          <option>Meter</option>
+          <option>Kilometer</option>
+          <option>Centimeter</option>
+          <option>Kilogram</option>
+          <option>Gram</option>
+          <option>Celsius</option>
+          <option>Fahrenheit</option>
+          <option>Liter</option>
+          <option>Milliliter</option>
+        </select>
+
+        <!-- SWAP -->
+        <button class="swap-btn" id="swapBtn">⇅</button>
+
+        <!-- TO -->
+        <select id="toUnit">
+          <option>Meter</option>
+          <option>Kilometer</option>
+          <option>Centimeter</option>
+          <option>Kilogram</option>
+          <option>Gram</option>
+          <option>Celsius</option>
+          <option>Fahrenheit</option>
+          <option>Liter</option>
+          <option>Milliliter</option>
+        </select>
+
+        <!-- RESULT -->
+        <div class="result">
+          Result: <span id="resultValue">0.00</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- BACKGROUND DECOR -->
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+
+  </section>
+
+  <script src="script.js"></script>
+  
 </body>
 </html>
