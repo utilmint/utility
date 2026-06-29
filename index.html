@@ -1,74 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>All-in-One Utility Hub</title>
-  <link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormulaHub — Modern Calculation Network</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header class="header">
-  <div class="logo">All-in-One Utility Hub</div>
+    <nav class="glass-nav">
+        <div style="font-weight: 800; font-size: 1.5rem; cursor: pointer;" onclick="router.navigate('home')" class="text-gradient">FormulaHub</div>
+        <div style="display: flex; gap: 1.5rem; align-items: center;">
+            <span style="cursor: pointer;" onclick="router.navigate('home')">Dashboard</span>
+            <span style="cursor: pointer;" onclick="router.navigate('converters')">Converters</span>
+            <button id="themeToggle" class="btn-gradient" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Toggle Theme</button>
+        </div>
+    </nav>
 
-  <div class="search-box">
-    <input type="text" placeholder="Search tools..." />
-  </div>
+    <main id="home-view" class="view-panel container active">
+        <div style="text-align: center; margin-bottom: 3rem; padding: 3rem 0;">
+            <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 1rem;">Compute Instantly with <span class="text-gradient">Precision</span></h1>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Access formulas and instant calculators across multiple disciplines.</p>
+            <input type="text" id="globalSearch" placeholder="Search formulas (e.g., Quadratic, Force, Interest)..." class="input-field" style="max-width: 600px; box-shadow: var(--card-shadow);">
+        </div>
 
-  <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-</header>
+        <h2 style="margin-bottom: 1.5rem;">Core Disciplines</h2>
+        <div id="formula-grid" class="grid-3">
+            </div>
+    </main>
 
-<div class="container">
+    <main id="calculator-view" class="view-panel container">
+        <button onclick="router.navigate('home')" style="background: none; border: none; color: #6366f1; font-weight: 700; cursor: pointer; margin-bottom: 1.5rem;">← Back to Dashboard</button>
+        
+        <div class="grid-3" style="grid-template-columns: 2fr 1fr; align-items: start;">
+            <div class="glass-card">
+                <h1 id="calc-title" style="font-size: 2.25rem; margin-bottom: 0.5rem;">Formula Title</h1>
+                <p id="calc-desc" style="color: var(--text-muted); margin-bottom: 2rem;">Description statement</p>
+                
+                <div style="background: rgba(99,102,241,0.05); padding: 2rem; border-radius: 0.75rem; display: flex; justify-content: center; margin-bottom: 2rem;">
+                    <div id="math-expression-target" style="font-size: 1.75rem;"></div>
+                </div>
 
-  <!-- LEFT SIDEBAR -->
-  <aside class="sidebar" id="sidebar">
-    <h3>Categories</h3>
+                <div id="dynamic-inputs-container" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                    </div>
+                
+                <button id="execute-calc-btn" class="btn-gradient" style="width: 100%; margin-top: 1.5rem; py: 1rem;">Compute Variables</button>
+                
+                <div id="calc-result-box" style="margin-top: 2rem; display: none; padding: 1.5rem; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); border-radius: 0.75rem;">
+                    <h3 style="color: #10b981; margin-bottom: 0.5rem;">Calculated Result</h3>
+                    <div id="calc-result-output" style="font-size: 1.5rem; font-weight: 700; font-family: monospace;"></div>
+                </div>
+            </div>
 
-    <ul>
-      <li onclick="loadCategory('home')">Home</li>
-      <li onclick="loadCategory('pdf')">PDF Tools</li>
-      <li onclick="loadCategory('image')">Image Tools</li>
-      <li onclick="loadCategory('calc')">Calculators</li>
-      <li onclick="loadCategory('convert')">Converters</li>
-      <li onclick="loadCategory('text')">Text Tools</li>
-      <li onclick="loadCategory('productivity')">Productivity</li>
-      <li onclick="loadCategory('file')">File Tools</li>
-      <li onclick="loadCategory('finance')">Finance Tools</li>
-      <li onclick="loadCategory('datetime')">Date & Time</li>
-      <li onclick="loadCategory('dev')">Developer Tools</li>
-      <li onclick="loadCategory('seo')">SEO Tools</li>
-      <li onclick="loadCategory('security')">Security Tools</li>
-      <li onclick="loadCategory('misc')">Miscellaneous</li>
-    </ul>
-  </aside>
+            <div class="glass-card" style="position: sticky; top: 6rem;">
+                <h3 style="margin-bottom: 1rem;">Applications</h3>
+                <ul id="calc-apps" style="padding-left: 1.25rem; color: var(--text-muted); display:flex; flex-direction:column; gap:0.5rem;">
+                    </ul>
+            </div>
+        </div>
+    </main>
 
-  <!-- RIGHT MAIN PANEL -->
-  <main class="main" id="mainContent">
+    <main id="converters-view" class="view-panel container">
+        <h1 style="font-size: 2.5rem; margin-bottom: 2rem;">Unit Conversions</h1>
+        <div class="grid-3">
+            <div class="glass-card">
+                <h3 style="margin-bottom: 1rem;">Length Converter</h3>
+                <div style="display:flex; flex-direction:column; gap:1rem;">
+                    <input type="number" id="converter-input" value="1" class="input-field">
+                    <select id="converter-from" class="input-field">
+                        <option value="1">Meters (m)</option>
+                        <option value="1000">Kilometers (km)</option>
+                        <option value="0.3048">Feet (ft)</option>
+                    </select>
+                    <div style="text-align:center; font-weight:700; color:var(--text-muted);">converts to</div>
+                    <select id="converter-to" class="input-field">
+                        <option value="1">Meters (m)</option>
+                        <option value="1000" selected>Kilometers (km)</option>
+                        <option value="0.3048">Feet (ft)</option>
+                    </select>
+                    <div id="converter-result" style="font-size: 1.25rem; font-weight:700; font-family:monospace; margin-top:0.5rem; text-align:center;" class="text-gradient">0.001 Kilometers</div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    <h2>Welcome to All-in-One Utility Hub</h2>
-
-    <p class="desc">
-      Select any category from the left panel to explore powerful online tools.
-      This platform provides fast, simple and free utilities for daily needs.
-    </p>
-
-    <div class="info-grid">
-      <div class="info-card">📄 PDF Processing</div>
-      <div class="info-card">🖼 Image Editing</div>
-      <div class="info-card">🧮 Smart Calculators</div>
-      <div class="info-card">🔁 File Converters</div>
-      <div class="info-card">⚡ Productivity Boosters</div>
-      <div class="info-card">🔐 Security Utilities</div>
-    </div>
-
-  </main>
-
-</div>
-
-<footer class="footer">
-  <p>© 2026 All-in-One Utility Hub. Built for productivity.</p>
-</footer>
-
-<script src="script.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
