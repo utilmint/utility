@@ -6,89 +6,89 @@
   <title>Utilmint Unit Converter</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar" id="navbar">
+<header class="nav">
   <div class="logo">Utilmint</div>
 
-  <nav>
+  <nav class="nav-links">
     <a href="#">Home</a>
-    <a href="#converter">Unit Converter</a>
-    <a href="#categories">Categories</a>
+    <a href="#converter">Converter</a>
+    <a href="#tools">Tools</a>
     <a href="#learn">Learn</a>
   </nav>
 
-  <button id="darkToggle">🌙</button>
+  <button id="themeToggle" class="btn">🌙</button>
 </header>
 
-<!-- HERO CONVERTER -->
+<main>
+
+<!-- HERO -->
 <section class="hero" id="converter">
-  <h1>Instant Unit Converter</h1>
+  <div class="hero-content">
+    <h1>All-in-One Unit Converter</h1>
+    <p>Fast • Accurate • Real-time conversions</p>
+  </div>
 
-  <div class="converter-card">
-    <input type="number" id="inputValue" placeholder="Enter value"/>
+  <div class="card converter">
 
-    <select id="categorySelect"></select>
+    <input id="inputValue" type="number" placeholder="Enter value..." />
 
-    <div class="unit-row">
+    <div class="row">
+      <select id="category"></select>
+    </div>
+
+    <div class="row grid-3">
       <select id="fromUnit"></select>
-      <button id="swapBtn">↔</button>
+
+      <button id="swap" class="swap">⇄</button>
+
       <select id="toUnit"></select>
     </div>
 
     <div class="result">
-      <h2 id="result">0</h2>
-      <button id="copyBtn">Copy</button>
+      <h2 id="output">0</h2>
+      <button id="copy">Copy</button>
     </div>
-  </div>
 
-  <div class="quick-links">
-    <button onclick="setCategory('Length')">Length</button>
-    <button onclick="setCategory('Mass')">Mass</button>
-    <button onclick="setCategory('Temperature')">Temperature</button>
-    <button onclick="setCategory('Volume')">Volume</button>
+    <div class="quick">
+      <button data-cat="Length">Length</button>
+      <button data-cat="Mass">Mass</button>
+      <button data-cat="Temperature">Temp</button>
+      <button data-cat="Speed">Speed</button>
+    </div>
+
   </div>
 </section>
 
-<!-- CATEGORY GRID -->
-<section id="categories" class="grid">
+<!-- CATEGORIES -->
+<section class="section">
   <h2>Categories</h2>
-  <div class="grid-container">
-    <div class="card">📏 Length</div>
-    <div class="card">⚖️ Weight</div>
-    <div class="card">🌡️ Temperature</div>
-    <div class="card">🧪 Volume</div>
-    <div class="card">🚗 Speed</div>
-    <div class="card">💾 Data</div>
-    <div class="card">⏱️ Time</div>
-    <div class="card">📐 Area</div>
-    <div class="card">⚡ Energy</div>
-    <div class="card">🔋 Power</div>
-    <div class="card">🔌 Electricity</div>
-  </div>
-</section>
 
-<!-- FEATURED -->
-<section class="featured">
-  <h2>Featured Conversions</h2>
-  <div class="featured-box">
-    <p>Inches ↔ Centimeters</p>
-    <p>Kilograms ↔ Pounds</p>
-    <p>Celsius ↔ Fahrenheit</p>
-    <p>Miles ↔ Kilometers</p>
+  <div class="grid">
+    <div class="tile">📏 Length</div>
+    <div class="tile">⚖️ Mass</div>
+    <div class="tile">🌡️ Temperature</div>
+    <div class="tile">🧪 Volume</div>
+    <div class="tile">🚗 Speed</div>
+    <div class="tile">💾 Data</div>
+    <div class="tile">⚡ Energy</div>
+    <div class="tile">🔌 Electricity</div>
+    <div class="tile">⏱️ Time</div>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta">
   <h2>Make every conversion effortless.</h2>
-  <button>👉 Open Unit Converter</button>
+  <button class="primary">Open Converter</button>
 </section>
 
-<!-- FOOTER -->
+</main>
+
 <footer>
-  <p>Utilmint © 2026</p>
+  <p>© 2026 Utilmint. All rights reserved.</p>
 </footer>
 
 <script src="script.js"></script>
