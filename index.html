@@ -269,5 +269,191 @@ function search() {
 }
 </script>
 
+ <script>
+/* =========================
+   FORMULA DATABASE (MOCK)
+========================= */
+
+const formulas = [
+  {
+    id: 1,
+    title: "Quadratic Formula",
+    category: "Mathematics",
+    formula: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+    desc: "Solves quadratic equations",
+    tags: ["algebra", "roots"]
+  },
+  {
+    id: 2,
+    title: "Pythagorean Theorem",
+    category: "Mathematics",
+    formula: "a^2 + b^2 = c^2",
+    desc: "Relation in right triangle",
+    tags: ["geometry"]
+  },
+  {
+    id: 3,
+    title: "Simple Interest",
+    category: "Finance",
+    formula: "SI = \\frac{P \\times R \\times T}{100}",
+    desc: "Basic interest calculation",
+    tags: ["money"]
+  },
+  {
+    id: 4,
+    title: "Newton's Second Law",
+    category: "Physics",
+    formula: "F = ma",
+    desc: "Force equals mass × acceleration",
+    tags: ["motion"]
+  },
+  {
+    id: 5,
+    title: "Speed Formula",
+    category: "Physics",
+    formula: "Speed = \\frac{Distance}{Time}",
+    desc: "Basic motion formula",
+    tags: ["motion"]
+  },
+  {
+    id: 6,
+    title: "Area of Circle",
+    category: "Mathematics",
+    formula: "A = \\pi r^2",
+    desc: "Circle area calculation",
+    tags: ["geometry"]
+  }
+];
+
+/* =========================
+   TRENDING FORMULAS
+========================= */
+
+const trending = [1, 2, 4, 6];
+
+/* =========================
+   RENDER FORMULA CARD
+========================= */
+
+function formulaCard(f) {
+  return `
+    <div class="card">
+      <h3>${f.title}</h3>
+      <p style="color:var(--muted)">${f.desc}</p>
+
+      <div style="margin:10px 0">
+        \\(${f.formula}\\)
+      </div>
+
+      <small style="color:var(--muted)">
+        Category: ${f.category}
+      </small>
+
+      <br/><br/>
+      <button class="btn" onclick="openFormula(${f.id})">
+        View Details
+      </button>
+    </div>
+  `;
+}
+
+/* =========================
+   RENDER TRENDING
+========================= */
+
+function renderTrending() {
+  const container = document.createElement("div");
+  container.className = "grid";
+
+  const items = formulas.filter(f => trending.includes(f.id));
+
+  container.innerHTML = `
+    <div style="grid-column:1/-1">
+      <h2 style="padding:0 20px">🔥 Trending Formulas</h2>
+    </div>
+    ${items.map(formulaCard).join("")}
+  `;
+
+  document.body.appendChild(container);
+}
+
+/* =========================
+   SEARCH ENGINE (LIVE FILTER)
+========================= */
+
+function searchFormulas(query) {
+  query = query.toLowerCase();
+
+  return formulas.filter(f =>
+    f.title.toLowerCase().includes(query) ||
+    f.category.toLowerCase().includes(query) ||
+    f.tags.some(t => t.includes(query))
+  );
+}
+
+/* =========================
+   RENDER SEARCH RESULTS
+========================= */
+
+function renderSearchResults(query) {
+  const results = searchFormulas(query);
+
+  let old = document.getElementById("results");
+  if (old) old.remove();
+
+  const container = document.createElement("div");
+  container.id = "results";
+  container.className = "grid";
+
+  container.innerHTML = `
+    <div style="grid-column:1/-1">
+      <h2 style="padding:0 20px">Search Results</h2>
+    </div>
+
+    ${
+      results.length
+        ? results.map(formulaCard).join("")
+        : `<div class="card">No formulas found</div>`
+    }
+  `;
+
+  document.body.appendChild(container);
+
+  setTimeout(() => {
+    if (window.MathJax) MathJax.typeset();
+  }, 200);
+}
+
+/* =========================
+   OPEN FORMULA (MOCK PAGE)
+========================= */
+
+function openFormula(id) {
+  const f = formulas.find(x => x.id === id);
+  alert("Opening: " + f.title);
+}
+
+/* =========================
+   OVERRIDE SEARCH BUTTON
+========================= */
+
+function search() {
+  const val = document.getElementById("searchInput").value;
+  renderSearchResults(val);
+}
+
+/* =========================
+   INIT
+========================= */
+
+renderTrending();
+
+/* re-render math */
+setTimeout(() => {
+  if (window.MathJax) MathJax.typeset();
+}, 500);
+
+</script>
+  
 </body>
 </html>
