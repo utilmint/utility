@@ -1,329 +1,298 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-animations="true" data-sound="true">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuantumCalc Premium | Advanced Scientific Workspace</title>
     <style>
         /* ==========================================================================
-           CSS VARIABLES & DESIGN TOKENS (Glassmorphism / Fluent Design Archetype)
+           CSS VARIABLES & SYSTEM DESIGN TOKENS
            ========================================================================== */
         :root {
-            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            /* Fonts */
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
             
             /* Dark Theme (Default) */
-            --bg-gradient: linear-gradient(135deg, #0f111a 0%, #191d30 50%, #10121d 100%);
-            --panel-bg: rgba(25, 30, 50, 0.45);
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
+            --panel-bg: rgba(15, 23, 42, 0.45);
             --panel-border: rgba(255, 255, 255, 0.08);
-            --text-primary: #f3f4f6;
-            --text-secondary: #9ca3af;
-            --text-muted: #6b7280;
-            --accent: #4f46e5;
-            --accent-glow: rgba(79, 70, 229, 0.4);
-            --accent-hover: #6366f1;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-dim: #64748b;
             
-            /* Button Categorization Colors */
-            --btn-fn-bg: rgba(255, 255, 255, 0.04);
-            --btn-fn-hover: rgba(255, 255, 255, 0.1);
-            --btn-num-bg: rgba(255, 255, 255, 0.07);
-            --btn-num-hover: rgba(255, 255, 255, 0.14);
-            --btn-op-bg: rgba(245, 158, 11, 0.15);
-            --btn-op-hover: rgba(245, 158, 11, 0.25);
+            /* Button Tones */
+            --btn-fn-bg: rgba(99, 102, 241, 0.12);
+            --btn-fn-border: rgba(99, 102, 241, 0.25);
+            --btn-fn-text: #818cf8;
+            --btn-fn-hover: rgba(99, 102, 241, 0.25);
+            
+            --btn-op-bg: rgba(245, 158, 11, 0.12);
+            --btn-op-border: rgba(245, 158, 11, 0.25);
             --btn-op-text: #fbbf24;
-            --btn-edit-bg: rgba(239, 68, 68, 0.12);
-            --btn-edit-hover: rgba(239, 68, 68, 0.22);
-            --btn-edit-text: #fca5a5;
+            --btn-op-hover: rgba(245, 158, 11, 0.25);
             
-            /* UI States & Shadows */
-            --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.4);
-            --shadow-inset: inset 0 2px 4px rgba(255, 255, 255, 0.05);
-            --radius-outer: 24px;
-            --radius-inner: 12px;
-            --radius-btn: 10px;
+            --btn-num-bg: rgba(255, 255, 255, 0.04);
+            --btn-num-border: rgba(255, 255, 255, 0.06);
+            --btn-num-text: #e2e8f0;
+            --btn-num-hover: rgba(255, 255, 255, 0.1);
+            
+            --btn-action-bg: rgba(239, 68, 68, 0.12);
+            --btn-action-border: rgba(239, 68, 68, 0.25);
+            --btn-action-text: #f87171;
+            --btn-action-hover: rgba(239, 68, 68, 0.25);
+            
+            --btn-eq-bg: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+            --btn-eq-border: rgba(255, 255, 255, 0.2);
+            --btn-eq-text: #ffffff;
+            --btn-eq-hover: linear-gradient(135deg, #6366f1 0%, #60a5fa 100%);
+            
+            /* Accents & Effects */
+            --glow-color: rgba(99, 102, 241, 0.15);
+            --shadow-intensity: rgba(0, 0, 0, 0.4);
             --blur-radius: 20px;
-            --glow-intensity: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15), transparent 70%);
+            --transition-speed: 0.25s;
+            --neon-accent: #6366f1;
+            
+            /* UI States */
+            --active-indicator: #10b981;
         }
 
         [data-theme="light"] {
-            /* Light Theme Custom Tokens */
-            --bg-gradient: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 50%, #d1d5db 100%);
+            --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e0e7ff 50%, #f8fafc 100%);
             --panel-bg: rgba(255, 255, 255, 0.65);
             --panel-border: rgba(0, 0, 0, 0.08);
-            --text-primary: #1f2937;
-            --text-secondary: #4b5563;
-            --text-muted: #9ca3af;
-            --accent: #4f46e5;
-            --accent-glow: rgba(79, 70, 229, 0.2);
-            --accent-hover: #4338ca;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-dim: #94a3b8;
             
-            --btn-fn-bg: rgba(0, 0, 0, 0.03);
-            --btn-fn-hover: rgba(0, 0, 0, 0.08);
-            --btn-num-bg: rgba(255, 255, 255, 0.8);
-            --btn-num-hover: rgba(0, 0, 0, 0.05);
-            --btn-op-bg: rgba(245, 158, 11, 0.2);
-            --btn-op-hover: rgba(245, 158, 11, 0.35);
+            --btn-fn-bg: rgba(79, 70, 229, 0.08);
+            --btn-fn-border: rgba(79, 70, 229, 0.15);
+            --btn-fn-text: #4f46e5;
+            --btn-fn-hover: rgba(79, 70, 229, 0.15);
+            
+            --btn-op-bg: rgba(217, 119, 6, 0.08);
+            --btn-op-border: rgba(217, 119, 6, 0.15);
             --btn-op-text: #b45309;
-            --btn-edit-bg: rgba(239, 68, 68, 0.15);
-            --btn-edit-hover: rgba(239, 68, 68, 0.25);
-            --btn-edit-text: #b91c1c;
+            --btn-op-hover: rgba(217, 119, 6, 0.15);
             
-            --shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.08);
-            --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.02);
-            --glow-intensity: radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.05), transparent 70%);
-        }
-
-        /* Disable Animations Contextually */
-        [data-animations="false"] *,
-        [data-animations="false"] *::before,
-        [data-animations="false"] *::after {
-            animation: none !important;
-            transition: none !important;
+            --btn-num-bg: rgba(0, 0, 0, 0.03);
+            --btn-num-border: rgba(0, 0, 0, 0.06);
+            --btn-num-text: #1e293b;
+            --btn-num-hover: rgba(0, 0, 0, 0.08);
+            
+            --btn-action-bg: rgba(220, 38, 38, 0.08);
+            --btn-action-border: rgba(220, 38, 38, 0.15);
+            --btn-action-text: #dc2626;
+            --btn-action-hover: rgba(220, 38, 38, 0.15);
+            
+            --btn-eq-bg: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+            --btn-eq-text: #ffffff;
+            --btn-eq-hover: linear-gradient(135deg, #4338ca 0%, #1d4ed8 100%);
+            
+            --glow-color: rgba(79, 70, 229, 0.05);
+            --shadow-intensity: rgba(0, 0, 0, 0.08);
+            --neon-accent: #4f46e5;
         }
 
         /* ==========================================================================
-           GLOBAL BASE STYLES
+           GLOBAL BASE STYLES & RESET
            ========================================================================== */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: var(--font-family);
             user-select: none;
             -webkit-user-select: none;
-            font-family: var(--font-family);
         }
 
         body {
             width: 100vw;
             height: 100vh;
-            min-height: 100vh;
             overflow: hidden;
             background: var(--bg-gradient);
             background-size: 400% 400%;
-            animation: gradientShift 25s ease infinite;
+            animation: gradientBg 25s ease infinite;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             color: var(--text-primary);
-            padding: 20px;
+            perspective: 1000px;
         }
 
-        @keyframes gradientShift {
+        @keyframes gradientBg {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
         /* ==========================================================================
-           MAIN APPLICATION WORKSPACE LAYOUT
+           MAIN LAYER ARCHITECTURE (APPLICATION CONTAINER)
            ========================================================================== */
-        .app-container {
-            width: 100%;
+        .app-workspace {
+            width: 95vw;
             max-width: 1440px;
             height: 90vh;
             max-height: 960px;
+            background: var(--panel-bg);
+            backdrop-filter: blur(var(--blur-radius));
+            -webkit-backdrop-filter: blur(var(--blur-radius));
+            border: 1px solid var(--panel-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px var(--shadow-intensity), 
+                        inset 0 1px 0 rgba(255,255,255,0.1);
             display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 20px;
-            perspective: 1000px;
-            animation: appEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            grid-template-columns: 1fr 350px;
+            overflow: hidden;
+            animation: appEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+            position: relative;
         }
 
         @keyframes appEntrance {
-            from { opacity: 0; transform: translateY(30px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .calculator-panel {
-            background: var(--panel-bg);
-            backdrop-filter: blur(var(--blur-radius));
-            -webkit-backdrop-filter: blur(var(--blur-radius));
-            border: 1px solid var(--panel-border);
-            border-radius: var(--radius-outer);
-            box-shadow: var(--shadow-premium), var(--shadow-inset);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .calculator-panel::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--glow-intensity);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Side Sidebar Panel (History & Settings) */
-        .sidebar-panel {
-            background: var(--panel-bg);
-            backdrop-filter: blur(var(--blur-radius));
-            -webkit-backdrop-filter: blur(var(--blur-radius));
-            border: 1px solid var(--panel-border);
-            border-radius: var(--radius-outer);
-            box-shadow: var(--shadow-premium);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        /* Tabs Navigation within Sidebar */
-        .sidebar-tabs {
-            display: flex;
-            border-bottom: 1px solid var(--panel-border);
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 15px;
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            text-align: center;
-        }
-
-        .tab-btn:hover {
-            color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .tab-btn.active {
-            color: var(--text-primary);
-        }
-
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 20%; right: 20%;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .sidebar-content {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tab-content {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            display: flex;
-            flex-direction: column;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            transform: translateY(10px);
-            padding: 20px;
-        }
-
-        .tab-content.active {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
+            0% { opacity: 0; transform: scale(0.96) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         /* ==========================================================================
-           COMPONENTS: DISPLAY MANAGEMENT SYSTEM
+           LEFT WORKSPACE: CALCULATOR CORE
            ========================================================================== */
-        .display-container {
-            padding: 30px;
+        .calculator-core {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            border-right: 1px solid var(--panel-border);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Header Bar */
+        .core-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--panel-border);
+        }
+
+        .brand-signature {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .system-status-indicators {
+            display: flex;
+            gap: 12px;
+        }
+
+        .status-pill {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--panel-border);
+            color: var(--text-secondary);
+            transition: all var(--transition-speed);
+        }
+
+        .status-pill.active {
+            color: var(--active-indicator);
+            border-color: rgba(16, 185, 129, 0.3);
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.15);
+        }
+
+        /* Unified Terminal Screen Display */
+        .display-terminal {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 24px 32px;
             display: flex;
             flex-direction: column;
+            justify-content: flex-end;
             align-items: flex-end;
-            justify-content: flex-end;
+            position: relative;
+            min-height: 180px;
             border-bottom: 1px solid var(--panel-border);
-            position: relative;
-            z-index: 1;
-            background: rgba(0, 0, 0, 0.12);
+            overflow: hidden;
         }
 
-        /* Indicators Status Bar */
-        .status-bar {
-            width: 100%;
+        .meta-line {
             display: flex;
-            justify-content: flex-start;
             gap: 12px;
-            margin-bottom: 15px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-        }
-
-        .status-indicator {
-            padding: 2px 6px;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.04);
-            transition: all 0.3s ease;
-        }
-
-        .status-indicator.active {
-            color: var(--accent-hover);
-            background: rgba(79, 70, 229, 0.15);
-            text-shadow: 0 0 8px var(--accent-glow);
-        }
-
-        .expression-line {
-            width: 100%;
-            min-height: 28px;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            text-align: right;
-            white-space: nowrap;
-            overflow-x: auto;
-            overflow-y: hidden;
+            font-size: 0.8rem;
+            color: var(--text-dim);
             margin-bottom: 8px;
-            scrollbar-width: none;
-        }
-        .expression-line::-webkit-scrollbar { display: none; }
-
-        .preview-line {
             width: 100%;
-            min-height: 20px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            justify-content: flex-end;
+            font-family: monospace;
+        }
+
+        .meta-line span {
+            transition: color var(--transition-speed);
+        }
+
+        .meta-line span.active {
+            color: var(--neon-accent);
+            font-weight: bold;
+        }
+
+        .expression-stream {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            min-height: 2rem;
+            word-wrap: break-word;
+            word-break: break-all;
             text-align: right;
-            margin-bottom: 10px;
-            font-style: italic;
+            width: 100%;
+            max-height: 4rem;
+            overflow-y: auto;
+            font-family: monospace;
+            line-height: 1.3;
         }
 
-        .result-line {
-            width: 100%;
-            color: var(--text-primary);
-            font-size: 3rem;
+        .result-render-pipeline {
+            font-size: 3.5rem;
             font-weight: 300;
-            text-align: right;
+            color: var(--text-primary);
+            margin-top: 8px;
             white-space: nowrap;
             overflow-x: auto;
-            overflow-y: hidden;
+            width: 100%;
+            text-align: right;
+            font-family: monospace;
             scrollbar-width: none;
             position: relative;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            transition: font-size 0.15s ease;
+            line-height: 1.1;
         }
-        .result-line::-webkit-scrollbar { display: none; }
 
-        .animated-cursor {
+        .result-render-pipeline::-webkit-scrollbar {
+            display: none;
+        }
+
+        .live-preview-subline {
+            font-size: 1rem;
+            color: var(--text-dim);
+            min-height: 1.2rem;
+            margin-top: 4px;
+            font-family: monospace;
+        }
+
+        /* Console Cursor Effect */
+        .terminal-cursor {
             display: inline-block;
-            width: 3px;
-            height: 3.2rem;
-            background: var(--accent);
+            width: 8px;
+            height: 1.2em;
+            background: var(--neon-accent);
             margin-left: 4px;
+            vertical-align: middle;
             animation: cursorBlink 1s infinite;
-            border-radius: 2px;
-            box-shadow: 0 0 8px var(--accent-glow);
         }
 
         @keyframes cursorBlink {
@@ -331,140 +300,167 @@
             50% { opacity: 1; }
         }
 
-        /* ==========================================================================
-           COMPONENTS: KEYBOARD GRID SYSTEM
-           ========================================================================== */
-        .keyboard-grid {
-            flex: 1;
+        /* Matrix Core Input Workspace Matrix Grid Layout */
+        .input-matrix-grid {
             display: grid;
             grid-template-columns: repeat(10, 1fr);
             gap: 8px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.05);
+            padding: 24px;
+            background: rgba(0,0,0,0.05);
+            align-content: stretch;
+            height: calc(100% - 0px);
             overflow-y: auto;
         }
 
-        /* Custom Adaptive Layout Configuration rules */
-        .calc-btn {
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: var(--radius-btn);
+        /* Unified Keyboard Interface Units */
+        .key-unit {
+            border: 1px solid;
+            border-radius: 12px;
             font-size: 0.95rem;
             font-weight: 500;
-            color: var(--text-primary);
-            cursor: pointer;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            padding: 14px 8px;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
             overflow: hidden;
+            min-height: 48px;
             outline: none;
-            background: var(--btn-fn-bg);
         }
 
-        /* Categorized Theming Schemes */
-        .calc-btn.btn-number {
-            background: var(--btn-num-bg);
-            font-weight: 600;
-            font-size: 1.1rem;
+        /* Key Theming & Class Specifiers */
+        .key-fn {
+            background: var(--btn-fn-bg);
+            border-color: var(--btn-fn-border);
+            color: var(--btn-fn-text);
         }
-        .calc-btn.btn-operator {
+        .key-fn:hover { background: var(--btn-fn-hover); transform: translateY(-1px); }
+        .key-fn:active { transform: translateY(1px); }
+
+        .key-op {
             background: var(--btn-op-bg);
+            border-color: var(--btn-op-border);
             color: var(--btn-op-text);
             font-weight: 600;
         }
-        .calc-btn.btn-editing {
-            background: var(--btn-edit-bg);
-            color: var(--btn-edit-text);
+        .key-op:hover { background: var(--btn-op-hover); transform: translateY(-1px); }
+        .key-op:active { transform: translateY(1px); }
+
+        .key-num {
+            background: var(--btn-num-bg);
+            border-color: var(--btn-num-border);
+            color: var(--btn-num-text);
         }
-        .calc-btn.btn-accent {
-            background: var(--accent);
-            color: #ffffff;
-            font-weight: 700;
+        .key-num:hover { background: var(--btn-num-hover); transform: translateY(-1px); }
+        .key-num:active { transform: translateY(1px); }
+
+        .key-action {
+            background: var(--btn-action-bg);
+            border-color: var(--btn-action-border);
+            color: var(--btn-action-text);
+        }
+        .key-action:hover { background: var(--btn-action-hover); transform: translateY(-1px); }
+        .key-action:active { transform: translateY(1px); }
+
+        .key-equal {
+            background: var(--btn-eq-bg);
+            border-color: var(--btn-eq-border);
+            color: var(--btn-eq-text);
+            font-weight: bold;
             grid-column: span 2;
-            box-shadow: 0 4px 15px var(--accent-glow);
-            border: none;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+        .key-equal:hover { background: var(--btn-eq-hover); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4); }
+        .key-equal:active { transform: translateY(1px); }
+
+        .key-unit:focus-visible {
+            box-shadow: 0 0 0 3px var(--neon-accent);
         }
 
-        /* Hover & Active Microinteractions states */
-        .calc-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            filter: brightness(1.15);
-        }
-        .calc-btn.btn-number:hover { background: var(--btn-num-hover); }
-        .calc-btn.btn-operator:hover { background: var(--btn-op-hover); }
-        .calc-btn.btn-editing:hover { background: var(--btn-edit-hover); }
-        .calc-btn.btn-accent:hover { background: var(--accent-hover); box-shadow: 0 6px 20px var(--accent-glow); }
-
-        .calc-btn:active {
-            transform: translateY(1px) scale(0.97);
-            filter: brightness(0.9);
-        }
-
-        /* Tooltip style descriptors inside functions */
-        .btn-desc {
-            font-size: 0.6rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Ripple Effect Elements */
-        .ripple {
+        /* Keyboard Ripple Element */
+        .ripple-surface {
             position: absolute;
-            background: rgba(255, 255, 255, 0.25);
             border-radius: 50%;
+            background: rgba(255,255,255,0.25);
             transform: scale(0);
-            animation: rippleEffect 0.5s linear;
+            animation: rippleEffect 0.4s linear;
             pointer-events: none;
         }
+
         @keyframes rippleEffect {
             to { transform: scale(4); opacity: 0; }
         }
 
-        /* Focus Ring Visibility Rules */
-        .calc-btn:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-
         /* ==========================================================================
-           PANEL: WORKSPACE HISTORY VIEW
+           RIGHT PANEL: METRICS, WORKSPACE LOGS, SYSTEM PREFERENCES
            ========================================================================== */
-        .history-controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
+        .control-sidebar {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            background: rgba(0,0,0,0.15);
+            overflow: hidden;
         }
 
-        .search-box {
+        .sidebar-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--panel-border);
+            background: rgba(0,0,0,0.1);
+        }
+
+        .tab-trigger {
             flex: 1;
-            padding: 8px 12px;
-            border-radius: var(--radius-inner);
+            padding: 14px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all var(--transition-speed);
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-trigger.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--neon-accent);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .panel-content-viewport {
+            overflow-y: auto;
+            padding: 20px;
+            position: relative;
+            height: 100%;
+        }
+
+        .tab-panel {
+            display: none;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        .tab-panel.active {
+            display: flex;
+        }
+
+        /* History Stream Architecture */
+        .history-search-bar {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: rgba(0,0,0,0.2);
             border: 1px solid var(--panel-border);
-            background: rgba(0, 0, 0, 0.15);
             color: var(--text-primary);
             font-size: 0.85rem;
+            margin-bottom: 16px;
             outline: none;
         }
-        .search-box:focus { border-color: var(--accent); }
-
-        .action-icon-btn {
-            padding: 8px 12px;
-            border-radius: var(--radius-inner);
-            border: 1px solid var(--panel-border);
-            background: rgba(255, 255, 255, 0.02);
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 0.85rem;
+        
+        .history-search-bar:focus {
+            border-color: var(--neon-accent);
         }
-        .action-icon-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.08); }
 
-        .history-list {
+        .history-list-stream {
             flex: 1;
             overflow-y: auto;
             display: flex;
@@ -472,1206 +468,1441 @@
             gap: 12px;
             padding-right: 4px;
         }
-        .history-list::-webkit-scrollbar { width: 4px; }
-        .history-list::-webkit-scrollbar-thumb { background: var(--panel-border); border-radius: 2px; }
 
-        .history-item {
-            background: rgba(255, 255, 255, 0.02);
+        .history-item-card {
+            background: rgba(255,255,255,0.02);
             border: 1px solid var(--panel-border);
-            border-radius: var(--radius-inner);
+            border-radius: 12px;
             padding: 12px;
             position: relative;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all var(--transition-speed);
+            animation: slideInUp 0.3s ease;
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .history-item-card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .history-card-meta {
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 4px;
-            animation: itemFadeIn 0.3s ease-out forwards;
-        }
-        @keyframes itemFadeIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
-
-        .history-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.15);
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            margin-bottom: 6px;
         }
 
-        .history-item-time {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            align-self: flex-start;
-        }
-        .history-item-expr {
+        .history-card-expr {
             font-size: 0.95rem;
             color: var(--text-secondary);
             word-break: break-all;
             text-align: right;
+            font-family: monospace;
         }
-        .history-item-res {
-            font-size: 1.2rem;
+
+        .history-card-res {
+            font-size: 1.25rem;
             font-weight: 600;
             color: var(--text-primary);
+            text-align: right;
+            margin-top: 4px;
+            word-break: break-all;
+            font-family: monospace;
         }
-        .history-item-del {
-            position: absolute;
-            top: 8px; left: 8px;
+
+        .history-item-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 8px;
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+        }
+
+        .history-item-card:hover .history-item-actions {
+            opacity: 1;
+        }
+
+        .hist-action-btn {
             background: transparent;
             border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.2s ease, color 0.2s ease;
+            color: var(--text-dim);
             font-size: 0.75rem;
-        }
-        .history-item:hover .history-item-del { opacity: 1; }
-        .history-item-del:hover { color: var(--btn-edit-text); }
-
-        .empty-state {
-            margin: auto;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            text-align: center;
-            font-style: italic;
+            cursor: pointer;
         }
 
-        /* ==========================================================================
-           PANEL: CONTROL SETTINGS CONFIGURATION
-           ========================================================================== */
-        .settings-list {
-            flex: 1;
-            overflow-y: auto;
+        .hist-action-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .panel-action-footer {
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-action-btn {
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--panel-border);
+            color: var(--text-secondary);
+            transition: all var(--transition-speed);
+        }
+
+        .footer-action-btn:hover {
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Settings Sub-System Layout Architecture */
+        .settings-box-structure {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
 
-        .setting-group {
+        .setting-row-item {
             display: flex;
             flex-direction: column;
             gap: 6px;
-            border-bottom: 1px solid var(--panel-border);
-            padding-bottom: 12px;
         }
-        .setting-group:last-child { border: none; }
+
+        .setting-row-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
         .setting-label {
             font-size: 0.9rem;
             font-weight: 600;
-            color: var(--text-primary);
         }
+
         .setting-desc {
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: var(--text-dim);
         }
 
-        /* Control Toggles & Select Elements Architectures */
-        .setting-control {
-            margin-top: 4px;
+        /* Control Switch Toggle Mechanism */
+        .toggle-switch-shell {
+            width: 44px;
+            height: 24px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--panel-border);
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: background var(--transition-speed);
         }
 
-        .select-input {
+        .toggle-switch-shell::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #ffffff;
+            top: 2px;
+            left: 2px;
+            transition: transform var(--transition-speed);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .toggle-switch-shell.enabled {
+            background: var(--neon-accent);
+        }
+
+        .toggle-switch-shell.enabled::after {
+            transform: translateX(20px);
+        }
+
+        .select-native-wrapper select {
             width: 100%;
-            padding: 8px;
+            padding: 8px 12px;
             border-radius: 8px;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0,0,0,0.2);
             border: 1px solid var(--panel-border);
             color: var(--text-primary);
+            font-size: 0.85rem;
             outline: none;
         }
 
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 48px;
-            height: 24px;
-        }
-        .toggle-switch input { opacity: 0; width: 0; height: 0; }
-        .slider {
-            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(255, 255, 255, 0.1);
-            transition: .3s; border-radius: 24px;
-            border: 1px solid var(--panel-border);
-        }
-        .slider::before {
-            position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px;
-            background-color: white; transition: .3s; border-radius: 50%;
-        }
-        input:checked + .slider { background-color: var(--accent); }
-        input:checked + .slider::before { transform: translateX(24px); }
-
-        .range-slider {
-            width: 100%;
-            accent-color: var(--accent);
-        }
-
         /* ==========================================================================
-           NOTIFICATIONS & ALERTS SYSTEM (Premium Micro-Modals)
+           MODAL SYSTEM: TOAST NOTIFICATIONS & ERRORS
            ========================================================================== */
-        .toast-container {
+        .toast-notification-system {
             position: absolute;
             bottom: 24px;
             left: 24px;
+            z-index: 9999;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            z-index: 9999;
             pointer-events: none;
         }
 
-        .toast {
+        .toast-unit {
             padding: 12px 20px;
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid rgba(239, 68, 68, 0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: var(--radius-inner);
-            color: #ffffff;
+            border-radius: 10px;
+            background: rgba(15, 23, 42, 0.9);
+            border-left: 4px solid var(--neon-accent);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+            color: var(--text-primary);
             font-size: 0.85rem;
-            font-weight: 500;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
-            gap: 10px;
-            transform: translateX(-50px);
+            gap: 12px;
+            transform: translateX(-120%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
             opacity: 0;
-            animation: toastIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             pointer-events: auto;
         }
 
-        @keyframes toastIn { to { transform: translateX(0); opacity: 1; } }
-        .toast.hide { animation: toastOut 0.3s ease forwards; }
-        @keyframes toastOut { to { transform: translateY(20px); opacity: 0; } }
+        .toast-unit.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .toast-unit.toast-error {
+            border-left-color: #ef4444;
+        }
 
         /* ==========================================================================
-           RESPONSIVE VIEWPORT BREAKPOINTS ARCHITECTURE
+           RESPONSIVE RE-ARCHITECTURE SYSTEM SPECIFICATIONS (MEDIA QUERIES)
            ========================================================================== */
-        @media (max-width: 1024px) {
-            .app-container {
+        @media (max-width: 1100px) {
+            .app-workspace {
                 grid-template-columns: 1fr;
                 height: 95vh;
             }
-            .sidebar-panel {
-                display: none; /* Can be toggled inside responsive menu setups */
+            .control-sidebar {
+                display: none; /* Desktop sidebar hidden on portable units unless invoked */
             }
         }
 
         @media (max-width: 768px) {
-            body { padding: 8px; }
-            .app-container { height: 100vh; max-height: 100%; gap: 8px; }
-            .calculator-panel { border-radius: var(--radius-inner); }
-            .display-container { padding: 16px; }
-            .result-line { font-size: 2.2rem; }
-            .keyboard-grid {
+            .input-matrix-grid {
                 grid-template-columns: repeat(5, 1fr);
-                padding: 10px;
-                gap: 6px;
             }
-            .calc-btn { padding: 12px 4px; font-size: 0.85rem; }
-            .calc-btn.btn-accent { grid-column: span 1; }
+            .key-equal {
+                grid-column: span 2;
+            }
+            .result-render-pipeline {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Animation suppression utility logic */
+        .no-animations *, .no-animations {
+            animation: none !important;
+            transition: none !important;
         }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
-        <!-- Main Application Workspace Module -->
-        <main class="calculator-panel" aria-label="Scientific Calculator Engine Panel">
-            <div class="display-container">
-                <!-- Operational Mode Flag Identifiers -->
-                <div class="status-bar" id="statusBar" role="status">
-                    <span class="status-indicator active" id="indRad">RAD</span>
-                    <span class="status-indicator" id="indDeg">DEG</span>
-                    <span class="status-indicator" id="indGrad">GRAD</span>
-                    <span class="status-indicator" id="indSci">SCI</span>
-                    <span class="status-indicator" id="indEng">ENG</span>
-                    <span class="status-indicator" id="indMem">MEM</span>
-                    <span class="status-indicator" id="indAns">ANS</span>
+    <div class="app-workspace" id="rootWorkspace">
+        <!-- CALCULATOR LOGICAL CORE CONTEXT -->
+        <main class="calculator-core">
+            <header class="core-header">
+                <div class="brand-signature">
+                    <span>QUANTUM</span><span style="font-weight:300; opacity:0.7;">CALC</span>
                 </div>
-                
-                <!-- Dynamic Functional Streams Lines -->
-                <div class="expression-line" id="expressionDisplay" aria-live="polite"></div>
-                <div class="preview-line" id="previewDisplay"></div>
-                <div class="result-line" id="resultDisplay" aria-live="assertive">
-                    <span id="resultText">0</span><span class="animated-cursor" id="cursor"></span>
+                <div class="system-status-indicators">
+                    <div class="status-pill" id="indicatorAngle">DEG</div>
+                    <div class="status-pill" id="indicatorMemory">MEM</div>
+                    <div class="status-pill" id="indicatorSci">SCI</div>
                 </div>
-            </div>
+            </header>
 
-            <!-- Operational Physical Action Key Grid Matrix Configuration -->
-            <div class="keyboard-grid" id="keyboardGrid">
-                <!-- Row Line Categorizations embedded systematically for parsing map definitions -->
-                <!-- Memory Functions -->
-                <button class="calc-btn btn-editing" data-action="MC"><span class="btn-lbl">MC</span><span class="btn-desc">Clear</span></button>
-                <button class="calc-btn btn-editing" data-action="MR"><span class="btn-lbl">MR</span><span class="btn-desc">Recall</span></button>
-                <button class="calc-btn btn-editing" data-action="MS"><span class="btn-lbl">MS</span><span class="btn-desc">Store</span></button>
-                <button class="calc-btn btn-editing" data-action="M+"><span class="btn-lbl">M+</span><span class="btn-desc">Add</span></button>
-                <button class="calc-btn btn-editing" data-action="M-"><span class="btn-lbl">M-</span><span class="btn-desc">Sub</span></button>
-                
-                <!-- Angle Mode Engine Drivers -->
-                <button class="calc-btn" data-action="deg-mode"><span class="btn-lbl">DEG</span></button>
-                <button class="calc-btn" data-action="rad-mode"><span class="btn-lbl">RAD</span></button>
-                <button class="calc-btn" data-action="grad-mode"><span class="btn-lbl">GRAD</span></button>
-                
-                <!-- Constants Framework Components -->
-                <button class="calc-btn" data-action="insert" data-value="π"><span class="btn-lbl">π</span><span class="btn-desc">Pi</span></button>
-                <button class="calc-btn" data-action="insert" data-value="e"><span class="btn-lbl">e</span><span class="btn-desc">Euler</span></button>
+            <section class="display-terminal" aria-label="Calculator Screen Display">
+                <div class="meta-line">
+                    <span id="screenMetaAns">ANS = 0</span>
+                </div>
+                <div class="expression-stream" id="displayExpression" role="textbox" aria-placeholder="0"></div>
+                <div class="result-render-pipeline" id="displayResult">0<span class="terminal-cursor"></span></div>
+                <div class="live-preview-subline" id="displayLivePreview"></div>
+            </section>
 
-                <!-- System Functional Trigonometrics Framework Matrices -->
-                <button class="calc-btn" data-action="func" data-value="sin"><span class="btn-lbl">sin</span></button>
-                <button class="calc-btn" data-action="func" data-value="cos"><span class="btn-lbl">cos</span></button>
-                <button class="calc-btn" data-action="func" data-value="tan"><span class="btn-lbl">tan</span></button>
-                <button class="calc-btn" data-action="func" data-value="cot"><span class="btn-lbl">cot</span></button>
-                <button class="calc-btn" data-action="func" data-value="sec"><span class="btn-lbl">sec</span></button>
-                <button class="calc-btn" data-action="func" data-value="cosec"><span class="btn-lbl">csc</span></button>
-                
-                <!-- Inverse Trigonometrics Grid Interface Components -->
-                <button class="calc-btn" data-action="func" data-value="asin"><span class="btn-lbl">asin</span></button>
-                <button class="calc-btn" data-action="func" data-value="acos"><span class="btn-lbl">acos</span></button>
-                <button class="calc-btn" data-action="func" data-value="atan"><span class="btn-lbl">atan</span></button>
-                <button class="calc-btn" data-action="func" data-value="acot"><span class="btn-lbl">acot</span></button>
+            <!-- KEYBOARD WORKSPACE INTERFACE GRID MAP -->
+            <div class="input-matrix-grid" id="keyboardMatrixContainer" role="grid">
+                <!-- ROW 1: MEMORY & CONFIGURATION AGENTS -->
+                <button class="key-unit key-fn" data-token="MC" aria-label="Clear Memory">MC</button>
+                <button class="key-unit key-fn" data-token="MR" aria-label="Recall Memory">MR</button>
+                <button class="key-unit key-fn" data-token="MS" aria-label="Store Memory">MS</button>
+                <button class="key-unit key-fn" data-token="M+" aria-label="Memory Add">M+</button>
+                <button class="key-unit key-fn" data-token="M-" aria-label="Memory Subtract">M-</button>
+                <button class="key-unit key-fn" data-token="DEG" id="btnToggleAngle" aria-label="Toggle Angle Mode">DEG</button>
+                <button class="key-unit key-fn" data-token="SCI" id="btnToggleSci" aria-label="Toggle Scientific Mode">SCI</button>
+                <button class="key-unit key-action" data-token="UNDO" aria-label="Undo Actions">↰</button>
+                <button class="key-unit key-action" data-token="REDO" aria-label="Redo Actions">↱</button>
+                <button class="key-unit key-action" data-token="AC" aria-label="All Clear">AC</button>
 
-                <!-- Hyperbolics Operational Grid Layout Definitions -->
-                <button class="calc-btn" data-action="func" data-value="sinh"><span class="btn-lbl">sinh</span></button>
-                <button class="calc-btn" data-action="func" data-value="cosh"><span class="btn-lbl">cosh</span></button>
-                <button class="calc-btn" data-action="func" data-value="tanh"><span class="btn-lbl">tanh</span></button>
-                <button class="calc-btn" data-action="func" data-value="asinh"><span class="btn-lbl">asinh</span></button>
-                <button class="calc-btn" data-action="func" data-value="acosh"><span class="btn-lbl">acosh</span></button>
-                <button class="calc-btn" data-action="func" data-value="atanh"><span class="btn-lbl">atanh</span></button>
+                <!-- ROW 2: ADVANCED MATHS & SCALING REPRESENTATIONS -->
+                <button class="key-unit key-fn" data-token="sin" aria-label="Sine">sin</button>
+                <button class="key-unit key-fn" data-token="cos" aria-label="Cosine">cos</button>
+                <button class="key-unit key-fn" data-token="tan" aria-label="Tangent">tan</button>
+                <button class="key-unit key-fn" data-token="asin" aria-label="Inverse Sine">asin</button>
+                <button class="key-unit key-fn" data-token="acos" aria-label="Inverse Cosine">acos</button>
+                <button class="key-unit key-fn" data-token="atan" aria-label="Inverse Tangent">atan</button>
+                <button class="key-unit key-fn" data-token="π" aria-label="Constant Pi">π</button>
+                <button class="key-unit key-fn" data-token="e" aria-label="Constant Euler Number">e</button>
+                <button class="key-unit key-action" data-token="CE" aria-label="Clear Entry">CE</button>
+                <button class="key-unit key-action" data-token="BACKSPACE" aria-label="Backspace">⌫</button>
 
-                <!-- Power Functions and Roots Processing Elements -->
-                <button class="calc-btn" data-action="op-pow" data-value="²"><span class="btn-lbl">x²</span></button>
-                <button class="calc-btn" data-action="op-pow" data-value="³"><span class="btn-lbl">x³</span></button>
-                <button class="calc-btn" data-action="insert" data-value="^"><span class="btn-lbl">xʸ</span></button>
-                <button class="calc-btn" data-action="func" data-value="sqrt"><span class="btn-lbl">√x</span></button>
+                <!-- ROW 3: HYPERBOLICS & ALGEBRAIC COMPLEXITY PACKETS -->
+                <button class="key-unit key-fn" data-token="sinh" aria-label="Hyperbolic Sine">sinh</button>
+                <button class="key-unit key-fn" data-token="cosh" aria-label="Hyperbolic Cosine">cosh</button>
+                <button class="key-unit key-fn" data-token="tanh" aria-label="Hyperbolic Tangent">tanh</button>
+                <button class="key-unit key-fn" data-token="asinh" aria-label="Inverse Hyperbolic Sine">asinh</button>
+                <button class="key-unit key-fn" data-token="acosh" aria-label="Inverse Hyperbolic Cosine">acosh</button>
+                <button class="key-unit key-fn" data-token="atanh" aria-label="Inverse Hyperbolic Tangent">atanh</button>
+                <button class="key-unit key-fn" data-token="x²" aria-label="Square">x²</button>
+                <button class="key-unit key-fn" data-token="x³" aria-label="Cube">x³</button>
+                <button class="key-unit key-fn" data-token="xʸ" aria-label="Power of Y">xʸ</button>
+                <button class="key-unit key-op" data-token="÷" aria-label="Divide">÷</button>
 
-                <!-- Extended Logarithmics & Exponentials Components -->
-                <button class="calc-btn" data-action="func" data-value="ln"><span class="btn-lbl">ln</span></button>
-                <button class="calc-btn" data-action="func" data-value="log"><span class="btn-lbl">log</span></button>
-                <button class="calc-btn" data-action="func" data-value="log2"><span class="btn-lbl">log₂</span></button>
-                <button class="calc-btn" data-action="func" data-value="logBase"><span class="btn-lbl">logₐ</span></button>
-                <button class="calc-btn" data-action="func" data-value="exp"><span class="btn-lbl">eˣ</span></button>
-                <button class="calc-btn" data-action="op-pow10"><span class="btn-lbl">10ˣ</span></button>
+                <!-- ROW 4: COSECANTS, INVERSES & CO-FUNCTIONS -->
+                <button class="key-unit key-fn" data-token="cot" aria-label="Cotangent">cot</button>
+                <button class="key-unit key-fn" data-token="sec" aria-label="Secant">sec</button>
+                <button class="key-unit key-fn" data-token="cosec" aria-label="Cosecant">cosec</button>
+                <button class="key-unit key-fn" data-token="acot" aria-label="Inverse Cotangent">acot</button>
+                <button class="key-unit key-fn" data-token="asec" aria-label="Inverse Secant">asec</button>
+                <button class="key-unit key-fn" data-token="acosec" aria-label="Inverse Cosecant">acosec</button>
+                <button class="key-unit key-num" data-token="7" aria-label="Digit 7">7</button>
+                <button class="key-unit key-num" data-token="8" aria-label="Digit 8">8</button>
+                <button class="key-unit key-num" data-token="9" aria-label="Digit 9">9</button>
+                <button class="key-unit key-op" data-token="×" aria-label="Multiply">×</button>
 
-                <!-- Advanced Operational Custom Components Matrix -->
-                <button class="calc-btn" data-action="func" data-value="cbrt"><span class="btn-lbl">∛x</span></button>
-                <button class="calc-btn" data-action="func" data-value="nthRoot"><span class="btn-lbl">ⁿ√x</span></button>
-                <button class="calc-btn" data-action="inverse"><span class="btn-lbl">1/x</span></button>
-                <button class="calc-btn" data-action="op-pow2"><span class="btn-lbl">2ˣ</span></button>
-                <button class="calc-btn" data-action="insert" data-value="E"><span class="btn-lbl">EXP</span></button>
-                <button class="calc-btn" data-action="sci-notation"><span class="btn-lbl">SCI</span></button>
+                <!-- ROW 5: LOGARITHMIC STREAM MECHANICS & EXPONENTIALS -->
+                <button class="key-unit key-fn" data-token="ln" aria-label="Natural Logarithm">ln</button>
+                <button class="key-unit key-fn" data-token="log" aria-label="Base 10 Logarithm">log</button>
+                <button class="key-unit key-fn" data-token="log₂" aria-label="Base 2 Logarithm">log₂</button>
+                <button class="key-unit key-fn" data-token="logₐ" aria-label="Logarithm base A">logₐ</button>
+                <button class="key-unit key-fn" data-token="eˣ" aria-label="E to power X">eˣ</button>
+                <button class="key-unit key-fn" data-token="10ˣ" aria-label="10 to power X">10ˣ</button>
+                <button class="key-unit key-num" data-token="4" aria-label="Digit 4">4</button>
+                <button class="key-unit key-num" data-token="5" aria-label="Digit 5">5</button>
+                <button class="key-unit key-num" data-token="6" aria-label="Digit 6">6</button>
+                <button class="key-unit key-op" data-token="-" aria-label="Subtract">-</button>
 
-                <!-- Extended Algebraic Operations Map Definitions -->
-                <button class="calc-btn" data-action="fact"><span class="btn-lbl">n!</span></button>
-                <button class="calc-btn" data-action="func" data-value="abs"><span class="btn-lbl">|x|</span></button>
-                <button class="calc-btn" data-action="func" data-value="round"><span class="btn-lbl">rnd</span></button>
-                <button class="calc-btn" data-action="func" data-value="floor"><span class="btn-lbl">flr</span></button>
-                <button class="calc-btn" data-action="func" data-value="ceil"><span class="btn-lbl">ceil</span></button>
-                <button class="calc-btn" data-action="insert" data-value="%"><span class="btn-lbl">mod</span></button>
+                <!-- ROW 6: ROOTS, RADICALS, GRAPH CONSTANTS -->
+                <button class="key-unit key-fn" data-token="2ˣ" aria-label="2 to power X">2ˣ</button>
+                <button class="key-unit key-fn" data-token="√" aria-label="Square Root">√</button>
+                <button class="key-unit key-fn" data-token="∛" aria-label="Cube Root">∛</button>
+                <button class="key-unit key-fn" data-token="ⁿ√" aria-label="Nth Root">ⁿ√</button>
+                <button class="key-unit key-fn" data-token="1/x" aria-label="Reciprocal">1/x</button>
+                <button class="key-unit key-fn" data-token="EXP" aria-label="Scientific Exponential">EXP</button>
+                <button class="key-unit key-num" data-token="1" aria-label="Digit 1">1</button>
+                <button class="key-unit key-num" data-token="2" aria-label="Digit 2">2</button>
+                <button class="key-unit key-num" data-token="3" aria-label="Digit 3">3</button>
+                <button class="key-unit key-op" data-token="+" aria-label="Add">+</button>
 
-                <!-- Native Utility Conversions and Tools Modules -->
-                <button class="calc-btn" data-action="func" data-value="rand"><span class="btn-lbl">rand</span></button>
-                <button class="calc-btn" data-action="func" data-value="sign"><span class="btn-lbl">sign</span></button>
-                <button class="calc-btn" data-action="to-fraction"><span class="btn-lbl">d→f</span></button>
-                <button class="calc-btn" data-action="simplify-fraction"><span class="btn-lbl">simp</span></button>
-                <button class="calc-btn btn-editing" data-action="undo"><span class="btn-lbl">↰</span></button>
-                <button class="calc-btn btn-editing" data-action="redo"><span class="btn-lbl">↱</span></button>
+                <!-- ROW 7: NUMBER FUNCTIONS & PARSER MODES -->
+                <button class="key-unit key-fn" data-token="!" aria-label="Factorial">n!</button>
+                <button class="key-unit key-fn" data-token="abs" aria-label="Absolute Value">abs</button>
+                <button class="key-unit key-fn" data-token="mod" aria-label="Modulo Operations">mod</button>
+                <button class="key-unit key-fn" data-token="rand" aria-label="Random Float Generator">rand</button>
+                <button class="key-unit key-fn" data-token="F⇄D" aria-label="Fraction to Decimal conversion">F⇄D</button>
+                <button class="key-unit key-fn" data-token="ANS" aria-label="Answer Cache Reference">ANS</button>
+                <button class="key-unit key-num" data-token="±" aria-label="Negate Value">±</button>
+                <button class="key-unit key-num" data-token="0" aria-label="Digit 0">0</button>
+                <button class="key-unit key-num" data-token="." aria-label="Decimal point">.</button>
+                <button class="key-unit key-op" data-token="%" aria-label="Percentage">%</button>
 
-                <!-- System Workspace Buffer Operational Cleaning Nodes -->
-                <button class="calc-btn btn-editing" data-action="backspace"><span class="btn-lbl">⌫</span></button>
-                <button class="calc-btn btn-editing" data-action="CE"><span class="btn-lbl">CE</span></button>
-                <button class="calc-btn btn-editing" data-action="AC"><span class="btn-lbl">AC</span></button>
-                <button class="calc-btn btn-editing" data-action="copy"><span class="btn-lbl">copy</span></button>
-                <button class="calc-btn btn-editing" data-action="paste"><span class="btn-lbl">pste</span></button>
-                <button class="calc-btn btn-editing" data-action="ANS"><span class="btn-lbl">ANS</span></button>
-
-                <!-- Core Basic Standards Numeric Keypad Elements -->
-                <button class="calc-btn btn-number" data-action="insert" data-value="7">7</button>
-                <button class="calc-btn btn-number" data-action="insert" data-value="8">8</button>
-                <button class="calc-btn btn-number" data-action="insert" data-value="9">9</button>
-                <button class="calc-btn btn-operator" data-action="insert" data-value="÷">÷</button>
-                <button class="calc-btn" data-action="insert" data-value="(">(</button>
-
-                <button class="calc-btn btn-number" data-action="insert" data-value="4">4</button>
-                <button class="calc-btn btn-number" data-action="insert" data-value="5">5</button>
-                <button class="calc-btn btn-number" data-action="insert" data-value="6">6</button>
-                <button class="calc-btn btn-operator" data-action="insert" data-value="×">×</button>
-                <button class="calc-btn" data-action="insert" data-value=")">)</button>
-
-                <button class="calc-btn btn-number" data-action="insert" data-value="1">1</button>
-                <button class="calc-btn btn-number" data-action="insert" data-value="2">2</button>
-                <button class="calc-btn btn-number" data-action="insert" data-value="3">3</button>
-                <button class="calc-btn btn-operator" data-action="insert" data-value="-">−</button>
-                <button class="calc-btn" data-action="negate">±</button>
-
-                <button class="calc-btn btn-number" data-action="insert" data-value="0">0</button>
-                <button class="calc-btn btn-number" data-action="insert" data-value=".">.</button>
-                <button class="calc-btn btn-operator" data-action="insert" data-value="+">+</button>
-                
-                <!-- Explicit Processing Execution Action Node -->
-                <button class="calc-btn btn-accent" data-action="evaluate">=</button>
+                <!-- ROW 8: COMPLEX ALGEBRA GROUPERS & INVOCATION OPERATOR -->
+                <button class="key-unit key-fn" data-token="(" aria-label="Left Parenthesis">(</button>
+                <button class="key-unit key-fn" data-token=")" aria-label="Right Parenthesis">)</button>
+                <button class="key-unit key-fn" data-token="round" aria-label="Round Real Number">round</button>
+                <button class="key-unit key-fn" data-token="floor" aria-label="Floor Logic">floor</button>
+                <button class="key-unit key-fn" data-token="ceil" aria-label="Ceiling Logic">ceil</button>
+                <button class="key-unit key-fn" data-token="sign" aria-label="Signum Evaluation">sign</button>
+                <button class="key-unit key-fn" data-token="COPY" aria-label="Copy Result">COPY</button>
+                <button class="key-unit key-fn" data-token="PASTE" aria-label="Paste String Engine">PASTE</button>
+                <button class="key-unit key-equal" data-token="=" aria-label="Evaluate Expression">=</button>
             </div>
         </main>
 
-        <!-- Right Auxiliary Content Workspace Controller (Tabs) -->
-        <aside class="sidebar-panel" aria-label="Auxiliary Operations Panel">
+        <!-- CONTROL SIDEBAR INTERFACE FRAMEWORK -->
+        <aside class="control-sidebar" aria-label="Workspace Configurations and Log Trackers">
             <nav class="sidebar-tabs" role="tablist">
-                <button class="tab-btn active" id="tabHistory" role="tab" aria-selected="true" aria-controls="panelHistory">HISTORY</button>
-                <button class="tab-btn" id="tabSettings" role="tab" aria-selected="false" aria-controls="panelSettings">SETTINGS</button>
+                <div class="tab-trigger active" id="tabTriggerHistory" role="tab" aria-selected="true">HISTORY</div>
+                <div class="tab-trigger" id="tabTriggerSettings" role="tab" aria-selected="false">SETTINGS</div>
             </nav>
 
-            <div class="sidebar-content">
-                <!-- History Feed Operational Subview Module -->
-                <section class="tab-content active" id="panelHistory" role="tabpanel">
-                    <div class="history-controls">
-                        <input type="text" class="search-box" id="historySearch" placeholder="Search operational history...">
-                        <button class="action-icon-btn" id="clearHistoryBtn" title="Purge System Workspace Archive Logs">Clear</button>
+            <div class="panel-content-viewport">
+                <!-- PANEL: HISTORICAL ENGINE STORAGE SYSTEM -->
+                <div class="tab-panel active" id="panelHistory" role="tabpanel">
+                    <input type="text" class="history-search-bar" id="historySearchEngine" placeholder="Search operational matrices...">
+                    <div class="history-list-stream" id="historyStreamTarget">
+                        <!-- Hydrated programmatically via History Engine Modules -->
                     </div>
-                    <div class="history-list" id="historyListContainer">
-                        <div class="empty-state">System Log Pipeline Clear</div>
+                    <footer class="panel-action-footer">
+                        <button class="footer-action-btn" id="btnHistoryClearAll">Purge Memory Vault</button>
+                    </footer>
+                </div>
+
+                <!-- PANEL: SYSTEM PREFERENCES CONFIGURATION ARCHITECTURE -->
+                <div class="tab-panel" id="panelSettings" role="tabpanel">
+                    <div class="settings-box-structure">
+                        <div class="setting-row-item">
+                            <div class="setting-row-header">
+                                <div>
+                                    <div class="setting-label">Visual Theme Architecture</div>
+                                    <div class="setting-desc">Reconfigure system color tone spectrums</div>
+                                </div>
+                                <div class="select-native-wrapper">
+                                    <select id="settingThemeSelector">
+                                        <option value="dark">Deep Space (Dark)</option>
+                                        <option value="light">Lab Cleanroom (Light)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-row-item">
+                            <div class="setting-row-header">
+                                <div>
+                                    <div class="setting-label">Fluid Kinetic Framework</div>
+                                    <div class="setting-desc">Toggle premium motion canvas physics</div>
+                                </div>
+                                <div class="toggle-switch-shell enabled" id="settingToggleAnimations"></div>
+                            </div>
+                        </div>
+
+                        <div class="setting-row-item">
+                            <div class="setting-row-header">
+                                <div>
+                                    <div class="setting-label">Acoustic Feedback Channels</div>
+                                    <div class="setting-desc">Synthesize confirmation ticks on execution</div>
+                                </div>
+                                <div class="toggle-switch-shell" id="settingToggleAcoustics"></div>
+                            </div>
+                        </div>
+
+                        <div class="setting-row-item">
+                            <div class="setting-row-header">
+                                <div>
+                                    <div class="setting-label">Precision Mantissa Depth</div>
+                                    <div class="setting-desc">Define decimal resolution limits</div>
+                                </div>
+                                <div class="select-native-wrapper">
+                                    <select id="settingPrecisionLimit">
+                                        <option value="4">4 Decimals</option>
+                                        <option value="8">8 Decimals</option>
+                                        <option value="12" selected>12 Decimals</option>
+                                        <option value="16">16 Decimals</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-row-item">
+                            <div class="setting-row-header">
+                                <div>
+                                    <div class="setting-label">System Storage Array</div>
+                                    <div class="setting-desc">Reset complete architectural footprint</div>
+                                </div>
+                                <button class="footer-action-btn" style="color:#ef4444; border-color:rgba(239,68,68,0.2);" id="btnResetConfigurationArray">Factory Reset</button>
+                            </div>
+                        </div>
                     </div>
-                </section>
-
-                <!-- Configured Workspace Settings Subview Module -->
-                <section class="tab-content" id="panelSettings" role="tabpanel">
-                    <div class="settings-list">
-                        <div class="setting-group">
-                            <span class="setting-label">Visual Interface Architecture Profile</span>
-                            <span class="setting-desc">Alter parameters matching spatial design constraints</span>
-                            <div class="setting-control">
-                                <select class="select-input" id="settingTheme">
-                                    <option value="dark">Deep Space Neon Quartz (Dark)</option>
-                                    <option value="light">High-Contrast Luminous Alabaster (Light)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="setting-group">
-                            <span class="setting-label">Mathematical Angular Precision Grid</span>
-                            <span class="setting-desc">Set default angular metric for periodic formulas</span>
-                            <div class="setting-control">
-                                <select class="select-input" id="settingAngle">
-                                    <option value="RAD">Radian Engine Grid System</option>
-                                    <option value="DEG">Standard Numerical Degrees</option>
-                                    <option value="GRAD">Gradients Angular Mapping Matrix</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="setting-group">
-                            <span class="setting-label">Dynamic Motion System Controls</span>
-                            <span class="setting-desc">Toggle layout GPU hardware transitions processing</span>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="settingAnimations" checked>
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-group">
-                            <span class="setting-label">Acoustic Feedback Channels</span>
-                            <span class="setting-desc">Toggle active haptic micro-acoustic execution soundscapes</span>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="settingSound" checked>
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-group">
-                            <span class="setting-label">Precision Layout Scale Dimensions</span>
-                            <span class="setting-desc">Define typography tracking parameters scale metrics</span>
-                            <div class="setting-control">
-                                <input type="range" class="range-slider" id="settingFontSize" min="12" max="20" value="16">
-                            </div>
-                        </div>
-
-                        <div class="setting-group">
-                            <span class="setting-label">System State Core Partitioning</span>
-                            <span class="setting-desc">Purge processing registers entirely resetting engine cache</span>
-                            <div class="setting-control">
-                                <button class="action-icon-btn" id="resetSystemBtn" style="width: 100%; border-color: rgba(239, 68, 68, 0.4); color: var(--btn-edit-text);">Factory System Hard Reset</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                </div>
             </div>
         </aside>
     </div>
 
-    <!-- Screen System Toast Stack Array Manager Container -->
-    <div class="toast-container" id="toastContainer" aria-live="assertive"></div>
+    <!-- NOTIFICATION SYSTEM FLOATING ELEMENT LAYER -->
+    <div class="toast-notification-system" id="systemToastNotificationLayer"></div>
 
     <!-- ==========================================================================
-         ARCHITECTURE CRITICAL JAVASCRIPT LOGICAL SUB-SYSTEMS MODULES
+         JAVASCRIPT RUNTIME EXECUTION ARCHITECTURE (ES2024 ENGINE CODES)
          ========================================================================== */ -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            
+
             /* ==========================================================================
-               STORAGE MANAGER & SYSTEM PARAMETERS CONFIGURATION MODEL STATE
+               1. DATA STATE CONTROL CENTER & STORAGE REGISTRY
                ========================================================================== */
-            const StorageManager = {
-                defaults: {
-                    theme: 'dark',
-                    angleMode: 'RAD',
+            const STATE = {
+                expression: "",
+                result: "0",
+                lastAnswer: 0,
+                memory: 0,
+                angleMode: "DEG", // DEG, RAD, GRAD
+                scientificMode: false,
+                undoStack: [],
+                redoStack: [],
+                settings: {
+                    theme: "dark",
                     animations: true,
-                    sound: true,
-                    fontSize: 16,
-                    historyLimit: 50,
-                    historyLog: [],
-                    memoryRegister: 0
+                    acoustics: false,
+                    precision: 12,
+                    historyLimit: 50
                 },
-                load() {
-                    const data = localStorage.getItem('quantum_calc_config');
-                    if (!data) return this.defaults;
-                    try { return { ...this.defaults, ...JSON.parse(data) }; } 
-                    catch(e) { return this.defaults; }
-                },
-                save(config) {
-                    localStorage.setItem('quantum_calc_config', JSON.stringify(config));
-                }
+                history: []
             };
 
-            let AppState = StorageManager.load();
-
             /* ==========================================================================
-               ACOUSTIC MICRO-ENGINE AUDIO CHANNELS FACTORY
+               2. DOM ELEMENT TARGET REGISTRY
                ========================================================================== */
-            const AudioEngine = {
-                ctx: null,
-                init() {
-                    if (!this.ctx) {
-                        this.ctx = new (window.AudioContext || window.webkitAudioContext)();
-                    }
-                },
-                playTick() {
-                    if (!AppState.sound) return;
-                    try {
-                        this.init();
-                        const osc = this.ctx.createOscillator();
-                        const gain = this.ctx.createGain();
-                        osc.type = 'sine';
-                        osc.frequency.setValueAtTime(800, this.ctx.currentTime);
-                        gain.gain.setValueAtTime(0.01, this.ctx.currentTime);
-                        gain.gain.exponentialRampToValueAtTime(0.00001, this.ctx.currentTime + 0.04);
-                        osc.connect(gain);
-                        gain.connect(this.ctx.destination);
-                        osc.start();
-                        osc.stop(this.ctx.currentTime + 0.04);
-                    } catch(e) {}
-                }
+            const DOM = {
+                root: document.getElementById("rootWorkspace"),
+                displayExpr: document.getElementById("displayExpression"),
+                displayRes: document.getElementById("displayResult"),
+                displayLive: document.getElementById("displayLivePreview"),
+                metaAns: document.getElementById("screenMetaAns"),
+                indAngle: document.getElementById("indicatorAngle"),
+                indMemory: document.getElementById("indicatorMemory"),
+                indSci: document.getElementById("indicatorSci"),
+                keyboardContainer: document.getElementById("keyboardMatrixContainer"),
+                toastLayer: document.getElementById("systemToastNotificationLayer"),
+                // Navigation Sidebar Elements
+                tabHistory: document.getElementById("tabTriggerHistory"),
+                tabSettings: document.getElementById("tabTriggerSettings"),
+                panelHistory: document.getElementById("panelHistory"),
+                panelSettings: document.getElementById("panelSettings"),
+                historyStream: document.getElementById("historyStreamTarget"),
+                historySearch: document.getElementById("historySearchEngine"),
+                clearHistory: document.getElementById("btnHistoryClearAll"),
+                // Settings Controls
+                themeSelect: document.getElementById("settingThemeSelector"),
+                toggleAnim: document.getElementById("settingToggleAnimations"),
+                toggleAcoustic: document.getElementById("settingToggleAcoustics"),
+                precisionSelect: document.getElementById("settingPrecisionLimit"),
+                resetAll: document.getElementById("btnResetConfigurationArray"),
+                btnToggleAngle: document.getElementById("btnToggleAngle"),
+                btnToggleSci: document.getElementById("btnToggleSci")
             };
 
             /* ==========================================================================
-               ERROR INFRASTRUCTURE HANDLING NOTIFICATIONS PIPELINE
-               ========================================================================== */
-            const ErrorHandler = {
-                show(message) {
-                    const container = document.getElementById('toastContainer');
-                    const toast = document.createElement('div');
-                    toast.className = 'toast';
-                    toast.innerHTML = `⚠️ <span>${message}</span>`;
-                    container.appendChild(toast);
-
-                    setTimeout(() => {
-                        toast.classList.add('hide');
-                        setTimeout(() => toast.remove(), 300);
-                    }, 4000);
-                }
-            };
-
-            /* ==========================================================================
-               MATHEMATICAL TOKENIZER & LEXICAL PARSER ENGINE (NO EVAL)
+               3. MATHEMATICAL INTERPRETATION PARSER MATRIX ENGINE
                ========================================================================== */
             const MathEngine = {
-                // Token Definition Lexicon
-                TOKENS: {
-                    NUM: 'NUM',
-                    OP: 'OP',
-                    LPAREN: 'LPAREN',
-                    RPAREN: 'RPAREN',
-                    FUNC: 'FUNC',
-                    CONST: 'CONST'
-                },
-
-                // Lexical Operational Precedence Matrices mappings
-                PRECEDENCE: {
-                    '+': 1, '-': 1,
-                    '×': 2, '÷': 2, '%': 2,
-                    '^': 3
-                },
-
-                // Builtin Functional Engine Math Vectors Maps
-                Functions: {
-                    sin: (x) => Math.sin(MathEngine.toRadians(x)),
-                    cos: (x) => Math.cos(MathEngine.toRadians(x)),
-                    tan: (x) => Math.tan(MathEngine.toRadians(x)),
-                    cot: (x) => 1 / Math.tan(MathEngine.toRadians(x)),
-                    sec: (x) => 1 / Math.cos(MathEngine.toRadians(x)),
-                    csc: (x) => 1 / Math.sin(MathEngine.toRadians(x)),
-                    asin: (x) => MathEngine.fromRadians(Math.asin(x)),
-                    acos: (x) => MathEngine.fromRadians(Math.acos(x)),
-                    atan: (x) => MathEngine.fromRadians(Math.atan(x)),
-                    acot: (x) => MathEngine.fromRadians(Math.PI / 2 - Math.atan(x)),
-                    sinh: (x) => Math.sinh(x),
-                    cosh: (x) => Math.cosh(x),
-                    tanh: (x) => Math.tanh(x),
-                    asinh: (x) => Math.asinh(x),
-                    acosh: (x) => Math.acosh(x),
-                    atanh: (x) => Math.atanh(x),
-                    ln: (x) => { if (x <= 0) throw new Error("Invalid Logarithm Operand"); return Math.log(x); },
-                    log: (x) => { if (x <= 0) throw new Error("Invalid Logarithm Operand"); return Math.log10(x); },
-                    log2: (x) => { if (x <= 0) throw new Error("Invalid Logarithm Operand"); return Math.log2(x); },
-                    sqrt: (x) => { if (x < 0) throw new Error("Complex Target Dimension Boundary"); return Math.sqrt(x); },
-                    cbrt: (x) => Math.cbrt(x),
-                    abs: (x) => Math.abs(x),
-                    round: (x) => Math.round(x),
-                    floor: (x) => Math.floor(x),
-                    ceil: (x) => Math.ceil(x),
-                    sign: (x) => Math.sign(x),
-                    rand: () => Math.random()
-                },
-
-                Constants: {
-                    'π': Math.PI,
-                    'e': Math.E
-                },
-
-                toRadians(val) {
-                    if (AppState.angleMode === 'DEG') return val * (Math.PI / 180);
-                    if (AppState.angleMode === 'GRAD') return val * (Math.PI / 200);
-                    return val;
-                },
-
-                fromRadians(val) {
-                    if (AppState.angleMode === 'DEG') return val * (180 / Math.PI);
-                    if (AppState.angleMode === 'GRAD') return val * (200 / Math.PI);
-                    return val;
-                },
-
-                // Lexical Tokenizer Matrix Engine Scanner
+                // Tokenizer Lexical Analysis Configuration Maps
+                constants: { "π": Math.PI, "e": Math.E },
+                
+                // Lexical Parser & Core Engine Execution Modules
                 tokenize(str) {
-                    let tokens = [];
+                    const tokens = [];
                     let i = 0;
-                    str = str.replace(/\s+/g, '');
-
+                    // Pre-process conversion logic for specialized scientific signatures
+                    str = str.replace(/×/g, "*").replace(/÷/g, "/").replace(/−/g, "-");
+                    
                     while (i < str.length) {
-                        let ch = str[i];
-
-                        // Match numbers with possible decimals and exponential notations configurations
-                        if (/[0-9.]/.test(ch)) {
-                            let buffer = "";
-                            while (i < str.length && /[0-9.eE]/.test(str[i])) {
-                                // Capture scientific formats explicitly embedded within parsing limits
-                                if ((str[i] === 'e' || str[i] === 'E') && (str[i+1] === '-' || str[i+1] === '+')) {
-                                    buffer += str[i] + str[i+1];
-                                    i += 2;
-                                    continue;
-                                }
-                                buffer += str[i];
+                        let c = str[i];
+                        
+                        if (/\s/.test(c)) { i++; continue; }
+                        
+                        // Parse Numeric Floating Real Formats
+                        if (/[0-9.]/.test(c)) {
+                            let numStr = "";
+                            while (i < str.length && /[0-9.]/.test(str[i])) {
+                                numStr += str[i];
                                 i++;
                             }
-                            tokens.push({ type: this.TOKENS.NUM, value: parseFloat(buffer) });
+                            tokens.push({ type: "NUMBER", value: parseFloat(numStr) });
                             continue;
                         }
-
-                        // Parentheses Tracking Nodes
-                        if (ch === '(') { tokens.push({ type: this.TOKENS.LPAREN, value: '(' }); i++; continue; }
-                        if (ch === ')') { tokens.push({ type: this.TOKENS.RPAREN, value: ')' }); i++; continue; }
-
-                        // Standard Operators Mappings Processing Nodes
-                        if (['+', '-', '×', '÷', '%', '^'].includes(ch)) {
-                            tokens.push({ type: this.TOKENS.OP, value: ch });
-                            i++;
-                            continue;
-                        }
-
-                        // Mathematical Constants Mappings Processors
-                        if (this.Constants[ch]) {
-                            tokens.push({ type: this.TOKENS.CONST, value: this.Constants[ch] });
-                            i++;
-                            continue;
-                        }
-
-                        // Text Functions Framework Scanner System
-                        if (/[a-zA-Z0-9]/.test(ch)) {
-                            let buffer = "";
-                            while (i < str.length && /[a-zA-Z0-9]/.test(str[i])) {
-                                buffer += str[i];
+                        
+                        // Parse Alphabetic Functional Vectors
+                        if (/[a-zA-Z]/.test(c)) {
+                            let fnStr = "";
+                            while (i < str.length && /[a-zA-Z0-9₂ₐ]/.test(str[i])) {
+                                fnStr += str[i];
                                 i++;
                             }
-                            if (this.Functions[buffer]) {
-                                tokens.push({ type: this.TOKENS.FUNC, value: buffer });
+                            if (fnStr === "mod") {
+                                tokens.push({ type: "OPERATOR", value: "mod", precedence: 2 });
                             } else {
-                                throw new Error(`Unknown Engine Function Mapping Signature: "${buffer}"`);
+                                tokens.push({ type: "FUNCTION", value: fnStr });
                             }
                             continue;
                         }
+                        
+                        // Parenthetical Enclosures
+                        if (c === "(" || c === ")") {
+                            tokens.push({ type: "PAREN", value: c });
+                            i++;
+                            continue;
+                        }
+                        
+                        // Custom Dynamic Separator for Log base variants
+                        if (c === ",") {
+                            tokens.push({ type: "COMMA", value: "," });
+                            i++;
+                            continue;
+                        }
 
-                        throw new Error(`Invalid Dynamic Syntax Character Stream Entry: "${ch}"`);
+                        // Mathematical Operator Token Blocks
+                        if (/[\+\-\*\/^!%]/.test(c)) {
+                            let prec = 1;
+                            if (c === "*" || c === "/") prec = 2;
+                            if (c === "^" || c === "!" || c === "%") prec = 3;
+                            tokens.push({ type: "OPERATOR", value: c, precedence: prec });
+                            i++;
+                            continue;
+                        }
+                        
+                        // Fallback handling logic for structural UTF Characters
+                        if (["√", "∛", "ⁿ√", "π", "e"].includes(c)) {
+                            if (this.constants[c]) {
+                                tokens.push({ type: "NUMBER", value: this.constants[c] });
+                            } else {
+                                tokens.push({ type: "FUNCTION", value: c });
+                            }
+                            i++;
+                            continue;
+                        }
+
+                        throw new Error(`Invalid Character Detected: ${c}`);
                     }
                     return tokens;
                 },
 
-                // Shunting-Yard Processing Framework Strategy Parser Implementation Transform
-                parse(tokens) {
-                    let outputQueue = [];
-                    let operatorStack = [];
+                // Abstract Syntax Tree Vector Resolution via Evaluator
+                evaluate(expressionString) {
+                    if (!expressionString.trim()) return 0;
+                    try {
+                        const tokenStream = this.tokenize(expressionString);
+                        return this.parseAndCompute(tokenStream);
+                    } catch (err) {
+                        throw new Error(err.message || "Syntax Evaluation Failure");
+                    }
+                },
 
+                parseAndCompute(tokens) {
+                    // Shunting-Yard Engine Mapping Matrix Conversion Pipeline
+                    const outputQueue = [];
+                    const operatorStack = [];
+                    
                     for (let j = 0; j < tokens.length; j++) {
-                        let token = tokens[j];
-
-                        if (token.type === this.TOKENS.NUM || token.type === this.TOKENS.CONST) {
+                        const token = tokens[j];
+                        
+                        if (token.type === "NUMBER") {
                             outputQueue.push(token);
-                        } else if (token.type === this.TOKENS.FUNC) {
+                        } else if (token.type === "FUNCTION") {
                             operatorStack.push(token);
-                        } else if (token.type === this.TOKENS.OP) {
-                            // Unary configuration optimization tracking layer maps rules
-                            // If operator is minus and follows another operator or paren, map signature to inner function expression
-                            if (token.value === '-' && (j === 0 || tokens[j-1].type === this.TOKENS.OP || tokens[j-1].type === this.TOKENS.LPAREN)) {
-                                token.isUnary = true;
+                        } else if (token.type === "COMMA") {
+                            while (operatorStack.length && operatorStack[operatorStack.length - 1].value !== "(") {
+                                outputQueue.push(operatorStack.pop());
                             }
-
-                            while (operatorStack.length > 0) {
-                                let top = operatorStack[operatorStack.length - 1];
-                                if (top.type === this.TOKENS.OP && !token.isUnary &&
-                                    ((this.PRECEDENCE[top.value] >= this.PRECEDENCE[token.value]))) {
-                                    outputQueue.push(operatorStack.pop());
-                                } else {
-                                    break;
-                                }
+                            if (!operatorStack.length) throw new Error("Comma mismatch error");
+                        } else if (token.type === "OPERATOR") {
+                            while (operatorStack.length && operatorStack[operatorStack.length - 1].type === "OPERATOR" && 
+                                   operatorStack[operatorStack.length - 1].precedence >= token.precedence) {
+                                outputQueue.push(operatorStack.pop());
                             }
                             operatorStack.push(token);
-                        } else if (token.type === this.TOKENS.LPAREN) {
+                        } else if (token.type === "PAREN" && token.value === "(") {
                             operatorStack.push(token);
-                        } else if (token.type === this.TOKENS.RPAREN) {
-                            let match = false;
-                            while (operatorStack.length > 0) {
-                                let top = operatorStack[operatorStack.length - 1];
-                                if (top.type === this.TOKENS.LPAREN) {
-                                    match = true;
-                                    operatorStack.pop();
-                                    break;
-                                } else {
-                                    outputQueue.push(operatorStack.pop());
-                                }
+                        } else if (token.type === "PAREN" && token.value === ")") {
+                            while (operatorStack.length && operatorStack[operatorStack.length - 1].value !== "(") {
+                                outputQueue.push(operatorStack.pop());
                             }
-                            if (!match) throw new Error("Mismatched Parentheses Constraints Bounds");
-                            if (operatorStack.length > 0 && operatorStack[operatorStack.length - 1].type === this.TOKENS.FUNC) {
+                            if (!operatorStack.length) throw new Error("Parentheses Mismatch Variant");
+                            operatorStack.pop(); // Remove the structural opening signature '('
+                            
+                            if (operatorStack.length && operatorStack[operatorStack.length - 1].type === "FUNCTION") {
                                 outputQueue.push(operatorStack.pop());
                             }
                         }
                     }
 
-                    while (operatorStack.length > 0) {
-                        let top = operatorStack[operatorStack.length - 1];
-                        if (top.type === this.TOKENS.LPAREN || top.type === this.TOKENS.RPAREN) {
-                            throw new Error("Mismatched Parentheses Matrices Formats Constraints");
-                        }
-                        outputQueue.push(operatorStack.pop());
+                    while (operatorStack.length) {
+                        const topOp = operatorStack.pop();
+                        if (topOp.type === "PAREN") throw new Error("Parentheses Mismatch Variant");
+                        outputQueue.push(topOp);
                     }
 
-                    return outputQueue;
-                },
-
-                // RPN Processing Array Evaluator Implementation Modules
-                evaluateRPN(rpnQueue) {
-                    let stack = [];
-
-                    rpnQueue.forEach(token => {
-                        if (token.type === this.TOKENS.NUM || token.type === this.TOKENS.CONST) {
-                            stack.push(token.value);
-                        } else if (token.type === this.TOKENS.OP) {
-                            if (token.isUnary) {
-                                let val = stack.pop();
-                                if (val === undefined) throw new Error("Malformed Pipeline State Sequence Operator");
-                                stack.push(-val);
+                    // Stack Execution Paradigm Pipeline Simulation
+                    const processingStack = [];
+                    
+                    for (let k = 0; k < outputQueue.length; k++) {
+                        const node = outputQueue[k];
+                        
+                        if (node.type === "NUMBER") {
+                            processingStack.push(node.value);
+                        } else if (node.type === "OPERATOR") {
+                            if (node.value === "!" || node.value === "%") {
+                                const arg = processingStack.pop();
+                                if (arg === undefined) throw new Error("Unary Operator Parameter Deficit");
+                                processingStack.push(node.value === "!" ? this.execFactorial(arg) : arg / 100);
                             } else {
-                                let b = stack.pop();
-                                let a = stack.pop();
-                                if (a === undefined || b === undefined) throw new Error("Malformed Algebraic Operand Registers Configuration");
-                                
-                                switch (token.value) {
-                                    case '+': stack.push(a + b); break;
-                                    case '-': stack.push(a - b); break;
-                                    case '×': stack.push(a * b); break;
-                                    case '÷': 
-                                        if (b === 0) throw new Error("Division By Zero Exception Threshold");
-                                        stack.push(a / b); 
-                                        break;
-                                    case '%': stack.push(a % b); break;
-                                    case '^': stack.push(Math.pow(a, b)); break;
-                                }
+                                const b = processingStack.pop();
+                                const a = processingStack.pop();
+                                if (a === undefined || b === undefined) throw new Error("Binary Operator Evaluation Interrupted");
+                                processingStack.push(this.execBinaryOp(node.value, a, b));
                             }
-                        } else if (token.type === this.TOKENS.FUNC) {
-                            let fn = this.Functions[token.value];
-                            if (token.value === 'rand') {
-                                stack.push(fn());
-                            } else {
-                                let val = stack.pop();
-                                if (val === undefined) throw new Error("Missing Function Parameter Dimension Matrix Mapping");
-                                stack.push(fn(val));
+                        } else if (node.type === "FUNCTION") {
+                            // Compute Functional Nodes based on system signatures
+                            const arity = this.getFunctionArity(node.value);
+                            const args = [];
+                            for (let a = 0; a < arity; a++) {
+                                const popped = processingStack.pop();
+                                if (popped === undefined) throw new Error(`Missing argument for function: ${node.value}`);
+                                args.unshift(popped);
                             }
+                            processingStack.push(this.execFunction(node.value, args));
                         }
-                    });
+                    }
 
-                    if (stack.length !== 1) throw new Error("Failed Engine Evaluation Sequence Stack Synthesis Loop");
-                    let finalResult = stack[0];
-                    if (Number.isNaN(finalResult)) throw new Error("Result Evaluated to Non-Numeric Matrix (NaN)");
-                    if (!Number.isFinite(finalResult)) throw new Error("Numerical Overflow Register Ceiling Infinity Exceeded");
-                    return finalResult;
+                    if (processingStack.length !== 1) throw new Error("Malformed Calculation Pipeline Terminal");
+                    return processingStack[0];
                 },
 
-                // Unified Core Processing Pipeline Gateway Entry Method
-                calculate(expressionStr) {
-                    // Sanitize Custom Extended Symbolic Layout Matrices Before Lexing Passes
-                    let parsedStr = expressionStr
-                        .replace(/√\(/g, 'sqrt(')
-                        .replace(/∛\(/g, 'cbrt(');
-
-                    const tokens = this.tokenize(parsedStr);
-                    const rpn = this.parse(tokens);
-                    return this.evaluateRPN(rpn);
+                getFunctionArity(name) {
+                    if (["logₐ", "ⁿ√"].includes(name)) return 2;
+                    return 1;
                 },
 
-                // Precision Decimal Fractional Utilities
-                gcd(a, b) {
-                    return b ? this.gcd(b, a % b) : a;
+                execBinaryOp(op, a, b) {
+                    switch(op) {
+                        case "+": return a + b;
+                        case "-": return a - b;
+                        case "*": return a * b;
+                        case "/": 
+                            if (b === 0) throw new Error("Division by zero configuration blocked");
+                            return a / b;
+                        case "^": return Math.pow(a, b);
+                        case "mod": return a % b;
+                        default: throw new Error(`Unknown Engine Operator Structure: ${op}`);
+                    }
                 },
-                
-                decimalToFraction(decimalStr) {
-                    let val = parseFloat(decimalStr);
-                    if (Number.isNaN(val)) return decimalStr;
-                    let len = (val.toString().split('.')[1] || '').length;
-                    if (!len) return decimalStr;
-                    let denominator = Math.pow(10, len);
-                    let numerator = val * denominator;
-                    let divisor = this.gcd(numerator, denominator);
-                    return `${numerator / divisor}/${denominator / divisor}`;
+
+                execFactorial(n) {
+                    if (n < 0 || !Number.isInteger(n)) throw new Error("Factorial domain space requires positive integers");
+                    if (n > 170) throw new Error("Arithmetic limit overflow on structural processing stack");
+                    let result = 1;
+                    for (let i = 2; i <= n; i++) result *= i;
+                    return result;
+                },
+
+                execFunction(name, args) {
+                    let val = args[0];
+                    
+                    // Angle System Angular Transformation Filters
+                    const toRad = (v) => {
+                        if (STATE.angleMode === "DEG") return v * (Math.PI / 180);
+                        if (STATE.angleMode === "GRAD") return v * (Math.PI / 200);
+                        return v;
+                    };
+                    const fromRad = (v) => {
+                        if (STATE.angleMode === "DEG") return v * (180 / Math.PI);
+                        if (STATE.angleMode === "GRAD") return v * (200 / Math.PI);
+                        return v;
+                    };
+
+                    switch(name) {
+                        // Standard Trigonometrics
+                        case "sin": return Math.sin(toRad(val));
+                        case "cos": return Math.cos(toRad(val));
+                        case "tan": return Math.tan(toRad(val));
+                        case "cot": return 1 / Math.tan(toRad(val));
+                        case "sec": return 1 / Math.cos(toRad(val));
+                        case "cosec": return 1 / Math.sin(toRad(val));
+                        
+                        // Inverse Trigonometrics
+                        case "asin": 
+                            if (val < -1 || val > 1) throw new Error("Domain range violation across inverse trig execution");
+                            return fromRad(Math.asin(val));
+                        case "acos": 
+                            if (val < -1 || val > 1) throw new Error("Domain range violation across inverse trig execution");
+                            return fromRad(Math.acos(val));
+                        case "atan": return fromRad(Math.atan(val));
+                        case "acot": return fromRad(Math.PI / 2 - Math.atan(val));
+                        case "asec": return fromRad(Math.acos(1 / val));
+                        case "acosec": return fromRad(Math.asin(1 / val));
+                        
+                        // Hyperbolics System Matrix Blocks
+                        case "sinh": return Math.sinh(val);
+                        case "cosh": return Math.cosh(val);
+                        case "tanh": return Math.tanh(val);
+                        case "asinh": return Math.asinh(val);
+                        case "acosh": 
+                            if (val < 1) throw new Error("Domain limit exceeded for hyperbolic processing");
+                            return Math.acosh(val);
+                        case "atanh": 
+                            if (val <= -1 || val >= 1) throw new Error("Domain limit exceeded for hyperbolic processing");
+                            return Math.atanh(val);
+                        
+                        // Exponentials & Roots
+                        case "ln": 
+                            if (val <= 0) throw new Error("Logarithmic base range space constraints triggered");
+                            return Math.log(val);
+                        case "log": 
+                            if (val <= 0) throw new Error("Logarithmic base range space constraints triggered");
+                            return Math.log10(val);
+                        case "log₂": 
+                            if (val <= 0) throw new Error("Logarithmic base range space constraints triggered");
+                            return Math.log2(val);
+                        case "logₐ": 
+                            if (args[0] <= 0 || args[1] <= 0) throw new Error("Log base dynamic configurations error");
+                            return Math.log(args[1]) / Math.log(args[0]);
+                        case "√": 
+                            if (val < 0) throw new Error("Imaginary structural notation matrix space blocked");
+                            return Math.sqrt(val);
+                        case "∛": return Math.cbrt(val);
+                        case "ⁿ√": 
+                            if (args[0] === 0) throw new Error("Root index validation failed");
+                            return Math.pow(args[1], 1 / args[0]);
+                        case "eˣ": return Math.exp(val);
+                        case "10ˣ": return Math.pow(10, val);
+                        case "2ˣ": return Math.pow(2, val);
+                        case "1/x": 
+                            if (val === 0) throw new Error("Reciprocal resolution anomaly on zero spatial limit");
+                            return 1 / val;
+                        
+                        // Discrete Structurals
+                        case "abs": return Math.abs(val);
+                        case "round": return Math.round(val);
+                        case "floor": return Math.floor(val);
+                        case "ceil": return Math.ceil(val);
+                        case "sign": return Math.sign(val);
+                        
+                        default: throw new Error(`Unknown target operational pipeline validation signature: ${name}`);
+                    }
                 }
             };
 
             /* ==========================================================================
-               HISTORY LOG ENGINE CORE STACK CONTROL LAYER
+               4. FRACTION CONVERSION MODULES
                ========================================================================== */
-            const HistoryManager = {
-                render() {
-                    const container = document.getElementById('historyListContainer');
-                    container.innerHTML = "";
+            const FractionEngine = {
+                decimalToFraction(val) {
+                    if (isNaN(val) || !isFinite(val)) return "Invalid Operation Mapping";
+                    if (Number.isInteger(val)) return `${val}/1`;
                     
-                    let dataStream = AppState.historyLog;
-                    const query = document.getElementById('historySearch').value.toLowerCase();
-                    if (query) {
-                        dataStream = dataStream.filter(item => 
-                            item.expression.toLowerCase().includes(query) || 
-                            item.result.toLowerCase().includes(query)
-                        );
+                    const tolerance = 1.0E-9;
+                    let h1 = 1, h2 = 0, k1 = 0, k2 = 1;
+                    let b = val;
+                    do {
+                        let a = Math.floor(b);
+                        let aux = h1; h1 = a * h1 + h2; h2 = aux;
+                        aux = k1; k1 = a * k1 + k2; k2 = aux;
+                        b = 1 / (b - a);
+                    } while (Math.abs(val - h1 / k1) > val * tolerance);
+                    
+                    return `${h1}/${k1}`;
+                },
+                
+                fractionToDecimal(str) {
+                    if (!str.includes("/")) return parseFloat(str);
+                    const parts = str.split("/");
+                    if (parts.length !== 2) return NaN;
+                    return parseFloat(parts[0]) / parseFloat(parts[1]);
+                }
+            };
+
+            /* ==========================================================================
+               5. USER INTERFACE DISPATCHERS & STATE HANDLERS
+               ========================================================================== */
+            const UI = {
+                init() {
+                    this.loadStorageContext();
+                    this.attachEventSystemListeners();
+                    this.syncSystemStateInterfaces();
+                    this.pushStateHistoryFrame();
+                },
+
+                loadStorageContext() {
+                    const savedSettings = localStorage.getItem("qc_settings");
+                    if (savedSettings) {
+                        try { STATE.settings = { ...STATE.settings, ...JSON.parse(savedSettings) }; } catch(e) {}
+                    }
+                    const savedHistory = localStorage.getItem("qc_history");
+                    if (savedHistory) {
+                        try { STATE.history = JSON.parse(savedHistory); } catch(e) {}
+                    }
+                    const savedState = localStorage.getItem("qc_state_meta");
+                    if (savedState) {
+                        try {
+                            const parsed = JSON.parse(savedState);
+                            STATE.lastAnswer = parsed.lastAnswer || 0;
+                            STATE.memory = parsed.memory || 0;
+                            STATE.angleMode = parsed.angleMode || "DEG";
+                            STATE.scientificMode = parsed.scientificMode || false;
+                        } catch(e) {}
+                    }
+                },
+
+                saveStorageContext() {
+                    localStorage.setItem("qc_settings", JSON.stringify(STATE.settings));
+                    localStorage.setItem("qc_history", JSON.stringify(STATE.history));
+                    localStorage.setItem("qc_state_meta", JSON.stringify({
+                        lastAnswer: STATE.lastAnswer,
+                        memory: STATE.memory,
+                        angleMode: STATE.angleMode,
+                        scientificMode: STATE.scientificMode
+                    }));
+                },
+
+                syncSystemStateInterfaces() {
+                    // Sync Configuration Toggles Visual System State Layouts
+                    DOM.root.setAttribute("data-theme", STATE.settings.theme);
+                    DOM.themeSelect.value = STATE.settings.theme;
+                    
+                    if (STATE.settings.animations) {
+                        DOM.root.classList.remove("no-animations");
+                        DOM.toggleAnim.classList.add("enabled");
+                    } else {
+                        DOM.root.classList.add("no-animations");
+                        DOM.toggleAnim.classList.remove("enabled");
                     }
 
-                    if (dataStream.length === 0) {
-                        container.innerHTML = `<div class="empty-state">No Records Found Matching Queries</div>`;
+                    if (STATE.settings.acoustics) DOM.toggleAcoustic.classList.add("enabled");
+                    else DOM.toggleAcoustic.classList.remove("enabled");
+
+                    DOM.precisionSelect.value = STATE.settings.precision;
+                    
+                    // Sync Dynamic Application Status Pills
+                    DOM.indAngle.textContent = STATE.angleMode;
+                    DOM.btnToggleAngle.textContent = STATE.angleMode;
+                    
+                    if (STATE.memory !== 0) DOM.indMemory.classList.add("active");
+                    else DOM.indMemory.classList.remove("active");
+                    
+                    if (STATE.scientificMode) {
+                        DOM.indSci.classList.add("active");
+                        DOM.btnToggleSci.style.background = "var(--btn-fn-hover)";
+                    } else {
+                        DOM.indSci.classList.remove("active");
+                        DOM.btnToggleSci.style.background = "var(--btn-fn-bg)";
+                    }
+
+                    DOM.metaAns.textContent = `ANS = ${this.formatNumericalOutput(STATE.lastAnswer)}`;
+                    
+                    this.renderDisplayElements();
+                    this.hydrateHistoryStreamDOM();
+                },
+
+                pushStateHistoryFrame() {
+                    // Check duplicate framework boundaries prior saving internal history states
+                    const currentFrame = JSON.stringify({
+                        expr: STATE.expression,
+                        res: STATE.result
+                    });
+                    if (STATE.undoStack.length > 0 && JSON.stringify(STATE.undoStack[STATE.undoStack.length - 1]) === currentFrame) return;
+                    
+                    STATE.undoStack.push({ expression: STATE.expression, result: STATE.result });
+                    STATE.redoStack = []; // Break forward execution path vectors on normal workflow interventions
+                },
+
+                performUndoAction() {
+                    if (STATE.undoStack.length > 1) {
+                        const frame = STATE.undoStack.pop();
+                        STATE.redoStack.push(frame);
+                        const prevFrame = STATE.undoStack[STATE.undoStack.length - 1];
+                        STATE.expression = prevFrame.expression;
+                        STATE.result = prevFrame.result;
+                        this.renderDisplayElements();
+                        this.triggerAcousticFeedback();
+                    } else {
+                        this.spawnToastNotification("Undo bounds reached", "info");
+                    }
+                },
+
+                performRedoAction() {
+                    if (STATE.redoStack.length > 0) {
+                        const frame = STATE.redoStack.pop();
+                        STATE.undoStack.push(frame);
+                        STATE.expression = frame.expression;
+                        STATE.result = frame.result;
+                        this.renderDisplayElements();
+                        this.triggerAcousticFeedback();
+                    } else {
+                        this.spawnToastNotification("Redo framework tracks empty", "info");
+                    }
+                },
+
+                renderDisplayElements() {
+                    DOM.displayExpr.textContent = STATE.expression;
+                    
+                    // Render Active State Stream Elements with System Cursor Placement
+                    if (STATE.result === "Error" || isNaN(STATE.result)) {
+                        DOM.displayRes.innerHTML = `<span style="color:#ef4444;">${STATE.result}</span><span class="terminal-cursor"></span>`;
+                    } else {
+                        DOM.displayRes.innerHTML = `${STATE.result}<span class="terminal-cursor"></span>`;
+                    }
+
+                    // Render Real-Time Compilation Subviews Evaluator
+                    if (STATE.expression.trim().length > 0) {
+                        try {
+                            // Suppress errors during structural mid-input parsing steps
+                            const evaluatedPreview = MathEngine.evaluate(STATE.expression);
+                            DOM.displayLive.textContent = `= ${this.formatNumericalOutput(evaluatedPreview)}`;
+                        } catch(e) {
+                            DOM.displayLive.textContent = "";
+                        }
+                    } else {
+                        DOM.displayLive.textContent = "";
+                    }
+                },
+
+                formatNumericalOutput(val) {
+                    if (typeof val !== "number" || isNaN(val) || !isFinite(val)) return val;
+                    
+                    if (STATE.scientificMode) {
+                        return val.toExponential(parseInt(STATE.settings.precision) - 4);
+                    }
+                    
+                    // Enforce System Precision Limitation Paradigms
+                    const fixedVal = parseFloat(val.toFixed(parseInt(STATE.settings.precision)));
+                    return fixedVal.toString();
+                },
+
+                appendExpressionToken(tok) {
+                    this.pushStateHistoryFrame();
+                    
+                    // Formatting map transforms from operational matrix structures
+                    const map = {
+                        "x²": "^2", "x³": "^3", "xʸ": "^", 
+                        "eˣ": "e^", "10ˣ": "10^", "2ˣ": "2^",
+                        "logₐ": "logₐ(", "ⁿ√": "ⁿ√("
+                    };
+
+                    if (map[tok]) {
+                        STATE.expression += map[tok];
+                    } else if (["sin","cos","tan","asin","acos","atan","sinh","cosh","tanh","asinh","acosh","atanh","ln","log","log₂","√","∛","abs","round","floor","ceil","sign"].includes(tok)) {
+                        STATE.expression += tok + "(";
+                    } else if (tok === "1/x") {
+                        STATE.expression += "1/(";
+                    } else if (tok === "EXP") {
+                        STATE.expression += "*10^";
+                    } else {
+                        STATE.expression += tok;
+                    }
+
+                    this.renderDisplayElements();
+                },
+
+                handleCoreCommandInvocation(cmd) {
+                    this.triggerAcousticFeedback();
+
+                    switch(cmd) {
+                        case "AC":
+                            this.pushStateHistoryFrame();
+                            STATE.expression = "";
+                            STATE.result = "0";
+                            this.renderDisplayElements();
+                            break;
+                        case "CE":
+                            this.pushStateHistoryFrame();
+                            STATE.expression = "";
+                            this.renderDisplayElements();
+                            break;
+                        case "BACKSPACE":
+                            this.pushStateHistoryFrame();
+                            if (STATE.expression.length > 0) {
+                                // Dynamic character sequence slicing logic
+                                STATE.expression = STATE.expression.slice(0, -1);
+                                this.renderDisplayElements();
+                            }
+                            break;
+                        case "=":
+                            this.executeCalculationPipeline();
+                            break;
+                        case "UNDO":
+                            this.performUndoAction();
+                            break;
+                        case "REDO":
+                            this.performRedoAction();
+                            break;
+                        case "DEG":
+                        case "RAD":
+                        case "GRAD":
+                            this.rotateSystemAngleMode();
+                            break;
+                        case "SCI":
+                            STATE.scientificMode = !STATE.scientificMode;
+                            this.spawnToastNotification(`Scientific rendering mode: ${STATE.scientificMode ? 'Active':'Inactive'}`, "info");
+                            this.syncSystemStateInterfaces();
+                            this.saveStorageContext();
+                            break;
+                        case "±":
+                            this.negateCurrentExpressionMatrix();
+                            break;
+                        case "F⇄D":
+                            this.toggleFractionalDecimalRepresentation();
+                            break;
+                        case "COPY":
+                            this.copyResultToClipboard();
+                            break;
+                        case "PASTE":
+                            this.readClipboardToInputBuffer();
+                            break;
+                        // Memory Matrix Instructions
+                        case "MC":
+                            STATE.memory = 0;
+                            this.spawnToastNotification("Memory Vault Purged", "info");
+                            this.syncSystemStateInterfaces();
+                            this.saveStorageContext();
+                            break;
+                        case "MR":
+                            this.appendExpressionToken(STATE.memory.toString());
+                            break;
+                        case "MS":
+                            try {
+                                const mVal = MathEngine.evaluate(STATE.expression || STATE.result);
+                                STATE.memory = mVal;
+                                this.spawnToastNotification(`Stored in Memory: ${this.formatNumericalOutput(mVal)}`, "success");
+                                this.syncSystemStateInterfaces();
+                                this.saveStorageContext();
+                            } catch(e) {
+                                this.spawnToastNotification("Cannot store invalid calculation matrices", "error");
+                            }
+                            break;
+                        case "M+":
+                            try {
+                                const addVal = MathEngine.evaluate(STATE.expression || STATE.result);
+                                STATE.memory += addVal;
+                                this.spawnToastNotification(`Memory Accumulation Level: ${this.formatNumericalOutput(STATE.memory)}`, "success");
+                                this.syncSystemStateInterfaces();
+                                this.saveStorageContext();
+                            } catch(e) {
+                                this.spawnToastNotification("Execution anomaly during memory aggregation", "error");
+                            }
+                            break;
+                        case "M-":
+                            try {
+                                const subVal = MathEngine.evaluate(STATE.expression || STATE.result);
+                                STATE.memory -= subVal;
+                                this.spawnToastNotification(`Memory Reduction Level: ${this.formatNumericalOutput(STATE.memory)}`, "success");
+                                this.syncSystemStateInterfaces();
+                                this.saveStorageContext();
+                            } catch(e) {
+                                this.spawnToastNotification("Execution anomaly during memory differentiation", "error");
+                            }
+                            break;
+                        default:
+                            this.appendExpressionToken(cmd);
+                            break;
+                    }
+                },
+
+                executeCalculationPipeline() {
+                    if (!STATE.expression.trim()) return;
+                    
+                    try {
+                        const computationalOutput = MathEngine.evaluate(STATE.expression);
+                        
+                        // Push log payload record packets onto storage pipelines
+                        const historyPayloadItem = {
+                            id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
+                            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+                            expression: STATE.expression,
+                            result: this.formatNumericalOutput(computationalOutput)
+                        };
+
+                        STATE.history.unshift(historyPayloadItem);
+                        if (STATE.history.length > STATE.settings.historyLimit) STATE.history.pop();
+                        
+                        STATE.lastAnswer = computationalOutput;
+                        STATE.result = this.formatNumericalOutput(computationalOutput);
+                        STATE.expression = ""; // Reset primary structural display vector following calculation execution
+                        
+                        this.pushStateHistoryFrame();
+                        this.syncSystemStateInterfaces();
+                        this.saveStorageContext();
+                    } catch (runtimeError) {
+                        STATE.result = "Error";
+                        this.spawnToastNotification(runtimeError.message || "Execution Interrupt Exception", "error");
+                        this.renderDisplayElements();
+                    }
+                },
+
+                rotateSystemAngleMode() {
+                    if (STATE.angleMode === "DEG") STATE.angleMode = "RAD";
+                    else if (STATE.angleMode === "RAD") STATE.angleMode = "GRAD";
+                    else STATE.angleMode = "DEG";
+                    
+                    this.spawnToastNotification(`Angular tracking reconfigured to: ${STATE.angleMode}`, "info");
+                    this.syncSystemStateInterfaces();
+                    this.saveStorageContext();
+                },
+
+                negateCurrentExpressionMatrix() {
+                    if (STATE.expression.startsWith("-(")) {
+                        STATE.expression = STATE.expression.slice(2, -1);
+                    } else if (STATE.expression) {
+                        STATE.expression = `-(${STATE.expression})`;
+                    } else {
+                        STATE.expression = `-${STATE.result}`;
+                    }
+                    this.renderDisplayElements();
+                },
+
+                toggleFractionalDecimalRepresentation() {
+                    if (STATE.result.includes("/")) {
+                        const numericRepresentation = FractionEngine.fractionToDecimal(STATE.result);
+                        STATE.result = this.formatNumericalOutput(numericRepresentation);
+                    } else {
+                        const decimalValue = parseFloat(STATE.result);
+                        if (!isNaN(decimalValue)) {
+                            STATE.result = FractionEngine.decimalToFraction(decimalValue);
+                        }
+                    }
+                    this.renderDisplayElements();
+                },
+
+                copyResultToClipboard() {
+                    navigator.clipboard.writeText(STATE.result).then(() => {
+                        this.spawnToastNotification("Data copied to system clipboard array", "success");
+                    }).catch(() => {
+                        this.spawnToastNotification("Clipboard access authorization denied", "error");
+                    });
+                },
+
+                readClipboardToInputBuffer() {
+                    navigator.clipboard.readText().then((clipString) => {
+                        // Filter untrusted character payloads prior ingestion processing
+                        const cleanString = clipString.replace(/[^0-9\+\-\*\/\(\)\.\s]/g, "");
+                        STATE.expression += cleanString;
+                        this.renderDisplayElements();
+                        this.spawnToastNotification("External clipboard string buffer ingested", "success");
+                    }).catch(() => {
+                        this.spawnToastNotification("Failed to fetch external memory segments", "error");
+                    });
+                },
+
+                hydrateHistoryStreamDOM() {
+                    DOM.historyStream.innerHTML = "";
+                    const queryFilter = DOM.historySearch.value.toLowerCase().trim();
+                    
+                    const filteredItems = STATE.history.filter(item => 
+                        item.expression.toLowerCase().includes(queryFilter) || 
+                        item.result.toLowerCase().includes(queryFilter)
+                    );
+
+                    if (filteredItems.length === 0) {
+                        DOM.historyStream.innerHTML = `<div style="text-align:center; color:var(--text-dim); font-size:0.85rem; margin-top:20px;">Logs Array Empty</div>`;
                         return;
                     }
 
-                    dataStream.forEach((item, index) => {
-                        const div = document.createElement('div');
-                        div.className = 'history-item';
-                        div.setAttribute('tabindex', '0');
-                        div.innerHTML = `
-                            <button class="history-item-del" data-idx="${index}" title="Remove Entry Log">✕</button>
-                            <span class="history-item-time">${item.time}</span>
-                            <span class="history-item-expr">${item.expression}</span>
-                            <span class="history-item-res">${item.result}</span>
+                    filteredItems.forEach(item => {
+                        const card = document.createElement("div");
+                        card.className = "history-item-card";
+                        card.setAttribute("role", "listitem");
+                        card.innerHTML = `
+                            <div class="history-card-meta">
+                                <span>LOG UNIT ${item.id.slice(0,4).toUpperCase()}</span>
+                                <span>${item.timestamp}</span>
+                            </div>
+                            <div class="history-card-expr">${item.expression}</div>
+                            <div class="history-card-res">${item.result}</div>
+                            <div class="history-item-actions">
+                                <button class="hist-action-btn" data-action="load" data-id="${item.id}">Inject</button>
+                                <button class="hist-action-btn" data-action="delete" data-id="${item.id}" style="color:#f87171;">Purge</button>
+                            </div>
                         `;
-                        // Inject Item Click Handlers safely onto components mappings
-                        div.addEventListener('click', (e) => {
-                            if (e.target.classList.contains('history-item-del')) {
-                                e.stopPropagation();
-                                this.deleteItem(parseInt(e.target.getAttribute('data-idx')));
-                                return;
-                            }
-                            UIController.loadHistoryItem(item);
-                        });
-                        container.appendChild(div);
-                    });
-                },
-                addEntry(expression, result) {
-                    const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                    AppState.historyLog.unshift({ expression, result, time: timestamp });
-                    if (AppState.historyLog.length > AppState.historyLimit) {
-                        AppState.historyLog.pop();
-                    }
-                    StorageManager.save(AppState.historyLog);
-                    this.render();
-                },
-                deleteItem(idx) {
-                    AppState.historyLog.splice(idx, 1);
-                    StorageManager.save(AppState.historyLog);
-                    this.render();
-                },
-                clearAll() {
-                    AppState.historyLog = [];
-                    StorageManager.save(AppState.historyLog);
-                    this.render();
-                }
-            };
-
-            /* ==========================================================================
-               MAIN APP UI CONTROLLER & VIEWSTATE SYNCHRONIZATION COORDINATOR
-               ========================================================================== */
-            const UIController = {
-                inputBuffer: "",
-                lastAnswer: "0",
-                undoStack: [],
-                redoStack: [],
-                displayMode: 'STD', // STD, SCI, ENG
-
-                init() {
-                    this.bindEvents();
-                    this.applySettings();
-                    this.updateDisplay();
-                    HistoryManager.render();
-                },
-
-                bindEvents() {
-                    // Central Event Matrix Grid Click delegation mapping systems
-                    document.getElementById('keyboardGrid').addEventListener('click', (e) => {
-                        const btn = e.target.closest('.calc-btn');
-                        if (!btn) return;
-
-                        AudioEngine.playTick();
-                        this.createRipple(e, btn);
-
-                        const action = btn.getAttribute('data-action');
-                        const value = btn.getAttribute('data-value');
-
-                        this.executeAction(action, value);
-                    });
-
-                    // Search Query Input Stream Sub-System
-                    document.getElementById('historySearch').addEventListener('input', () => HistoryManager.render());
-                    document.getElementById('clearHistoryBtn').addEventListener('click', () => HistoryManager.clearAll());
-
-                    // Settings Control Element Nodes Array Processing Loops mapping configurations
-                    document.getElementById('settingTheme').addEventListener('change', (e) => {
-                        AppState.theme = e.target.value;
-                        this.applySettings();
-                    });
-                    document.getElementById('settingAngle').addEventListener('change', (e) => {
-                        AppState.angleMode = e.target.value;
-                        this.applySettings();
-                    });
-                    document.getElementById('settingAnimations').addEventListener('change', (e) => {
-                        AppState.animations = e.target.checked;
-                        this.applySettings();
-                    });
-                    document.getElementById('settingSound').addEventListener('change', (e) => {
-                        AppState.sound = e.target.checked;
-                        this.applySettings();
-                    });
-                    document.getElementById('settingFontSize').addEventListener('input', (e) => {
-                        AppState.fontSize = parseInt(e.target.value);
-                        this.applySettings();
-                    });
-                    document.getElementById('resetSystemBtn').addEventListener('click', () => {
-                        AppState = { ...StorageManager.defaults, historyLog: [] };
-                        this.applySettings();
-                        this.inputBuffer = "";
-                        this.updateDisplay();
-                        HistoryManager.render();
-                    });
-
-                    // Functional Navigation System Tab Views Controller Panels
-                    const tabs = [document.getElementById('tabHistory'), document.getElementById('tabSettings')];
-                    const contents = [document.getElementById('panelHistory'), document.getElementById('panelSettings')];
-
-                    tabs.forEach((tab, index) => {
-                        tab.addEventListener('click', () => {
-                            tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-                            contents.forEach(c => c.classList.remove('active'));
-                            tab.classList.add('active');
-                            tab.setAttribute('aria-selected', 'true');
-                            contents[index].add('active');
-                        });
-                    });
-                },
-
-                createRipple(e, btn) {
-                    if (!AppState.animations) return;
-                    const circle = document.createElement("span");
-                    const dialog = Math.max(btn.clientWidth, btn.clientHeight);
-                    const radius = dialog / 2;
-                    const rect = btn.getBoundingClientRect();
-
-                    circle.style.width = circle.style.height = `${dialog}px`;
-                    circle.style.left = `${e.clientX - rect.left - radius}px`;
-                    circle.style.top = `${e.clientY - rect.top - radius}px`;
-                    circle.classList.add("ripple");
-
-                    const prevRipple = btn.querySelector(".ripple");
-                    if (prevRipple) prevRipple.remove();
-
-                    btn.appendChild(circle);
-                },
-
-                executeAction(action, value) {
-                    this.saveStateToUndo();
-
-                    switch (action) {
-                        case 'insert':
-                            this.inputBuffer += value;
-                            break;
-                        case 'func':
-                            this.inputBuffer += value + "(";
-                            break;
-                        case 'op-pow':
-                            this.inputBuffer += "^(" + (value === '²' ? '2' : '3') + ")";
-                            break;
-                        case 'op-pow10':
-                            this.inputBuffer += "10^(";
-                            break;
-                        case 'op-pow2':
-                            this.inputBuffer += "2^(";
-                            break;
-                        case 'inverse':
-                            this.inputBuffer += "^(-1)";
-                            break;
-                        case 'fact':
-                            // Encapsulate structural format boundaries for expression processing maps rules variables
-                            ErrorHandler.show("Factorial Parsing Sequence maps exclusively under function wrapper layer contexts: map via standard format syntax engines execution pipelines mapping patterns");
-                            break;
-                        case 'negate':
-                            if (this.inputBuffer.startsWith('-(') && this.inputBuffer.endsWith(')')) {
-                                this.inputBuffer = this.inputBuffer.slice(2, -1);
-                            } else {
-                                this.inputBuffer = `-(${this.inputBuffer})`;
-                            }
-                            break;
-                        case 'backspace':
-                            this.inputBuffer = this.inputBuffer.slice(0, -1);
-                            break;
-                        case 'CE':
-                            this.inputBuffer = "";
-                            break;
-                        case 'AC':
-                            this.inputBuffer = "";
-                            document.getElementById('expressionDisplay').innerText = "";
-                            document.getElementById('previewDisplay').innerText = "";
-                            document.getElementById('resultText').innerText = "0";
-                            break;
-                        case 'ANS':
-                            this.inputBuffer += this.lastAnswer;
-                            break;
-                        case 'deg-mode': AppState.angleMode = 'DEG'; this.applySettings(); break;
-                        case 'rad-mode': AppState.angleMode = 'RAD'; this.applySettings(); break;
-                        case 'grad-mode': AppState.angleMode = 'GRAD'; this.applySettings(); break;
-                        case 'sci-notation':
-                            this.displayMode = this.displayMode === 'SCI' ? 'STD' : 'SCI';
-                            this.evaluateExpression(false);
-                            break;
-                        case 'to-fraction':
-                            const currentText = document.getElementById('resultText').innerText;
-                            document.getElementById('resultText').innerText = MathEngine.decimalToFraction(currentText);
-                            break;
-                        case 'undo': this.triggerUndo(); break;
-                        case 'redo': this.triggerRedo(); break;
-                        case 'copy':
-                            navigator.clipboard.writeText(document.getElementById('resultText').innerText);
-                            break;
-                        case 'paste':
-                            navigator.clipboard.readText().then(text => {
-                                if (/^[0-9.+\-*/()eE^×÷%]+$/.test(text)) {
-                                    this.inputBuffer += text;
-                                    this.updateDisplay();
-                                }
-                            });
-                            break;
-                        case 'evaluate':
-                            this.evaluateExpression(true);
-                            break;
                         
-                        // Memory Matrix Configuration Blocks
-                        case 'MS':
-                            AppState.memoryRegister = parseFloat(document.getElementById('resultText').innerText) || 0;
-                            StorageManager.save(AppState);
-                            this.applySettings();
-                            break;
-                        case 'MC':
-                            AppState.memoryRegister = 0;
-                            StorageManager.save(AppState);
-                            this.applySettings();
-                            break;
-                        case 'MR':
-                            this.inputBuffer += AppState.memoryRegister.toString();
-                            break;
-                        case 'M+':
-                            AppState.memoryRegister += parseFloat(document.getElementById('resultText').innerText) || 0;
-                            StorageManager.save(AppState);
-                            this.applySettings();
-                            break;
-                        case 'M-':
-                            AppState.memoryRegister -= parseFloat(document.getElementById('resultText').innerText) || 0;
-                            StorageManager.save(AppState);
-                            this.applySettings();
-                            break;
-                    }
-
-                    this.updateDisplay();
-                    if (action !== 'evaluate') {
-                        this.evaluateExpression(false); // Live compilation updates
-                    }
-                },
-
-                saveStateToUndo() {
-                    this.undoStack.push(this.inputBuffer);
-                    this.redoStack = [];
-                },
-                triggerUndo() {
-                    if (this.undoStack.length > 0) {
-                        this.redoStack.push(this.inputBuffer);
-                        this.inputBuffer = this.undoStack.pop();
-                    }
-                },
-                triggerRedo() {
-                    if (this.redoStack.length > 0) {
-                        this.undoStack.push(this.inputBuffer);
-                        this.inputBuffer = this.redoStack.pop();
-                    }
-                },
-
-                evaluateExpression(isFinal = false) {
-                    if (!this.inputBuffer) return;
-                    try {
-                        let res = MathEngine.calculate(this.inputBuffer);
-                        let formattedRes = res;
-
-                        if (this.displayMode === 'SCI') {
-                            formattedRes = res.toExponential(6);
-                        } else {
-                            if (res.toString().length > 14) {
-                                formattedRes = parseFloat(res.toFixed(10));
+                        card.addEventListener("click", (e) => {
+                            const btnAction = e.target.closest(".hist-action-btn");
+                            if (btnAction) {
+                                e.stopPropagation();
+                                const act = btnAction.getAttribute("data-action");
+                                if (act === "load") {
+                                    STATE.expression = item.expression;
+                                    this.renderDisplayElements();
+                                    this.spawnToastNotification("Expression log tracking recovered", "info");
+                                } else if (act === "delete") {
+                                    STATE.history = STATE.history.filter(h => h.id !== item.id);
+                                    this.hydrateHistoryStreamDOM();
+                                    this.saveStorageContext();
+                                    this.spawnToastNotification("Log entry deleted", "info");
+                                }
+                            } else {
+                                STATE.expression = item.expression;
+                                this.renderDisplayElements();
                             }
-                        }
+                        });
 
-                        if (isFinal) {
-                            document.getElementById('expressionDisplay').innerText = this.inputBuffer + " =";
-                            document.getElementById('resultText').innerText = formattedRes;
-                            this.lastAnswer = res.toString();
-                            HistoryManager.addEntry(this.inputBuffer, formattedRes.toString());
-                            this.inputBuffer = formattedRes.toString();
-                            document.getElementById('indAns').classList.add('active');
-                        } else {
-                            document.getElementById('previewDisplay').innerText = "= " + formattedRes;
-                        }
-                    } catch (err) {
-                        if (isFinal) {
-                            ErrorHandler.show(err.message || "Invalid Matrix Format Configuration Input Expression Syntax");
-                            document.getElementById('resultText').innerText = "Syntax Error";
-                        }
-                    }
-                },
-
-                updateDisplay() {
-                    document.getElementById('expressionDisplay').innerText = this.inputBuffer;
-                    // Dynamically structural scaling mapping settings definitions inside display boxes rules checks
-                    const container = document.getElementById('resultText');
-                    if (this.inputBuffer.length > 12) {
-                        container.style.fontSize = "2rem";
-                    } else if (this.inputBuffer.length > 20) {
-                        container.style.fontSize = "1.5rem";
-                    } else {
-                        container.style.fontSize = "3rem";
-                    }
-                },
-
-                loadHistoryItem(item) {
-                    this.inputBuffer = item.expression;
-                    this.updateDisplay();
-                    this.evaluateExpression(false);
-                },
-
-                applySettings() {
-                    // Inject system global parameters directly safely to the HTML Document Framework Layout elements nodes structures
-                    const html = document.documentElement;
-                    html.setAttribute('data-theme', AppState.theme);
-                    html.setAttribute('data-animations', AppState.animations ? "true" : "false");
-                    html.setAttribute('data-sound', AppState.sound ? "true" : "false");
-                    
-                    document.body.style.fontSize = `${AppState.fontSize}px`;
-
-                    // Synchronize System Mode Displays Framework Icons Controls Array Mapping State Configuration parameters
-                    const indicators = ['indRad', 'indDeg', 'indGrad', 'indSci', 'indEng', 'indMem'];
-                    indicators.forEach(id => document.getElementById(id).classList.remove('active'));
-
-                    if (AppState.angleMode === 'RAD') document.getElementById('indRad').classList.add('active');
-                    if (AppState.angleMode === 'DEG') document.getElementById('indDeg').classList.add('active');
-                    if (AppState.angleMode === 'GRAD') document.getElementById('indGrad').classList.add('active');
-                    if (this.displayMode === 'SCI') document.getElementById('indSci').classList.add('active');
-                    if (AppState.memoryRegister !== 0) document.getElementById('indMem').classList.add('active');
-
-                    // Save Core Session Configuration back down inside storage cache nodes system registers
-                    StorageManager.save(AppState);
-                }
-            };
-
-            /* ==========================================================================
-               HARDWARE KEYBOARD INPUT INTERCEPTOR SUBSYSTEM MATRIX
-               ========================================================================== */
-            const KeyboardManager = {
-                init() {
-                    document.addEventListener('keydown', (e) => {
-                        // Capture structural execution modifier arrays flags mappings
-                        const isCtrl = e.ctrlKey || e.metaKey;
-
-                        if (isCtrl && e.key.toLowerCase() === 'c') return; // Allow Native Clipboard processing operations rules
-                        if (isCtrl && e.key.toLowerCase() === 'v') {
-                            e.preventDefault();
-                            UIController.executeAction('paste');
-                            return;
-                        }
-                        if (isCtrl && e.key.toLowerCase() === 'z') {
-                            e.preventDefault();
-                            UIController.executeAction('undo');
-                            return;
-                        }
-                        if (isCtrl && e.key.toLowerCase() === 'y') {
-                            e.preventDefault();
-                            UIController.executeAction('redo');
-                            return;
-                        }
-
-                        // Direct Matrix Keys Processing Array Mapping Loops values checks configurations
-                        if (/[0-9.]/.test(e.key)) {
-                            UIController.executeAction('insert', e.key);
-                            return;
-                        }
-
-                        switch (e.key) {
-                            case '+': UIController.executeAction('insert', '+'); break;
-                            case '-': UIController.executeAction('insert', '-'); break;
-                            case '*': UIController.executeAction('insert', '×'); break;
-                            case '/': UIController.executeAction('insert', '÷'); break;
-                            case '%': UIController.executeAction('insert', '%'); break;
-                            case '^': UIController.executeAction('insert', '^'); break;
-                            case '(': UIController.executeAction('insert', '('); break;
-                            case ')': UIController.executeAction('insert', ')'); break;
-                            case 'Enter': 
-                            case '=':
-                                e.preventDefault();
-                                UIController.executeAction('evaluate'); 
-                                break;
-                            case 'Backspace': UIController.executeAction('backspace'); break;
-                            case 'Escape': UIController.executeAction('AC'); break;
-                            case 'Delete': UIController.executeAction('CE'); break;
-                        }
+                        DOM.historyStream.appendChild(card);
                     });
+                },
+
+                spawnToastNotification(message, type = "info") {
+                    const toast = document.createElement("div");
+                    toast.className = `toast-unit ${type === 'error' ? 'toast-error' : ''}`;
+                    toast.innerHTML = `<span>●</span><span>${message}</span>`;
+                    
+                    DOM.toastLayer.appendChild(toast);
+                    
+                    // Force DOM reflow optimization cycle execution
+                    toast.offsetHeight;
+                    toast.classList.add("visible");
+                    
+                    setTimeout(() => {
+                        toast.classList.remove("visible");
+                        toast.addEventListener("transitionend", () => toast.remove());
+                    }, 3500);
+                },
+
+                triggerAcousticFeedback() {
+                    if (!STATE.settings.acoustics) return;
+                    try {
+                        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                        const osc = ctx.createOscillator();
+                        const gainNode = ctx.createGain();
+                        
+                        osc.type = "sine";
+                        osc.frequency.setValueAtTime(1200, ctx.currentTime);
+                        
+                        gainNode.gain.setValueAtTime(0.02, ctx.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + 0.04);
+                        
+                        osc.connect(gainNode);
+                        gainNode.connect(ctx.destination);
+                        
+                        osc.start();
+                        osc.stop(ctx.currentTime + 0.05);
+                    } catch(e) {}
+                },
+
+                createKineticRippleEffect(event, element) {
+                    if (!STATE.settings.animations) return;
+                    const ripple = document.createElement("span");
+                    ripple.className = "ripple-surface";
+                    
+                    const clientRect = element.getBoundingClientRect();
+                    const diameter = Math.max(clientRect.width, clientRect.height);
+                    const radius = diameter / 2;
+                    
+                    ripple.style.width = ripple.style.height = `${diameter}px`;
+                    ripple.style.left = `${event.clientX - clientRect.left - radius}px`;
+                    ripple.style.top = `${event.clientY - clientRect.top - radius}px`;
+                    
+                    element.appendChild(ripple);
+                    ripple.addEventListener("animationend", () => ripple.remove());
+                },
+
+                attachEventSystemListeners() {
+                    // Central Keyboard Grid Delegations Map Handler
+                    DOM.keyboardContainer.addEventListener("click", (e) => {
+                        const targetKey = e.target.closest(".key-unit");
+                        if (!targetKey) return;
+                        
+                        const inputToken = targetKey.getAttribute("data-token");
+                        this.createKineticRippleEffect(e, targetKey);
+                        this.handleCoreCommandInvocation(inputToken);
+                    });
+
+                    // Navigation Side Tabs Events Routing
+                    DOM.tabHistory.addEventListener("click", () => {
+                        DOM.tabHistory.classList.add("active");
+                        DOM.tabSettings.classList.remove("active");
+                        DOM.panelHistory.classList.add("active");
+                        DOM.panelSettings.classList.remove("active");
+                    });
+
+                    DOM.tabSettings.addEventListener("click", () => {
+                        DOM.tabSettings.classList.add("active");
+                        DOM.tabHistory.classList.remove("active");
+                        DOM.panelSettings.classList.add("active");
+                        DOM.panelHistory.classList.remove("active");
+                    });
+
+                    // Live Event Triggers History Search Indexer
+                    DOM.historySearch.addEventListener("input", () => this.hydrateHistoryStreamDOM());
+                    
+                    DOM.clearHistory.addEventListener("click", () => {
+                        STATE.history = [];
+                        this.hydrateHistoryStreamDOM();
+                        this.saveStorageContext();
+                        this.spawnToastNotification("Historical storage arrays permanently purged", "info");
+                    });
+
+                    // Settings Framework Event Relays
+                    DOM.themeSelect.addEventListener("change", (e) => {
+                        STATE.settings.theme = e.target.value;
+                        this.syncSystemStateInterfaces();
+                        this.saveStorageContext();
+                    });
+
+                    DOM.toggleAnim.addEventListener("click", () => {
+                        STATE.settings.animations = !STATE.settings.animations;
+                        this.syncSystemStateInterfaces();
+                        this.saveStorageContext();
+                        this.spawnToastNotification(`Animations configuration set to: ${STATE.settings.animations ? 'On':'Off'}`, "info");
+                    });
+
+                    DOM.toggleAcoustic.addEventListener("click", () => {
+                        STATE.settings.acoustics = !STATE.settings.acoustics;
+                        this.syncSystemStateInterfaces();
+                        this.saveStorageContext();
+                        this.spawnToastNotification(`Acoustics feedback set to: ${STATE.settings.acoustics ? 'On':'Off'}`, "info");
+                    });
+
+                    DOM.precisionSelect.addEventListener("change", (e) => {
+                        STATE.settings.precision = parseInt(e.target.value);
+                        this.syncSystemStateInterfaces();
+                        this.saveStorageContext();
+                    });
+
+                    DOM.resetAll.addEventListener("click", () => {
+                        localStorage.clear();
+                        STATE.expression = "";
+                        STATE.result = "0";
+                        STATE.history = [];
+                        STATE.settings = { theme: "dark", animations: true, acoustics: false, precision: 12, historyLimit: 50 };
+                        this.spawnToastNotification("Factory reset execution initialized successfully", "success");
+                        this.syncSystemStateInterfaces();
+                    });
+
+                    // Hardware Physical Keyboard Matrix Hook Interceptors
+                    document.addEventListener("keydown", (nativeEvent) => {
+                        this.routeHardwareKeyboardMapping(nativeEvent);
+                    });
+                },
+
+                routeHardwareKeyboardMapping(event) {
+                    // Filter system overrides to prevent command collision issues
+                    if (document.activeElement === DOM.historySearch) return;
+
+                    const keySignature = event.key;
+                    
+                    // Handle Matrix Control Command Short Circuits
+                    if (event.ctrlKey || event.metaKey) {
+                        if (keySignature.toLowerCase() === "c") { event.preventDefault(); this.handleCoreCommandInvocation("COPY"); }
+                        if (keySignature.toLowerCase() === "v") { event.preventDefault(); this.handleCoreCommandInvocation("PASTE"); }
+                        if (keySignature.toLowerCase() === "z") { event.preventDefault(); this.handleCoreCommandInvocation("UNDO"); }
+                        if (keySignature.toLowerCase() === "y") { event.preventDefault(); this.handleCoreCommandInvocation("REDO"); }
+                        return;
+                    }
+
+                    const inputMapping = {
+                        "0": "0", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8", "9": "9",
+                        ".": ".", "+": "+", "-": "-", "*": "×", "/": "÷", "(": "(", ")": ")", "%": "%",
+                        "Enter": "=", "=": "=", "Backspace": "BACKSPACE", "Escape": "AC", "Delete": "CE"
+                    };
+
+                    if (inputMapping[keySignature]) {
+                        event.preventDefault();
+                        
+                        // Visual key focus feedback injection cycle simulation
+                        const btnDomNode = DOM.keyboardContainer.querySelector(`[data-token="${inputMapping[keySignature]}"]`);
+                        if (btnDomNode) {
+                            btnDomNode.focus();
+                            setTimeout(() => btnDomNode.blur(), 120);
+                        }
+                        
+                        this.handleCoreCommandInvocation(inputMapping[keySignature]);
+                    }
                 }
             };
 
-            // Global System Core Initialization Execution Entry Vector Node
-            UIController.init();
-            KeyboardManager.init();
+            // Run application logic core initiation processing arrays
+            UI.init();
         });
     </script>
 </body>
