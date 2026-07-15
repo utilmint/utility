@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Calculator | Utilmint</title>
+    
+    <!-- SEO Optimization -->
+    <meta name="description" content="Utilmint's Premium Percentage Calculator. Calculate percentage changes, increases, decreases, differences, margins, tips, fractions, and taxes instantly with our professional multi-mode engine.">
+    <meta name="keywords" content="percentage calculator, percent increase, percent decrease, discount calculator, profit margin, fraction to percent, tax calculator, tip calculator, math engine, Utilmint">
+    <meta name="author" content="Utilmint Platform">
+    <link rel="canonical" href="https://www.utilmint.com/percentage-calculator.html">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.utilmint.com/percentage-calculator.html">
+    <meta property="og:title" content="Percentage Calculator | Utilmint – Professional Mathematical Engine">
+    <meta property="og:description" content="Execute fluid, high-precision percentage transformations, business margin dynamics, and retail calculations with built-in sandbox history.">
+    <meta property="og:image" content="https://www.utilmint.com/assets/calc-preview.png">
+
+    <!-- Twitter Card Metadata -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Percentage Calculator | Utilmint">
+    <meta property="twitter:description" content="Advanced mathematical multi-tool matrix for business, finance, and consumer arithmetic metrics.">
+
+    <!-- Structured JSON-LD Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Utilmint Percentage Calculator",
+      "url": "https://www.utilmint.com/percentage-calculator.html",
+      "applicationCategory": "EducationalApplication, BusinessApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires an HTML5 and modern ECMAScript engine capable browser."
+    }
+    </script>
+
+    <style>
+        /* CORE CONFIGURATION & GRADIENT PARAMETERS */
+        :root {
+            --font-stack: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --bg-base: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.75);
+            --border-glass: rgba(148, 163, 184, 0.15);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #0ea5e9;
+            --primary-rgb: 14, 165, 233;
+            --accent: #6366f1;
+            --accent-rgb: 99, 102, 241;
+            --success: #10b981;
+            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.03);
+            --shadow-md: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+            --radius-lg: 1rem;
+            --radius-md: 0.6rem;
+            --speed: 0.3s;
+        }
+
+        [data-theme="dark"] {
+            --bg-base: #090d16;
+            --bg-surface: #111726;
+            --bg-glass: rgba(17, 23, 38, 0.8);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --primary-rgb: 56, 189, 248;
+            --accent: #818cf8;
+            --accent-rgb: 129, 140, 248;
+            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.3);
+            --shadow-md: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* STRUCTURAL LAYOUT BASE */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-stack); }
+        body { background-color: var(--bg-base); color: var(--text-main); transition: background var(--speed), color var(--speed); overflow-x: hidden; min-height: 100vh; line-height: 1.5; }
+        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
+        
+        #scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); width: 0%; z-index: 1002; transition: width 0.1s ease; }
+
+        /* HEADER INTERFACE */
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: var(--bg-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-glass); transition: box-shadow var(--speed); }
+        header.scrolled { box-shadow: var(--shadow-sm); }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; height: 4.5rem; }
+        .logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.35rem; text-decoration: none; color: var(--text-main); transition: transform 0.2s ease; }
+        .logo:hover { transform: scale(1.02); }
+        .logo svg { width: 1.6rem; height: 1.6rem; stroke: var(--primary); fill: none; stroke-width: 2.5; }
+        .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+        .btn-nav { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 600; padding: 0.5rem 0.9rem; border-radius: var(--radius-md); border: 1px solid var(--border-glass); transition: all var(--speed); background: transparent; cursor: pointer; display: flex; align-items: center; gap: 0.3rem; }
+        .btn-nav:hover { color: var(--text-main); background: var(--border-glass); transform: translateY(-1px); }
+        .theme-toggle svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2; }
+        .theme-toggle .sun { display: none; }
+        [data-theme="dark"] .theme-toggle .moon { display: none; }
+        [data-theme="dark"] .theme-toggle .sun { display: block; }
+
+        /* HERO AREA DISPLAY */
+        .hero { padding: 8rem 0 3rem; text-align: center; background: radial-gradient(circle at top, rgba(var(--primary-rgb), 0.08), transparent 60%); }
+        .hero h1 { font-size: 2.75rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 0.75rem; background: linear-gradient(135deg, var(--text-main), var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* GRID SWITCHER MODULE & SIDEBAR CONTAINER */
+        .workspace-wrapper { display: grid; grid-template-columns: 280px 1fr 340px; gap: 1.5rem; padding-bottom: 5rem; align-items: start; }
+        @media(max-width: 1200px) { .workspace-wrapper { grid-template-columns: 240px 1fr; } .history-panel { grid-column: span 2; } }
+        @media(max-width: 992px) { .workspace-wrapper { grid-template-columns: 1fr; } .history-panel, .navigation-sidebar { grid-column: span 1; } }
+
+        /* SIDEBAR INDEX */
+        .navigation-sidebar { background: var(--bg-surface); border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); border-radius: var(--radius-lg); padding: 1rem; position: sticky; top: 6rem; max-height: calc(100vh - 8rem); overflow-y: auto; }
+        .sidebar-h { font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); letter-spacing: 0.05em; padding: 0.5rem 0.75rem 0.25rem; }
+        .nav-list { list-style: none; display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 1rem; }
+        .nav-item-btn { width: 100%; text-align: left; background: transparent; border: none; padding: 0.6rem 0.75rem; border-radius: var(--radius-md); color: var(--text-muted); font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .nav-item-btn:hover { background: var(--border-glass); color: var(--text-main); }
+        .nav-item-btn.active { background: rgba(var(--primary-rgb), 0.1); color: var(--primary); font-weight: 600; }
+
+        /* COMPUTING ENGINE CORE MODULES */
+        .calculator-viewport { display: flex; flex-direction: column; gap: 2rem; }
+        .tool-card { background: var(--bg-surface); border: 1px solid var(--border-glass); box-shadow: var(--shadow-md); border-radius: var(--radius-lg); padding: 2rem; display: none; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; transform: translateY(15px); opacity: 0; }
+        .tool-card.active { display: block; transform: translateY(0); opacity: 1; }
+        .tool-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.5rem; }
+        .tool-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+        
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .input-group { display: flex; flex-direction: column; gap: 0.4rem; }
+        .input-group label { font-size: 0.825rem; font-weight: 600; color: var(--text-main); }
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        .input-wrapper input { width: 100%; padding: 0.65rem 0.75rem; border: 1px solid var(--border-glass); border-radius: var(--radius-md); background: var(--bg-base); color: var(--text-main); font-size: 1rem; font-weight: 600; transition: all var(--speed); outline: none; }
+        .input-wrapper input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15); }
+        .input-wrapper .unit { position: absolute; right: 0.75rem; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); pointer-events: none; }
+        .input-wrapper.has-unit input { padding-right: 2.2rem; }
+        .error-message { color: #ef4444; font-size: 0.75rem; min-height: 1rem; margin-top: 0.2rem; display: none; }
+
+        .action-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .btn-action { background: var(--bg-base); color: var(--text-main); border: 1px solid var(--border-glass); padding: 0.6rem 1.2rem; border-radius: var(--radius-md); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all var(--speed); display: inline-flex; align-items: center; gap: 0.3rem; }
+        .btn-action:hover { background: var(--border-glass); transform: translateY(-1px); }
+        .btn-action.primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border: none; }
+        .btn-action.primary:hover { filter: brightness(1.08); box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.2); }
+        .btn-action:active { transform: translateY(0); }
+
+        /* OUTPUT FRAME DESIGNS */
+        .result-frame { background: radial-gradient(circle at top right, rgba(var(--primary-rgb), 0.04), transparent 70%); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 1.5rem; position: relative; overflow: hidden; margin-top: 1rem; display: none; transform: scale(0.98); opacity: 0; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .result-frame.activated { display: block; transform: scale(1); opacity: 1; }
+        .result-label { font-size: 0.775rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .result-output-value { font-size: 2.25rem; font-weight: 800; color: var(--primary); line-height: 1.2; word-wrap: break-word; font-variant-numeric: tabular-nums; }
+        .result-meta-list { margin-top: 0.75rem; font-size: 0.875rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.25rem; }
+        
+        .output-actions-cluster { position: absolute; right: 1rem; top: 1rem; display: flex; gap: 0.35rem; }
+        .btn-output-utility { background: var(--bg-surface); border: 1px solid var(--border-glass); color: var(--text-muted); width: 2rem; height: 2rem; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--speed); }
+        .btn-output-utility:hover { color: var(--text-main); border-color: var(--primary); }
+        .btn-output-utility svg { width: 1rem; height: 1rem; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+        .card-footer-info { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-glass); display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 0.85rem; }
+        @media(max-width: 576px) { .card-footer-info { grid-template-columns: 1fr; } }
+        .info-block-h { font-weight: 700; color: var(--text-main); margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.25rem; }
+        .info-block-h svg { width: 0.95rem; height: 0.95rem; stroke: var(--accent); fill: none; stroke-width: 2.5; }
+        .info-block-p { color: var(--text-muted); font-family: monospace; background: rgba(0,0,0,0.02); padding: 0.4rem; border-radius: 0.25rem; }
+        [data-theme="dark"] .info-block-p { background: rgba(255,255,255,0.02); }
+
+        /* SYSTEM ARCHIVE HISTORY STREAM */
+        .history-panel { background: var(--bg-surface); border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; position: sticky; top: 6rem; max-height: calc(100vh - 8rem); transition: max-height 0.3s ease; }
+        .history-panel.collapsed { max-height: 3.5rem; }
+        .history-header { padding: 1rem; border-bottom: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center; cursor: pointer; -webkit-user-select: none; user-select: none; }
+        .history-header h2 { font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem; }
+        .history-header h2 svg { width: 1.15rem; height: 1.15rem; stroke: var(--primary); fill: none; stroke-width: 2.5; }
+        .history-utility-row { display: flex; gap: 0.25rem; }
+        .history-search-wrapper { padding: 0.5rem 1rem; border-bottom: 1px solid var(--border-glass); display: flex; align-items: center; position: relative; }
+        .history-search-wrapper input { width: 100%; padding: 0.45rem 0.5rem 0.45rem 1.8rem; border-radius: var(--radius-md); border: 1px solid var(--border-glass); background: var(--bg-base); color: var(--text-main); font-size: 0.8rem; outline: none; }
+        .history-search-wrapper svg { position: absolute; left: 1.4rem; width: 0.9rem; height: 0.9rem; stroke: var(--text-muted); fill: none; stroke-width: 2.5; }
+        .history-stream { padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.75rem; flex: 1; min-height: 200px; }
+        .history-card { padding: 0.65rem; border-radius: var(--radius-md); background: var(--bg-base); border: 1px solid transparent; transition: all var(--speed); position: relative; display: flex; flex-direction: column; text-align: left; }
+        .history-card:hover { border-color: var(--primary); background: var(--bg-surface); }
+        .history-card-type { font-size: 0.7rem; text-transform: uppercase; font-weight: 700; color: var(--accent); margin-bottom: 0.15rem; }
+        .history-card-expr { font-size: 0.8rem; color: var(--text-muted); font-family: monospace; overflow-x: auto; white-space: nowrap; }
+        .history-card-res { font-size: 1rem; font-weight: 700; color: var(--text-main); font-family: monospace; }
+        .history-card-time { font-size: 0.65rem; color: var(--text-muted); margin-top: 0.25rem; }
+        .btn-history-del { position: absolute; right: 0.5rem; top: 0.5rem; opacity: 0; background: transparent; border: none; color: #ef4444; cursor: pointer; transition: opacity var(--speed); }
+        .history-card:hover .btn-history-del { opacity: 1; }
+        .btn-history-del svg { width: 0.85rem; height: 0.85rem; stroke: currentColor; fill: none; stroke-width: 2.5; }
+        .history-empty-status { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin: auto 0; padding: 2rem 0; }
+        
+        /* REVEAL ON SCROLL COMPONENT GRAPHICS */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* FORMULAS ARCHITECTURE DISPLAY GRID */
+        .doc-section { padding: 4rem 0; border-top: 1px solid var(--border-glass); }
+        .section-h { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 2rem; text-align: center; }
+        .formulas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+        .formula-card { background: var(--bg-surface); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 1.25rem; box-shadow: var(--shadow-sm); }
+        .formula-card-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; color: var(--text-main); }
+        .formula-card-latex { font-family: monospace; font-size: 1.05rem; color: var(--accent); background: rgba(99,102,241,0.05); padding: 0.5rem; border-radius: var(--radius-md); display: block; }
+
+        /* INTERACTIVE VERIFICATION PILLS GRID */
+        .examples-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+        .example-pill { background: var(--bg-surface); border: 1px solid var(--border-glass); padding: 1rem; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: space-between; gap: 0.5rem; cursor: pointer; transition: all var(--speed); box-shadow: var(--shadow-sm); text-align: left; }
+        .example-pill:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .example-pill-label { font-size: 0.725rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); }
+        .example-pill-body { display: flex; justify-content: space-between; font-size: 0.95rem; font-weight: 600; }
+        .example-pill-body span { font-family: monospace; }
+        .example-pill-body strong { color: var(--success); font-family: monospace; }
+
+        /* CAPABILITIES MODULE SET */
+        .capabilities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .capability-card { background: var(--bg-surface); border: 1px solid var(--border-glass); padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: transform var(--speed); }
+        .capability-card:hover { transform: translateY(-4px); }
+        .capability-icon { width: 2.5rem; height: 2.5rem; border-radius: var(--radius-md); background: rgba(14,165,233,0.08); display: flex; align-items: center; justify-content: center; color: var(--primary); margin-bottom: 1rem; }
+        .capability-icon svg { width: 1.35rem; height: 1.35rem; stroke: currentColor; fill: none; stroke-width: 2.5; }
+        .capability-h { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .capability-p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* FAQS ACCORDION SYSTEM */
+        .faq-accordion-box { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+        .faq-row { background: var(--bg-surface); border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden; transition: all var(--speed); }
+        .faq-trigger { width: 100%; padding: 1.1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: transparent; border: none; color: var(--text-main); font-size: 1rem; font-weight: 600; text-align: left; cursor: pointer; outline: none; }
+        .faq-arrow { width: 1.1rem; height: 1.1rem; stroke: var(--text-muted); fill: none; stroke-width: 2.5; transition: transform 0.25s ease; }
+        .faq-panel { max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out; }
+        .faq-panel p { padding: 0 1.5rem 1.1rem; color: var(--text-muted); font-size: 0.925rem; line-height: 1.6; }
+        .faq-row.open { border-color: var(--primary); box-shadow: var(--shadow-sm); }
+        .faq-row.open .faq-arrow { transform: rotate(180deg); }
+
+        /* BRAND FOOTER SYSTEM */
+        footer { background: #080c14; color: #94a3b8; padding: 5rem 0 2rem; position: relative; overflow: hidden; margin-top: 4rem; }
+        .footer-wave-banner { position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: rotate(180deg); }
+        .footer-wave-banner svg { position: relative; display: block; width: calc(140% + 1.3px); height: 35px; }
+        .footer-wave-banner .shape-fill { fill: var(--bg-base); }
+        .footer-columns { display: grid; grid-template-columns: 2fr repeat(2, 1fr); gap: 3rem; margin-bottom: 3rem; position: relative; z-index: 1; }
+        @media(max-width: 768px) { .footer-columns { grid-template-columns: 1fr; gap: 2rem; } }
+        .footer-brand .logo { color: #ffffff; margin-bottom: 1rem; }
+        .footer-h { color: #ffffff; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
+        .footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+        .footer-links-list a { color: #94a3b8; text-decoration: none; font-size: 0.875rem; transition: color var(--speed); }
+        .footer-links-list a:hover { color: #ffffff; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.825rem; position: relative; z-index: 1; }
+
+        /* INK RIPPLE AND ACTION SYSTEMS */
+        .ripple { position: absolute; background: rgba(var(--primary-rgb), 0.2); border-radius: 50%; pointer-events: none; transform: scale(0); animation: rippleEffect 0.45s ease-out; }
+        @keyframes rippleEffect { to { transform: scale(4); opacity: 0; } }
+        
+        #btt-btn { position: fixed; bottom: 2rem; right: 2rem; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.25s ease; z-index: 99; }
+        #btt-btn.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        #btt-btn svg { width: 1.15rem; height: 1.15rem; stroke: currentColor; fill: none; stroke-width: 2.5; }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- MAIN HEADER MODULE -->
+    <header id="top-header">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo" aria-label="Utilmint Homepage Hub">
+                <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16M7 4v16M12 4v16M17 4v16" stroke-dasharray="1 3"/></svg>
+                <span>Utilmint</span>
+            </a>
+            <div class="header-actions">
+                <a href="index.html" class="btn-nav">
+                    <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    <span>Dashboard Array</span>
+                </a>
+                <button class="btn-nav theme-toggle" id="theme-switcher" aria-label="Toggle structural dark/light appearance layers">
+                    <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO INTRODUCTION LINE -->
+    <section class="hero">
+        <div class="container">
+            <h1>Percentage Compute Matrix</h1>
+            <p>High precision functional arithmetic calculation modules configured for retail scaling, business operations, and financial optimization matrices.</p>
+        </div>
+    </section>
+
+    <!-- CENTRAL COMPUTATIONAL PLATFORM WORKSPACE -->
+    <div class="container">
+        <div class="workspace-wrapper">
+            
+            <!-- INDEX SELECTOR SIDEBAR -->
+            <nav class="navigation-sidebar" aria-label="Calculator Mode Menu Matrix">
+                <div class="sidebar-h">Standard Logic</div>
+                <ul class="nav-list">
+                    <li><button class="nav-item-btn active" data-target="tool-basic-pct">What is X% of Y?</button></li>
+                    <li><button class="nav-item-btn" data-target="tool-find-pct">X is What % of Y?</button></li>
+                    <li><button class="nav-item-btn" data-target="tool-pct-inc">Percentage Increase</button></li>
+                    <li><button class="nav-item-btn" data-target="tool-pct-dec">Percentage Decrease</button></li>
+                    <li><button class="nav-item-btn" data-target="tool-pct-diff">Percentage Difference</button></li>
+                    <li><button class="nav-item-btn" data-target="tool-rev-pct">Reverse Percentage</button></li>
+                    <li><button class="nav-item-btn" data-target="tool-pct-change">Percentage Change</button></li>
+                </ul>
+                <div class="sidebar-h">Commercial Operations</div>
+                <ul class="nav-list">
+                    <li><button class="nav-item-btn" data-target="tool-discount">Discount Architecture</button></li>
+                    <li><button class="nav-item-btn" data-target="tool-tax">Tax Allocation</button></li>
+                    <li><button class="nav-item-btn" data-target="tool-tip">Tip Proportions</button></li>
+                    <li><button class="nav-item-btn" data-target="tool-profit">Profit Margin Model</button></li>
+                </ul>
+                <div class="sidebar-h">Radix & Form Conversions</div>
+                <ul class="nav-list">
+                    <li><button class="nav-item-btn" data-target="tool-pct-dec-conv">Percent to Decimal</button></li>
+                    <li><button class="nav-item-btn" data-target="tool-dec-pct-conv">Decimal to Percent</button></li>
+                    <li><button class="nav-item-btn" data-target="tool-frac-pct-conv">Fraction to Percent</button></li>
+                    <li><button class="nav-item-btn" data-target="tool-pct-frac-conv">Percent to Fraction</button></li>
+                </ul>
+            </nav>
+
+            <!-- CONCURRENT MULTI-MODE CALCULATOR MAIN PANEL -->
+            <main class="calculator-viewport">
+                
+                <!-- TOOL 1: WHAT IS X% OF Y -->
+                <article class="tool-card active" id="tool-basic-pct">
+                    <h2 class="tool-title">What is X% of Y?</h2>
+                    <p class="tool-desc">Determines the proportional absolute value representing a specific fractional percent factor.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="basic-x">Percentage factor (X)</label>
+                            <div class="input-wrapper has-unit"><input type="text" id="basic-x" placeholder="e.g. 25"><span class="unit">%</span></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="basic-y">Base absolute value (Y)</label>
+                            <div class="input-wrapper"><input type="text" id="basic-y" placeholder="e.g. 400"></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="basic-pct">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn" aria-label="Copy result sequence"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">Computed Absolute Product</div>
+                        <div class="result-output-value">0</div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">V = (X × Y) ÷ 100</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">25% of 400 = 100</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 2: X IS WHAT PERCENT OF Y -->
+                <article class="tool-card" id="tool-find-pct">
+                    <h2 class="tool-title">X is What Percent of Y?</h2>
+                    <p class="tool-desc">Evaluates the structural proportional weight component of a value against a comparative whole core limit.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="find-x">Target relative value (X)</label>
+                            <div class="input-wrapper"><input type="text" id="find-x" placeholder="e.g. 40"></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="find-y">Comparative base whole (Y)</label>
+                            <div class="input-wrapper"><input type="text" id="find-y" placeholder="e.g. 160"></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="find-pct">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">Proportional Percent Layer</div>
+                        <div class="result-output-value">0%</div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">P = (X ÷ Y) × 100</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">40 of 160 = 25%</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 3: PERCENTAGE INCREASE -->
+                <article class="tool-card" id="tool-pct-inc">
+                    <h2 class="tool-title">Percentage Increase</h2>
+                    <p class="tool-desc">Evaluates upward positive delta scaling values from an explicit initial baseline scalar configuration state.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="inc-old">Original baseline value</label>
+                            <div class="input-wrapper"><input type="text" id="inc-old" placeholder="e.g. 100"></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="inc-new">Target upgraded value</label>
+                            <div class="input-wrapper"><input type="text" id="inc-new" placeholder="e.g. 125"></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="pct-inc">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">Scaling Expansion Factor</div>
+                        <div class="result-output-value">0%</div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">((New − Old) ÷ Old) × 100</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">100 → 125 = 25% Increase</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 4: PERCENTAGE DECREASE -->
+                <article class="tool-card" id="tool-pct-dec">
+                    <h2 class="tool-title">Percentage Decrease</h2>
+                    <p class="tool-desc">Evaluates downward reduction performance metrics between initial vectors and contracted targets.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="dec-old">Original baseline value</label>
+                            <div class="input-wrapper"><input type="text" id="dec-old" placeholder="e.g. 250"></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="dec-new">Target contracted value</label>
+                            <div class="input-wrapper"><input type="text" id="dec-new" placeholder="e.g. 200"></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="pct-dec">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">System Structural Contraction</div>
+                        <div class="result-output-value">0%</div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">((Old − New) ÷ Old) × 100</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">250 → 200 = 20% Decrease</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 5: PERCENTAGE DIFFERENCE -->
+                <article class="tool-card" id="tool-pct-diff">
+                    <h2 class="tool-title">Percentage Difference</h2>
+                    <p class="tool-desc">Measures divergence ratios relative to intermediate absolute midpoint tracking arrays.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="diff-a">Value component A</label>
+                            <div class="input-wrapper"><input type="text" id="diff-a" placeholder="e.g. 120"></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="diff-b">Value component B</label>
+                            <div class="input-wrapper"><input type="text" id="diff-b" placeholder="e.g. 150"></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="pct-diff">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">System Disparity Ratio</div>
+                        <div class="result-output-value">0%</div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">|A − B| ÷ ((A + B) ÷ 2) × 100</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">120 and 150 = 22.22%</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 6: REVERSE PERCENTAGE -->
+                <article class="tool-card" id="tool-rev-pct">
+                    <h2 class="tool-title">Reverse Percentage</h2>
+                    <p class="tool-desc">Interpolates baseline pre-modification origins using known output scalars and modification weight metrics.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="rev-final">Post-computation value</label>
+                            <div class="input-wrapper"><input type="text" id="rev-final" placeholder="e.g. 120"></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="rev-pct">Applied shift rate</label>
+                            <div class="input-wrapper has-unit"><input type="text" id="rev-pct" placeholder="e.g. 20"><span class="unit">%</span></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="rev-type">Directional polarity</label>
+                            <div class="input-wrapper">
+                                <select id="rev-type" style="width:100%; padding:0.65rem; border-radius:var(--radius-md); background:var(--bg-base); color:var(--text-main); border:1px solid var(--border-glass); font-weight:600;">
+                                    <option value="inc">Structural Accumulation (+)</option>
+                                    <option value="dec">Structural Reduction (-)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="rev-pct">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">Extrapolated Original Value</div>
+                        <div class="result-output-value">0</div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">Base = Final ÷ (1 ± (P ÷ 100))</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">120 after 20% Increase = 100</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 7: PERCENTAGE CHANGE -->
+                <article class="tool-card" id="tool-pct-change">
+                    <h2 class="tool-title">Percentage Change</h2>
+                    <p class="tool-desc">Tracks contextual shifts across directional dynamic ranges, determining structural growth or operational decay metrics automatically.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="change-old">Initial vector tracking point</label>
+                            <div class="input-wrapper"><input type="text" id="change-old" placeholder="e.g. 80"></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="change-new">Final vector performance point</label>
+                            <div class="input-wrapper"><input type="text" id="change-new" placeholder="e.g. 100"></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="pct-change">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">Dynamic Operational Shift Variance</div>
+                        <div class="result-output-value">0%</div>
+                        <div class="result-meta-list" id="change-direction-meta"></div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">((New − Old) ÷ Old) × 100</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">80 → 100 = +25% Shift</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 8: DISCOUNT CALCULATOR -->
+                <article class="tool-card" id="tool-discount">
+                    <h2 class="tool-title">Discount Architecture</h2>
+                    <p class="tool-desc">Evaluates final net pricing balances alongside absolute savings vectors inside enterprise promotions schemas.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="disc-price">Gross reference price</label>
+                            <div class="input-wrapper"><input type="text" id="disc-price" placeholder="e.g. 150"></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="disc-pct">Discount incentive layer</label>
+                            <div class="input-wrapper has-unit"><input type="text" id="disc-pct" placeholder="e.g. 15"><span class="unit">%</span></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="discount">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">Net Payable Balance</div>
+                        <div class="result-output-value">0</div>
+                        <div class="result-meta-list" id="discount-meta-box"></div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">Net = Gross − (Gross × (D ÷ 100))</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">150 under 15% discount = 127.50</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 9: TAX CALCULATOR -->
+                <article class="tool-card" id="tool-tax">
+                    <h2 class="tool-title">Tax Allocation</h2>
+                    <p class="tool-desc">Evaluates fiscal levies and localized tax integration surcharges on transaction parameters.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="tax-price">Pre-tax transactional item value</label>
+                            <div class="input-wrapper"><input type="text" id="tax-price" placeholder="e.g. 200"></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="tax-pct">Taxation ceiling value</label>
+                            <div class="input-wrapper has-unit"><input type="text" id="tax-pct" placeholder="e.g. 8.25"><span class="unit">%</span></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="tax">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">Gross Aggregate Valuation</div>
+                        <div class="result-output-value">0</div>
+                        <div class="result-meta-list" id="tax-meta-box"></div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">Gross = Net + (Net × (T ÷ 100))</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">200 at 8.25% Tax = 216.50</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 10: TIP CALCULATOR -->
+                <article class="tool-card" id="tool-tip">
+                    <h2 class="tool-title">Tip Proportions</h2>
+                    <p class="tool-desc">Apportions gratuity splits across distinct team cohorts cleanly.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="tip-bill">Aggregate invoice statement cost</label>
+                            <div class="input-wrapper"><input type="text" id="tip-bill" placeholder="e.g. 80"></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="tip-pct">Gratuity scale target</label>
+                            <div class="input-wrapper has-unit"><input type="text" id="tip-pct" placeholder="e.g. 15"><span class="unit">%</span></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="tip-people">Active cohort user headcount</label>
+                            <div class="input-wrapper"><input type="text" id="tip-people" placeholder="e.g. 4"></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="tip">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">Aggregate Gross Statement Per User</div>
+                        <div class="result-output-value">0</div>
+                        <div class="result-meta-list" id="tip-meta-box"></div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">Total/Head = (Bill × (1 + Tip÷100)) ÷ Headcount</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">80 invoice with 15% across 4 heads = 23.00</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 11: PROFIT MARGIN MODEL -->
+                <article class="tool-card" id="tool-profit">
+                    <h2 class="tool-title">Profit Margin Model</h2>
+                    <p class="tool-desc">Examines fundamental business parameters to calculate explicit margin efficiencies and commercial markup metrics.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="prof-cost">Production cost base</label>
+                            <div class="input-wrapper"><input type="text" id="prof-cost" placeholder="e.g. 50"></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="prof-sell">Target marketplace listing price</label>
+                            <div class="input-wrapper"><input type="text" id="prof-sell" placeholder="e.g. 75"></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="profit">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">Operational Net Margin Percentage</div>
+                        <div class="result-output-value">0%</div>
+                        <div class="result-meta-list" id="profit-meta-box"></div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">Margin = ((Sell − Cost) ÷ Sell) × 100</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">Cost 50 | Sell 75 = 33.33% Margin</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 12: PERCENT TO DECIMAL -->
+                <article class="tool-card" id="tool-pct-dec-conv">
+                    <h2 class="tool-title">Percent to Decimal</h2>
+                    <p class="tool-desc">Converts percentage values to absolute decimal coefficients by removing the base 100 multiplier tracking constraints.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="p2d-in">Percentage input metric</label>
+                            <div class="input-wrapper has-unit"><input type="text" id="p2d-in" placeholder="e.g. 57.5"><span class="unit">%</span></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="pct-dec-conv">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">Computed Absolute Real Decimal</div>
+                        <div class="result-output-value">0</div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">D = P ÷ 100</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">57.5% = 0.575</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 13: DECIMAL TO PERCENT -->
+                <article class="tool-card" id="tool-dec-pct-conv">
+                    <h2 class="tool-title">Decimal to Percent</h2>
+                    <p class="tool-desc">Scales absolute float coefficients to standard base-100 percentage values.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="d2p-in">Absolute structural float coefficient</label>
+                            <div class="input-wrapper"><input type="text" id="d2p-in" placeholder="e.g. 0.0825"></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="dec-pct-conv">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">Extrapolated Percent Array Representation</div>
+                        <div class="result-output-value">0%</div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">P = Decimal × 100</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">0.0825 = 8.25%</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 14: FRACTION TO PERCENT -->
+                <article class="tool-card" id="tool-frac-pct-conv">
+                    <h2 class="tool-title">Fraction to Percent</h2>
+                    <p class="tool-desc">Processes ratios into clear base-100 representation values instantly.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="f2p-num">Numerator mapping factor</label>
+                            <div class="input-wrapper"><input type="text" id="f2p-num" placeholder="e.g. 5"></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="f2p-den">Denominator limit bounds</label>
+                            <div class="input-wrapper"><input type="text" id="f2p-den" placeholder="e.g. 8"></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="frac-pct-conv">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">Computed Percent Component</div>
+                        <div class="result-output-value">0%</div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">P = (Numerator ÷ Denominator) × 100</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">5 / 8 = 62.5%</div></div>
+                    </div>
+                </article>
+
+                <!-- TOOL 15: PERCENT TO FRACTION -->
+                <article class="tool-card" id="tool-pct-frac-conv">
+                    <h2 class="tool-title">Percent to Fraction</h2>
+                    <p class="tool-desc">Reduces percentages into simplified, exact fraction integer pairs using Euclidean division algorithms.</p>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="p2f-in">Percentage input value</label>
+                            <div class="input-wrapper has-unit"><input type="text" id="p2f-in" placeholder="e.g. 64"><span class="unit">%</span></div>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <button class="btn-action primary calc-trigger" data-engine="pct-frac-conv">Compute Array</button>
+                        <button class="btn-action reset-trigger">Reset</button>
+                    </div>
+                    <div class="result-frame">
+                        <div class="output-actions-cluster">
+                            <button class="btn-output-utility copy-val-btn"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                        </div>
+                        <div class="result-label">Simplified Integer Ratio</div>
+                        <div class="result-output-value">0 / 0</div>
+                    </div>
+                    <div class="card-footer-info">
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20M4 19.5V3.5A2.5 2.5 0 0 1 6.5 1 20 20 0 0 1 20 1v16H6.5"/></svg> Mathematical Formula</div><div class="info-block-p">P/100 → GCD reduction maps</div></div>
+                        <div><div class="info-block-h"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Baseline Validation Model</div><div class="info-block-p">64% = 16 / 25</div></div>
+                    </div>
+                </article>
+
+            </main>
+
+            <!-- PERSISTENT TRANSACTIONAL HISTORY STREAM -->
+            <aside class="history-panel" id="sidebar-history" aria-label="Archived Processing Registers Matrix">
+                <div class="history-header" id="history-toggle-bar">
+                    <h2><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Computation Log</h2>
+                    <div class="history-utility-row">
+                        <button class="btn-nav" id="history-purge-btn" style="font-size:0.75rem; padding:0.2rem 0.4rem;">Purge All</button>
+                        <button class="btn-nav" id="history-export-btn" style="font-size:0.75rem; padding:0.2rem 0.4rem;" aria-label="Export transaction log as text file">Export</button>
+                    </div>
+                </div>
+                <div class="history-search-wrapper">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="history-filter-field" placeholder="Search saved runs...">
+                </div>
+                <div class="history-stream" id="history-rendering-target">
+                    <!-- History stream items injected dynamically by javascript engine -->
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- FORMULAS REFERENCE MATERIAL SECTION -->
+    <section class="doc-section reveal">
+        <div class="container">
+            <h2 class="section-h">Operational Syntax Mapping</h2>
+            <div class="formulas-grid">
+                <div class="formula-card">
+                    <div class="formula-card-title">Percentage Scale Value</div>
+                    <code class="formula-card-latex">V = (X × Y) ÷ 100</code>
+                </div>
+                <div class="formula-card">
+                    <div class="formula-card-title">Proportional Base System</div>
+                    <code class="formula-card-latex">P = (Part ÷ Whole) × 100</code>
+                </div>
+                <div class="formula-card">
+                    <div class="formula-card-title">Relative Midpoint Variance</div>
+                    <code class="formula-card-latex">D = |A - B| ÷ Average × 100</code>
+                </div>
+                <div class="formula-card">
+                    <div class="formula-card-title">Enterprise Margin Yield</div>
+                    <code class="formula-card-latex">M = ((Sell - Cost) ÷ Sell) × 100</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VERIFICATION VECTORS CARD ARRAY -->
+    <section class="doc-section reveal" style="background: var(--bg-surface);">
+        <div class="container">
+            <h2 class="section-h">Instant Verification Vectors</h2>
+            <div class="examples-grid">
+                <div class="example-pill" data-mode="tool-basic-pct" data-x="25" data-y="400">
+                    <div class="example-pill-label">Absolute Scaling</div>
+                    <div class="example-pill-body"><span>25% of 400</span><strong>= 100</strong></div>
+                </div>
+                <div class="example-pill" data-mode="tool-find-pct" data-x="40" data-y="160">
+                    <div class="example-pill-label">Proportional Target</div>
+                    <div class="example-pill-body"><span>40 out of 160</span><strong>= 25%</strong></div>
+                </div>
+                <div class="example-pill" data-mode="tool-pct-inc" data-x="100" data-y="125">
+                    <div class="example-pill-label">Growth Tracking</div>
+                    <div class="example-pill-body"><span>100 to 125</span><strong>= +25%</strong></div>
+                </div>
+                <div class="example-pill" data-mode="tool-profit" data-x="50" data-y="75">
+                    <div class="example-pill-label">Commercial Margin</div>
+                    <div class="example-pill-body"><span>Cost 50 / Sell 75</span><strong>= 33.33%</strong></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLATFORM CAPABILITIES GRID -->
+    <section class="doc-section reveal">
+        <div class="container">
+            <h2 class="section-h">Engineered Capabilities Matrix</h2>
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <div class="capability-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                    <h3 class="capability-h">Deterministic Execution</h3>
+                    <p class="capability-p">Client-side operations compile inside local processes instantly with zero network round-trip delay.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                    <h3 class="capability-h">Secure Storage Isolation</h3>
+                    <p class="capability-p">Keeps transactional operations safely sandboxed inside your browser's encrypted LocalStorage layers.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+                    <h3 class="capability-h">Precision Radix Controls</h3>
+                    <p class="capability-p">Floating balancing routines automatically format and round long repeating decimals safely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE PLATFORM FAQs LAYER -->
+    <section class="doc-section reveal" style="background: var(--bg-surface);">
+        <div class="container">
+            <h2 class="section-h">Platform Support Operations</h2>
+            <div class="faq-accordion-box">
+                <div class="faq-row">
+                    <button class="faq-trigger"><span>What defines a percentage ratio representation?</span><svg class="faq-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+                    <div class="faq-panel"><p>Percentages express dimensionless spatial ratios as a structured fraction of 100, enabling clear comparisons across datasets.</p></div>
+                </div>
+                <div class="faq-row">
+                    <button class="faq-trigger"><span>How does the system calculate profit margin metrics vs markups?</span><svg class="faq-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+                    <div class="faq-panel"><p>Margin maps profit relative to final selling value, whereas markup evaluates profit relative to raw acquisition cost parameters.</p></div>
+                </div>
+                <div class="faq-row">
+                    <button class="faq-trigger"><span>Does the engine execute safely offline?</span><svg class="faq-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+                    <div class="faq-panel"><p>Yes. The parsing engines and structural rendering nodes operate completely offline within your local runtime framework.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRAND PLATFORM FOOTER -->
+    <footer>
+        <div class="footer-wave-banner">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V1200H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="container footer-columns">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16M7 4v16M12 4v16M17 4v16" stroke-dasharray="1 3"/></svg>
+                    <span>Utilmint</span>
+                </a>
+                <p>Advanced algorithmic visualization environments designed for standard consumer computing platforms.</p>
+            </div>
+            <div>
+                <h4 class="footer-h">Platform Ecosystem</h4>
+                <ul class="footer-links-list">
+                    <li><a href="index.html">System Hub</a></li>
+                    <li><a href="#">Architecture Models</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-h">Privacy & Governance</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#">Encrypted Data Policy</a></li>
+                    <li><a href="#">Operational Clauses</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Utilmint Platform Logic. All calculation logs sandboxed locally.</p>
+            <p>Built with vanilla high-precision client-side architecture.</p>
+        </div>
+    </footer>
+
+    <!-- VERTICAL FLUID SCREEN TRANSITION BACK-TO-TOP TRIGGER -->
+    <button id="btt-btn" aria-label="Return viewport window to topmost position"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></button>
+
+    <script>
+        // CORE APPLICATION LOGIC & STATE PERSISTENCE
+        let calculationHistory = JSON.parse(localStorage.getItem("utilmint_pct_history") || "[]");
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initAppearanceManagement();
+            initTabRouterSystem();
+            initExecutionPipeline();
+            renderTransactionLogs();
+            initSystemAddons();
+        });
+
+        // APPEARANCE MATRIX DESIGN MANAGER
+        function initAppearanceManagement() {
+            const switcher = document.getElementById("theme-switcher");
+            const loadThemeConfig = () => localStorage.getItem("utilmint_theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            
+            const updateInterfaceTheme = (theme) => {
+                document.documentElement.setAttribute("data-theme", theme);
+                localStorage.setItem("utilmint_theme", theme);
+            };
+
+            updateInterfaceTheme(loadThemeConfig());
+            switcher.addEventListener("click", () => {
+                const targetTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                updateInterfaceTheme(targetTheme);
+            });
+        }
+
+        // WORKSPACE SIDEBAR NAVIGATION CONTROLLER
+        function initTabRouterSystem() {
+            const listButtons = document.querySelectorAll(".nav-item-btn");
+            const panels = document.querySelectorAll(".tool-card");
+
+            listButtons.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    listButtons.forEach(b => b.classList.remove("active"));
+                    panels.forEach(p => p.classList.remove("active"));
+
+                    btn.classList.add("active");
+                    const targetedId = btn.dataset.target;
+                    const targetedCard = document.getElementById(targetedId);
+                    
+                    if(targetedCard) {
+                        targetedCard.classList.add("active");
+                        // Smoothly scroll container workspace on standard mobile breakpoints
+                        if(window.innerWidth < 992) {
+                            targetedCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+        }
+
+        // MATHEMATICAL TOKEN EXTRACTION & ROBUST CLIENT PARSING VALIDATION ENGINE
+        function initExecutionPipeline() {
+            const triggerComputeButtons = document.querySelectorAll(".calc-trigger");
+            
+            triggerComputeButtons.forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    triggerInteractionInkRipple(e, btn);
+                    const systemEngineKey = btn.dataset.engine;
+                    const cardParent = btn.closest(".tool-card");
+                    
+                    if(validateCardInputs(cardParent)) {
+                        runMathProcessingSequence(systemEngineKey, cardParent);
+                    }
+                });
+            });
+
+            // Live event monitoring hooks for contextual input optimization
+            document.querySelectorAll(".input-wrapper input").forEach(input => {
+                input.addEventListener("input", () => {
+                    clearInputValidationError(input);
+                });
+            });
+
+            // Reset system binds
+            document.querySelectorAll(".reset-trigger").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const card = btn.closest(".tool-card");
+                    card.querySelectorAll("input").forEach(i => { i.value = ""; clearInputValidationError(i); });
+                    const frame = card.querySelector(".result-frame");
+                    if(frame) frame.classList.remove("activated");
+                });
+            });
+        }
+
+        function validateCardInputs(card) {
+            let status = true;
+            const targetInputs = card.querySelectorAll("input");
+            
+            targetInputs.forEach(input => {
+                const pureText = input.value.trim();
+                if(!pureText) {
+                    throwInputValidationError(input, "Value parameters required.");
+                    status = false;
+                } else if(isNaN(Number(pureText)) && !isScientificNotationString(pureText)) {
+                    throwInputValidationError(input, "Provide mathematical real values.");
+                    status = false;
+                }
+            });
+            return status;
+        }
+
+        function isScientificNotationString(str) {
+            return /^-?\d*\.?\d+[eE][-+]?\d+$/.test(str);
+        }
+
+        function throwInputValidationError(input, msg) {
+            const rootGroup = input.closest(".input-group");
+            const errLabel = rootGroup.querySelector(".error-message");
+            input.style.borderColor = "#ef4444";
+            if(errLabel) { errLabel.textContent = msg; errLabel.style.display = "block"; }
+        }
+
+        function clearInputValidationError(input) {
+            const rootGroup = input.closest(".input-group");
+            const errLabel = rootGroup.querySelector(".error-message");
+            input.style.borderColor = "";
+            if(errLabel) { errLabel.textContent = ""; errLabel.style.display = "none"; }
+        }
+
+        // CENTRAL COMPUTATION PIPELINE INTERPOLATION ROUTINES
+        function runMathProcessingSequence(key, card) {
+            let outputs = { value: "0", meta: [], labelString: "Computed Product" };
+            let typeTagForLog = "Percentage Calculation";
+            let debugExpressionString = "";
+
+            // Parse safe high precision integers or floats
+            const pullNum = (selectorId) => Number(card.querySelector(selectorId).value.trim());
+
+            switch(key) {
+                case "basic-pct": {
+                    let x = pullNum("#basic-x"), y = pullNum("#basic-y");
+                    outputs.value = formatNumericOutputScalar((x * y) / 100);
+                    outputs.labelString = "Computed Absolute Value";
+                    debugExpressionString = `${x}% of ${y}`;
+                    typeTagForLog = "X% of Y";
+                    break;
+                }
+                case "find-pct": {
+                    let x = pullNum("#find-x"), y = pullNum("#find-y");
+                    if(y === 0) { outputs.value = "Infinity"; }
+                    else { outputs.value = formatNumericOutputScalar((x / y) * 100) + "%"; }
+                    outputs.labelString = "Calculated Proportion Percentage";
+                    debugExpressionString = `${x} relative to ${y}`;
+                    typeTagForLog = "X is % of Y";
+                    break;
+                }
+                case "pct-inc": {
+                    let oldV = pullNum("#inc-old"), newV = pullNum("#inc-new");
+                    if(oldV === 0) { outputs.value = "Error (Div by 0)"; }
+                    else { outputs.value = formatNumericOutputScalar(((newV - oldV) / oldV) * 100) + "%"; }
+                    outputs.labelString = "Total Proportional Expansion Rate";
+                    debugExpressionString = `${oldV} escalated to ${newV}`;
+                    typeTagForLog = "Percent Increase";
+                    break;
+                }
+                case "pct-dec": {
+                    let oldV = pullNum("#dec-old"), newV = pullNum("#dec-new");
+                    if(oldV === 0) { outputs.value = "Error (Div by 0)"; }
+                    else { outputs.value = formatNumericOutputScalar(((oldV - newV) / oldV) * 100) + "%"; }
+                    outputs.labelString = "Total Proportional Contraction Rate";
+                    debugExpressionString = `${oldV} reduced to ${newV}`;
+                    typeTagForLog = "Percent Decrease";
+                    break;
+                }
+                case "pct-diff": {
+                    let a = pullNum("#diff-a"), b = pullNum("#diff-b");
+                    let avg = (a + b) / 2;
+                    if(avg === 0) { outputs.value = "Error (Zero Midpoint)"; }
+                    else { outputs.value = formatNumericOutputScalar((Math.abs(a - b) / avg) * 100) + "%"; }
+                    outputs.labelString = "Structural Disparity Variance Ratio";
+                    debugExpressionString = `Delta alignment of ${a} & ${b}`;
+                    typeTagForLog = "Percent Difference";
+                    break;
+                }
+                case "rev-pct": {
+                    let fin = pullNum("#rev-final"), rate = pullNum("#rev-pct");
+                    let mode = card.querySelector("#rev-type").value;
+                    let factor = mode === "inc" ? (1 + (rate/100)) : (1 - (rate/100));
+                    if(factor === 0) { outputs.value = "Invalid Ratio Parameters"; }
+                    else { outputs.value = formatNumericOutputScalar(fin / factor); }
+                    outputs.labelString = "Extrapolated Original Factor Value";
+                    debugExpressionString = `${fin} parsed under ${rate}% polarity type: ${mode}`;
+                    typeTagForLog = "Reverse Percent";
+                    break;
+                }
+                case "pct-change": {
+                    let oldV = pullNum("#change-old"), newV = pullNum("#change-new");
+                    if(oldV === 0) { outputs.value = "Error"; }
+                    else {
+                        let diff = ((newV - oldV) / oldV) * 100;
+                        outputs.value = formatNumericOutputScalar(diff) + "%";
+                        outputs.labelString = "Dynamic Vector Transition Metrics";
+                        let dirString = diff >= 0 ? "Directional Trend: Growth Metric" : "Directional Trend: Downward Drift";
+                        outputs.meta.push(dirString);
+                        document.getElementById("change-direction-meta").textContent = dirString;
+                    }
+                    debugExpressionString = `Dynamic track from ${oldV} → ${newV}`;
+                    typeTagForLog = "Percent Change";
+                    break;
+                }
+                case "discount": {
+                    let prc = pullNum("#disc-price"), pct = pullNum("#disc-pct");
+                    let savings = (prc * pct) / 100;
+                    let net = prc - savings;
+                    outputs.value = formatNumericOutputScalar(net);
+                    outputs.labelString = "Calculated Dynamic Retail Net Value";
+                    let metadataText = `Absolute Promotional Savings: ${formatNumericOutputScalar(savings)}`;
+                    outputs.meta.push(metadataText);
+                    document.getElementById("discount-meta-box").textContent = metadataText;
+                    debugExpressionString = `Gross price ${prc} slashed by ${pct}%`;
+                    typeTagForLog = "Retail Discount";
+                    break;
+                }
+                case "tax": {
+                    let prc = pullNum("#tax-price"), pct = pullNum("#tax-pct");
+                    let sur = (prc * pct) / 100;
+                    let gross = prc + sur;
+                    outputs.value = formatNumericOutputScalar(gross);
+                    outputs.labelString = "Total Gross Payable Valuation";
+                    let metadataText = `Allocated Fiscal Surcharge: ${formatNumericOutputScalar(sur)}`;
+                    outputs.meta.push(metadataText);
+                    document.getElementById("tax-meta-box").textContent = metadataText;
+                    debugExpressionString = `Net core ${prc} with ${pct}% assessment surcharge`;
+                    typeTagForLog = "Tax Apportionment";
+                    break;
+                }
+                case "tip": {
+                    let bill = pullNum("#tip-bill"), pct = pullNum("#tip-pct"), head = pullNum("#tip-people");
+                    if(head <= 0) { outputs.value = "Headcount parameters must be greater than zero"; }
+                    else {
+                        let totalTip = (bill * pct) / 100;
+                        let grand = bill + totalTip;
+                        outputs.value = formatNumericOutputScalar(grand / head);
+                        outputs.labelString = "Gross Split Contribution / Head";
+                        let metadataText = `Total Gratuity Pooling Value: ${formatNumericOutputScalar(totalTip)} | Total Statement: ${formatNumericOutputScalar(grand)}`;
+                        outputs.meta.push(metadataText);
+                        document.getElementById("tip-meta-box").textContent = metadataText;
+                    }
+                    debugExpressionString = `Bill ${bill} at ${pct}% split across ${head}`;
+                    typeTagForLog = "Tip Allocation";
+                    break;
+                }
+                case "profit": {
+                    let cost = pullNum("#prof-cost"), sell = pullNum("#prof-sell");
+                    if(sell === 0) { outputs.value = "Selling price vector must be non-zero values"; }
+                    else {
+                        let prof = sell - cost;
+                        let margin = (prof / sell) * 100;
+                        let markup = cost === 0 ? Infinity : (prof / cost) * 100;
+                        outputs.value = formatNumericOutputScalar(margin) + "%";
+                        outputs.labelString = "Operational Net Margin Efficiency";
+                        let metadataText = `Gross Profit Vector: ${formatNumericOutputScalar(prof)} | Capital Markup: ${formatNumericOutputScalar(markup)}%`;
+                        outputs.meta.push(metadataText);
+                        document.getElementById("profit-meta-box").textContent = metadataText;
+                    }
+                    debugExpressionString = `Cost ${cost} vs Listing market value ${sell}`;
+                    typeTagForLog = "Profit Optimization";
+                    break;
+                }
+                case "pct-dec-conv": {
+                    let pin = pullNum("#p2d-in");
+                    outputs.value = formatNumericOutputScalar(pin / 100);
+                    outputs.labelString = "Scalar Float Real Representation";
+                    debugExpressionString = `Transform ${pin}% to absolute float`;
+                    typeTagForLog = "Percent to Decimal";
+                    break;
+                }
+                case "dec-pct-conv": {
+                    let din = pullNum("#d2p-in");
+                    outputs.value = formatNumericOutputScalar(din * 100) + "%";
+                    outputs.labelString = "Percent Value Representation";
+                    debugExpressionString = `Scale float value ${din} to percentage scale bounds`;
+                    typeTagForLog = "Decimal to Percent";
+                    break;
+                }
+                case "frac-pct-conv": {
+                    let num = pullNum("#f2p-num"), den = pullNum("#f2p-den");
+                    if(den === 0) { outputs.value = "Division by zero constraint"; }
+                    else { outputs.value = formatNumericOutputScalar((num / den) * 100) + "%"; }
+                    outputs.labelString = "Fractional Percentage Identity Transformation";
+                    debugExpressionString = `Ratio scale tracking for sequence ${num}/${den}`;
+                    typeTagForLog = "Fraction to Percent";
+                    break;
+                }
+                case "pct-frac-conv": {
+                    let pin = pullNum("#p2f-in");
+                    outputs.value = convertPercentToRationalString(pin);
+                    outputs.labelString = "Simplified Euclidean Fractional Ratio Pair";
+                    debugExpressionString = `Reduce percentage scale ${pin}% to base components`;
+                    typeTagForLog = "Percent to Fraction";
+                    break;
+                }
+            }
+
+            // Expose and render calculated results with counting animation
+            const targetFrame = card.querySelector(".result-frame");
+            const targetLabel = targetFrame.querySelector(".result-label");
+            const targetValueDisplayNode = targetFrame.querySelector(".result-output-value");
+            
+            targetLabel.textContent = outputs.labelString;
+            targetFrame.classList.add("activated");
+            
+            animateOutputValueString(targetValueDisplayNode, outputs.value);
+            pushLogTransactionToMemory(typeTagForLog, debugExpressionString, outputs.value);
+        }
+
+        function formatNumericOutputScalar(num) {
+            if (isNaN(num)) return "NaN";
+            if (!isFinite(num)) return "Infinity";
+            // Return precision adjustments for long decimal matrices smoothly
+            let scalarString = parseFloat(num.toFixed(6)).toString();
+            let components = scalarString.split('.');
+            components[0] = components[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return components.join('.');
+        }
+
+        function convertPercentToRationalString(pct) {
+            if(pct === 0) return "0 / 1";
+            let val = pct / 100;
+            let precisionScalar = 1000000;
+            let num = Math.round(val * precisionScalar);
+            let den = precisionScalar;
+            
+            let commonFactor = calculateGreatestCommonDivisor(num, den);
+            return `${num / commonFactor} / ${den / commonFactor}`;
+        }
+
+        function calculateGreatestCommonDivisor(a, b) {
+            return b ? calculateGreatestCommonDivisor(b, a % b) : Math.abs(a);
+        }
+
+        function animateOutputValueString(node, targetStr) {
+            node.textContent = targetStr;
+            node.style.transform = "scale(1.03)";
+            node.style.transition = "transform 0.15s ease";
+            setTimeout(() => { node.style.transform = "scale(1)"; }, 150);
+        }
+
+        // TRANSACTIONAL STORAGE PLATFORM LAYER
+        function pushLogTransactionToMemory(type, expr, res) {
+            const item = { id: Date.now(), type: type, expr: expr, res: res, timestamp: new Date().toLocaleTimeString() };
+            calculationHistory.unshift(item);
+            if(calculationHistory.length > 30) calculationHistory.pop();
+            localStorage.setItem("utilmint_pct_history", JSON.stringify(calculationHistory));
+            renderTransactionLogs();
+        }
+
+        function renderTransactionLogs() {
+            const box = document.getElementById("history-rendering-target");
+            box.innerHTML = "";
+            const searchFieldQuery = document.getElementById("history-filter-field").value.toLowerCase().trim();
+
+            let targetItems = calculationHistory.filter(i => 
+                i.type.toLowerCase().includes(searchFieldQuery) || 
+                i.expr.toLowerCase().includes(searchFieldQuery) || 
+                i.res.toLowerCase().includes(searchFieldQuery)
+            );
+
+            if(!targetItems.length) {
+                box.innerHTML = '<div class="history-empty-status">Archive logs empty</div>';
+                return;
+            }
+
+            targetItems.forEach(i => {
+                const itemCard = document.createElement("div");
+                itemCard.className = "history-card";
+                itemCard.innerHTML = `
+                    <button class="btn-history-del" data-id="${i.id}"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                    <div class="history-card-type">${i.type}</div>
+                    <div class="history-card-expr">${i.expr}</div>
+                    <div class="history-card-res">${i.res}</div>
+                    <div class="history-card-time">${i.timestamp}</div>
+                `;
+                
+                // Clicking history log targets injects result configurations directly back to output viewports
+                itemCard.addEventListener("click", (e) => {
+                    if(e.target.closest('.btn-history-del')) {
+                        e.stopPropagation();
+                        calculationHistory = calculationHistory.filter(h => h.id !== i.id);
+                        localStorage.setItem("utilmint_pct_history", JSON.stringify(calculationHistory));
+                        renderTransactionLogs();
+                        return;
+                    }
+                });
+                box.appendChild(itemCard);
+            });
+        }
+
+        // SECONDARY PLUGINS & ATTACHMENT BINDINGS
+        function initSystemAddons() {
+            // Document copy configuration hooks
+            document.querySelectorAll(".copy-val-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const txt = btn.closest(".result-frame").querySelector(".result-output-value").textContent;
+                    navigator.clipboard.writeText(txt);
+                });
+            });
+
+            // Verification Vector Pill Hooks
+            document.querySelectorAll(".example-pill").forEach(pill => {
+                pill.addEventListener("click", () => {
+                    const modeTarget = pill.dataset.mode;
+                    const navTargetBtn = document.querySelector(`[data-target="${modeTarget}"]`);
+                    if(navTargetBtn) navTargetBtn.click();
+                    
+                    const card = document.getElementById(modeTarget);
+                    const inputs = card.querySelectorAll("input");
+                    if(inputs[0]) inputs[0].value = pill.dataset.x;
+                    if(inputs[1]) inputs[1].value = pill.dataset.y;
+                    
+                    const triggerBtn = card.querySelector(".calc-trigger");
+                    if(triggerBtn) triggerBtn.click();
+                });
+            });
+
+            // Search filtering tracking debouncer hooks
+            document.getElementById("history-filter-field").addEventListener("input", () => {
+                renderTransactionLogs();
+            });
+
+            // Log purging execution triggers
+            document.getElementById("history-purge-btn").addEventListener("click", () => {
+                calculationHistory = [];
+                localStorage.removeItem("utilmint_pct_history");
+                renderTransactionLogs();
+            });
+
+            // Export calculation streams cleanly as localized TXT configuration nodes
+            document.getElementById("history-export-btn").addEventListener("click", () => {
+                if(!calculationHistory.length) return;
+                let outputString = "UTILMINT COMPUTATION LEDGER RECORD\r\n=================================\r\n";
+                calculationHistory.forEach(i => {
+                    outputString += `[${i.timestamp}] ${i.type}: ${i.expr} => ${i.res}\r\n`;
+                });
+                
+                const elementBlob = new Blob([outputString], {type: 'text/plain'});
+                const downloadAnchor = document.createElement("a");
+                downloadAnchor.href = URL.createObjectURL(elementBlob);
+                downloadAnchor.download = `utilmint_pct_export_${Date.now()}.txt`;
+                downloadAnchor.click();
+            });
+
+            // Collapse history sidebar systems seamlessly on constrained desktop breakpoints
+            document.getElementById("history-toggle-bar").addEventListener("click", (e) => {
+                if(e.target.closest('button')) return;
+                document.getElementById("sidebar-history").classList.toggle("collapsed");
+            });
+
+            // Accordion Framework Actions
+            document.querySelectorAll(".faq-trigger").forEach(trig => {
+                trig.addEventListener("click", () => {
+                    const row = trig.parentElement;
+                    const panel = row.querySelector(".faq-panel");
+                    const isOpen = row.classList.contains("open");
+                    
+                    document.querySelectorAll(".faq-row").forEach(r => {
+                        r.classList.remove("open");
+                        r.querySelector(".faq-panel").style.maxHeight = null;
+                    });
+                    
+                    if(!isOpen) {
+                        row.classList.add("open");
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+            });
+
+            // Interface Scroll Tracking Progress Lines & Back-To-Top Hooks
+            const progressNode = document.getElementById("scroll-progress");
+            const btt = document.getElementById("btt-btn");
+            
+            window.addEventListener("scroll", () => {
+                let offset = window.scrollY;
+                let spanHeight = document.documentElement.scrollHeight - window.innerHeight;
+                if(spanHeight > 0) progressNode.style.width = `${(offset / spanHeight) * 100}%`;
+                
+                if(offset > 250) btt.classList.add("visible");
+                else btt.classList.remove("visible");
+            });
+            btt.addEventListener("click", () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+            // Intersection On-Screen Element Visibility Observer Config
+            const revealNodes = document.querySelectorAll(".reveal");
+            const structuralObserver = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if(e.isIntersecting) e.target.classList.add("active");
+                });
+            }, { threshold: 0.05 });
+            revealNodes.forEach(rn => structuralObserver.observe(rn));
+        }
+
+        function triggerInteractionInkRipple(e, target) {
+            const ink = document.createElement("span");
+            ink.className = "ripple";
+            const boundary = target.getBoundingClientRect();
+            const posX = e.clientX - boundary.left;
+            const posY = e.clientY - boundary.top;
+            ink.style.left = `${posX}px`; ink.style.top = `${posY}px`;
+            target.appendChild(ink);
+            setTimeout(() => ink.remove(), 500);
+        }
+    </script>
+</body>
+</html>
