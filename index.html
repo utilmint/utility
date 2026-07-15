@@ -3,120 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Utilmint – Professional All-in-One Mathematics Calculator Suite</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Access 50+ professional, fast, and highly accurate mathematical calculators on Utilmint. An all-in-one suite featuring algebra, geometry, statistics, and matrix calculation tools.">
-    <meta name="keywords" content="math calculator, geometry calculator, algebra solver, statistics calculator, percentage tool, professional math suite, Utilmint">
-    <meta name="author" content="Utilmint Platform">
-    <link rel="canonical" href="https://www.utilmint.com/">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.utilmint.com/">
-    <meta property="og:title" content="Utilmint – Professional All-in-One Mathematics Calculator Suite">
-    <meta property="og:description" content="Access 50+ professional, fast, and highly accurate mathematical calculators on Utilmint.">
-    <meta property="og:image" content="https://www.utilmint.com/assets/og-preview.png">
-
-    <!-- Twitter Card -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.utilmint.com/">
-    <meta property="twitter:title" content="Utilmint – Professional All-in-One Mathematics Calculator Suite">
-    <meta property="twitter:description" content="Access 50+ professional, fast, and highly accurate mathematical calculators on Utilmint.">
-    <meta property="twitter:image" content="https://www.utilmint.com/assets/og-preview.png">
-
-    <!-- JSON-LD Schema.org Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Utilmint",
-      "url": "https://www.utilmint.com",
-      "description": "Professional All-in-One Mathematics Calculator Platform providing 50 distinct calculation workflows.",
-      "applicationCategory": "EducationalApplication, BusinessApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires HTML5, CSS3, and JavaScript enabled modern browsers."
-    }
-    </script>
-
+    <title>Premium Advanced Scientific Calculator</title>
     <style>
-        /* CSS RESET & VARIABLES */
         :root {
-            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            
-            /* Light Theme Palette */
-            --bg-primary: #f8fafc;
-            --bg-secondary: #ffffff;
-            --bg-glass: rgba(255, 255, 255, 0.75);
-            --border-glass: rgba(255, 255, 255, 0.5);
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --accent-primary: #0ea5e9;
-            --accent-secondary: #2563eb;
-            --accent-glow: rgba(14, 165, 233, 0.3);
-            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
-            --nav-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-            --transition-speed: 0.3s;
-        }
-
-        [data-theme="dark"] {
-            /* Dark Theme Palette */
-            --bg-primary: #0b0f19;
-            --bg-secondary: #111827;
-            --bg-glass: rgba(17, 24, 39, 0.75);
-            --border-glass: rgba(255, 255, 255, 0.08);
+            --bg-gradient: linear-gradient(135deg, #0f172a, #1e1b4b, #311042);
+            --calc-bg: rgba(30, 41, 59, 0.7);
+            --calc-border: rgba(255, 255, 255, 0.08);
+            --display-bg: rgba(15, 23, 42, 0.6);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent-primary: #38bdf8;
-            --accent-secondary: #3b82f6;
-            --accent-glow: rgba(56, 189, 248, 0.25);
-            --card-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
-            --nav-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+            --btn-basic: rgba(255, 255, 255, 0.06);
+            --btn-basic-hover: rgba(255, 255, 255, 0.12);
+            --btn-sci: rgba(147, 51, 234, 0.15);
+            --btn-sci-hover: rgba(147, 51, 234, 0.25);
+            --btn-op: rgba(249, 115, 22, 0.2);
+            --btn-op-hover: rgba(249, 115, 22, 0.35);
+            --btn-eq: linear-gradient(135deg, #ea580c, #d97706);
+            --btn-eq-glow: rgba(234, 88, 12, 0.4);
+            --accent: #a855f7;
+            --glow: 0 0 15px rgba(168, 85, 247, 0.4);
+            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        .light-mode {
+            --bg-gradient: linear-gradient(135deg, #f1f5f9, #e2e8f0, #cbd5e1);
+            --calc-bg: rgba(255, 255, 255, 0.75);
+            --calc-border: rgba(0, 0, 0, 0.08);
+            --display-bg: rgba(248, 250, 252, 0.85);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --btn-basic: rgba(0, 0, 0, 0.04);
+            --btn-basic-hover: rgba(0, 0, 0, 0.08);
+            --btn-sci: rgba(147, 51, 234, 0.08);
+            --btn-sci-hover: rgba(147, 51, 234, 0.15);
+            --btn-op: rgba(249, 115, 22, 0.12);
+            --btn-op-hover: rgba(249, 115, 22, 0.22);
+            --btn-eq: linear-gradient(135deg, #f97316, #ea580c);
+            --btn-eq-glow: rgba(249, 115, 22, 0.3);
+            --accent: #9333ea;
+            --glow: 0 0 15px rgba(147, 51, 234, 0.2);
+        }
+
+        .no-animations * {
+            animation: none !important;
+            transition: none !important;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            scroll-behavior: smooth;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         body {
-            font-family: var(--font-sans);
-            background-color: var(--bg-primary);
+            font-family: var(--font);
+            background: var(--bg-gradient);
+            background-size: 400% 400%;
+            animation: gradientBg 20s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--text-main);
-            overflow-x: hidden;
-            transition: background-color var(--transition-speed), color var(--transition-speed);
-            line-height: 1.5;
-        }
-
-        /* UTILITIES & KEYFRAMES */
-        .container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-15px) scale(1.05); }
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.4; filter: blur(40px); }
-            50% { opacity: 0.7; filter: blur(60px); }
+            overflow: hidden;
+            padding: 20px;
         }
 
         @keyframes gradientBg {
@@ -125,1143 +77,1476 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* SCROLL PROGRESS BAR */
-        #scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-            width: 0%;
-            z-index: 1001;
-            transition: width 0.1s linear;
-        }
-
-        /* HEADER & NAVIGATION */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .app-container {
+            display: flex;
+            gap: 24px;
+            max-width: 1280px;
             width: 100%;
-            z-index: 1000;
-            background-color: var(--bg-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-glass);
-            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
-        }
-
-        header.scrolled {
-            box-shadow: var(--nav-shadow);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 4.5rem;
-        }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: -0.025em;
-        }
-
-        .logo-icon {
-            width: 2rem;
-            height: 2rem;
-            stroke: var(--accent-primary);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color var(--transition-speed);
+            height: 860px;
             position: relative;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--text-main);
-        }
-
-        .nav-actions {
+        .calculator {
+            flex: 1;
+            background: var(--calc-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--calc-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             display: flex;
-            align-items: center;
-            gap: 1rem;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .theme-toggle, .mobile-menu-toggle {
-            background: transparent;
-            border: 1px solid var(--border-glass);
+        .calculator:hover {
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6), var(--glow);
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--calc-border);
+        }
+
+        .indicators {
+            display: flex;
+            gap: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .indicator-item {
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.2);
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .indicator-item.active {
             color: var(--text-main);
-            padding: 0.5rem;
-            border-radius: 0.5rem;
+            background: var(--accent);
+            text-shadow: 0 0 4px rgba(255,255,255,0.4);
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .win-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: var(--btn-basic);
+            color: var(--text-main);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background var(--transition-speed);
+            transition: background 0.2s, transform 0.1s;
         }
 
-        .theme-toggle:hover {
-            background: var(--border-glass);
+        .win-btn:hover {
+            background: var(--btn-basic-hover);
+            transform: scale(1.05);
         }
 
-        .mobile-menu-toggle {
+        .display-container {
+            padding: 24px;
+            background: var(--display-bg);
+            border-bottom: 1px solid var(--calc-border);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-end;
+            min-height: 180px;
+            position: relative;
+            gap: 6px;
+        }
+
+        .expression-line {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            min-height: 1.7rem;
+            word-wrap: break-word;
+            word-break: break-all;
+            text-align: right;
+            width: 100%;
+            overflow-y: auto;
+            max-height: 60px;
+        }
+
+        .preview-line {
+            font-size: 1rem;
+            color: var(--accent);
+            min-height: 1.4rem;
+            opacity: 0.8;
+        }
+
+        .result-line {
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--text-main);
+            width: 100%;
+            text-align: right;
+            white-space: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+            transition: transform 0.2s ease;
+        }
+
+        .result-line::-webkit-scrollbar {
             display: none;
         }
 
-        .theme-toggle svg {
-            width: 1.25rem;
-            height: 1.25rem;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
+        .error-toast {
+            position: absolute;
+            bottom: 12px;
+            left: 24px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+            pointer-events: none;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
         }
 
-        .theme-toggle .sun-icon { display: none; }
-        [data-theme="dark"] .theme-toggle .moon-icon { display: none; }
-        [data-theme="dark"] .theme-toggle .sun-icon { display: block; }
+        .error-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
 
-        /* HERO SECTION */
-        .hero {
+        .pad-tabs {
+            display: flex;
+            background: rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--calc-border);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: color 0.2s, background 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .pads-container {
+            flex: 1;
             position: relative;
-            padding: 10rem 0 6rem;
-            text-align: center;
             overflow: hidden;
-            background: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.08), transparent 50%);
         }
 
-        .hero-bg-glows {
+        .keyboard-pad {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .glow-circle {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulseGlow 8s infinite ease-in-out, float 12s infinite ease-in-out;
-        }
-
-        .glow-1 { top: 10%; left: 15%; }
-        .glow-2 { top: 20%; right: 15%; animation-delay: -4s; }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -0.04em;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text-main) 30%, var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            color: #ffffff;
-            padding: 0.875rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 10px 20px -5px var(--accent-glow);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 25px -5px var(--accent-glow);
-        }
-
-        /* SEARCH BAR SECTION */
-        .search-section {
-            padding: 2rem 0;
-            position: relative;
-            z-index: 10;
-        }
-
-        .search-wrapper {
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1.25rem 1.5rem 1.25rem 3.5rem;
-            border-radius: 1rem;
-            border: 1px solid var(--border-glass);
-            background-color: var(--bg-glass);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            color: var(--text-main);
-            font-size: 1.1rem;
-            outline: none;
-            box-shadow: var(--card-shadow);
-            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
-        }
-
-        .search-input:focus {
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 4px var(--accent-glow);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1.25rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1.5rem;
-            height: 1.5rem;
-            stroke: var(--text-muted);
-            pointer-events: none;
-        }
-
-        /* CALCULATOR GRID */
-        .grid-section {
-            padding: 4rem 0 6rem;
-        }
-
-        .calc-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1.5rem;
-        }
-
-        .calc-card {
-            background-color: var(--bg-glass);
-            border: 1px solid var(--border-glass);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 1.25rem;
-            aspect-ratio: 1 / 1;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            text-decoration: none;
-            color: var(--text-main);
-            box-shadow: var(--card-shadow);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s, border-color 0.4s;
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        .calc-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, transparent, var(--card-glow, rgba(14, 165, 233, 0.05)));
+            padding: 16px;
+            gap: 10px;
             opacity: 0;
-            transition: opacity 0.3s;
+            transform: scale(0.96);
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
         }
 
-        .calc-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px -15px var(--accent-glow);
-            border-color: var(--accent-primary);
-        }
-
-        .calc-card:hover::before {
+        .keyboard-pad.active {
             opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+            z-index: 2;
         }
 
-        .card-icon {
-            width: 3rem;
-            height: 3rem;
-            padding: 0.6rem;
-            border-radius: 0.75rem;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(37, 99, 235, 0.1));
+        .pad-scientific {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .pad-basic {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .pad-advanced {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        .btn {
+            position: relative;
+            border: 1px solid var(--calc-border);
+            border-radius: 12px;
+            font-family: var(--font);
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-main);
+            cursor: pointer;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
-            transition: transform 0.3s;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            background: var(--btn-basic);
         }
 
-        .calc-card:hover .card-icon {
-            transform: scale(1.1) rotate(5deg);
+        .btn:hover {
+            background: var(--btn-basic-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
 
-        .card-icon svg {
-            width: 100%;
-            height: 100%;
-            stroke: var(--accent-primary);
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+        .btn:active {
+            transform: translateY(1px);
         }
 
-        .card-info {
-            margin-top: auto;
+        .btn-sci-op {
+            background: var(--btn-sci);
+            font-size: 0.95rem;
+            font-weight: 600;
         }
 
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.25rem;
+        .btn-sci-op:hover {
+            background: var(--btn-sci-hover);
         }
 
-        .card-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+        .btn-math-op {
+            background: var(--btn-op);
+            color: #fdba74;
+            font-size: 1.2rem;
+        }
+
+        .btn-math-op:hover {
+            background: var(--btn-op-hover);
+        }
+
+        .btn-action {
+            color: #f43f5e;
+            font-weight: 600;
+        }
+
+        .btn-equal {
+            background: var(--btn-eq);
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            grid-column: span 1;
+        }
+
+        .btn-equal:hover {
+            box-shadow: 0 0 16px var(--btn-eq-glow);
+            filter: brightness(1.1);
+        }
+
+        .pad-basic .btn-equal {
+            grid-column: span 1;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleEffect 0.5s ease-out;
+            background: rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .sidebar-panel {
+            width: 340px;
+            background: var(--calc-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--calc-border);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s, opacity 0.3s;
         }
 
-        .calc-card.coming-soon {
-            opacity: 0.7;
-            cursor: not-allowed;
-            border-style: dashed;
+        .sidebar-tabs {
+            display: flex;
+            background: rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--calc-border);
         }
 
-        .calc-card.coming-soon:hover {
-            transform: none;
-            box-shadow: var(--card-shadow);
-            border-color: var(--border-glass);
+        .side-content {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            position: relative;
         }
 
-        .calc-card.hidden {
-            display: none !important;
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        /* STATISTICS SECTION */
-        .stats-section {
-            padding: 5rem 0;
-            background-color: var(--bg-secondary);
-            border-y: 1px solid var(--border-glass);
+        .history-item {
+            background: rgba(0,0,0,0.15);
+            border: 1px solid var(--calc-border);
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.2s, transform 0.2s;
+            animation: slideIn 0.2s ease-out;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            text-align: center;
+        @keyframes slideIn {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
-        .stat-card {
-            padding: 2.5rem 1.5rem;
-            background-color: var(--bg-primary);
-            border: 1px solid var(--border-glass);
-            border-radius: 1rem;
-            box-shadow: var(--card-shadow);
+        .history-item:hover {
+            background: rgba(0,0,0,0.25);
         }
 
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--accent-primary);
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.04em;
-        }
-
-        .stat-label {
-            font-size: 1rem;
+        .history-expr {
+            font-size: 0.9rem;
             color: var(--text-muted);
+            text-align: right;
+            word-wrap: break-word;
+            margin-bottom: 4px;
+        }
+
+        .history-res {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-main);
+            text-align: right;
+        }
+
+        .history-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .del-hist-btn {
+            background: transparent;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .del-hist-btn:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .empty-state {
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 40px;
+            font-size: 0.95rem;
+        }
+
+        .settings-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.1);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--calc-border);
+        }
+
+        .setting-label {
+            font-size: 0.9rem;
             font-weight: 500;
         }
 
-        /* FEATURES SECTION */
-        .features-section {
-            padding: 6rem 0;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background-color: var(--bg-glass);
-            border: 1px solid var(--border-glass);
-            padding: 2.5rem;
-            border-radius: 1.25rem;
-            box-shadow: var(--card-shadow);
-            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-icon {
-            width: 3.5rem;
-            height: 3.5rem;
-            border-radius: 1rem;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(37, 99, 235, 0.1));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: var(--accent-primary);
-        }
-
-        .feature-icon svg {
-            width: 1.75rem;
-            height: 1.75rem;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-        }
-
-        .feature-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.02em;
-        }
-
-        .feature-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* FAQ SECTION */
-        .faq-section {
-            padding: 6rem 0;
-            background-color: var(--bg-secondary);
-        }
-
-        .faq-wrapper {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .faq-item {
-            background-color: var(--bg-primary);
-            border: 1px solid var(--border-glass);
-            border-radius: 1rem;
-            overflow: hidden;
-            transition: border-color var(--transition-speed);
-        }
-
-        .faq-trigger {
-            width: 100%;
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: transparent;
-            border: none;
+        .setting-control select, .setting-control input {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--calc-border);
             color: var(--text-main);
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-align: left;
-            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-family: var(--font);
             outline: none;
-        }
-
-        .faq-icon {
-            width: 1.25rem;
-            height: 1.25rem;
-            stroke: var(--text-muted);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .faq-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .faq-content p {
-            padding: 0 1.5rem 1.5rem;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .faq-item.open {
-            border-color: var(--accent-primary);
-        }
-
-        .faq-item.open .faq-icon {
-            transform: rotate(180deg);
-        }
-
-        /* FOOTER & WAVE ANIMATION */
-        footer {
-            background-color: #0b0f19;
-            color: #94a3b8;
-            position: relative;
-            padding: 6rem 0 3rem;
-            overflow: hidden;
-        }
-
-        .footer-waves {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
-            transform: rotate(180deg);
-        }
-
-        .footer-waves svg {
-            position: relative;
-            display: block;
-            width: calc(150% + 1.3px);
-            height: 60px;
-        }
-
-        .footer-waves .shape-fill {
-            fill: var(--bg-primary);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr repeat(3, 1fr);
-            gap: 4rem;
-            margin-bottom: 4rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer-brand p {
-            margin-top: 1rem;
-            line-height: 1.6;
-            max-width: 320px;
-        }
-
-        .footer-brand .logo-area {
-            color: #ffffff;
-        }
-
-        .footer-title {
-            color: #ffffff;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color var(--transition-speed);
-        }
-
-        .footer-links a:hover {
-            color: #ffffff;
-        }
-
-        .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-            font-size: 0.9rem;
-        }
-
-        /* BACK TO TOP */
-        #back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            color: #ffffff;
-            border: none;
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.4);
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
             opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            z-index: 99;
+            width: 0;
+            height: 0;
         }
 
-        #back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0,0,0,0.4);
+            transition: .3s;
+            border-radius: 24px;
+            border: 1px solid var(--calc-border);
         }
 
-        #back-to-top:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 24px rgba(14, 165, 233, 0.6);
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
         }
 
-        /* RESPONSIVE BREAKPOINTS */
-        @media (max-width: 1200px) {
-            .calc-grid { grid-template-columns: repeat(4, 1fr); }
+        input:checked + .slider {
+            background-color: var(--accent);
         }
 
-        @media (max-width: 992px) {
-            .calc-grid { grid-template-columns: repeat(3, 1fr); }
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-            .hero h1 { font-size: 2.75rem; }
+        input:checked + .slider:before {
+            transform: translateX(20px);
         }
 
-        @media (max-width: 768px) {
-            .mobile-menu-toggle { display: flex; }
-            .nav-links {
-                position: fixed;
-                top: 4.5rem;
-                left: 0;
-                width: 100%;
-                background-color: var(--bg-secondary);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                border-bottom: 1px solid var(--border-glass);
-                transform: translateY(-150%);
-                transition: transform 0.4s ease;
-                z-index: 999;
+        .clear-all-btn {
+            width: 100%;
+            padding: 10px;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #f87171;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+            margin-top: 12px;
+        }
+
+        .clear-all-btn:hover {
+            background: rgba(239, 68, 68, 0.25);
+        }
+
+        .sidebar-toggle-floating {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .app-container {
+                height: 90vh;
+                max-width: 650px;
             }
-            .nav-links.active { transform: translateY(0); }
-            .hero h1 { font-size: 2.25rem; }
-            .calc-grid { grid-template-columns: repeat(2, 1fr); }
+            .sidebar-panel {
+                position: absolute;
+                right: 0;
+                top: 0;
+                height: 100%;
+                z-index: 20;
+                transform: translateX(105%);
+            }
+            .sidebar-panel.open {
+                transform: translateX(0);
+            }
+            .sidebar-toggle-floating {
+                display: block;
+            }
         }
 
-        @media (max-width: 480px) {
-            .container { padding: 0 1rem; }
-            .features-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        @media (max-width: 640px) {
+            body { padding: 8px; }
+            .app-container { height: 100vh; gap: 0; }
+            .calculator { border-radius: 16px; }
+            .pad-scientific { grid-template-columns: repeat(5, 1fr); }
+            .btn { font-size: 0.95rem; padding: 12px 4px; }
+            .result-line { font-size: 2.25rem; }
+            .top-bar { padding: 10px 16px; }
+            .display-container { padding: 16px; min-height: 150px; }
         }
     </style>
 </head>
 <body>
 
-    <div id="scroll-progress" aria-hidden="true"></div>
-
-    <!-- HEADER / NAVIGATION -->
-    <header id="main-header">
-        <div class="container nav-container">
-            <a href="#" class="logo-area" aria-label="Utilmint Home">
-                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M4 7h16M4 12h16M4 17h16"/>
-                    <path d="M7 4v16M12 4v16M17 4v16" stroke-dasharray="1 3"/>
-                </svg>
-                <span>Utilmint</span>
-            </a>
-            
-            <nav>
-                <ul class="nav-links" id="nav-menu">
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#calculators">Calculators</a></li>
-                    <li><a href="#features">About</a></li>
-                    <li><a href="#faq">Contact</a></li>
-                </ul>
-            </nav>
-
-            <div class="nav-actions">
-                <button class="theme-toggle" id="theme-btn" aria-label="Toggle structural appearance mode">
-                    <svg class="sun-icon" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-11.314l.707.707m11.314 11.314l.707-.707M12 7a5 5 0 100 10 5 5 0 000-10z"/></svg>
-                    <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-                </button>
-                <button class="mobile-menu-toggle" id="menu-btn" aria-label="Toggle navigation map menu">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-                </button>
+    <div class="app-container">
+        
+        <main class="calculator" role="application" aria-label="Advanced Scientific Calculator">
+            <div class="top-bar">
+                <div class="indicators">
+                    <span id="ind-deg" class="indicator-item active">DEG</span>
+                    <span id="ind-rad" class="indicator-item">RAD</span>
+                    <span id="ind-grad" class="indicator-item">GRAD</span>
+                    <span id="ind-mem" class="indicator-item">M</span>
+                </div>
+                <div class="window-controls">
+                    <button class="win-btn" id="btn-toggle-side" title="Toggle History/Settings" aria-label="Toggle Side Panel">📋</button>
+                </div>
             </div>
-        </div>
-    </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-bg-glows">
-            <div class="glow-circle glow-1"></div>
-            <div class="glow-circle glow-2"></div>
-        </div>
-        <div class="container hero-content">
-            <h1>Utilmint All-in-One Mathematics Calculator Suite</h1>
-            <p>Empower your daily computational workflows with our rapid, high-precision analytics engines engineered across fundamental arithmetic, complex structures, and statistics.</p>
-            <a href="#calculators" class="cta-btn">
-                <span>Explore Calculators</span>
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
-            </a>
-        </div>
-    </section>
+            <div class="display-container">
+                <div class="expression-line" id="expr-display" aria-live="polite"></div>
+                <div class="preview-line" id="preview-display"></div>
+                <div class="result-line" id="res-display" role="textbox" aria-readonly="true">0</div>
+                <div class="error-toast" id="error-box"></div>
+            </div>
 
-    <!-- SEARCH WORKFLOW BAR -->
-    <section class="search-section">
-        <div class="container">
-            <div class="search-wrapper">
-                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                <input type="text" id="calc-search" class="search-input" placeholder="Search computational structures..." aria-label="Search across calculator collection modules">
+            <div class="pad-tabs" role="tablist">
+                <button class="tab-btn active" role="tab" aria-selected="true" data-target="pad-basic">Basic</button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-target="pad-sci">Scientific</button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-target="pad-adv">Advanced & Memory</button>
             </div>
-        </div>
-    </section>
 
-    <!-- CALCULATOR CARDS CONTAINER GRID -->
-    <main class="grid-section" id="calculators">
-        <div class="container">
-            <div class="calc-grid" id="grid-container">
-                <!-- Dynamically generated items injected here -->
-            </div>
-        </div>
-    </main>
-
-    <!-- STATISTICS METRICS -->
-    <section class="stats-section reveal">
-        <div class="container stats-grid">
-            <div class="stat-card">
-                <div class="stat-number" data-target="50">0</div>
-                <div class="stat-label">Math Calculators</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" data-target="100">0</div>
-                <div class="stat-label">Responsive Layout</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" data-target="60">0</div>
-                <div class="stat-label">FPS Animations</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" data-target="100">0</div>
-                <div class="stat-label">Precision Index</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CAPABILITIES & FEATURES -->
-    <section class="features-section reveal" id="features">
-        <div class="container">
-            <div class="section-header">
-                <h2>Engineered Core Features</h2>
-                <p>Designed to deliver high performance compute workflows combined with optimized layout rendering ecosystems.</p>
-            </div>
-            <div class="features-grid" id="features-container">
-                <!-- Dynamically populated structural configurations -->
-            </div>
-        </div>
-    </section>
-
-    <!-- ACCORDION FAQS -->
-    <section class="faq-section reveal" id="faq">
-        <div class="container">
-            <div class="section-header">
-                <h2>Frequently Asked Questions</h2>
-                <p>Quick answers to common queries regarding processing architectures, mathematical verification, and system requirements.</p>
-            </div>
-            <div class="faq-wrapper" id="faq-container">
-                <!-- Dynamically configured FAQ data layout -->
-            </div>
-        </div>
-    </section>
-
-    <!-- APPLICATION FOOTER -->
-    <footer>
-        <div class="footer-waves">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" preserveAspectRatio="none">
-                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V1200H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
-            </svg>
-        </div>
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <a href="#" class="logo-area" aria-label="Utilmint Home">
-                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M4 7h16M4 12h16M4 17h16"/><path d="M7 4v16M12 4v16M17 4v16" stroke-dasharray="1 3"/>
-                    </svg>
-                    <span>Utilmint</span>
-                </a>
-                <p>High fidelity mathematics computing layout array delivering seamless standard computational transformations instantly.</p>
-            </div>
-            <div>
-                <h3 class="footer-title">Navigation</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Home Base</a></li>
-                    <li><a href="#calculators">Compute Center</a></li>
-                    <li><a href="#features">Platform Features</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="footer-title">Legal Operations</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Privacy Paradigm</a></li>
-                    <li><a href="#">Service Terms</a></li>
-                    <li><a href="#">Security Protocol</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="footer-title">Connect Matrix</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Enterprise Support</a></li>
-                    <li><a href="#">Developer Network</a></li>
-                    <li><a href="#">API Framework</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="container footer-bottom">
-            <p>&copy; 2026 Utilmint Platform Architecture. All system operations reserved.</p>
-            <p>Designed for multi-device computational execution layers.</p>
-        </div>
-    </footer>
-
-    <!-- BACK TO TOP HOIST ACTION -->
-    <button id="back-to-top" aria-label="Return back to the absolute top header boundary position">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-    </button>
-
-    <!-- CORE LOGIC DATA & INTERACTION SCRIPTS -->
-    <script>
-        // CORE PLATFORM INITIALIZATION STATE DATA
-        const CALCULATOR_DATASET = [
-            { n: "Basic Calculator", u: "basic-calculator.html", d: "Standard operations across fundamental mathematical operators." },
-            { n: "Percentage Calculator", u: "percentage-calculator.html", d: "Compute baseline target percentages over general variables." },
-            { n: "Percentage Increase", u: "percentage-increase.html", d: "Calculate proportional appreciation scalar changes between variables." },
-            { n: "Percentage Decrease", u: "percentage-decrease.html", d: "Evaluate proportional structural degradation rates over integers." },
-            { n: "Average Calculator", u: "average-calculator.html", d: "Determine mean balances across variable width numeric distributions." },
-            { n: "Fraction Calculator", u: "fraction-calculator.html", d: "Execute arithmetic operations containing advanced dynamic rational parts." },
-            { n: "Ratio Calculator", u: "ratio-calculator.html", d: "Resolve proportion balances and equivalent fraction matching matrix sets." },
-            { n: "Proportion Calculator", u: "proportion-calculator.html", d: "Assess true equations relative to two complex numerical ratios." },
-            { n: "Decimal to Fraction", u: "decimal-to-fraction.html", d: "Transform precise float parameters into simple integer equivalents." },
-            { n: "Fraction to Decimal", u: "fraction-to-decimal.html", d: "Evaluate integer quotients to high-precision floating string forms." },
-            { n: "Prime Checker", u: "prime-checker.html", d: "Test individual values for prime structural division properties." },
-            { n: "Prime Factorization", u: "prime-factorization.html", d: "Deconstruct compound integer values into baseline core primes." },
-            { n: "LCM Calculator", u: "lcm-calculator.html", d: "Locate the smallest shared multiple matching input criteria groups." },
-            { n: "HCF Calculator", u: "hcf-calculator.html", d: "Isolate high common factors across massive arrays of datasets." },
-            { n: "Even or Odd Checker", u: "even-odd-checker.html", d: "Quick modular status verification check against basic numbers." },
-            { n: "Factorial Calculator", u: "factorial-calculator.html", d: "Perform standard sequential vector product operations up to limit bounds." },
-            { n: "Divisibility Checker", u: "divisibility-checker.html", d: "Verify division remainder balances dynamically against targets." },
-            { n: "Number Base Converter", u: "number-base-converter.html", d: "Translate representations from Binary, Octal, Hex, and Custom states." },
-            { n: "Roman Numeral Converter", u: "roman-numeral-converter.html", d: "Convert classic numerical layouts to modern Arabic forms and back." },
-            { n: "Random Number Generator", u: "random-number-generator.html", d: "Produce uniformly cryptographically sound isolated randomized values." },
-            { n: "Linear Equation Solver", u: "linear-equation.html", d: "Resolve isolated dimensional variables step-by-step from zero matrices." },
-            { n: "Quadratic Equation Solver", u: "quadratic-equation.html", d: "Isolate complex or real plane values from traditional structures." },
-            { n: "Cubic Equation Solver", u: "cubic-equation.html", d: "Extract three standard system variables from cubic polynomial sets." },
-            { n: "Exponent Calculator", u: "exponent-calculator.html", d: "Process power scaling factors involving extreme numeric boundaries." },
-            { n: "Logarithm Calculator", u: "logarithm-calculator.html", d: "Compute inverse exponent systems over varying base matrices." },
-            { n: "Scientific Calculator", u: "scientific-calculator.html", d: "Full floating engineering execution toolkit for deep math operations." },
-            { n: "Square Calculator", u: "square-calculator.html", d: "Multiply individual items by themselves to identify primary products." },
-            { n: "Square Root Evaluator", u: "square-root.html", d: "Isolate the fractional half power components of dynamic variables." },
-            { n: "Cube Root Evaluator", u: "cube-root.html", d: "Extract exact fractional cubic roots from dimensional variables." },
-            { n: "Circle Geometry Calculator", u: "circle-calculator.html", d: "Isolate circumference area values using pi coefficient scales." },
-            { n: "Triangle Geometry Solver", u: "triangle-calculator.html", d: "Verify lengths, parameters, and side areas via trigonometric rules." },
-            { n: "Rectangle Canvas Solver", u: "rectangle-calculator.html", d: "Calculate surface spatial boundaries given perimeter width dimensions." },
-            { n: "Square Shape Matrix", u: "square-shape.html", d: "Calculate parameter variants tracking perfect equal-sided entities." },
-            { n: "Trapezium Geometry Tool", u: "trapezium-calculator.html", d: "Resolve internal surfaces via unique parallel coordinate paths." },
-            { n: "Parallelogram Calculator", u: "parallelogram-calculator.html", d: "Calculate directional boundary dimensions matching alternate structures." },
-            { n: "Rhombus Geometry Engine", u: "rhombus-calculator.html", d: "Compute layout areas leveraging specific transverse dynamic lengths." },
-            { n: "Kite Calculator", u: "kite-calculator.html", d: "Evaluate quadrilateral spaces bounded by paired length dimensions." },
-            { n: "Ellipse Matrix Tool", u: "ellipse-calculator.html", d: "Calculate coordinate tracking values via focal focal axis models." },
-            { n: "Polygon Calculator", u: "polygon-calculator.html", d: "Assess large multidirectional structures across exterior angle rules." },
-            { n: "Cube 3D Spatial Volume", u: "cube-3d.html", d: "Determine storage metric outputs from geometric length arrays." },
-            { n: "Cuboid Volume Platform", u: "cuboid-calculator.html", d: "Compute spatial three-dimensional volumes matching specific length sets." },
-            { n: "Cylinder Volume Calculator", u: "cylinder-calculator.html", d: "Calculate radial vertical heights across continuous linear boundaries." },
-            { n: "Cone Volume Engine", u: "cone-calculator.html", d: "Isolate terminal tracking vectors for classic conical structural metrics." },
-            { n: "Sphere Volume Tool", u: "sphere-calculator.html", d: "Resolve internal capacities based strictly upon radial dimensions." },
-            { n: "Hemisphere Volume Matrix", u: "hemisphere-calculator.html", d: "Calculate targeted spatial values cut directly from spherical assets." },
-            { n: "Pyramid Structural Solver", u: "pyramid-calculator.html", d: "Solve standard height calculations extending from diverse structural bases." },
-            { n: "Prism Volume Tool", u: "prism-calculator.html", d: "Process parallel cross section geometries smoothly over length lines." },
-            { n: "Mean Median Mode Engine", u: "mean-median-mode.html", d: "Isolate general core trend vectors across multi-item numeric paths." },
-            { n: "Standard Deviation Matrix", u: "standard-deviation.html", d: "Calculate data variance dispersion configurations instantly." },
-            { n: "Future Core Module Expansion", u: "#", d: "Next generation enterprise calculation workflow matrix layer.", cs: true }
-        ];
-
-        const FEATURES_DATASET = [
-            { t: "Fast Calculations", d: "Optimized assembly level execution mapping arrays for high frequency data throughput cycles.", i: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>' },
-            { t: "Accurate Results", d: "Leverages highly specific floating point computational paradigms for error-free math tracking layers.", i: '<path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>' },
-            { t: "Responsive Design", d: "Flawless screen real estate optimization transformations supporting varying viewports smoothly.", i: '<rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/>' },
-            { t: "Modern UI Layout", d: "Elegant micro-interaction configurations mapped over standard structural glassmorphism schemas.", i: '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>' },
-            { t: "Interactive Dynamics", d: "Provides structural sensory motion depth using hardware accelerated frame rate execution.", i: '<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>' },
-            { t: "Offline Functional", d: "Local environment persistence caching ensures continuous calculation framework performance anywhere.", i: '<path d="M16.72 11.06A10.94 10.94 0 0119 12.55M5 12.55a10.94 10.94 0 015.83-2.84M8.34 16.16a10.94 10.94 0 017.32 0M12 20h.01"/>' }
-        ];
-
-        const FAQ_DATASET = [
-            { q: "How do these mathematical calculations execute accurately?", a: "Calculations run via hardware-optimized JS architectures processing float points inside strict execution threads." },
-            { q: "Are computation workflows verified for enterprise production?", a: "Yes, every algorithm matches international precision specifications standard across engineering disciplines." },
-            { q: "Is the platform available during remote offline connection loss?", a: "Absolutely. The platform runs client-side inside standard browser memory pools, allowing offline runtime execution easily." },
-            { q: "Does the framework retain sensitive analytical data variables?", a: "No, all input layers undergo instantaneous local destruction inside system loops after calculations finish, guaranteeing total isolation." }
-        ];
-
-        // INJECT DOM CORE CONTENT
-        document.addEventListener("DOMContentLoaded", () => {
-            const grid = document.getElementById("grid-container");
-            const features = document.getElementById("features-container");
-            const faq = document.getElementById("faq-container");
-
-            // Render Calculators
-            CALCULATOR_DATASET.forEach((c, idx) => {
-                const a = document.createElement("a");
-                a.href = c.u;
-                a.className = `calc-card reveal ${c.cs ? 'coming-soon' : ''}`;
-                a.setAttribute("aria-label", `${c.n}: ${c.d}`);
+            <div class="pads-container">
                 
-                // Color configuration mapping variations
-                const hue = (idx * 360 / CALCULATOR_DATASET.length).toFixed(0);
-                a.style.setProperty('--card-glow', `hsla(${hue}, 85%, 60%, 0.15)`);
-                a.style.setProperty('--accent-primary', `hsl(${hue}, 85%, 55%)`);
-
-                a.innerHTML = `
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                            <line x1="9" y1="9" x2="15" y2="15"/>
-                            <line x1="15" y1="9" x2="9" y2="15"/>
-                        </svg>
-                    </div>
-                    <div class="card-info">
-                        <div class="card-title">${c.n}</div>
-                        <div class="card-desc">${c.d}</div>
-                    </div>
-                `;
-                grid.appendChild(a);
-            });
-
-            // Render Platform Features
-            FEATURES_DATASET.forEach(f => {
-                const d = document.createElement("div");
-                d.className = "feature-card reveal";
-                d.innerHTML = `
-                    <div class="feature-icon"><svg viewBox="0 0 24 24">${f.i}</svg></div>
-                    <div class="feature-title">${f.t}</div>
-                    <div class="feature-desc">${f.d}</div>
-                `;
-                features.appendChild(d);
-            });
-
-            // Render FAQ Blocks
-            FAQ_DATASET.forEach(item => {
-                const div = document.createElement("div");
-                div.className = "faq-item";
-                div.innerHTML = `
-                    <button class="faq-trigger">
-                        <span>${item.q}</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-                    </button>
-                    <div class="faq-content"><p>${item.a}</p></div>
-                `;
-                faq.appendChild(div);
-            });
-
-            // INTERACTION & ENGINE SETUP CORE LAYERS
-            initPlatformLogic();
-        });
-
-        // PLATFORM INTERACTIVE CONTROLLERS MAPPING EXECUTION
-        function initPlatformLogic() {
-            // Theme Engine Persist Settings
-            const themeBtn = document.getElementById("theme-btn");
-            const sysDark = window.matchMedia("(prefers-color-scheme: dark)");
-            
-            const setTheme = (mode) => {
-                document.documentElement.setAttribute("data-theme", mode);
-                localStorage.setItem("utilmint-theme", mode);
-            };
-
-            const savedTheme = localStorage.getItem("utilmint-theme");
-            if (savedTheme) setTheme(savedTheme);
-            else if (sysDark.matches) setTheme("dark");
-
-            themeBtn.addEventListener("click", () => {
-                const current = document.documentElement.getAttribute("data-theme");
-                setTheme(current === "dark" ? "light" : "dark");
-            });
-
-            // Navigation Mobile Transformations toggle
-            const menuBtn = document.getElementById("menu-btn");
-            const navMenu = document.getElementById("nav-menu");
-            menuBtn.addEventListener("click", () => navMenu.classList.toggle("active"));
-
-            // Fast Debounced Search Layout Filtering Interface Engine
-            const search = document.getElementById("calc-search");
-            const cards = document.querySelectorAll(".calc-card");
-            
-            search.addEventListener("input", (e) => {
-                const val = e.target.value.toLowerCase().trim();
-                cards.forEach(card => {
-                    const title = card.querySelector(".card-title").textContent.toLowerCase();
-                    const desc = card.querySelector(".card-desc").textContent.toLowerCase();
-                    if (title.includes(val) || desc.includes(val)) {
-                        card.classList.remove("hidden");
-                    } else {
-                        card.classList.add("hidden");
-                    }
-                });
-            });
-
-            // Scroll Tracking Presentation Indicators Engine
-            const header = document.getElementById("main-header");
-            const progress = document.getElementById("scroll-progress");
-            const btt = document.getElementById("back-to-top");
-
-            window.addEventListener("scroll", () => {
-                const total = document.documentElement.scrollHeight - window.innerHeight;
-                if (total > 0) {
-                    const pct = (window.scrollY / total) * 100;
-                    progress.style.width = `${pct}%`;
-                }
-
-                if (window.scrollY > 150) {
-                    header.classList.add("scrolled");
-                    btt.classList.add("visible");
-                } else {
-                    header.classList.remove("scrolled");
-                    btt.classList.remove("visible");
-                }
-            });
-
-            btt.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-
-            // Advanced Intersection Observers for On-Screen Visual Presentation Reveals
-            const revealItems = document.querySelectorAll(".reveal");
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("active");
-                        // Trigger numerical calculation count counters once visible
-                        const counters = entry.target.querySelectorAll(".stat-number");
-                        counters.forEach(c => runStatCounter(c));
-                    }
-                });
-            }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-
-            revealItems.forEach(item => observer.observe(item));
-
-            // FAQ Accordion Trigger Layer Configuration Controls
-            const faqTriggers = document.querySelectorAll(".faq-trigger");
-            faqTriggers.forEach(btn => {
-                btn.addEventListener("click", () => {
-                    const item = btn.parentElement;
-                    const content = item.querySelector(".faq-content");
-                    const open = item.classList.contains("open");
-
-                    document.querySelectorAll(".faq-item").forEach(i => {
-                        i.classList.remove("open");
-                        i.querySelector(".faq-content").style.maxHeight = null;
-                    });
-
-                    if (!open) {
-                        item.classList.add("open");
-                        content.style.maxHeight = content.scrollHeight + "px";
-                    }
-                });
-            });
-
-            // Modern Interactive Dynamic Mouse Parallax Acceleration Vectors for Grid Elements
-            cards.forEach(card => {
-                if (card.classList.contains('coming-soon')) return;
-                card.addEventListener("mousemove", (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left - (rect.width / 2);
-                    const y = e.clientY - rect.top - (rect.height / 2);
+                <div class="keyboard-pad pad-basic active" id="pad-basic">
+                    <button class="btn btn-action" data-action="clear">AC</button>
+                    <button class="btn btn-action" data-action="ce">CE</button>
+                    <button class="btn btn-sci-op" data-token="(">(</button>
+                    <button class="btn btn-sci-op" data-token=")">)</button>
                     
-                    // Controlled mechanical angle deflection parameters
-                    card.style.transform = `perspective(1000px) translateY(-6px) rotateX(${-y / 12}deg) rotateY(${x / 12}deg) scale(1.02)`;
-                });
+                    <button class="btn btn-sci-op" data-token="mod">mod</button>
+                    <button class="btn btn-sci-op" data-token="pi">π</button>
+                    <button class="btn btn-sci-op" data-token="e">e</button>
+                    <button class="btn btn-math-op" data-token="/">÷</button>
 
-                card.addEventListener("mouseleave", () => {
-                    card.style.transform = "perspective(1000px) translateY(0) rotateX(0) rotateY(0) scale(1)";
+                    <button class="btn" data-token="7">7</button>
+                    <button class="btn" data-token="8">8</button>
+                    <button class="btn" data-token="9">9</button>
+                    <button class="btn btn-math-op" data-token="*">×</button>
+
+                    <button class="btn" data-token="4">4</button>
+                    <button class="btn" data-token="5">5</button>
+                    <button class="btn" data-token="6">6</button>
+                    <button class="btn btn-math-op" data-token="-">−</button>
+
+                    <button class="btn" data-token="1">1</button>
+                    <button class="btn" data-token="2">2</button>
+                    <button class="btn" data-token="3">3</button>
+                    <button class="btn btn-math-op" data-token="+">+</button>
+
+                    <button class="btn" data-action="negate">±</button>
+                    <button class="btn" data-token="0">0</button>
+                    <button class="btn" data-token=".">.</button>
+                    <button class="btn btn-equal" data-action="equals">=</button>
+                </div>
+
+                <div class="keyboard-pad pad-scientific" id="pad-sci">
+                    <button class="btn btn-sci-op" data-token="sin(">sin</button>
+                    <button class="btn btn-sci-op" data-token="cos(">cos</button>
+                    <button class="btn btn-sci-op" data-token="tan(">tan</button>
+                    <button class="btn btn-sci-op" data-token="asin(">asin</button>
+                    <button class="btn btn-sci-op" data-token="acos(">acos</button>
+                    <button class="btn btn-sci-op" data-token="atan(">atan</button>
+
+                    <button class="btn btn-sci-op" data-token="sec(">sec</button>
+                    <button class="btn btn-sci-op" data-token="cosec(">csc</button>
+                    <button class="btn btn-sci-op" data-token="cot(">cot</button>
+                    <button class="btn btn-sci-op" data-token="asec(">asec</button>
+                    <button class="btn btn-sci-op" data-token="acosec(">acsc</button>
+                    <button class="btn btn-sci-op" data-token="acot(">acot</button>
+
+                    <button class="btn btn-sci-op" data-token="sinh(">sinh</button>
+                    <button class="btn btn-sci-op" data-token="cosh(">cosh</button>
+                    <button class="btn btn-sci-op" data-token="tanh(">tanh</button>
+                    <button class="btn btn-sci-op" data-token="asinh(">asinh</button>
+                    <button class="btn btn-sci-op" data-token="acosh(">acosh</button>
+                    <button class="btn btn-sci-op" data-token="atanh(">atanh</button>
+
+                    <button class="btn btn-sci-op" data-token="ln(">ln</button>
+                    <button class="btn btn-sci-op" data-token="log10(">log₁₀</button>
+                    <button class="btn btn-sci-op" data-token="log2(">log₂</button>
+                    <button class="btn btn-sci-op" data-token="logbase(">logₐ(x)</button>
+                    <button class="btn btn-sci-op" data-token="^2">x²</button>
+                    <button class="btn btn-sci-op" data-token="^3">x³</button>
+
+                    <button class="btn btn-sci-op" data-token="^">xʸ</button>
+                    <button class="btn btn-sci-op" data-token="sqrt(">√</button>
+                    <button class="btn btn-sci-op" data-token="cbrt(">∛</button>
+                    <button class="btn btn-sci-op" data-token="root(">ⁿ√</button>
+                    <button class="btn btn-sci-op" data-token="exp(">eˣ</button>
+                    <button class="btn btn-sci-op" data-token="10^">10ˣ</button>
+
+                    <button class="btn btn-sci-op" data-token="2^">2ˣ</button>
+                    <button class="btn btn-sci-op" data-token="E">EXP</button>
+                    <button class="btn btn-sci-op" data-token="!">x!</button>
+                    <button class="btn btn-sci-op" data-token="abs(">abs</button>
+                    <button class="btn btn-sci-op" data-token="1/">1/x</button>
+                    <button class="btn btn-equal" data-action="equals">=</button>
+                </div>
+
+                <div class="keyboard-pad pad-advanced" id="pad-adv">
+                    <button class="btn btn-sci-op" data-action="mem-clear">MC</button>
+                    <button class="btn btn-sci-op" data-action="mem-recall">MR</button>
+                    <button class="btn btn-sci-op" data-action="mem-store">MS</button>
+                    <button class="btn btn-sci-op" data-action="mem-add">M+</button>
+                    <button class="btn btn-sci-op" data-action="mem-sub">M-</button>
+
+                    <button class="btn btn-sci-op" data-token="floor(">floor</button>
+                    <button class="btn btn-sci-op" data-token="ceil(">ceil</button>
+                    <button class="btn btn-sci-op" data-token="round(">round</button>
+                    <button class="btn btn-sci-op" data-token="sign(">sign</button>
+                    <button class="btn btn-sci-op" data-token="rand">rand</button>
+
+                    <button class="btn btn-sci-op" data-action="to-fraction">▶Frac</button>
+                    <button class="btn btn-sci-op" data-action="to-decimal">▶Dec</button>
+                    <button class="btn btn-sci-op" data-action="undo">↰ Undo</button>
+                    <button class="btn btn-sci-op" data-action="redo">↱ Redo</button>
+                    <button class="btn btn-sci-op" data-token="ans">ANS</button>
+
+                    <button class="btn btn-sci-op" data-action="copy">Copy</button>
+                    <button class="btn btn-sci-op" data-action="paste">Paste</button>
+                    <button class="btn btn-sci-op" data-action="scinot">SciNot</button>
+                    <button class="btn btn-sci-op" data-action="engnot">EngNot</button>
+                    <button class="btn btn-equal" data-action="equals">=</button>
+                </div>
+
+            </div>
+        </main>
+
+        <aside class="sidebar-panel" id="sidebar-panel">
+            <div class="sidebar-tabs">
+                <button class="tab-btn active" id="tab-history">History</button>
+                <button class="tab-btn" id="tab-settings">Settings</button>
+            </div>
+            
+            <div class="side-content" id="panel-history">
+                <div class="history-list" id="history-container"></div>
+                <button class="clear-all-btn" id="clear-history-btn">Clear All History</button>
+            </div>
+
+            <div class="side-content" id="panel-settings" style="display: none;">
+                <div class="settings-grid">
+                    <div class="setting-row">
+                        <span class="setting-label">Theme</span>
+                        <div class="setting-control">
+                            <select id="setting-theme">
+                                <option value="dark">Dark Slate</option>
+                                <option value="light">Light Crisp</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">Angle Unit</span>
+                        <div class="setting-control">
+                            <select id="setting-angle">
+                                <option value="deg">Degrees</option>
+                                <option value="rad">Radians</option>
+                                <option value="grad">Gradians</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">Sound Effects</span>
+                        <div class="setting-control">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="setting-sound" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">Animations</span>
+                        <div class="setting-control">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="setting-anim" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">Display Font Size</span>
+                        <div class="setting-control">
+                            <select id="setting-font">
+                                <option value="normal">Normal</option>
+                                <option value="large">Large</option>
+                                <option value="huge">Huge</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">History Limit</span>
+                        <div class="setting-control">
+                            <input type="number" id="setting-hist-limit" min="5" max="100" value="30" style="width: 60px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+    <script>
+        // ==========================================
+        // CONFIGURATION & STATE SYSTEM
+        // ==========================================
+        const State = {
+            expression: "",
+            lastResult: "0",
+            ans: "0",
+            memory: 0,
+            angleMode: "deg", 
+            history: [],
+            undoStack: [""],
+            redoStack: [],
+            soundEnabled: true,
+            animationsEnabled: true,
+            theme: "dark",
+            historyLimit: 30,
+            fontSize: "normal"
+        };
+
+        // Audio generation for UI clicks
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playClickSound() {
+            if (!State.soundEnabled) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.05);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.06);
+            } catch (e) {}
+        }
+
+        // ==========================================
+        // MATHEMATICAL LEXER & PARSER ENGINE
+        // ==========================================
+        class MathEngine {
+            static parse(str, angleMode = "deg", ans = "0") {
+                let s = str.replace(/\s+/g, '')
+                           .replace(/π/g, Math.PI.toString())
+                           .replace(/\be\b/g, Math.E.toString())
+                           .replace(/ans/gi, ans);
+                
+                // Implicit multiplication tokens handling
+                s = s.replace(/(\d|\))(\(|sin|cos|tan|asin|acos|atan|sec|cosec|cot|sinh|cosh|tanh|asinh|acosh|atanh|ln|log10|log2|logbase|sqrt|cbrt|root|abs|floor|ceil|round|sign)/g, '$1*$2');
+                s = s.replace(/(\))(\d)/g, '$1*$2');
+
+                let pos = 0;
+
+                function peek() { return s[pos]; }
+                function consume(ch) { if (s[pos] === ch) { pos++; return true; } return false; }
+
+                function parseExpression() {
+                    let val = parseTerm();
+                    while (true) {
+                        if (consume('+')) val += parseTerm();
+                        else if (consume('-')) val -= parseTerm();
+                        else break;
+                    }
+                    return val;
+                }
+
+                function parseTerm() {
+                    let val = parseFactor();
+                    while (true) {
+                        if (consume('*')) val *= parseFactor();
+                        else if (consume('/')) {
+                            let denom = parseFactor();
+                            if (denom === 0) throw new Error("Division by zero");
+                            val /= denom;
+                        } else if (s.slice(pos, pos+3) === 'mod') {
+                            pos += 3;
+                            let denom = parseFactor();
+                            val = val % denom;
+                        } else break;
+                    }
+                    return val;
+                }
+
+                function parseFactor() {
+                    let val = parsePrimary();
+                    while (consume('^')) {
+                        let exponent = parsePrimary();
+                        val = Math.pow(val, exponent);
+                    }
+                    if (consume('!')) {
+                        val = factorial(val);
+                    }
+                    return val;
+                }
+
+                function parsePrimary() {
+                    if (consume('-')) return -parsePrimary();
+                    if (consume('+')) return parsePrimary();
+
+                    if (consume('(')) {
+                        let val = parseExpression();
+                        consume(')');
+                        return val;
+                    }
+
+                    // Lookahead function parse
+                    let funcMatch = s.slice(pos).match(/^[a-z0-9₀₁₂₃₄₅₆₇₈₉]+/i);
+                    if (funcMatch) {
+                        let fname = funcMatch[0];
+                        pos += fname.length;
+                        
+                        if (fname === 'rand') return Math.random();
+
+                        if (consume('(')) {
+                            let args = [];
+                            if (s[pos] !== ')') {
+                                args.push(parseExpression());
+                                while (consume(',')) {
+                                    args.push(parseExpression());
+                                }
+                            }
+                            consume(')');
+                            return executeFunction(fname, args, angleMode);
+                        }
+                        throw new Error(`Missing open parenthesis after ${fname}`);
+                    }
+
+                    // Parse numeric literals including exponential notation
+                    let numMatch = s.slice(pos).match(/^(\d+(\.\d*)?([eE][+-]?\d+)?)/);
+                    if (numMatch) {
+                        pos += numMatch[0].length;
+                        return parseFloat(numMatch[0]);
+                    }
+
+                    throw new Error("Invalid Syntax");
+                }
+
+                function toRad(val, mode) {
+                    if (mode === 'deg') return val * (Math.PI / 180);
+                    if (mode === 'grad') return val * (Math.PI / 200);
+                    return val;
+                }
+
+                function fromRad(val, mode) {
+                    if (mode === 'deg') return val * (180 / Math.PI);
+                    if (mode === 'grad') return val * (200 / Math.PI);
+                    return val;
+                }
+
+                function factorial(n) {
+                    if (n < 0 || !Number.isInteger(n)) throw new Error("Factorial error");
+                    if (n > 170) throw new Error("Overflow");
+                    let res = 1;
+                    for (let i = 2; i <= n; i++) res *= i;
+                    return res;
+                }
+
+                function executeFunction(name, args, mode) {
+                    let a = args[0];
+                    switch (name.toLowerCase()) {
+                        case 'sin': return Math.sin(toRad(a, mode));
+                        case 'cos': return Math.cos(toRad(a, mode));
+                        case 'tan': return Math.tan(toRad(a, mode));
+                        case 'sec': return 1 / Math.cos(toRad(a, mode));
+                        case 'cosec': return 1 / Math.sin(toRad(a, mode));
+                        case 'cot': return 1 / Math.tan(toRad(a, mode));
+                        case 'asin': return fromRad(Math.asin(a), mode);
+                        case 'acos': return fromRad(Math.acos(a), mode);
+                        case 'atan': return fromRad(Math.atan(a), mode);
+                        case 'asec': return fromRad(Math.acos(1 / a), mode);
+                        case 'acosec': return fromRad(Math.asin(1 / a), mode);
+                        case 'acot': return fromRad(Math.atan(1 / a), mode);
+                        case 'sinh': return Math.sinh(a);
+                        case 'cosh': return Math.cosh(a);
+                        case 'tanh': return Math.tanh(a);
+                        case 'asinh': return Math.asinh(a);
+                        case 'acosh': if (a < 1) throw new Error("Invalid domain"); return Math.acosh(a);
+                        case 'atanh': if (Math.abs(a) >= 1) throw new Error("Invalid domain"); return Math.atanh(a);
+                        case 'ln': if (a <= 0) throw new Error("Invalid logarithm"); return Math.log(a);
+                        case 'log10': if (a <= 0) throw new Error("Invalid logarithm"); return Math.log10(a);
+                        case 'log2': if (a <= 0) throw new Error("Invalid logarithm"); return Math.log2(a);
+                        case 'logbase': 
+                            let base = args[1] !== undefined ? args[1] : 10;
+                            if (a <= 0 || base <= 0 || base === 1) throw new Error("Log base error");
+                            return Math.log(a) / Math.log(base);
+                        case 'sqrt': if (a < 0) throw new Error("Negative root"); return Math.sqrt(a);
+                        case 'cbrt': return Math.cbrt(a);
+                        case 'root': 
+                            let degree = args[1] !== undefined ? args[1] : 2;
+                            if (degree === 0) throw new Error("Root degree zero");
+                            if (a < 0 && degree % 2 === 0) throw new Error("Negative even root");
+                            return a < 0 ? -Math.pow(-a, 1/degree) : Math.pow(a, 1/degree);
+                        case 'exp': return Math.exp(a);
+                        case 'abs': return Math.abs(a);
+                        case 'floor': return Math.floor(a);
+                        case 'ceil': return Math.ceil(a);
+                        case 'round': return Math.round(a);
+                        case 'sign': return Math.sign(a);
+                        default: throw new Error("Unknown function");
+                    }
+                }
+
+                let finalVal = parseExpression();
+                if (pos < s.length) throw new Error("Invalid Syntax");
+                if (isNaN(finalVal)) throw new Error("NaN Value");
+                if (!isFinite(finalVal)) throw new Error("Overflow");
+                return finalVal;
+            }
+
+            static toFraction(decimalStr) {
+                let val = parseFloat(decimalStr);
+                if (isNaN(val) || !isFinite(val)) return "Error";
+                let sign = val < 0 ? "-" : "";
+                val = Math.abs(val);
+                let tolerance = 1.0e-9;
+                let h1 = 1, h2 = 0, k1 = 0, k2 = 1;
+                let b = val;
+                do {
+                    let a = Math.floor(b);
+                    let aux = h1; h1 = a * h1 + h2; h2 = aux;
+                    aux = k1; k1 = a * k1 + k2; k2 = aux;
+                    b = 1 / (b - a);
+                } while (Math.abs(val - h1 / k1) > val * tolerance);
+                return `${sign}${h1}/${k1}`;
+            }
+        }
+
+        // ==========================================
+        // UI MANIPULATION & INTERACTION MODULE
+        // ==========================================
+        const DOMElements = {
+            exprDisplay: document.getElementById('expr-display'),
+            previewDisplay: document.getElementById('preview-display'),
+            resDisplay: document.getElementById('res-display'),
+            errorBox: document.getElementById('error-box'),
+            sidebar: document.getElementById('sidebar-panel'),
+            historyContainer: document.getElementById('history-container'),
+            clearHistoryBtn: document.getElementById('clear-history-btn'),
+            btnToggleSide: document.getElementById('btn-toggle-side'),
+            tabHistory: document.getElementById('tab-history'),
+            tabSettings: document.getElementById('tab-settings'),
+            panelHistory: document.getElementById('panel-history'),
+            panelSettings: document.getElementById('panel-settings'),
+            indDeg: document.getElementById('ind-deg'),
+            indRad: document.getElementById('ind-rad'),
+            indGrad: document.getElementById('ind-grad'),
+            indMem: document.getElementById('ind-mem'),
+            // Settings DOM controls
+            settingTheme: document.getElementById('setting-theme'),
+            settingAngle: document.getElementById('setting-angle'),
+            settingSound: document.getElementById('setting-sound'),
+            settingAnim: document.getElementById('setting-anim'),
+            settingFont: document.getElementById('setting-font'),
+            settingHistLimit: document.getElementById('setting-hist-limit')
+        };
+
+        function initApp() {
+            loadLocalStorage();
+            applyTheme();
+            applySettingsUI();
+            updateIndicators();
+            attachEventListeners();
+            pushState();
+        }
+
+        function pushState() {
+            if (State.undoStack[State.undoStack.length - 1] !== State.expression) {
+                State.undoStack.push(State.expression);
+                State.redoStack = []; // Reset Redo
+            }
+        }
+
+        function updateDisplays() {
+            DOMElements.exprDisplay.textContent = formatVisualExpression(State.expression);
+            
+            // Realtime Live Preview Calculation
+            if (State.expression.trim() === "") {
+                DOMElements.previewDisplay.textContent = "";
+            } else {
+                try {
+                    let cleanExpr = autoCloseParentheses(State.expression);
+                    let previewResult = MathEngine.parse(cleanExpr, State.angleMode, State.ans);
+                    DOMElements.previewDisplay.textContent = "= " + formatNumberOutput(previewResult);
+                } catch(e) {
+                    DOMElements.previewDisplay.textContent = "";
+                }
+            }
+        }
+
+        function formatVisualExpression(expr) {
+            return expr.replace(/\*/g, '×')
+                       .replace(/\//g, '÷')
+                       .replace(/log10\(/g, 'log₁₀(')
+                       .replace(/log2\(/g, 'log₂(')
+                       .replace(/logbase\(/g, 'logₐ(');
+        }
+
+        function autoCloseParentheses(expr) {
+            let openCount = (expr.match(/\(/g) || []).length;
+            let closeCount = (expr.match(/\)/g) || []).length;
+            let missing = openCount - closeCount;
+            if (missing > 0) {
+                expr += ")".repeat(missing);
+            }
+            return expr;
+        }
+
+        function formatNumberOutput(num) {
+            if (typeof num === 'string') return num;
+            if (Math.abs(num) < 1e-12 && Math.abs(num) > 0) return "0";
+            let s = num.toString();
+            if (s.length > 14) {
+                if (!Number.isInteger(num)) {
+                    return Number(num.toPrecision(12)).toString();
+                }
+                return num.toExponential(8);
+            }
+            return s;
+        }
+
+        function displayError(msg) {
+            DOMElements.errorBox.textContent = msg;
+            DOMElements.errorBox.classList.add('show');
+            setTimeout(() => {
+                DOMElements.errorBox.classList.remove('show');
+            }, 4000);
+        }
+
+        function triggerRipple(e, btn) {
+            if (!State.animationsEnabled) return;
+            const circle = document.createElement('span');
+            const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+            const radius = diameter / 2;
+            const rect = btn.getBoundingClientRect();
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${e.clientX - rect.left - radius}px`;
+            circle.style.top = `${e.clientY - rect.top - radius}px`;
+            circle.classList.add('ripple');
+            
+            const prevRipple = btn.getElementsByClassName('ripple')[0];
+            if (prevRipple) prevRipple.remove();
+            btn.appendChild(circle);
+        }
+
+        // ==========================================
+        // ACTION ROUTER & CONTROLLER
+        // ==========================================
+        function handleInputToken(token) {
+            // Prevent duplicated floating dot indicators inside a single block
+            if (token === '.') {
+                let lastBlock = State.expression.split(/[\+\-\*\/]/).pop();
+                if (lastBlock.includes('.')) return;
+            }
+            State.expression += token;
+            updateDisplays();
+            pushState();
+        }
+
+        function handleAction(action, event, button) {
+            switch(action) {
+                case 'clear':
+                    State.expression = "";
+                    DOMElements.resDisplay.textContent = "0";
+                    updateDisplays();
+                    pushState();
+                    break;
+                case 'ce':
+                    if (State.expression.length > 0) {
+                        // Check if backspacing a whole named function entity
+                        let match = State.expression.match(/[a-z0-9₀₁₂₃₄₅₆₇₈₉]+\($/i);
+                        if (match) {
+                            State.expression = State.expression.slice(0, -match[0].length);
+                        } else {
+                            State.expression = State.expression.slice(0, -1);
+                        }
+                        updateDisplays();
+                        pushState();
+                    }
+                    break;
+                case 'negate':
+                    if (State.expression === "" && State.lastResult !== "0") {
+                        State.expression = (State.lastResult.startsWith('-')) ? State.lastResult.substring(1) : '-' + State.lastResult;
+                    } else if (State.expression.startsWith('-')) {
+                        State.expression = State.expression.substring(1);
+                    } else {
+                        State.expression = '-' + State.expression;
+                    }
+                    updateDisplays();
+                    break;
+                case 'equals':
+                    processEvaluation();
+                    break;
+                case 'undo':
+                    if (State.undoStack.length > 1) {
+                        State.redoStack.push(State.undoStack.pop());
+                        State.expression = State.undoStack[State.undoStack.length - 1];
+                        updateDisplays();
+                    }
+                    break;
+                case 'redo':
+                    if (State.redoStack.length > 0) {
+                        let popped = State.redoStack.pop();
+                        State.expression = popped;
+                        State.undoStack.push(popped);
+                        updateDisplays();
+                    }
+                    break;
+                case 'copy':
+                    navigator.clipboard.writeText(DOMElements.resDisplay.textContent);
+                    break;
+                case 'paste':
+                    navigator.clipboard.readText().then(text => {
+                        if (/^[0-9\+\-\*\/\.\(\)\s]+$/.test(text)) {
+                            State.expression += text.trim();
+                            updateDisplays();
+                            pushState();
+                        }
+                    }).catch(()=>{});
+                    break;
+                case 'to-fraction':
+                    let frac = MathEngine.toFraction(DOMElements.resDisplay.textContent);
+                    DOMElements.resDisplay.textContent = frac;
+                    break;
+                case 'to-decimal':
+                    processEvaluation(); 
+                    break;
+                case 'scinot':
+                    let numSci = parseFloat(State.lastResult);
+                    if(!isNaN(numSci)) DOMElements.resDisplay.textContent = numSci.toExponential(5);
+                    break;
+                case 'engnot':
+                    let numEng = parseFloat(State.lastResult);
+                    if(!isNaN(numEng)) {
+                        let exp = Math.floor(Math.log10(Math.abs(numEng)) / 3) * 3;
+                        let mantissa = numEng / Math.pow(10, exp);
+                        DOMElements.resDisplay.textContent = `${mantissa.toFixed(4)}e${exp}`;
+                    }
+                    break;
+                // Memory Actions
+                case 'mem-clear':
+                    State.memory = 0;
+                    updateIndicators();
+                    break;
+                case 'mem-recall':
+                    State.expression += State.memory.toString();
+                    updateDisplays();
+                    pushState();
+                    break;
+                case 'mem-store':
+                    State.memory = parseFloat(DOMElements.resDisplay.textContent) || 0;
+                    updateIndicators();
+                    break;
+                case 'mem-add':
+                    State.memory += parseFloat(DOMElements.resDisplay.textContent) || 0;
+                    updateIndicators();
+                    break;
+                case 'mem-sub':
+                    State.memory -= parseFloat(DOMElements.resDisplay.textContent) || 0;
+                    updateIndicators();
+                    break;
+            }
+        }
+
+        function processEvaluation() {
+            if (State.expression.trim() === "") return;
+            try {
+                let formula = autoCloseParentheses(State.expression);
+                let finalVal = MathEngine.parse(formula, State.angleMode, State.ans);
+                
+                let outputStr = formatNumberOutput(finalVal);
+                
+                // Save history record
+                addHistoryRecord(State.expression, outputStr);
+                
+                State.ans = outputStr;
+                State.lastResult = outputStr;
+                DOMElements.resDisplay.textContent = outputStr;
+                State.expression = ""; 
+                DOMElements.previewDisplay.textContent = "";
+                pushState();
+            } catch(err) {
+                displayError(err.message || "Calculation Error");
+            }
+        }
+
+        // ==========================================
+        // SYSTEM CONTROLS & PERSISTENCE
+        // ==========================================
+        function addHistoryRecord(expr, res) {
+            const item = {
+                id: Date.now() + Math.random().toString(36).substr(2, 5),
+                expr: expr,
+                res: res,
+                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            };
+            State.history.unshift(item);
+            if (State.history.length > State.historyLimit) {
+                State.history.pop();
+            }
+            renderHistoryList();
+            saveLocalStorage();
+        }
+
+        function deleteHistoryItem(id, e) {
+            e.stopPropagation();
+            State.history = State.history.filter(x => x.id !== id);
+            renderHistoryList();
+            saveLocalStorage();
+        }
+
+        function renderHistoryList() {
+            DOMElements.historyContainer.innerHTML = "";
+            if (State.history.length === 0) {
+                DOMElements.historyContainer.innerHTML = `<div class="empty-state">No history recorded yet.</div>`;
+                return;
+            }
+            State.history.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'history-item';
+                div.innerHTML = `
+                    <div class="history-expr">${formatVisualExpression(item.expr)}</div>
+                    <div class="history-res">${item.res}</div>
+                    <div class="history-meta">
+                        <span>${item.time}</span>
+                        <button class="del-hist-btn" data-id="${item.id}">Delete</button>
+                    </div>
+                `;
+                div.addEventListener('click', () => {
+                    State.expression = item.expr;
+                    updateDisplays();
+                    pushState();
                 });
+                div.querySelector('.del-hist-btn').addEventListener('click', (e) => deleteHistoryItem(item.id, e));
+                DOMElements.historyContainer.appendChild(div);
             });
         }
 
-        // Linear Accumulative Statistical Metric Interpolators Mapping Core Numbers
-        function runStatCounter(el) {
-            if (el.dataset.animated === "true") return;
-            el.dataset.animated = "true";
-            
-            const target = parseInt(el.dataset.target, 10);
-            const span = 1600; 
-            const steps = 60;
-            const rate = span / steps;
-            let current = 0;
-
-            const timer = setInterval(() => {
-                current += Math.ceil(target / steps);
-                if (current >= target) {
-                    el.textContent = target + (el.textContent.includes('%') || el.dataset.target === "100" && el.nextElementSibling.textContent.includes('Responsive') ? "%" : "+");
-                    clearInterval(timer);
-                } else {
-                    el.textContent = current;
-                }
-            }, rate);
+        function updateIndicators() {
+            DOMElements.indDeg.classList.toggle('active', State.angleMode === 'deg');
+            DOMElements.indRad.classList.toggle('active', State.angleMode === 'rad');
+            DOMElements.indGrad.classList.toggle('active', State.angleMode === 'grad');
+            DOMElements.indMem.classList.toggle('active', State.memory !== 0);
         }
+
+        function applyTheme() {
+            if (State.theme === 'light') {
+                document.body.classList.add('light-mode');
+            } else {
+                document.body.classList.remove('light-mode');
+            }
+        }
+
+        function applyAnimationsToggle() {
+            if (!State.animationsEnabled) {
+                document.body.classList.add('no-animations');
+            } else {
+                document.body.classList.remove('no-animations');
+            }
+        }
+
+        function applyFontSize() {
+            if (State.fontSize === 'large') {
+                DOMElements.resDisplay.style.fontSize = "3.6rem";
+            } else if (State.fontSize === 'huge') {
+                DOMElements.resDisplay.style.fontSize = "4.2rem";
+            } else {
+                DOMElements.resDisplay.style.fontSize = "3rem";
+            }
+        }
+
+        function applySettingsUI() {
+            DOMElements.settingTheme.value = State.theme;
+            DOMElements.settingAngle.value = State.angleMode;
+            DOMElements.settingSound.checked = State.soundEnabled;
+            DOMElements.settingAnim.checked = State.animationsEnabled;
+            DOMElements.settingFont.value = State.fontSize;
+            DOMElements.settingHistLimit.value = State.historyLimit;
+            applyAnimationsToggle();
+            applyFontSize();
+        }
+
+        function saveLocalStorage() {
+            localStorage.setItem('sci_calc_state', JSON.stringify({
+                history: State.history,
+                theme: State.theme,
+                angleMode: State.angleMode,
+                soundEnabled: State.soundEnabled,
+                animationsEnabled: State.animationsEnabled,
+                fontSize: State.fontSize,
+                historyLimit: State.historyLimit,
+                memory: State.memory
+            }));
+        }
+
+        function loadLocalStorage() {
+            const data = localStorage.getItem('sci_calc_state');
+            if (data) {
+                try {
+                    const parsed = JSON.parse(data);
+                    State.history = parsed.history || [];
+                    State.theme = parsed.theme || "dark";
+                    State.angleMode = parsed.angleMode || "deg";
+                    State.soundEnabled = parsed.soundEnabled !== false;
+                    State.animationsEnabled = parsed.animationsEnabled !== false;
+                    State.fontSize = parsed.fontSize || "normal";
+                    State.historyLimit = parsed.historyLimit || 30;
+                    State.memory = parsed.memory || 0;
+                } catch(e) {}
+            }
+        }
+
+        // ==========================================
+        // EVENT ROUTING & BINDING SYSTEM
+        // ==========================================
+        function attachEventListeners() {
+            // General keyboard button bindings
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    playClickSound();
+                    triggerRipple(e, btn);
+                    
+                    if (btn.dataset.token) {
+                        handleInputToken(btn.dataset.token);
+                    } else if (btn.dataset.action) {
+                        handleAction(btn.dataset.action, e, btn);
+                    }
+                });
+            });
+
+            // Tab Panels Switching Controller
+            document.querySelectorAll('.pad-tabs .tab-btn').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.pad-tabs .tab-btn').forEach(t => {
+                        t.classList.remove('active');
+                        t.setAttribute('aria-selected', 'false');
+                    });
+                    tab.classList.add('active');
+                    tab.setAttribute('aria-selected', 'true');
+                    
+                    document.querySelectorAll('.keyboard-pad').forEach(pad => pad.classList.remove('active'));
+                    document.getElementById(tab.dataset.target).classList.add('active');
+                });
+            });
+
+            // Sidebar Right panel switcher controller
+            DOMElements.tabHistory.addEventListener('click', () => {
+                DOMElements.tabHistory.classList.add('active');
+                DOMElements.tabSettings.classList.remove('active');
+                DOMElements.panelHistory.style.display = "block";
+                DOMElements.panelSettings.style.display = "none";
+            });
+
+            DOMElements.tabSettings.addEventListener('click', () => {
+                DOMElements.tabSettings.classList.add('active');
+                DOMElements.tabHistory.classList.remove('active');
+                DOMElements.panelHistory.style.display = "none";
+                DOMElements.panelSettings.style.display = "block";
+            });
+
+            DOMElements.btnToggleSide.addEventListener('click', () => {
+                DOMElements.sidebar.classList.toggle('open');
+            });
+
+            DOMElements.clearHistoryBtn.addEventListener('click', () => {
+                State.history = [];
+                renderHistoryList();
+                saveLocalStorage();
+            });
+
+            // Reactive Form Setting Updates
+            DOMElements.settingTheme.addEventListener('change', (e) => {
+                State.theme = e.target.value;
+                applyTheme();
+                saveLocalStorage();
+            });
+            DOMElements.settingAngle.addEventListener('change', (e) => {
+                State.angleMode = e.target.value;
+                updateIndicators();
+                saveLocalStorage();
+            });
+            DOMElements.settingSound.addEventListener('change', (e) => {
+                State.soundEnabled = e.target.checked;
+                saveLocalStorage();
+            });
+            DOMElements.settingAnim.addEventListener('change', (e) => {
+                State.animationsEnabled = e.target.checked;
+                applyAnimationsToggle();
+                saveLocalStorage();
+            });
+            DOMElements.settingFont.addEventListener('change', (e) => {
+                State.fontSize = e.target.value;
+                applyFontSize();
+                saveLocalStorage();
+            });
+            DOMElements.settingHistLimit.addEventListener('change', (e) => {
+                State.historyLimit = parseInt(e.target.value) || 30;
+                saveLocalStorage();
+            });
+
+            // Physical Keyboard Listener integration
+            document.addEventListener('keydown', (e) => {
+                // Ignore matching inside form elements inputs
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+                if (e.key >= '0' && e.key <= '9') handleInputToken(e.key);
+                else if (e.key === '.') handleInputToken('.');
+                else if (e.key === '+') handleInputToken('+');
+                else if (e.key === '-') handleInputToken('-');
+                else if (e.key === '*') handleInputToken('*');
+                else if (e.key === '/') handleInputToken('/');
+                else if (e.key === '(') handleInputToken('(');
+                else if (e.key === ')') handleInputToken(')');
+                else if (e.key === '^') handleInputToken('^');
+                else if (e.key === 'Enter' || e.key === '=') { e.preventDefault(); processEvaluation(); }
+                else if (e.key === 'Backspace') handleAction('ce');
+                else if (e.key === 'Escape') handleAction('clear');
+                else if (e.ctrlKey && e.key.toLowerCase() === 'z') { e.preventDefault(); handleAction('undo'); }
+                else if (e.ctrlKey && e.key.toLowerCase() === 'y') { e.preventDefault(); handleAction('redo'); }
+            });
+        }
+
+        // Initialize execution setup
+        window.addEventListener('DOMContentLoaded', () => {
+            initApp();
+            renderHistoryList();
+        });
     </script>
 </body>
 </html>
