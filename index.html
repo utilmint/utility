@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>QuantumCalc Premium | Advanced Scientific Workspace</title>
     <style>
         /* ==========================================================================
@@ -109,6 +109,7 @@
         body {
             width: 100vw;
             height: 100vh;
+            height: 100dvh;
             overflow: hidden;
             background: var(--bg-gradient);
             background-size: 400% 400%;
@@ -118,6 +119,7 @@
             align-items: center;
             color: var(--text-primary);
             perspective: 1000px;
+            padding: 12px;
         }
 
         @keyframes gradientBg {
@@ -130,10 +132,10 @@
            MAIN LAYER ARCHITECTURE (APPLICATION CONTAINER)
            ========================================================================== */
         .app-workspace {
-            width: 95vw;
+            width: 100%;
             max-width: 1440px;
-            height: 90vh;
-            max-height: 960px;
+            height: 100%;
+            max-height: 900px;
             background: var(--panel-bg);
             backdrop-filter: blur(var(--blur-radius));
             -webkit-backdrop-filter: blur(var(--blur-radius));
@@ -142,7 +144,7 @@
             box-shadow: 0 25px 50px -12px var(--shadow-intensity), 
                         inset 0 1px 0 rgba(255,255,255,0.1);
             display: grid;
-            grid-template-columns: 1fr 350px;
+            grid-template-columns: 1fr 340px;
             overflow: hidden;
             animation: appEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
             position: relative;
@@ -158,7 +160,7 @@
            ========================================================================== */
         .calculator-core {
             display: grid;
-            grid-template-rows: auto 1fr;
+            grid-template-rows: auto auto 1fr;
             border-right: 1px solid var(--panel-border);
             overflow: hidden;
             position: relative;
@@ -169,14 +171,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 24px;
+            padding: 14px 24px;
             background: rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid var(--panel-border);
         }
 
         .brand-signature {
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             letter-spacing: -0.02em;
             background: linear-gradient(90deg, var(--text-primary), var(--text-secondary));
             -webkit-background-clip: text;
@@ -188,13 +190,13 @@
 
         .system-status-indicators {
             display: flex;
-            gap: 12px;
+            gap: 8px;
         }
 
         .status-pill {
             padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
             letter-spacing: 0.05em;
             background: rgba(0,0,0,0.2);
@@ -209,16 +211,29 @@
             box-shadow: 0 0 8px rgba(16, 185, 129, 0.15);
         }
 
+        .mobile-sidebar-toggle {
+            display: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--panel-border);
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
         /* Unified Terminal Screen Display */
         .display-terminal {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 24px 32px;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 20px 24px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             align-items: flex-end;
             position: relative;
-            min-height: 180px;
+            min-height: 140px;
+            max-height: 220px;
             border-bottom: 1px solid var(--panel-border);
             overflow: hidden;
         }
@@ -226,42 +241,33 @@
         .meta-line {
             display: flex;
             gap: 12px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-dim);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             width: 100%;
             justify-content: flex-end;
             font-family: monospace;
         }
 
-        .meta-line span {
-            transition: color var(--transition-speed);
-        }
-
-        .meta-line span.active {
-            color: var(--neon-accent);
-            font-weight: bold;
-        }
-
         .expression-stream {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             color: var(--text-secondary);
-            min-height: 2rem;
+            min-height: 1.8rem;
             word-wrap: break-word;
             word-break: break-all;
             text-align: right;
             width: 100%;
-            max-height: 4rem;
+            max-height: 3.6rem;
             overflow-y: auto;
             font-family: monospace;
             line-height: 1.3;
         }
 
         .result-render-pipeline {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             font-weight: 300;
             color: var(--text-primary);
-            margin-top: 8px;
+            margin-top: 4px;
             white-space: nowrap;
             overflow-x: auto;
             width: 100%;
@@ -277,18 +283,18 @@
         }
 
         .live-preview-subline {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-dim);
             min-height: 1.2rem;
-            margin-top: 4px;
+            margin-top: 2px;
             font-family: monospace;
         }
 
         /* Console Cursor Effect */
         .terminal-cursor {
             display: inline-block;
-            width: 8px;
-            height: 1.2em;
+            width: 6px;
+            height: 1.1em;
             background: var(--neon-accent);
             margin-left: 4px;
             vertical-align: middle;
@@ -304,19 +310,17 @@
         .input-matrix-grid {
             display: grid;
             grid-template-columns: repeat(10, 1fr);
-            gap: 8px;
-            padding: 24px;
-            background: rgba(0,0,0,0.05);
-            align-content: stretch;
-            height: calc(100% - 0px);
+            gap: 6px;
+            padding: 16px;
+            background: rgba(0,0,0,0.02);
             overflow-y: auto;
         }
 
         /* Unified Keyboard Interface Units */
         .key-unit {
             border: 1px solid;
-            border-radius: 12px;
-            font-size: 0.95rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
             font-weight: 500;
             display: flex;
             justify-content: center;
@@ -325,8 +329,11 @@
             transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            min-height: 48px;
+            min-height: 42px;
             outline: none;
+            padding: 4px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         /* Key Theming & Class Specifiers */
@@ -351,6 +358,7 @@
             background: var(--btn-num-bg);
             border-color: var(--btn-num-border);
             color: var(--btn-num-text);
+            font-size: 0.95rem;
         }
         .key-num:hover { background: var(--btn-num-hover); transform: translateY(-1px); }
         .key-num:active { transform: translateY(1px); }
@@ -369,9 +377,9 @@
             color: var(--btn-eq-text);
             font-weight: bold;
             grid-column: span 2;
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
         }
-        .key-equal:hover { background: var(--btn-eq-hover); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4); }
+        .key-equal:hover { background: var(--btn-eq-hover); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35); }
         .key-equal:active { transform: translateY(1px); }
 
         .key-unit:focus-visible {
@@ -398,21 +406,22 @@
         .control-sidebar {
             display: grid;
             grid-template-rows: auto 1fr;
-            background: rgba(0,0,0,0.15);
+            background: rgba(0,0,0,0.12);
             overflow: hidden;
+            border-left: 1px solid var(--panel-border);
         }
 
         .sidebar-tabs {
             display: flex;
             border-bottom: 1px solid var(--panel-border);
-            background: rgba(0,0,0,0.1);
+            background: rgba(0,0,0,0.08);
         }
 
         .tab-trigger {
             flex: 1;
             padding: 14px;
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
             color: var(--text-secondary);
@@ -428,7 +437,7 @@
 
         .panel-content-viewport {
             overflow-y: auto;
-            padding: 20px;
+            padding: 16px;
             position: relative;
             height: 100%;
         }
@@ -446,13 +455,13 @@
         /* History Stream Architecture */
         .history-search-bar {
             width: 100%;
-            padding: 10px 14px;
-            border-radius: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
             background: rgba(0,0,0,0.2);
             border: 1px solid var(--panel-border);
             color: var(--text-primary);
-            font-size: 0.85rem;
-            margin-bottom: 16px;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
             outline: none;
         }
         
@@ -465,15 +474,15 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            padding-right: 4px;
+            gap: 10px;
+            padding-right: 2px;
         }
 
         .history-item-card {
             background: rgba(255,255,255,0.02);
             border: 1px solid var(--panel-border);
-            border-radius: 12px;
-            padding: 12px;
+            border-radius: 10px;
+            padding: 10px;
             position: relative;
             cursor: pointer;
             transition: all var(--transition-speed);
@@ -486,20 +495,20 @@
         }
 
         .history-item-card:hover {
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.12);
         }
 
         .history-card-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-dim);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .history-card-expr {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             word-break: break-all;
             text-align: right;
@@ -507,11 +516,11 @@
         }
 
         .history-card-res {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 600;
             color: var(--text-primary);
             text-align: right;
-            margin-top: 4px;
+            margin-top: 2px;
             word-break: break-all;
             font-family: monospace;
         }
@@ -520,7 +529,7 @@
             display: flex;
             justify-content: flex-end;
             gap: 8px;
-            margin-top: 8px;
+            margin-top: 6px;
             opacity: 0;
             transition: opacity var(--transition-speed);
         }
@@ -533,7 +542,7 @@
             background: transparent;
             border: none;
             color: var(--text-dim);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             cursor: pointer;
         }
 
@@ -542,15 +551,15 @@
         }
 
         .panel-action-footer {
-            margin-top: 16px;
+            margin-top: 12px;
             display: flex;
             justify-content: space-between;
         }
 
         .footer-action-btn {
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
             font-weight: 600;
             cursor: pointer;
             background: rgba(0,0,0,0.2);
@@ -568,7 +577,7 @@
         .settings-box-structure {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
 
         .setting-row-item {
@@ -581,35 +590,37 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 12px;
         }
 
         .setting-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
         }
 
         .setting-desc {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-dim);
         }
 
         /* Control Switch Toggle Mechanism */
         .toggle-switch-shell {
-            width: 44px;
-            height: 24px;
+            width: 40px;
+            height: 22px;
             background: rgba(0,0,0,0.3);
             border: 1px solid var(--panel-border);
             border-radius: 12px;
             position: relative;
             cursor: pointer;
             transition: background var(--transition-speed);
+            flex-shrink: 0;
         }
 
         .toggle-switch-shell::after {
             content: '';
             position: absolute;
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: #ffffff;
             top: 2px;
@@ -623,17 +634,17 @@
         }
 
         .toggle-switch-shell.enabled::after {
-            transform: translateX(20px);
+            transform: translateX(18px);
         }
 
         .select-native-wrapper select {
             width: 100%;
-            padding: 8px 12px;
-            border-radius: 8px;
+            padding: 6px 10px;
+            border-radius: 6px;
             background: rgba(0,0,0,0.2);
             border: 1px solid var(--panel-border);
             color: var(--text-primary);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             outline: none;
         }
 
@@ -642,26 +653,27 @@
            ========================================================================== */
         .toast-notification-system {
             position: absolute;
-            bottom: 24px;
-            left: 24px;
+            bottom: 16px;
+            left: 16px;
             z-index: 9999;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             pointer-events: none;
+            max-width: calc(100% - 32px);
         }
 
         .toast-unit {
-            padding: 12px 20px;
-            border-radius: 10px;
-            background: rgba(15, 23, 42, 0.9);
+            padding: 10px 16px;
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.95);
             border-left: 4px solid var(--neon-accent);
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
             color: var(--text-primary);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             transform: translateX(-120%);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
             opacity: 0;
@@ -678,27 +690,169 @@
         }
 
         /* ==========================================================================
-           RESPONSIVE RE-ARCHITECTURE SYSTEM SPECIFICATIONS (MEDIA QUERIES)
+           RESPONSIVE DESIGN BREAKPOINTS (ADAPTIVE SYSTEM RE-ARCHITECTURE)
            ========================================================================== */
-        @media (max-width: 1100px) {
+        
+        /* 1. Laptops and Smaller Desktops */
+        @media (max-width: 1200px) {
             .app-workspace {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 300px;
                 height: 95vh;
             }
-            .control-sidebar {
-                display: none; /* Desktop sidebar hidden on portable units unless invoked */
-            }
-        }
-
-        @media (max-width: 768px) {
             .input-matrix-grid {
-                grid-template-columns: repeat(5, 1fr);
+                grid-template-columns: repeat(8, 1fr);
             }
+            /* Re-map spanning buttons for dynamic compression alignment */
             .key-equal {
                 grid-column: span 2;
             }
+        }
+
+        /* 2. Tablets and Medium Screens (Landscape/Portrait Switchers) */
+        @media (max-width: 992px) {
+            body {
+                padding: 8px;
+            }
+            .app-workspace {
+                grid-template-columns: 1fr;
+                height: 100%;
+                max-height: none;
+                border-radius: 16px;
+            }
+            .calculator-core {
+                border-right: none;
+            }
+            .mobile-sidebar-toggle {
+                display: block;
+            }
+            
+            /* Reposition Side Panel into Overlay Modal Sheets */
+            .control-sidebar {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 320px;
+                height: 100%;
+                z-index: 1000;
+                transform: translateX(100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(25px);
+                -webkit-backdrop-filter: blur(25px);
+                border-left: 1px solid var(--panel-border);
+            }
+            .control-sidebar.sidebar-open {
+                transform: translateX(0);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            }
+            
+            .input-matrix-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        /* 3. Small Tablets and Large Smartphones */
+        @media (max-width: 768px) {
+            .display-terminal {
+                padding: 16px 20px;
+                min-height: 120px;
+            }
             .result-render-pipeline {
-                font-size: 2.5rem;
+                font-size: 2.3rem;
+            }
+            .input-matrix-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 5px;
+                padding: 12px;
+            }
+            .key-unit {
+                min-height: 44px;
+                font-size: 0.8rem;
+            }
+            .key-num {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 4. Ultra-Compact Mobile Architectures (Standard Phones Portrait) */
+        @media (max-width: 480px) {
+            body {
+                padding: 0;
+            }
+            .app-workspace {
+                border-radius: 0;
+                border: none;
+                height: 100dvh;
+            }
+            .core-header {
+                padding: 10px 16px;
+            }
+            .display-terminal {
+                padding: 12px 16px;
+                min-height: 100px;
+            }
+            .result-render-pipeline {
+                font-size: 2rem;
+            }
+            .expression-stream {
+                font-size: 1.1rem;
+            }
+            .input-matrix-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 4px;
+                padding: 8px;
+            }
+            .key-unit {
+                min-height: 40px;
+                border-radius: 6px;
+                font-size: 0.75rem;
+            }
+            /* Override explicit double grid alignments to protect narrow viewports */
+            .key-equal {
+                grid-column: span 1;
+            }
+            .control-sidebar {
+                width: 100%;
+            }
+        }
+
+        /* 5. Device Landscape Mode Visual Protection Adaptations */
+        @media (max-height: 520px) and (orientation: landscape) {
+            body {
+                padding: 0;
+            }
+            .app-workspace {
+                border-radius: 0;
+                height: 100vh;
+                grid-template-columns: 1fr;
+            }
+            .calculator-core {
+                grid-template-rows: auto 1fr; /* Merge screen footprint headers */
+            }
+            .display-terminal {
+                padding: 6px 16px;
+                min-height: 65px;
+                max-height: 85px;
+            }
+            .result-render-pipeline {
+                font-size: 1.6rem;
+                margin-top: 0;
+            }
+            .expression-stream {
+                font-size: 0.95rem;
+                min-height: 1.2rem;
+            }
+            .live-preview-subline {
+                display: none;
+            }
+            .input-matrix-grid {
+                grid-template-columns: repeat(10, 1fr);
+                padding: 6px;
+                gap: 4px;
+            }
+            .key-unit {
+                min-height: 32px;
+                font-size: 0.75rem;
             }
         }
 
@@ -722,6 +876,7 @@
                     <div class="status-pill" id="indicatorAngle">DEG</div>
                     <div class="status-pill" id="indicatorMemory">MEM</div>
                     <div class="status-pill" id="indicatorSci">SCI</div>
+                    <button class="mobile-sidebar-toggle" id="mobilePanelTrigger" aria-label="Toggle Navigation Panel">Menu</button>
                 </div>
             </header>
 
@@ -834,7 +989,7 @@
         </main>
 
         <!-- CONTROL SIDEBAR INTERFACE FRAMEWORK -->
-        <aside class="control-sidebar" aria-label="Workspace Configurations and Log Trackers">
+        <aside class="control-sidebar" id="appSidebar" aria-label="Workspace Configurations and Log Trackers">
             <nav class="sidebar-tabs" role="tablist">
                 <div class="tab-trigger active" id="tabTriggerHistory" role="tab" aria-selected="true">HISTORY</div>
                 <div class="tab-trigger" id="tabTriggerSettings" role="tab" aria-selected="false">SETTINGS</div>
@@ -968,6 +1123,8 @@
                 keyboardContainer: document.getElementById("keyboardMatrixContainer"),
                 toastLayer: document.getElementById("systemToastNotificationLayer"),
                 // Navigation Sidebar Elements
+                sidebar: document.getElementById("appSidebar"),
+                mobilePanelTrigger: document.getElementById("mobilePanelTrigger"),
                 tabHistory: document.getElementById("tabTriggerHistory"),
                 tabSettings: document.getElementById("tabTriggerSettings"),
                 panelHistory: document.getElementById("panelHistory"),
@@ -989,14 +1146,11 @@
                3. MATHEMATICAL INTERPRETATION PARSER MATRIX ENGINE
                ========================================================================== */
             const MathEngine = {
-                // Tokenizer Lexical Analysis Configuration Maps
                 constants: { "π": Math.PI, "e": Math.E },
                 
-                // Lexical Parser & Core Engine Execution Modules
                 tokenize(str) {
                     const tokens = [];
                     let i = 0;
-                    // Pre-process conversion logic for specialized scientific signatures
                     str = str.replace(/×/g, "*").replace(/÷/g, "/").replace(/−/g, "-");
                     
                     while (i < str.length) {
@@ -1004,7 +1158,6 @@
                         
                         if (/\s/.test(c)) { i++; continue; }
                         
-                        // Parse Numeric Floating Real Formats
                         if (/[0-9.]/.test(c)) {
                             let numStr = "";
                             while (i < str.length && /[0-9.]/.test(str[i])) {
@@ -1015,7 +1168,6 @@
                             continue;
                         }
                         
-                        // Parse Alphabetic Functional Vectors
                         if (/[a-zA-Z]/.test(c)) {
                             let fnStr = "";
                             while (i < str.length && /[a-zA-Z0-9₂ₐ]/.test(str[i])) {
@@ -1030,21 +1182,18 @@
                             continue;
                         }
                         
-                        // Parenthetical Enclosures
                         if (c === "(" || c === ")") {
                             tokens.push({ type: "PAREN", value: c });
                             i++;
                             continue;
                         }
                         
-                        // Custom Dynamic Separator for Log base variants
                         if (c === ",") {
                             tokens.push({ type: "COMMA", value: "," });
                             i++;
                             continue;
                         }
 
-                        // Mathematical Operator Token Blocks
                         if (/[\+\-\*\/^!%]/.test(c)) {
                             let prec = 1;
                             if (c === "*" || c === "/") prec = 2;
@@ -1054,7 +1203,6 @@
                             continue;
                         }
                         
-                        // Fallback handling logic for structural UTF Characters
                         if (["√", "∛", "ⁿ√", "π", "e"].includes(c)) {
                             if (this.constants[c]) {
                                 tokens.push({ type: "NUMBER", value: this.constants[c] });
@@ -1070,7 +1218,6 @@
                     return tokens;
                 },
 
-                // Abstract Syntax Tree Vector Resolution via Evaluator
                 evaluate(expressionString) {
                     if (!expressionString.trim()) return 0;
                     try {
@@ -1082,7 +1229,6 @@
                 },
 
                 parseAndCompute(tokens) {
-                    // Shunting-Yard Engine Mapping Matrix Conversion Pipeline
                     const outputQueue = [];
                     const operatorStack = [];
                     
@@ -1108,11 +1254,16 @@
                             operatorStack.push(token);
                         } else if (token.type === "PAREN" && token.value === ")") {
                             while (operatorStack.length && operatorStack[operatorStack.length - 1].value !== "(") {
-                                outputQueue.push(operatorStack.pop());
+                                outputQueue.push(outputQueue.pop());
+                                let top = operatorStack.pop();
+                                while(top && top.value !== "(") {
+                                    outputQueue.push(top);
+                                    top = operatorStack.pop();
+                                }
                             }
-                            if (!operatorStack.length) throw new Error("Parentheses Mismatch Variant");
-                            operatorStack.pop(); // Remove the structural opening signature '('
-                            
+                            if (operatorStack.length && operatorStack[operatorStack.length - 1].value === "(") {
+                                operatorStack.pop();
+                            }
                             if (operatorStack.length && operatorStack[operatorStack.length - 1].type === "FUNCTION") {
                                 outputQueue.push(operatorStack.pop());
                             }
@@ -1125,7 +1276,6 @@
                         outputQueue.push(topOp);
                     }
 
-                    // Stack Execution Paradigm Pipeline Simulation
                     const processingStack = [];
                     
                     for (let k = 0; k < outputQueue.length; k++) {
@@ -1145,7 +1295,6 @@
                                 processingStack.push(this.execBinaryOp(node.value, a, b));
                             }
                         } else if (node.type === "FUNCTION") {
-                            // Compute Functional Nodes based on system signatures
                             const arity = this.getFunctionArity(node.value);
                             const args = [];
                             for (let a = 0; a < arity; a++) {
@@ -1190,8 +1339,6 @@
 
                 execFunction(name, args) {
                     let val = args[0];
-                    
-                    // Angle System Angular Transformation Filters
                     const toRad = (v) => {
                         if (STATE.angleMode === "DEG") return v * (Math.PI / 180);
                         if (STATE.angleMode === "GRAD") return v * (Math.PI / 200);
@@ -1204,15 +1351,12 @@
                     };
 
                     switch(name) {
-                        // Standard Trigonometrics
                         case "sin": return Math.sin(toRad(val));
                         case "cos": return Math.cos(toRad(val));
                         case "tan": return Math.tan(toRad(val));
                         case "cot": return 1 / Math.tan(toRad(val));
                         case "sec": return 1 / Math.cos(toRad(val));
                         case "cosec": return 1 / Math.sin(toRad(val));
-                        
-                        // Inverse Trigonometrics
                         case "asin": 
                             if (val < -1 || val > 1) throw new Error("Domain range violation across inverse trig execution");
                             return fromRad(Math.asin(val));
@@ -1223,8 +1367,6 @@
                         case "acot": return fromRad(Math.PI / 2 - Math.atan(val));
                         case "asec": return fromRad(Math.acos(1 / val));
                         case "acosec": return fromRad(Math.asin(1 / val));
-                        
-                        // Hyperbolics System Matrix Blocks
                         case "sinh": return Math.sinh(val);
                         case "cosh": return Math.cosh(val);
                         case "tanh": return Math.tanh(val);
@@ -1235,8 +1377,6 @@
                         case "atanh": 
                             if (val <= -1 || val >= 1) throw new Error("Domain limit exceeded for hyperbolic processing");
                             return Math.atanh(val);
-                        
-                        // Exponentials & Roots
                         case "ln": 
                             if (val <= 0) throw new Error("Logarithmic base range space constraints triggered");
                             return Math.log(val);
@@ -1262,15 +1402,12 @@
                         case "1/x": 
                             if (val === 0) throw new Error("Reciprocal resolution anomaly on zero spatial limit");
                             return 1 / val;
-                        
-                        // Discrete Structurals
                         case "abs": return Math.abs(val);
                         case "round": return Math.round(val);
                         case "floor": return Math.floor(val);
                         case "ceil": return Math.ceil(val);
                         case "sign": return Math.sign(val);
-                        
-                        default: throw new Error(`Unknown target operational pipeline validation signature: ${name}`);
+                        default: throw new Error(`Unknown target function: ${name}`);
                     }
                 }
             };
@@ -1313,6 +1450,7 @@
                     this.attachEventSystemListeners();
                     this.syncSystemStateInterfaces();
                     this.pushStateHistoryFrame();
+                    this.autoCloseSidebarOnOutsideClick();
                 },
 
                 loadStorageContext() {
@@ -1348,7 +1486,6 @@
                 },
 
                 syncSystemStateInterfaces() {
-                    // Sync Configuration Toggles Visual System State Layouts
                     DOM.root.setAttribute("data-theme", STATE.settings.theme);
                     DOM.themeSelect.value = STATE.settings.theme;
                     
@@ -1365,7 +1502,6 @@
 
                     DOM.precisionSelect.value = STATE.settings.precision;
                     
-                    // Sync Dynamic Application Status Pills
                     DOM.indAngle.textContent = STATE.angleMode;
                     DOM.btnToggleAngle.textContent = STATE.angleMode;
                     
@@ -1387,7 +1523,6 @@
                 },
 
                 pushStateHistoryFrame() {
-                    // Check duplicate framework boundaries prior saving internal history states
                     const currentFrame = JSON.stringify({
                         expr: STATE.expression,
                         res: STATE.result
@@ -1395,7 +1530,7 @@
                     if (STATE.undoStack.length > 0 && JSON.stringify(STATE.undoStack[STATE.undoStack.length - 1]) === currentFrame) return;
                     
                     STATE.undoStack.push({ expression: STATE.expression, result: STATE.result });
-                    STATE.redoStack = []; // Break forward execution path vectors on normal workflow interventions
+                    STATE.redoStack = [];
                 },
 
                 performUndoAction() {
@@ -1421,24 +1556,21 @@
                         this.renderDisplayElements();
                         this.triggerAcousticFeedback();
                     } else {
-                        this.spawnToastNotification("Redo framework tracks empty", "info");
+                        this.spawnToastNotification("Redo tracks empty", "info");
                     }
                 },
 
                 renderDisplayElements() {
                     DOM.displayExpr.textContent = STATE.expression;
                     
-                    // Render Active State Stream Elements with System Cursor Placement
                     if (STATE.result === "Error" || isNaN(STATE.result)) {
                         DOM.displayRes.innerHTML = `<span style="color:#ef4444;">${STATE.result}</span><span class="terminal-cursor"></span>`;
                     } else {
                         DOM.displayRes.innerHTML = `${STATE.result}<span class="terminal-cursor"></span>`;
                     }
 
-                    // Render Real-Time Compilation Subviews Evaluator
                     if (STATE.expression.trim().length > 0) {
                         try {
-                            // Suppress errors during structural mid-input parsing steps
                             const evaluatedPreview = MathEngine.evaluate(STATE.expression);
                             DOM.displayLive.textContent = `= ${this.formatNumericalOutput(evaluatedPreview)}`;
                         } catch(e) {
@@ -1447,6 +1579,9 @@
                     } else {
                         DOM.displayLive.textContent = "";
                     }
+                    
+                    // Maintain horizontal terminal scrolling position focus points on inputs
+                    DOM.displayRes.scrollLeft = DOM.displayRes.scrollWidth;
                 },
 
                 formatNumericalOutput(val) {
@@ -1456,7 +1591,6 @@
                         return val.toExponential(parseInt(STATE.settings.precision) - 4);
                     }
                     
-                    // Enforce System Precision Limitation Paradigms
                     const fixedVal = parseFloat(val.toFixed(parseInt(STATE.settings.precision)));
                     return fixedVal.toString();
                 },
@@ -1464,7 +1598,6 @@
                 appendExpressionToken(tok) {
                     this.pushStateHistoryFrame();
                     
-                    // Formatting map transforms from operational matrix structures
                     const map = {
                         "x²": "^2", "x³": "^3", "xʸ": "^", 
                         "eˣ": "e^", "10ˣ": "10^", "2ˣ": "2^",
@@ -1504,7 +1637,6 @@
                         case "BACKSPACE":
                             this.pushStateHistoryFrame();
                             if (STATE.expression.length > 0) {
-                                // Dynamic character sequence slicing logic
                                 STATE.expression = STATE.expression.slice(0, -1);
                                 this.renderDisplayElements();
                             }
@@ -1541,7 +1673,6 @@
                         case "PASTE":
                             this.readClipboardToInputBuffer();
                             break;
-                        // Memory Matrix Instructions
                         case "MC":
                             STATE.memory = 0;
                             this.spawnToastNotification("Memory Vault Purged", "info");
@@ -1596,7 +1727,6 @@
                     try {
                         const computationalOutput = MathEngine.evaluate(STATE.expression);
                         
-                        // Push log payload record packets onto storage pipelines
                         const historyPayloadItem = {
                             id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
                             timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
@@ -1609,7 +1739,7 @@
                         
                         STATE.lastAnswer = computationalOutput;
                         STATE.result = this.formatNumericalOutput(computationalOutput);
-                        STATE.expression = ""; // Reset primary structural display vector following calculation execution
+                        STATE.expression = ""; 
                         
                         this.pushStateHistoryFrame();
                         this.syncSystemStateInterfaces();
@@ -1665,7 +1795,6 @@
 
                 readClipboardToInputBuffer() {
                     navigator.clipboard.readText().then((clipString) => {
-                        // Filter untrusted character payloads prior ingestion processing
                         const cleanString = clipString.replace(/[^0-9\+\-\*\/\(\)\.\s]/g, "");
                         STATE.expression += cleanString;
                         this.renderDisplayElements();
@@ -1715,6 +1844,7 @@
                                     STATE.expression = item.expression;
                                     this.renderDisplayElements();
                                     this.spawnToastNotification("Expression log tracking recovered", "info");
+                                    DOM.sidebar.classList.remove("sidebar-open");
                                 } else if (act === "delete") {
                                     STATE.history = STATE.history.filter(h => h.id !== item.id);
                                     this.hydrateHistoryStreamDOM();
@@ -1724,6 +1854,7 @@
                             } else {
                                 STATE.expression = item.expression;
                                 this.renderDisplayElements();
+                                DOM.sidebar.classList.remove("sidebar-open");
                             }
                         });
 
@@ -1737,8 +1868,6 @@
                     toast.innerHTML = `<span>●</span><span>${message}</span>`;
                     
                     DOM.toastLayer.appendChild(toast);
-                    
-                    // Force DOM reflow optimization cycle execution
                     toast.offsetHeight;
                     toast.classList.add("visible");
                     
@@ -1786,8 +1915,17 @@
                     ripple.addEventListener("animationend", () => ripple.remove());
                 },
 
+                autoCloseSidebarOnOutsideClick() {
+                    document.addEventListener("click", (e) => {
+                        if (window.innerWidth <= 992 && DOM.sidebar.classList.contains("sidebar-open")) {
+                            if (!DOM.sidebar.contains(e.target) && e.target !== DOM.mobilePanelTrigger) {
+                                DOM.sidebar.classList.remove("sidebar-open");
+                            }
+                        }
+                    });
+                },
+
                 attachEventSystemListeners() {
-                    // Central Keyboard Grid Delegations Map Handler
                     DOM.keyboardContainer.addEventListener("click", (e) => {
                         const targetKey = e.target.closest(".key-unit");
                         if (!targetKey) return;
@@ -1797,7 +1935,11 @@
                         this.handleCoreCommandInvocation(inputToken);
                     });
 
-                    // Navigation Side Tabs Events Routing
+                    DOM.mobilePanelTrigger.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        DOM.sidebar.classList.toggle("sidebar-open");
+                    });
+
                     DOM.tabHistory.addEventListener("click", () => {
                         DOM.tabHistory.classList.add("active");
                         DOM.tabSettings.classList.remove("active");
@@ -1812,17 +1954,15 @@
                         DOM.panelHistory.classList.remove("active");
                     });
 
-                    // Live Event Triggers History Search Indexer
                     DOM.historySearch.addEventListener("input", () => this.hydrateHistoryStreamDOM());
                     
                     DOM.clearHistory.addEventListener("click", () => {
                         STATE.history = [];
                         this.hydrateHistoryStreamDOM();
                         this.saveStorageContext();
-                        this.spawnToastNotification("Historical storage arrays permanently purged", "info");
+                        this.spawnToastNotification("Historical storage arrays purged", "info");
                     });
 
-                    // Settings Framework Event Relays
                     DOM.themeSelect.addEventListener("change", (e) => {
                         STATE.settings.theme = e.target.value;
                         this.syncSystemStateInterfaces();
@@ -1857,21 +1997,19 @@
                         STATE.settings = { theme: "dark", animations: true, acoustics: false, precision: 12, historyLimit: 50 };
                         this.spawnToastNotification("Factory reset execution initialized successfully", "success");
                         this.syncSystemStateInterfaces();
+                        DOM.sidebar.classList.remove("sidebar-open");
                     });
 
-                    // Hardware Physical Keyboard Matrix Hook Interceptors
                     document.addEventListener("keydown", (nativeEvent) => {
                         this.routeHardwareKeyboardMapping(nativeEvent);
                     });
                 },
 
                 routeHardwareKeyboardMapping(event) {
-                    // Filter system overrides to prevent command collision issues
                     if (document.activeElement === DOM.historySearch) return;
 
                     const keySignature = event.key;
                     
-                    // Handle Matrix Control Command Short Circuits
                     if (event.ctrlKey || event.metaKey) {
                         if (keySignature.toLowerCase() === "c") { event.preventDefault(); this.handleCoreCommandInvocation("COPY"); }
                         if (keySignature.toLowerCase() === "v") { event.preventDefault(); this.handleCoreCommandInvocation("PASTE"); }
@@ -1888,20 +2026,16 @@
 
                     if (inputMapping[keySignature]) {
                         event.preventDefault();
-                        
-                        // Visual key focus feedback injection cycle simulation
                         const btnDomNode = DOM.keyboardContainer.querySelector(`[data-token="${inputMapping[keySignature]}"]`);
                         if (btnDomNode) {
                             btnDomNode.focus();
                             setTimeout(() => btnDomNode.blur(), 120);
                         }
-                        
                         this.handleCoreCommandInvocation(inputMapping[keySignature]);
                     }
                 }
             };
 
-            // Run application logic core initiation processing arrays
             UI.init();
         });
     </script>
