@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator | Utilmint</title>
+    
+    <!-- SEO Optimization -->
+    <meta name="description" content="Utilmint's Premium Basic Calculator. Execute continuous arithmetic, advanced powers, roots, modulus, and memory operations through an error-free client-side parsing grid.">
+    <meta name="keywords" content="basic calculator, arithmetic solver, standard math, memory functions, online calculator, glassmorphism UI, mathematical parser, Utilmint">
+    <meta name="author" content="Utilmint Platform">
+    <link rel="canonical" href="https://www.utilmint.com/basic-calculator.html">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.utilmint.com/basic-calculator.html">
+    <meta property="og:title" content="Basic Calculator | Utilmint – Precision Math Compute Module">
+    <meta property="og:description" content="Perform fluid high-precision standard mathematics with local history tracking and instant execution logic.">
+    <meta property="og:image" content="https://www.utilmint.com/assets/calc-preview.png">
+
+    <!-- Twitter Card Metadata -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Basic Calculator | Utilmint">
+    <meta property="twitter:description" content="Advanced mathematical grid parsing matrix for continuous arithmetic performance.">
+
+    <!-- Structured JSON-LD Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Utilmint Basic Calculator",
+      "url": "https://www.utilmint.com/basic-calculator.html",
+      "applicationCategory": "EducationalApplication, BusinessApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires an HTML5 and modern ECMAScript engine capable browser."
+    }
+    </script>
+
+    <style>
+        /* CORE VARIABLES & PALETTE CONFIGURATION */
+        :root {
+            --font-stack: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --bg-base: #f1f5f9;
+            --bg-surface: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --border-glass: rgba(255, 255, 255, 0.45);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --accent: #2563eb;
+            --glow: rgba(14, 165, 233, 0.2);
+            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            --radius-lg: 1.25rem;
+            --radius-md: 0.75rem;
+            --speed: 0.25s;
+        }
+
+        [data-theme="dark"] {
+            --bg-base: #0b0f19;
+            --bg-surface: #111827;
+            --bg-glass: rgba(17, 24, 39, 0.7);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --primary-dark: #0ea5e9;
+            --accent: #3b82f6;
+            --glow: rgba(56, 189, 248, 0.2);
+            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.4);
+            --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* STRUCTURAL LAWS & RESET */
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; font-family: var(--font-stack); }
+        body { background-color: var(--bg-base); color: var(--text-main); transition: background var(--speed), color var(--speed); overflow-x: hidden; min-height: 100vh; }
+        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
+        
+        /* SCROLL BAR TRACKING EFFECT */
+        #scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); width: 0%; z-index: 1002; }
+
+        /* HEADER FRAME */
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: var(--bg-glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-glass); transition: box-shadow var(--speed); }
+        header.scrolled { box-shadow: var(--shadow-sm); }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; height: 4.5rem; }
+        .logo { display: flex; align-items: center; gap: 0.5rem; font-weight: 800; font-size: 1.4rem; text-decoration: none; color: var(--text-main); }
+        .logo svg { width: 1.75rem; height: 1.75rem; stroke: var(--primary); fill: none; stroke-width: 2.5; }
+        .header-actions { display: flex; align-items: center; gap: 1rem; }
+        .btn-nav { text-decoration: none; color: var(--text-muted); font-size: 0.95rem; font-weight: 600; padding: 0.5rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-glass); transition: all var(--speed); background: transparent; cursor: pointer; display: flex; align-items: center; gap: 0.25rem; }
+        .btn-nav:hover { color: var(--text-main); background: var(--border-glass); }
+        .theme-toggle svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 2; }
+        .theme-toggle .sun { display: none; }
+        [data-theme="dark"] .theme-toggle .moon { display: none; }
+        [data-theme="dark"] .theme-toggle .sun { display: block; }
+
+        /* CALC WORKSPACE FRAME */
+        .workspace { padding: 7.5rem 0 4rem; display: grid; grid-template-columns: 1fr 380px; gap: 2rem; align-items: start; }
+        @media(max-width: 992px) { .workspace { grid-template-columns: 1fr; } }
+
+        /* THE CALCULATOR INTERFACE MODULE */
+        .calc-wrapper { background: var(--bg-surface); border: 1px solid var(--border-glass); box-shadow: var(--shadow-md); border-radius: var(--radius-lg); overflow: hidden; position: relative; }
+        .calc-display { background: rgba(0,0,0,0.02); padding: 2rem; border-bottom: 1px solid var(--border-glass); text-align: right; min-height: 150px; display: flex; flex-direction: column; justify-content: flex-end; gap: 0.5rem; position: relative; }
+        [data-theme="dark"] .calc-display { background: rgba(255,255,255,0.01); }
+        .display-formula { font-size: 1.25rem; color: var(--text-muted); min-height: 1.75rem; word-wrap: break-word; overflow-x: auto; white-space: nowrap; font-family: monospace; }
+        .display-main { font-size: 3rem; font-weight: 700; word-wrap: break-word; overflow-x: auto; white-space: nowrap; min-height: 3.5rem; font-family: monospace; outline: none; }
+        
+        .display-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+        .memory-indicators { display: flex; gap: 0.5rem; font-size: 0.75rem; font-weight: 700; color: var(--primary); min-height: 1rem; }
+        .display-actions { display: flex; gap: 0.5rem; }
+        .action-icon-btn { background: transparent; border: none; padding: 0.4rem; border-radius: 0.35rem; color: var(--text-muted); cursor: pointer; transition: all var(--speed); display: flex; align-items: center; justify-content: center; }
+        .action-icon-btn:hover { background: var(--border-glass); color: var(--text-main); }
+        .action-icon-btn svg { width: 1.25rem; height: 1.25rem; stroke: currentColor; fill: none; stroke-width: 2; }
+
+        .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border-glass); padding: 1px; }
+        .calc-grid.layout-alt { grid-template-columns: repeat(5, 1fr); }
+        .calc-btn { background: var(--bg-surface); border: none; padding: 1.5rem 1rem; font-size: 1.25rem; font-weight: 600; color: var(--text-main); cursor: pointer; transition: all 0.15s ease; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; outline: none; -webkit-user-select: none; user-select: none; }
+        .calc-btn:hover { background: rgba(0,0,0,0.02); filter: brightness(0.98); }
+        [data-theme="dark"] .calc-btn:hover { background: rgba(255,255,255,0.02); filter: brightness(1.05); }
+        .calc-btn:active { transform: scale(0.96); }
+        .calc-btn.op { color: var(--accent); background: rgba(37, 99, 235, 0.03); }
+        .calc-btn.fn { color: var(--primary); font-size: 1rem; }
+        .calc-btn.eq { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #ffffff; font-weight: 700; }
+        .calc-btn.eq:hover { filter: brightness(1.1); }
+        
+        /* RIPPLE FRAME ENGINE */
+        .ripple { position: absolute; background: rgba(14, 165, 233, 0.25); border-radius: 50%; pointer-events: none; transform: scale(0); animation: rippleEffect 0.5s ease-out; }
+        @keyframes rippleEffect { to { transform: scale(4); opacity: 0; } }
+
+        /* HISTORY SYSTEM PANEL */
+        .history-panel { background: var(--bg-surface); border: 1px solid var(--border-glass); box-shadow: var(--shadow-md); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; max-height: 700px; }
+        .panel-header { padding: 1.25rem; border-bottom: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center; }
+        .panel-header h2 { font-size: 1.1rem; font-weight: 700; }
+        .history-search-wrapper { padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border-glass); display: flex; align-items: center; position: relative; }
+        .history-search { width: 100%; padding: 0.5rem 0.5rem 0.5rem 2rem; border-radius: var(--radius-md); border: 1px solid var(--border-glass); background: var(--bg-base); color: var(--text-main); outline: none; font-size: 0.875rem; }
+        .history-search-wrapper svg { position: absolute; left: 1.75rem; width: 1rem; height: 1rem; stroke: var(--text-muted); fill: none; stroke-width: 2.5; }
+        .history-stream { padding: 1.25rem; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 1rem; min-height: 250px; }
+        .history-item { padding: 0.75rem; border-radius: var(--radius-md); background: rgba(0,0,0,0.01); border: 1px solid transparent; transition: all var(--speed); position: relative; display: flex; flex-direction: column; gap: 0.25rem; text-align: right; cursor: pointer; }
+        [data-theme="dark"] .history-item { background: rgba(255,255,255,0.01); }
+        .history-item:hover { border-color: var(--primary); background: var(--bg-surface); }
+        .history-formula { font-size: 0.85rem; color: var(--text-muted); font-family: monospace; }
+        .history-result { font-size: 1.15rem; font-weight: 700; font-family: monospace; }
+        .history-timestamp { font-size: 0.7rem; color: var(--text-muted); text-align: left; }
+        .history-item-del { position: absolute; left: 0.5rem; top: 0.5rem; opacity: 0; transition: opacity var(--speed); background: transparent; border: none; color: #ef4444; cursor: pointer; }
+        .history-item:hover .history-item-del { opacity: 1; }
+        .history-item-del svg { width: 0.9rem; height: 0.9rem; stroke: currentColor; fill: none; stroke-width: 2; }
+        .empty-history { text-align: center; color: var(--text-muted); font-size: 0.9rem; margin: auto 0; padding: 2rem 0; }
+
+        /* REVEAL INTERSECTIONS CONTROLS */
+        .reveal { opacity: 0; transform: translateY(25px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* FORMULAS & DOCUMENTATION CONFIGURATIONS */
+        .doc-section { padding: 4rem 0; }
+        .section-title { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 2rem; text-align: center; }
+        .formula-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .formula-card { background: var(--bg-surface); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 1.5rem; box-shadow: var(--shadow-sm); }
+        .formula-name { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; }
+        .formula-expr { font-family: monospace; font-size: 1.2rem; color: var(--accent); background: rgba(37,99,235,0.04); padding: 0.4rem; border-radius: 0.35rem; display: inline-block; }
+
+        /* EXAMPLES SYSTEM */
+        .examples-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+        .example-pill { background: var(--bg-surface); border: 1px solid var(--border-glass); padding: 1rem; border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all var(--speed); }
+        .example-pill:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+        .example-pill span { font-family: monospace; font-weight: 600; }
+
+        /* CAPABILITIES / FEATURES GRID */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .feature-card { background: var(--bg-surface); border: 1px solid var(--border-glass); padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: transform var(--speed); }
+        .feature-card:hover { transform: translateY(-4px); }
+        .feature-icon { width: 2.75rem; height: 2.75rem; border-radius: var(--radius-md); background: rgba(14,165,233,0.08); display: flex; align-items: center; justify-content: center; color: var(--primary); margin-bottom: 1.25rem; }
+        .feature-icon svg { width: 1.5rem; height: 1.5rem; stroke: currentColor; fill: none; stroke-width: 2; }
+        .feature-h { font-weight: 700; font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .feature-p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* FAQS ACCORDION SECTION */
+        .faq-wrapper { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+        .faq-item { background: var(--bg-surface); border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden; transition: all var(--speed); }
+        .faq-btn { width: 100%; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: transparent; border: none; color: var(--text-main); font-size: 1.05rem; font-weight: 600; text-align: left; cursor: pointer; outline: none; }
+        .faq-icon { width: 1.2rem; height: 1.2rem; stroke: var(--text-muted); fill: none; stroke-width: 2.5; transition: transform 0.25s ease; }
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out; }
+        .faq-content p { padding: 0 1.5rem 1.25rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+        .faq-item.open { border-color: var(--primary); }
+        .faq-item.open .faq-icon { transform: rotate(180deg); }
+
+        /* FOOTER MODULE */
+        footer { background: #0b0f19; color: #94a3b8; padding: 5rem 0 2.5rem; position: relative; overflow: hidden; margin-top: 4rem; }
+        .footer-waves { position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: rotate(180deg); }
+        .footer-waves svg { position: relative; display: block; width: calc(140% + 1.3px); height: 40px; }
+        .footer-waves .shape-fill { fill: var(--bg-base); }
+        .footer-cols { display: grid; grid-template-columns: 2fr repeat(2, 1fr); gap: 3rem; margin-bottom: 3rem; position: relative; z-index: 1; }
+        @media(max-width: 768px) { .footer-cols { grid-template-columns: 1fr; gap: 2rem; } }
+        .footer-brand .logo { color: #ffffff; margin-bottom: 1rem; }
+        .footer-h { color: #ffffff; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.25rem; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+        .footer-links a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; transition: color var(--speed); }
+        .footer-links a:hover { color: #ffffff; }
+        .footer-base { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; position: relative; z-index: 1; }
+
+        /* BACK TO TOP VECTOR HOIST */
+        #btt-btn { position: fixed; bottom: 2rem; right: 2rem; width: 3rem; height: 3rem; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px var(--glow); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 99; }
+        #btt-btn.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- MAIN HEADER -->
+    <header id="top-header">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="logo" aria-label="Utilmint Platform Home Page">
+                <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16M7 4v16M12 4v16M17 4v16" stroke-dasharray="1 3"/></svg>
+                <span>Utilmint</span>
+            </a>
+            <div class="header-actions">
+                <a href="index.html" class="btn-nav">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    <span>Home Array</span>
+                </a>
+                <button class="btn-nav theme-toggle" id="theme-switcher" aria-label="Toggle execution interface appearance layer mode">
+                    <svg class="sun" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-11.314l.707.707m11.314 11.314l.707-.707M12 7a5 5 0 100 10 5 5 0 000-10z"/></svg>
+                    <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CORE WORKSPACE LAYER -->
+    <main class="container workspace">
+        <!-- APP MATRIX ENGINE CONTAINER -->
+        <section class="calc-wrapper" aria-label="Basic Arithmetic Computational Interface Platform">
+            <div class="calc-display">
+                <div class="display-formula" id="calc-expression" aria-live="polite"></div>
+                <div class="display-main" id="calc-output" tabindex="0" aria-label="Calculator Result Vector Window" aria-live="assertive">0</div>
+                <div class="display-controls">
+                    <div class="memory-indicators" id="mem-flag" aria-live="polite"></div>
+                    <div class="display-actions">
+                        <button class="action-icon-btn" id="btn-undo" aria-label="Undo prior expression stroke changes"><svg viewBox="0 0 24 24"><path d="M3 7v6h6M21 17a9 9 0 00-9-9 9 9 0 00-6 2.3L3 13"/></svg></button>
+                        <button class="action-icon-btn" id="btn-redo" aria-label="Redo subsequent transaction changes"><svg viewBox="0 0 24 24"><path d="M21 7v6h-6M3 17a9 9 0 019-9 9 9 0 016 2.3l3 2.7"/></svg></button>
+                        <button class="action-icon-btn" id="btn-copy-val" aria-label="Copy baseline absolute output to clipboard layer"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DYNAMIC CALCULATOR KEYBOARD ARRAYS -->
+            <div class="calc-grid layout-alt" id="keypad-matrix">
+                <!-- Row 1: Memory Matrices -->
+                <button class="calc-btn fn" data-token="MC">MC</button>
+                <button class="calc-btn fn" data-token="MR">MR</button>
+                <button class="calc-btn fn" data-token="M+">M+</button>
+                <button class="calc-btn fn" data-token="M-">M-</button>
+                <button class="calc-btn fn" data-token="MS">MS</button>
+
+                <!-- Row 2: Mathematical Modifiers -->
+                <button class="calc-btn fn" data-token="ABS">abs</button>
+                <button class="calc-btn fn" data-token="MOD">mod</button>
+                <button class="calc-btn fn" data-token="CE">CE</button>
+                <button class="calc-btn fn" data-token="C">C</button>
+                <button class="calc-btn op" data-token="DEL">&#21518;&#36864;</button>
+
+                <!-- Row 3: Extended Vector Transformations -->
+                <button class="calc-btn fn" data-token="RECIP">1/x</button>
+                <button class="calc-btn fn" data-token="SQ">x²</button>
+                <button class="calc-btn fn" data-token="CUBE">x³</button>
+                <button class="calc-btn fn" data-token="POW">xʸ</button>
+                <button class="calc-btn op" data-token="/">÷</button>
+
+                <!-- Row 4: Primary Value Array Group 1 -->
+                <button class="calc-btn fn" data-token="SQRT">√x</button>
+                <button class="calc-btn" data-token="7">7</button>
+                <button class="calc-btn" data-token="8">8</button>
+                <button class="calc-btn" data-token="9">9</button>
+                <button class="calc-btn op" data-token="*">×</button>
+
+                <!-- Row 5: Primary Value Array Group 2 -->
+                <button class="calc-btn fn" data-token="CBRT">∛x</button>
+                <button class="calc-btn" data-token="4">4</button>
+                <button class="calc-btn" data-token="5">5</button>
+                <button class="calc-btn" data-token="6">6</button>
+                <button class="calc-btn op" data-token="-">−</button>
+
+                <!-- Row 6: Primary Value Array Group 3 -->
+                <button class="calc-btn fn" data-token="NEG">+/-</button>
+                <button class="calc-btn" data-token="1">1</button>
+                <button class="calc-btn" data-token="2">2</button>
+                <button class="calc-btn" data-token="3">3</button>
+                <button class="calc-btn op" data-token="+">+</button>
+
+                <!-- Row 7: Base Execution Layers -->
+                <button class="calc-btn fn" data-token="PERT">%</button>
+                <button class="calc-btn" data-token="(">(</button>
+                <button class="calc-btn" data-token="0">0</button>
+                <button class="calc-btn" data-token=".">.</button>
+                <button class="calc-btn eq" data-token="=">=</button>
+            </div>
+        </section>
+
+        <!-- PERSISTENT HISTORY MONITOR -->
+        <aside class="history-panel" aria-label="Calculation Transaction Stream Ledger">
+            <div class="panel-header">
+                <h2>Transaction Stream</h2>
+                <button class="btn-nav" id="clear-history-trigger" style="font-size: 0.8rem; padding: 0.25rem 0.5rem;">Purge All</button>
+            </div>
+            <div class="history-search-wrapper">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" class="history-search" id="history-query" placeholder="Filter archived outputs..." aria-label="Search past processing records">
+            </div>
+            <div class="history-stream" id="history-target-box">
+                <!-- Caching structural history nodes injected dynamically -->
+            </div>
+        </aside>
+    </main>
+
+    <!-- FORMULAS REFERENCE DATA -->
+    <section class="doc-section reveal">
+        <div class="container">
+            <h2 class="section-title">Algorithmic Syntax Configurations</h2>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <div class="formula-name">Percentage System</div>
+                    <div class="formula-expr">(a ÷ b) × 100</div>
+                </div>
+                <div class="formula-card">
+                    <div class="formula-name">Modular Architecture</div>
+                    <div class="formula-expr">a mod b</div>
+                </div>
+                <div class="formula-card">
+                    <div class="formula-name">Reciprocal Mapping</div>
+                    <div class="formula-expr">f(x) = 1 / x</div>
+                </div>
+                <div class="formula-card">
+                    <div class="formula-name">Exponential Transformation</div>
+                    <div class="formula-expr">f(x, y) = xʸ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE VERIFICATION MODULES -->
+    <section class="doc-section reveal" style="background: var(--bg-surface);">
+        <div class="container">
+            <h2 class="section-title">Functional Verification Vectors</h2>
+            <div class="examples-list" id="verification-matrix">
+                <div class="example-pill" data-calc="25+18"><span>25 + 18</span><strong>= 43</strong></div>
+                <div class="example-pill" data-calc="100-45"><span>100 - 45</span><strong>= 55</strong></div>
+                <div class="example-pill" data-calc="25*8"><span>25 × 8</span><strong>= 200</strong></div>
+                <div class="example-pill" data-calc="8^3"><span>8³</span><strong>= 512</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE SYSTEM CAPABILITIES FRAME -->
+    <section class="doc-section reveal">
+        <div class="container">
+            <h2 class="section-title">Engineered Capabilities</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+                    <h3 class="feature-h">Deterministic Runtime</h3>
+                    <p class="feature-p">Local tokenized parsing architecture prevents memory leaks or cross-site runtime payload issues.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                    <h3 class="feature-h">Floating Correction Layer</h3>
+                    <p class="feature-p">Eliminates standard JavaScript binary precision errors using scalar decimal standard balancing models.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+                    <h3 class="feature-h">Accessibility Schema</h3>
+                    <p class="feature-p">Optimized ARIA live target attributes seamlessly bridge complex grid structures for screen reader integration layers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SYSTEM EXPANSION FAQ LAYER -->
+    <section class="doc-section reveal" style="background: var(--bg-surface);">
+        <div class="container">
+            <h2 class="section-title">Technical Support Operations Matrix</h2>
+            <div class="faq-wrapper">
+                <div class="faq-item">
+                    <button class="faq-btn"><span>How does the parsing engine process inputs without using standard eval frameworks?</span><svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+                    <div class="faq-content"><p>Utilmint runs a custom lexical analyzer that transforms inputs into structured token sets before evaluating them using Shunting-yard tree sequences.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-btn"><span>Are data variables retained persistently across local machine structures?</span><svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+                    <div class="faq-content"><p>Historical processing logs use standard isolated local storage APIs that operate exclusively within your sandbox layer.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRAND FOOTER MODULE -->
+    <footer>
+        <div class="footer-waves">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V1200H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="container footer-cols">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16M7 4v16M12 4v16M17 4v16" stroke-dasharray="1 3"/></svg>
+                    <span>Utilmint</span>
+                </a>
+                <p>High performance visual operational compute matrices designed for cross-platform execution metrics.</p>
+            </div>
+            <div>
+                <h4 class="footer-h">Ecosystem Map</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Platform Hub</a></li>
+                    <li><a href="#">Security Paradigm</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-h">Governance Matrix</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Framework</a></li>
+                    <li><a href="#">Operational Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-base">
+            <p>&copy; 2026 Utilmint Systems Architecture. All analytical matrices reserved.</p>
+            <p>Calculated dynamically via client execution layers.</p>
+        </div>
+    </footer>
+
+    <!-- VERTICAL SCREEN FLUID TRIGGER HOIST -->
+    <button id="btt-btn" aria-label="Hoist viewport framework bounds back to header limit line"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg></button>
+
+    <!-- APPLICATION CODE SCRIPT LOGIC -->
+    <script>
+        // CLIENT INTERFACE PERSISTENCE STATE
+        let internalExpression = "";
+        let memoryCache = 0;
+        let operationHistory = JSON.parse(localStorage.getItem("utilmint_calc_history") || "[]");
+        let transactionPointer = -1;
+        let stateTimeline = [""];
+
+        // INTIALIZE COMPUTE HANDLERS AND BIND DOM OBJECTS
+        document.addEventListener("DOMContentLoaded", () => {
+            initAppearanceTheme();
+            renderOperationalHistory();
+            bindKeypadActions();
+            bindSecondaryUtilities();
+            setupIntersectionMonitoring();
+        });
+
+        // APPEARANCE MATRIX THEME ENGINE
+        function initAppearanceTheme() {
+            const switcher = document.getElementById("theme-switcher");
+            const fetchThemeSetting = () => localStorage.getItem("utilmint_theme_mode") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            
+            const pushThemeMode = (mode) => {
+                document.documentElement.setAttribute("data-theme", mode);
+                localStorage.setItem("utilmint_theme_mode", mode);
+            };
+
+            pushThemeMode(fetchThemeSetting());
+            switcher.addEventListener("click", () => {
+                const target = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                pushThemeMode(target);
+            });
+        }
+
+        // COMPUTE ENGINE INTERACTIVE CORE CONTROLLER
+        function processInputToken(token) {
+            const outBox = document.getElementById("calc-output");
+            const exprBox = document.getElementById("calc-expression");
+
+            if (["MC","MR","M+","M-","MS"].includes(token)) {
+                handleMemoryOperation(token, parseFloat(outBox.textContent || "0"));
+                return;
+            }
+
+            switch(token) {
+                case "C":
+                    internalExpression = "";
+                    outBox.textContent = "0";
+                    break;
+                case "CE":
+                    // Clear the last entry from the working expression string
+                    let match = internalExpression.match(/[\d.]+$|([+\-*/^%mod(xʸ)])+$/);
+                    if (match) internalExpression = internalExpression.slice(0, -match[0].length);
+                    else internalExpression = "";
+                    break;
+                case "DEL":
+                    if(internalExpression.length > 0) internalExpression = internalExpression.slice(0, -1);
+                    break;
+                case "=":
+                    executeCalculationSequence();
+                    break;
+                case "ABS":
+                    wrapFunctionalExpression("abs");
+                    break;
+                case "SQ":
+                    internalExpression += "^2";
+                    break;
+                case "CUBE":
+                    internalExpression += "^3";
+                    break;
+                case "POW":
+                    internalExpression += "^";
+                    break;
+                case "SQRT":
+                    wrapFunctionalExpression("sqrt");
+                    break;
+                case "CBRT":
+                    wrapFunctionalExpression("cbrt");
+                    break;
+                case "RECIP":
+                    wrapFunctionalExpression("recip");
+                    break;
+                case "NEG":
+                    toggleExpressionSign(outBox);
+                    break;
+                case "MOD":
+                    internalExpression += "%";
+                    break;
+                case "PERT":
+                    internalExpression += "/100";
+                    break;
+                default:
+                    // Append numbers and operators directly to the working string
+                    if (outBox.textContent === "0" && !isNaN(token)) internalExpression = token;
+                    else internalExpression += token;
+                    break;
+            }
+
+            // Sync visual display nodes with state changes
+            exprBox.textContent = formatDisplayString(internalExpression);
+            if(token !== "=" && token !== "NEG") {
+                outBox.textContent = computeRunningRealtimePreview();
+            }
+
+            // Append state modifications to history timelines
+            if (stateTimeline[transactionPointer + 1] !== internalExpression) {
+                stateTimeline = stateTimeline.slice(0, transactionPointer + 1);
+                stateTimeline.push(internalExpression);
+                transactionPointer++;
+            }
+        }
+
+        function formatDisplayString(str) {
+            return str.replace(/\*/g, " × ").replace(/\//g, " ÷ ").replace(/\^/g, "^");
+        }
+
+        function wrapFunctionalExpression(fnKeyword) {
+            if(!internalExpression) return;
+            internalExpression = `${fnKeyword}(${internalExpression})`;
+        }
+
+        function toggleExpressionSign(outBox) {
+            let val = parseFloat(outBox.textContent || "0");
+            val = -val;
+            outBox.textContent = val.toString();
+            internalExpression = val.toString();
+        }
+
+        // CLIENT INTERFACE RUNTIME MATH PARSER ENGINE (No eval)
+        function computeRunningRealtimePreview() {
+            if(!internalExpression) return "0";
+            try {
+                // Ensure balanced parenthesis arrays are present for background computations
+                let cleanStr = internalExpression;
+                let openCount = (cleanStr.match(/\(/g) || []).length;
+                let closeCount = (cleanStr.match(/\)/g) || []).length;
+                while(openCount > closeCount) { cleanStr += ")"; closeCount++; }
+                
+                let res = parseExpressionString(cleanStr);
+                return cleanResScalar(res);
+            } catch(e) {
+                return "0";
+            }
+        }
+
+        function executeCalculationSequence() {
+            const outBox = document.getElementById("calc-output");
+            const exprBox = document.getElementById("calc-expression");
+            if (!internalExpression) return;
+
+            try {
+                let finalVal = parseExpressionString(internalExpression);
+                let stringifiedResult = cleanResScalar(finalVal);
+                
+                // Commit complete operations to localized logs
+                pushHistoryTransactionRecord(internalExpression, stringifiedResult);
+                
+                exprBox.textContent = formatDisplayString(internalExpression) + " =";
+                outBox.textContent = stringifiedResult;
+                internalExpression = stringifiedResult;
+            } catch(err) {
+                outBox.textContent = "Error";
+                internalExpression = "";
+            }
+        }
+
+        function cleanResScalar(num) {
+            if (isNaN(num)) return "NaN";
+            if (!isFinite(num)) return "Infinity";
+            let s = parseFloat(num.toFixed(12)).toString();
+            if(s.length > 16) return num.toExponential(8);
+            return s;
+        }
+
+        // LEXICAL MATHEMATICAL STRING TOKENIZER & EVALUATOR SHUNTING YARD PARSER
+        function parseExpressionString(str) {
+            // Replace function shorthand variations with easily queryable patterns
+            str = str.replace(/abs\(/g, "A(").replace(/sqrt\(/g, "S(").replace(/cbrt\(/g, "C(").replace(/recip\(/g, "R(");
+            
+            let tokens = [];
+            let i = 0;
+            while(i < str.length) {
+                let c = str[i];
+                if("+-*/^%()ASC1234567890.R".indexOf(c) === -1) { i++; continue; }
+                if(c === '-' && (i === 0 || " +-*/(^%ASTR".indexOf(str[i-1]) !== -1)) {
+                    // Detect negative numbers based on context positioning markers
+                    let numStr = "-";
+                    i++;
+                    while(i < str.length && /[0-9.]/.test(str[i])) { numStr += str[i]; i++; }
+                    tokens.push({type: 'NUM', val: parseFloat(numStr)});
+                    continue;
+                }
+                if(/[0-9.]/.test(c)) {
+                    let numStr = "";
+                    while(i < str.length && /[0-9.]/.test(str[i])) { numStr += str[i]; i++; }
+                    tokens.push({type: 'NUM', val: parseFloat(numStr)});
+                    continue;
+                }
+                if("ASC R".indexOf(c) !== -1) { tokens.push({type: 'FN', val: c}); i++; continue; }
+                tokens.push({type: 'OP', val: c});
+                i++;
+            }
+
+            // Evaluate structured token trees sequentially
+            return evaluateTokenArray(tokens);
+        }
+
+        function evaluateTokenArray(tokens) {
+            let outputQueue = [];
+            let operatorStack = [];
+            let precedence = { '+': 1, '-': 1, '*': 2, '/': 2, '%': 2, '^': 3 };
+
+            for(let t of tokens) {
+                if(t.type === 'NUM') {
+                    outputQueue.push(t);
+                } else if(t.type === 'FN') {
+                    operatorStack.push(t);
+                } else if(t.type === 'OP' && t.val !== '(' && t.val !== ')') {
+                    while(operatorStack.length && 
+                          operatorStack[operatorStack.length - 1].val !== '(' && 
+                          (operatorStack[operatorStack.length - 1].type === 'FN' || 
+                           precedence[operatorStack[operatorStack.length - 1].val] >= precedence[t.val])) {
+                        outputQueue.push(operatorStack.pop());
+                    }
+                    operatorStack.push(t);
+                } else if(t.val === '(') {
+                    operatorStack.push(t);
+                } else if(t.val === ')') {
+                    while(operatorStack.length && operatorStack[operatorStack.length - 1].val !== '(') {
+                        outputQueue.push(operatorStack.pop());
+                    }
+                    operatorStack.pop(); // Remove open parenthesis token mapping references
+                    if(operatorStack.length && operatorStack[operatorStack.length - 1].type === 'FN') {
+                        outputQueue.push(operatorStack.pop());
+                    }
+                }
+            }
+            while(operatorStack.length) { outputQueue.push(operatorStack.pop()); }
+
+            // Process output queues via compute stacks
+            let stack = [];
+            for(let node of outputQueue) {
+                if(node.type === 'NUM') {
+                    stack.push(node.val);
+                } else if(node.type === 'OP') {
+                    let b = stack.pop();
+                    let a = stack.pop();
+                    if(a === undefined) a = 0; // Operational safety boundary fallback values
+                    switch(node.val) {
+                        case '+': stack.push(a + b); break;
+                        case '-': stack.push(a - b); break;
+                        case '*': stack.push(a * b); break;
+                        case '/': stack.push(b === 0 ? Infinity : a / b); break;
+                        case '%': stack.push(a % b); break;
+                        case '^': stack.push(Math.pow(a, b)); break;
+                    }
+                } else if(node.type === 'FN') {
+                    let v = stack.pop();
+                    switch(node.val) {
+                        case 'A': stack.push(Math.abs(v)); break;
+                        case 'S': stack.push(Math.sqrt(v)); break;
+                        case 'C': stack.push(Math.cbrt(v)); break;
+                        case 'R': stack.push(v === 0 ? Infinity : 1 / v); break;
+                    }
+                }
+            }
+            return stack[0] || 0;
+        }
+
+        // MEMORY API PARSING ARCHITECTURES
+        function handleMemoryOperation(op, currentDisplayValue) {
+            const flag = document.getElementById("mem-flag");
+            switch(op) {
+                case "MC": memoryCache = 0; break;
+                case "MR": internalExpression = memoryCache.toString(); document.getElementById("calc-output").textContent = memoryCache.toString(); break;
+                case "M+": memoryCache += currentDisplayValue; break;
+                case "M-": memoryCache -= currentDisplayValue; break;
+                case "MS": memoryCache = currentDisplayValue; break;
+            }
+            flag.textContent = memoryCache !== 0 ? "M" : "";
+        }
+
+        // SESSION TRANSACTION LEDGER ENGINE
+        function pushHistoryTransactionRecord(expr, res) {
+            let item = { id: Date.now(), expr: formatDisplayString(expr), res: res, time: new Date().toLocaleTimeString() };
+            operationHistory.unshift(item);
+            if(operationHistory.length > 50) operationHistory.pop();
+            localStorage.setItem("utilmint_calc_history", JSON.stringify(operationHistory));
+            renderOperationalHistory();
+        }
+
+        function renderOperationalHistory() {
+            const container = document.getElementById("history-target-box");
+            container.innerHTML = "";
+            let q = document.getElementById("history-query").value.toLowerCase().trim();
+            
+            let items = operationHistory.filter(i => i.expr.toLowerCase().includes(q) || i.res.toLowerCase().includes(q));
+            if(!items.length) {
+                container.innerHTML = '<div class="empty-history">No Transaction Records Found</div>';
+                return;
+            }
+
+            items.forEach(i => {
+                let div = document.createElement("div");
+                div.className = "history-item";
+                div.innerHTML = `
+                    <button class="history-item-del" data-id="${i.id}" aria-label="Purge log item row"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                    <div class="history-formula">${i.expr}</div>
+                    <div class="history-result">${i.res}</div>
+                    <div class="history-timestamp">${i.time}</div>
+                `;
+                div.addEventListener("click", (e) => {
+                    if(e.target.closest('.history-item-del')) {
+                        e.stopPropagation();
+                        operationHistory = operationHistory.filter(h => h.id !== i.id);
+                        localStorage.setItem("utilmint_calc_history", JSON.stringify(operationHistory));
+                        renderOperationalHistory();
+                        return;
+                    }
+                    internalExpression = i.res;
+                    document.getElementById("calc-output").textContent = i.res;
+                    document.getElementById("calc-expression").textContent = i.res;
+                });
+                container.appendChild(div);
+            });
+        }
+
+        // DEBOUNCED TRANSACTION RECORD FILTERS
+        document.getElementById("history-query").addEventListener("input", () => { renderOperationalHistory(); });
+        document.getElementById("clear-history-trigger").addEventListener("click", () => {
+            operationHistory = [];
+            localStorage.removeItem("utilmint_calc_history");
+            renderOperationalHistory();
+        });
+
+        // PHYSICAL BINDINGS FOR HARDWARE KEYBOARDS
+        function bindKeypadActions() {
+            const matrix = document.getElementById("keypad-matrix");
+            matrix.addEventListener("click", (e) => {
+                const btn = e.target.closest(".calc-btn");
+                if(!btn) return;
+                
+                // Trigger localized graphic processing ink ripples
+                triggerInkRipple(e, btn);
+                processInputToken(btn.dataset.token);
+            });
+
+            window.addEventListener("keydown", (e) => {
+                let k = e.key;
+                if(/[0-9.+\-*/()=]/.test(k)) { e.preventDefault(); processInputToken(k === "x" ? "*" : k); return; }
+                if(k === "Enter") { e.preventDefault(); processInputToken("="); return; }
+                if(k === "Backspace") { e.preventDefault(); processInputToken("DEL"); return; }
+                if(k === "Escape") { e.preventDefault(); processInputToken("C"); return; }
+                if(e.ctrlKey && k.toLowerCase() === 'c') {
+                    navigator.clipboard.writeText(document.getElementById("calc-output").textContent);
+                }
+            });
+        }
+
+        function triggerInkRipple(e, target) {
+            let rip = document.createElement("span");
+            rip.className = "ripple";
+            let rect = target.getBoundingClientRect();
+            let x = e.clientX - rect.left;
+            let y = e.clientY - rect.top;
+            rip.style.left = `${x}px`; rip.style.top = `${y}px`;
+            target.appendChild(rip);
+            setTimeout(() => rip.remove(), 500);
+        }
+
+        // UTILITY SYSTEM AND HOOK BINDINGS
+        function bindSecondaryUtilities() {
+            document.getElementById("btn-copy-val").addEventListener("click", () => {
+                navigator.clipboard.writeText(document.getElementById("calc-output").textContent);
+            });
+            document.getElementById("btn-undo").addEventListener("click", () => {
+                if(transactionPointer > 0) {
+                    transactionPointer--;
+                    internalExpression = stateTimeline[transactionPointer];
+                    document.getElementById("calc-expression").textContent = formatDisplayString(internalExpression);
+                    document.getElementById("calc-output").textContent = computeRunningRealtimePreview();
+                }
+            });
+            document.getElementById("btn-redo").addEventListener("click", () => {
+                if(transactionPointer < stateTimeline.length - 1) {
+                    transactionPointer++;
+                    internalExpression = stateTimeline[transactionPointer];
+                    document.getElementById("calc-expression").textContent = formatDisplayString(internalExpression);
+                    document.getElementById("calc-output").textContent = computeRunningRealtimePreview();
+                }
+            });
+
+            // Bind verification vectors directly to internal logic processes
+            document.getElementById("verification-matrix").addEventListener("click", (e) => {
+                let card = e.target.closest(".example-pill");
+                if(!card) return;
+                internalExpression = card.dataset.calc;
+                executeCalculationSequence();
+            });
+
+            // Scroll Monitoring Infrastructure Hooks
+            const progress = document.getElementById("scroll-progress");
+            const btt = document.getElementById("btt-btn");
+            window.addEventListener("scroll", () => {
+                let offset = window.scrollY;
+                let limit = document.documentElement.scrollHeight - window.innerHeight;
+                if(limit > 0) progress.style.width = `${(offset / limit) * 100}%`;
+                
+                if(offset > 200) btt.classList.add("visible");
+                else btt.classList.remove("visible");
+            });
+            btt.addEventListener("click", () => window.scrollTo({top: 0, behavior: 'smooth'}));
+
+            // Accordion UI Logic Initialization
+            document.querySelectorAll(".faq-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    let wrapper = btn.parentElement;
+                    let inner = wrapper.querySelector(".faq-content");
+                    let isOpen = wrapper.classList.contains("open");
+                    
+                    document.querySelectorAll(".faq-item").forEach(i => {
+                        i.classList.remove("open");
+                        i.querySelector(".faq-content").style.maxHeight = null;
+                    });
+                    
+                    if(!isOpen) {
+                        wrapper.classList.add("open");
+                        inner.style.maxHeight = inner.scrollHeight + "px";
+                    }
+                });
+            });
+        }
+
+        // RUNTIME VIEWPORT ON-SCREEN OBSERVERS
+        function setupIntersectionMonitoring() {
+            let reveals = document.querySelectorAll(".reveal");
+            let obs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if(e.isIntersecting) e.target.classList.add("active");
+                });
+            }, { threshold: 0.1 });
+            reveals.forEach(r => obs.observe(r));
+        }
+    </script>
+</body>
+</html>
