@@ -1,1107 +1,1267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Utilmint — All-in-One Mathematics Calculator Suite</title>
-<meta name="description" content="Utilmint is a free, professional all-in-one mathematics calculator suite — 50+ precise tools for arithmetic, algebra, geometry, 3D solids and statistics, all in your browser.">
-<meta name="keywords" content="calculator, math calculator, percentage calculator, fraction calculator, geometry calculator, algebra calculator, statistics calculator, online calculator, free calculator, utilmint">
-<meta name="author" content="Utilmint">
-<link rel="canonical" href="https://www.utilmint.com/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilmint – Professional All-in-One Mathematics Calculator Suite</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Access 50+ professional, fast, and highly accurate mathematical calculators on Utilmint. An all-in-one suite featuring algebra, geometry, statistics, and matrix calculation tools.">
+    <meta name="keywords" content="math calculator, geometry calculator, algebra solver, statistics calculator, percentage tool, professional math suite, Utilmint">
+    <meta name="author" content="Utilmint Platform">
+    <link rel="canonical" href="https://www.utilmint.com/">
 
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Utilmint">
-<meta property="og:title" content="Utilmint — All-in-One Mathematics Calculator Suite">
-<meta property="og:description" content="50+ free, precise math calculators for arithmetic, algebra, geometry, 3D solids and statistics — all in one place.">
-<meta property="og:url" content="https://www.utilmint.com/">
-<meta property="og:image" content="https://www.utilmint.com/assets/og-image.png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.utilmint.com/">
+    <meta property="og:title" content="Utilmint – Professional All-in-One Mathematics Calculator Suite">
+    <meta property="og:description" content="Access 50+ professional, fast, and highly accurate mathematical calculators on Utilmint.">
+    <meta property="og:image" content="https://www.utilmint.com/assets/og-preview.png">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Utilmint — All-in-One Mathematics Calculator Suite">
-<meta name="twitter:description" content="50+ free, precise math calculators for arithmetic, algebra, geometry, 3D solids and statistics.">
-<meta name="twitter:image" content="https://www.utilmint.com/assets/og-image.png">
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.utilmint.com/">
+    <meta property="twitter:title" content="Utilmint – Professional All-in-One Mathematics Calculator Suite">
+    <meta property="twitter:description" content="Access 50+ professional, fast, and highly accurate mathematical calculators on Utilmint.">
+    <meta property="twitter:image" content="https://www.utilmint.com/assets/og-preview.png">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2322B573'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Georgia,serif' fill='%23F5F7F1' text-anchor='middle'%3E∑%3C/text%3E%3C/svg%3E">
+    <!-- JSON-LD Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Utilmint",
+      "url": "https://www.utilmint.com",
+      "description": "Professional All-in-One Mathematics Calculator Platform providing 50 distinct calculation workflows.",
+      "applicationCategory": "EducationalApplication, BusinessApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires HTML5, CSS3, and JavaScript enabled modern browsers."
+    }
+    </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Utilmint",
-  "alternateName": "Utilmint Mathematics Calculator Suite",
-  "url": "https://www.utilmint.com/",
-  "description": "Utilmint is a free, professional all-in-one mathematics calculator suite with 50+ tools for arithmetic, algebra, geometry, 3D solids and statistics.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.utilmint.com/?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
+    <style>
+        /* CSS RESET & VARIABLES */
+        :root {
+            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            
+            /* Light Theme Palette */
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.75);
+            --border-glass: rgba(255, 255, 255, 0.5);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-primary: #0ea5e9;
+            --accent-secondary: #2563eb;
+            --accent-glow: rgba(14, 165, 233, 0.3);
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+            --nav-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+            --transition-speed: 0.3s;
+        }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+        [data-theme="dark"] {
+            /* Dark Theme Palette */
+            --bg-primary: #0b0f19;
+            --bg-secondary: #111827;
+            --bg-glass: rgba(17, 24, 39, 0.75);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-primary: #38bdf8;
+            --accent-secondary: #3b82f6;
+            --accent-glow: rgba(56, 189, 248, 0.25);
+            --card-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
+            --nav-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+        }
 
-<style>
-/* ==========================================================================
-   UTILMINT — DESIGN TOKENS
-   Concept: a "mint" that stamps and strikes precise numbers. Deep pine-ink
-   and warm paper carry a struck-gold and fresh-mint accent pair, echoing a
-   coin mint rather than a generic SaaS palette. Fraunces (a characterful,
-   slightly wonky serif) plays display headlines; Inter carries body copy;
-   JetBrains Mono renders every literal number and symbol, like a ledger.
-   ========================================================================== */
-:root{
-  --ink:#0E1A17;
-  --ink-2:#122420;
-  --ink-3:#173129;
-  --paper:#F6F7F1;
-  --paper-2:#ECEFE6;
-  --paper-3:#E2E6DA;
-  --mint:#1FAE6E;
-  --mint-2:#158457;
-  --mint-soft:#CDEEDD;
-  --gold:#D2A63E;
-  --gold-2:#B78A2A;
-  --text:#101E1A;
-  --text-soft:#4C5B54;
-  --text-inv:#F3F5EE;
-  --text-inv-soft:#AEC0B8;
-  --line:rgba(16,30,26,0.10);
-  --line-inv:rgba(243,245,238,0.12);
-  --shadow-1:0 1px 2px rgba(16,30,26,.06), 0 8px 24px rgba(16,30,26,.06);
-  --shadow-2:0 4px 14px rgba(16,30,26,.10), 0 20px 44px rgba(16,30,26,.10);
-  --radius-s:10px;
-  --radius-m:16px;
-  --radius-l:26px;
-  --ease:cubic-bezier(.22,1,.36,1);
-  --bg:var(--paper);
-  --bg-2:var(--paper-2);
-  --bg-3:var(--paper-3);
-  --fg:var(--text);
-  --fg-soft:var(--text-soft);
-  --surface:#FFFFFFEE;
-  --surface-solid:#FFFFFF;
-  --border:var(--line);
-  color-scheme: light;
-}
-[data-theme="dark"]{
-  --bg:var(--ink);
-  --bg-2:var(--ink-2);
-  --bg-3:var(--ink-3);
-  --fg:var(--text-inv);
-  --fg-soft:var(--text-inv-soft);
-  --surface:#16281FE6;
-  --surface-solid:#152720;
-  --border:var(--line-inv);
-  --shadow-1:0 1px 2px rgba(0,0,0,.30), 0 8px 24px rgba(0,0,0,.30);
-  --shadow-2:0 4px 18px rgba(0,0,0,.35), 0 24px 54px rgba(0,0,0,.40);
-  color-scheme: dark;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
 
-*,*::before,*::after{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto;}
-  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important;}
-}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--fg);
-  font-family:'Inter',system-ui,-apple-system,sans-serif;
-  -webkit-font-smoothing:antialiased;
-  transition:background .5s var(--ease), color .5s var(--ease);
-  overflow-x:hidden;
-}
-img,svg{display:block;max-width:100%;}
-a{color:inherit;text-decoration:none;}
-button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
-ul{list-style:none;margin:0;padding:0;}
-h1,h2,h3,h4,p{margin:0;}
-.mono{font-family:'JetBrains Mono',monospace;}
-.serif{font-family:'Fraunces',serif;}
-:focus-visible{outline:2.5px solid var(--mint);outline-offset:3px;border-radius:6px;}
-.container{width:100%;max-width:1280px;margin:0 auto;padding:0 24px;}
-.section-eyebrow{
-  font-family:'JetBrains Mono',monospace;
-  font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--mint-2);font-weight:600;
-  display:inline-flex;align-items:center;gap:8px;
-}
-[data-theme="dark"] .section-eyebrow{color:var(--mint);}
-.section-eyebrow::before{content:"";width:22px;height:1.5px;background:var(--gold);}
-.section-head{max-width:640px;margin-bottom:48px;}
-.section-head h2{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,42px);font-weight:600;line-height:1.15;margin:14px 0 12px;letter-spacing:-.01em;}
-.section-head p{color:var(--fg-soft);font-size:16.5px;line-height:1.65;}
-.center{text-align:center;margin-left:auto;margin-right:auto;}
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            overflow-x: hidden;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            line-height: 1.5;
+        }
 
-/* Scroll progress */
-#scroll-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--mint),var(--gold));z-index:1100;transition:width .1s linear;}
+        /* UTILITIES & KEYFRAMES */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-/* ================= HEADER ================= */
-header#site-header{
-  position:sticky;top:0;z-index:1000;
-  padding:14px 0;
-  transition:padding .35s var(--ease), background .35s var(--ease), box-shadow .35s var(--ease);
-}
-.nav-inner{
-  display:flex;align-items:center;justify-content:space-between;gap:20px;
-  padding:10px 18px;border-radius:100px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  backdrop-filter:blur(18px) saturate(160%);
-  -webkit-backdrop-filter:blur(18px) saturate(160%);
-  box-shadow:var(--shadow-1);
-  transition:box-shadow .35s var(--ease), background .35s var(--ease);
-}
-header#site-header.scrolled{padding:8px 0;}
-header#site-header.scrolled .nav-inner{box-shadow:var(--shadow-2);}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;}
-.brand-mark{width:38px;height:38px;border-radius:11px;position:relative;flex:none;
-  background:linear-gradient(145deg,var(--mint) 0%,var(--mint-2) 60%,var(--gold) 130%);
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.35), 0 6px 14px rgba(31,174,110,.35);
-  display:flex;align-items:center;justify-content:center;
-  animation:markSpin 9s linear infinite;
-}
-@keyframes markSpin{0%,92%{transform:rotate(0deg);}96%{transform:rotate(8deg);}100%{transform:rotate(0deg);}}
-.brand-mark svg{width:20px;height:20px;}
-.brand-name{font-family:'Fraunces',serif;font-size:20px;letter-spacing:-.01em;}
-.brand-tag{display:none;}
-.nav-links{display:flex;align-items:center;gap:4px;}
-.nav-links a{padding:9px 16px;border-radius:100px;font-size:14.5px;font-weight:600;color:var(--fg-soft);transition:color .25s,background .25s;position:relative;}
-.nav-links a:hover,.nav-links a:focus-visible{color:var(--fg);background:var(--bg-2);}
-.nav-right{display:flex;align-items:center;gap:8px;}
-.theme-toggle{
-  width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  border:1px solid var(--border);background:var(--bg-2);position:relative;overflow:hidden;
-  transition:transform .3s var(--ease), background .3s;
-}
-.theme-toggle:hover{transform:rotate(-14deg) scale(1.06);}
-.theme-toggle svg{width:19px;height:19px;transition:opacity .3s, transform .5s var(--ease);}
-.icon-sun{position:absolute;}
-.icon-moon{position:absolute;}
-[data-theme="light"] .icon-moon,body:not([data-theme]) .icon-moon{opacity:0;transform:rotate(60deg) scale(.4);}
-[data-theme="light"] .icon-sun,body:not([data-theme]) .icon-sun{opacity:1;transform:rotate(0) scale(1);}
-[data-theme="dark"] .icon-sun{opacity:0;transform:rotate(-60deg) scale(.4);}
-[data-theme="dark"] .icon-moon{opacity:1;transform:rotate(0) scale(1);}
-.menu-btn{display:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--border);background:var(--bg-2);align-items:center;justify-content:center;}
-.menu-btn span{display:block;width:16px;height:1.6px;background:var(--fg);position:relative;transition:transform .3s,opacity .3s;}
-.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0;width:16px;height:1.6px;background:var(--fg);transition:transform .3s;}
-.menu-btn span::before{top:-5px;}
-.menu-btn span::after{top:5px;}
-.menu-btn.open span{background:transparent;}
-.menu-btn.open span::before{transform:translateY(5px) rotate(45deg);}
-.menu-btn.open span::after{transform:translateY(-5px) rotate(-45deg);}
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-@media (max-width:860px){
-  .nav-links{position:fixed;top:78px;left:16px;right:16px;flex-direction:column;align-items:stretch;
-    background:var(--surface-solid);border:1px solid var(--border);border-radius:var(--radius-m);
-    padding:10px;box-shadow:var(--shadow-2);gap:2px;
-    opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .3s var(--ease),transform .3s var(--ease);}
-  .nav-links.open{opacity:1;pointer-events:auto;transform:translateY(0);}
-  .nav-links a{padding:13px 16px;}
-  .menu-btn{display:flex;}
-  .brand-name{font-size:18px;}
-}
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-/* ================= HERO ================= */
-.hero{position:relative;padding:96px 0 120px;overflow:hidden;isolation:isolate;}
-.hero-bg{position:absolute;inset:0;z-index:-2;
-  background:
-    radial-gradient(120% 90% at 15% -10%, color-mix(in srgb, var(--mint) 20%, transparent), transparent 60%),
-    radial-gradient(100% 80% at 90% 0%, color-mix(in srgb, var(--gold) 18%, transparent), transparent 55%),
-    var(--bg);
-}
-.grid-paper{position:absolute;inset:0;z-index:-1;opacity:.5;
-  background-image:linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size:42px 42px;
-  mask-image:radial-gradient(70% 60% at 50% 20%, black 10%, transparent 80%);
-  -webkit-mask-image:radial-gradient(70% 60% at 50% 20%, black 10%, transparent 80%);
-}
-#particle-canvas{position:absolute;inset:0;z-index:-1;pointer-events:none;}
-.blob{position:absolute;border-radius:50%;filter:blur(50px);z-index:-1;opacity:.55;will-change:transform;}
-.blob-1{width:340px;height:340px;background:radial-gradient(circle at 35% 35%,var(--mint),transparent 70%);top:-60px;left:-60px;animation:floatBlob 13s ease-in-out infinite;}
-.blob-2{width:280px;height:280px;background:radial-gradient(circle at 60% 40%,var(--gold),transparent 70%);top:120px;right:-40px;animation:floatBlob 16s ease-in-out infinite reverse;}
-.blob-3{width:220px;height:220px;background:radial-gradient(circle at 50% 50%,var(--mint-2),transparent 70%);bottom:-60px;left:38%;animation:floatBlob 11s ease-in-out infinite;}
-@keyframes floatBlob{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(24px,-30px) scale(1.08);}}
-.hero-glyphs span{position:absolute;font-family:'Fraunces',serif;color:var(--fg);opacity:.06;font-size:120px;user-select:none;z-index:-1;}
-.hero-inner{position:relative;text-align:center;max-width:800px;margin:0 auto;}
-.hero-kicker{display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 8px;border-radius:100px;
-  background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-1);
-  font-size:13px;font-weight:600;color:var(--fg-soft);margin-bottom:28px;
-  animation:fadeSlideUp .7s var(--ease) both;}
-.hero-kicker b{color:var(--mint-2);font-family:'JetBrains Mono',monospace;background:var(--mint-soft);padding:3px 8px;border-radius:100px;font-size:11.5px;}
-[data-theme="dark"] .hero-kicker b{color:var(--ink);}
-.hero h1{font-family:'Fraunces',serif;font-weight:700;line-height:1;letter-spacing:-.02em;
-  font-size:clamp(46px,8vw,88px);
-  animation:fadeSlideUp .8s .05s var(--ease) both;}
-.hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--mint-2),var(--gold) 60%,var(--mint));background-clip:text;-webkit-background-clip:text;color:transparent;}
-.hero-sub{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(19px,2.6vw,26px);color:var(--fg-soft);margin-top:14px;
-  animation:fadeSlideUp .8s .12s var(--ease) both;}
-.hero p.desc{margin:22px auto 0;max-width:540px;color:var(--fg-soft);font-size:16.5px;line-height:1.7;
-  animation:fadeSlideUp .8s .18s var(--ease) both;}
-.hero-actions{display:flex;gap:14px;justify-content:center;margin-top:38px;flex-wrap:wrap;
-  animation:fadeSlideUp .8s .24s var(--ease) both;}
-@keyframes fadeSlideUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
+        }
 
-.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border-radius:100px;font-weight:700;font-size:15px;transition:transform .3s var(--ease), box-shadow .3s var(--ease);}
-.btn:active{transform:scale(.97);}
-.btn-primary{background:linear-gradient(120deg,var(--mint),var(--mint-2));color:#fff;box-shadow:0 10px 26px -8px rgba(31,174,110,.55);}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 34px -8px rgba(31,174,110,.6);}
-.btn-ghost{background:var(--surface);border:1px solid var(--border);color:var(--fg);}
-.btn-ghost:hover{transform:translateY(-3px);background:var(--bg-2);}
-.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);transform:scale(0);animation:rippleAnim .6s ease-out;pointer-events:none;}
-[data-theme="dark"] .btn-ghost .ripple, .card .ripple{background:rgba(31,174,110,.35);}
-@keyframes rippleAnim{to{transform:scale(3.2);opacity:0;}}
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; filter: blur(40px); }
+            50% { opacity: 0.7; filter: blur(60px); }
+        }
 
-.scroll-down{margin:56px auto 0;width:30px;height:46px;border:2px solid var(--border);border-radius:20px;display:flex;justify-content:center;padding-top:8px;cursor:pointer;background:var(--surface);}
-.scroll-down span{width:4px;height:8px;border-radius:3px;background:var(--mint-2);animation:scrollDot 1.6s ease-in-out infinite;}
-@keyframes scrollDot{0%{transform:translateY(0);opacity:1;}70%{transform:translateY(14px);opacity:0;}100%{opacity:0;}}
+        @keyframes gradientBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-/* ================= SEARCH ================= */
-.search-wrap{margin-top:-46px;position:relative;z-index:5;}
-.search-box{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:12px;
-  background:var(--surface-solid);border:1px solid var(--border);border-radius:100px;
-  padding:8px 8px 8px 22px;box-shadow:var(--shadow-2);
-  transition:box-shadow .3s,border-color .3s;}
-.search-box:focus-within{border-color:var(--mint);box-shadow:0 0 0 4px var(--mint-soft), var(--shadow-2);}
-.search-box svg{flex:none;width:20px;height:20px;color:var(--fg-soft);}
-.search-box input{flex:1;border:none;background:transparent;outline:none;font-size:15.5px;color:var(--fg);padding:10px 0;font-family:'Inter',sans-serif;}
-.search-box input::placeholder{color:var(--fg-soft);}
-.search-clear{width:34px;height:34px;border-radius:50%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;flex:none;}
-.search-clear.show{opacity:1;pointer-events:auto;}
-.search-clear:hover{transform:rotate(90deg);}
-.search-clear svg{width:14px;height:14px;}
-.search-count{text-align:center;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--fg-soft);letter-spacing:.03em;}
-.search-count b{color:var(--mint-2);}
-[data-theme="dark"] .search-count b{color:var(--mint);}
+        /* SCROLL PROGRESS BAR */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            width: 0%;
+            z-index: 1001;
+            transition: width 0.1s linear;
+        }
 
-/* ================= CALCULATOR GRID ================= */
-.calc-section{padding:100px 0 40px;}
-.calc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;}
-@media (max-width:1080px){.calc-grid{grid-template-columns:repeat(3,1fr);}}
-@media (max-width:640px){.calc-grid{grid-template-columns:repeat(2,1fr);gap:12px;}}
+        /* HEADER & NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glass);
+            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
 
-.card{
-  position:relative;aspect-ratio:1/1;border-radius:var(--radius-m);
-  padding:18px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;
-  background:var(--surface-solid);border:1px solid var(--border);
-  box-shadow:var(--shadow-1);
-  opacity:0;transform:translateY(24px) scale(.96);
-  transition:transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s var(--ease), opacity .5s var(--ease);
-  will-change:transform;
-}
-.card.in{opacity:1;transform:translateY(0) scale(1);}
-.card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.4px;
-  background:var(--card-grad);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s;}
-.card::after{content:"";position:absolute;inset:-40%;background:var(--card-grad);opacity:0;filter:blur(30px);z-index:-1;transition:opacity .4s;}
-.card:hover{transform:translateY(-8px) scale(1.015);box-shadow:var(--shadow-2);border-color:transparent;}
-.card:hover::before{opacity:1;}
-.card:hover::after{opacity:.28;}
-.card:hover .card-icon{transform:scale(1.08) rotate(-4deg);}
-.card:active{transform:translateY(-4px) scale(.99);}
-.card-icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;
-  background:var(--card-grad);box-shadow:0 8px 18px -6px var(--card-shadow,rgba(0,0,0,.35));
-  transition:transform .4s var(--ease);flex:none;}
-.card-icon svg{width:24px;height:24px;color:#fff;filter:drop-shadow(0 1px 1px rgba(0,0,0,.15));}
-.card-body{margin-top:12px;}
-.card-name{font-family:'Fraunces',serif;font-weight:600;font-size:15px;line-height:1.25;letter-spacing:-.005em;}
-.card-desc{font-size:12px;color:var(--fg-soft);margin-top:5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.card-arrow{position:absolute;top:16px;right:16px;width:26px;height:26px;border-radius:50%;background:var(--bg-2);
-  display:flex;align-items:center;justify-content:center;opacity:0;transform:translate(-6px,6px);
-  transition:opacity .3s, transform .3s;}
-.card:hover .card-arrow{opacity:1;transform:translate(0,0);}
-.card-arrow svg{width:12px;height:12px;}
-.card.soon{background:linear-gradient(150deg,var(--bg-2),var(--bg-3));border-style:dashed;}
-.card.soon .card-icon{background:linear-gradient(135deg,var(--fg-soft),var(--fg));}
-.card.hidden-item{display:none;}
-.no-results{display:none;text-align:center;padding:70px 20px;color:var(--fg-soft);}
-.no-results.show{display:block;}
-.no-results svg{width:56px;height:56px;margin:0 auto 16px;color:var(--fg-soft);}
+        header.scrolled {
+            box-shadow: var(--nav-shadow);
+        }
 
-/* skeletons */
-.skeleton{aspect-ratio:1/1;border-radius:var(--radius-m);background:linear-gradient(100deg,var(--bg-2) 30%,var(--bg-3) 50%,var(--bg-2) 70%);background-size:200% 100%;animation:shimmer 1.4s ease-in-out infinite;}
-@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.5rem;
+        }
 
-.show-more-wrap{text-align:center;margin-top:36px;}
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.025em;
+        }
 
-/* ================= STATS ================= */
-.stats{padding:80px 0;}
-.stats-inner{border-radius:var(--radius-l);padding:56px 32px;background:linear-gradient(150deg,var(--ink) 0%, var(--ink-3) 100%);position:relative;overflow:hidden;}
-.stats-inner::before{content:"";position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
-  background-size:36px 36px;mask-image:radial-gradient(90% 90% at 50% 0%,#000,transparent 90%);}
-.stats-grid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
-@media (max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
-.stat-num{font-family:'Fraunces',serif;font-size:clamp(34px,5vw,54px);font-weight:700;color:var(--text-inv);}
-.stat-num span.accent{background:linear-gradient(100deg,var(--mint),var(--gold));background-clip:text;-webkit-background-clip:text;color:transparent;}
-.stat-label{margin-top:8px;color:var(--text-inv-soft);font-size:13.5px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;}
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            stroke: var(--accent-primary);
+        }
 
-/* ================= FEATURES ================= */
-.features{padding:100px 0;}
-.feat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
-@media (max-width:1080px){.feat-grid{grid-template-columns:repeat(3,1fr);}}
-@media (max-width:640px){.feat-grid{grid-template-columns:repeat(2,1fr);}}
-.feat-card{padding:26px 20px;border-radius:var(--radius-m);background:var(--surface-solid);border:1px solid var(--border);
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
-  opacity:0;transform:translateY(20px);}
-.feat-card.in{opacity:1;transform:translateY(0);}
-.feat-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-2);border-color:var(--mint);}
-.feat-icon{width:44px;height:44px;border-radius:12px;background:var(--mint-soft);display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:transform .4s var(--ease),background .3s;}
-[data-theme="dark"] .feat-icon{background:var(--ink-3);}
-.feat-card:hover .feat-icon{transform:rotate(-8deg) scale(1.08);background:var(--mint);}
-.feat-icon svg{width:22px;height:22px;color:var(--mint-2);transition:color .3s;}
-.feat-card:hover .feat-icon svg{color:#fff;}
-[data-theme="dark"] .feat-icon svg{color:var(--mint);}
-.feat-card h3{font-family:'Fraunces',serif;font-size:17px;font-weight:600;margin-bottom:6px;}
-.feat-card p{font-size:13.5px;color:var(--fg-soft);line-height:1.55;}
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
 
-/* ================= FAQ ================= */
-.faq{padding:100px 0;}
-.faq-list{max-width:760px;margin:0 auto;}
-.faq-item{border-bottom:1px solid var(--border);}
-.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 4px;text-align:left;font-family:'Fraunces',serif;font-size:18px;font-weight:600;}
-.faq-q:hover{color:var(--mint-2);}
-[data-theme="dark"] .faq-q:hover{color:var(--mint);}
-.faq-plus{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;transition:transform .4s var(--ease),background .3s;}
-.faq-plus::before,.faq-plus::after{content:"";position:absolute;background:var(--fg);transition:transform .35s var(--ease),opacity .35s;}
-.faq-plus::before{width:12px;height:1.6px;}
-.faq-plus::after{width:1.6px;height:12px;}
-.faq-item.open .faq-plus{background:var(--mint);border-color:var(--mint);transform:rotate(180deg);}
-.faq-item.open .faq-plus::before,.faq-item.open .faq-plus::after{background:#fff;}
-.faq-item.open .faq-plus::after{opacity:0;transform:scaleY(0);}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease);}
-.faq-a p{padding:0 4px 24px;color:var(--fg-soft);font-size:15px;line-height:1.7;max-width:640px;}
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color var(--transition-speed);
+            position: relative;
+        }
 
-/* ================= FOOTER ================= */
-footer{position:relative;padding:90px 0 30px;background:var(--ink);color:var(--text-inv);overflow:hidden;margin-top:60px;}
-.footer-wave{position:absolute;top:-1px;left:0;width:100%;line-height:0;transform:translateY(-99%);}
-.footer-wave svg{width:100%;height:80px;display:block;}
-.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid var(--line-inv);}
-@media (max-width:860px){.footer-grid{grid-template-columns:1fr 1fr;}}
-@media (max-width:480px){.footer-grid{grid-template-columns:1fr;}}
-.footer-brand p{color:var(--text-inv-soft);font-size:14px;line-height:1.7;margin-top:14px;max-width:280px;}
-.footer-col h4{font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
-.footer-col ul li{margin-bottom:11px;}
-.footer-col a{color:var(--text-inv-soft);font-size:14px;transition:color .25s,padding-left .25s;}
-.footer-col a:hover{color:var(--text-inv);padding-left:4px;}
-.social-row{display:flex;gap:10px;margin-top:20px;}
-.social-row a{width:38px;height:38px;border-radius:50%;border:1px solid var(--line-inv);display:flex;align-items:center;justify-content:center;transition:background .3s,transform .3s;}
-.social-row a:hover{background:var(--mint);transform:translateY(-3px);}
-.social-row svg{width:16px;height:16px;}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:26px;font-size:13px;color:var(--text-inv-soft);}
-.footer-bottom .legal{display:flex;gap:18px;flex-wrap:wrap;}
-.footer-bottom a:hover{color:var(--text-inv);}
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+        }
 
-#back-to-top{position:fixed;bottom:26px;right:26px;width:48px;height:48px;border-radius:50%;
-  background:var(--mint);color:#fff;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 10px 26px -6px rgba(31,174,110,.55);z-index:900;
-  opacity:0;pointer-events:none;transform:translateY(14px) scale(.85);
-  transition:opacity .35s var(--ease),transform .35s var(--ease);}
-#back-to-top.show{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
-#back-to-top:hover{transform:translateY(-4px) scale(1.05);}
-#back-to-top svg{width:18px;height:18px;}
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-/* Reveal utility */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
-.reveal.in{opacity:1;transform:translateY(0);}
+        .theme-toggle, .mobile-menu-toggle {
+            background: transparent;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--transition-speed);
+        }
 
-::selection{background:var(--mint);color:#fff;}
-::-webkit-scrollbar{width:11px;}
-::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--bg-3);border-radius:10px;border:2px solid var(--bg);}
-::-webkit-scrollbar-thumb:hover{background:var(--mint-2);}
+        .theme-toggle:hover {
+            background: var(--border-glass);
+        }
 
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
-.skip-link{position:absolute;left:16px;top:-60px;background:var(--mint);color:#fff;padding:12px 18px;border-radius:8px;z-index:2000;transition:top .3s;font-weight:700;}
-.skip-link:focus{top:16px;}
-</style>
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        .theme-toggle svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .theme-toggle .sun-icon { display: none; }
+        [data-theme="dark"] .theme-toggle .moon-icon { display: none; }
+        [data-theme="dark"] .theme-toggle .sun-icon { display: block; }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            padding: 10rem 0 6rem;
+            text-align: center;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.08), transparent 50%);
+        }
+
+        .hero-bg-glows {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow-circle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulseGlow 8s infinite ease-in-out, float 12s infinite ease-in-out;
+        }
+
+        .glow-1 { top: 10%; left: 15%; }
+        .glow-2 { top: 20%; right: 15%; animation-delay: -4s; }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-main) 30%, var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #ffffff;
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 10px 20px -5px var(--accent-glow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -5px var(--accent-glow);
+        }
+
+        /* SEARCH BAR SECTION */
+        .search-section {
+            padding: 2rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.25rem 1.5rem 1.25rem 3.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-glass);
+            background-color: var(--bg-glass);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            outline: none;
+            box-shadow: var(--card-shadow);
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.5rem;
+            height: 1.5rem;
+            stroke: var(--text-muted);
+            pointer-events: none;
+        }
+
+        /* CALCULATOR GRID */
+        .grid-section {
+            padding: 4rem 0 6rem;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+        }
+
+        .calc-card {
+            background-color: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 1.25rem;
+            aspect-ratio: 1 / 1;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-decoration: none;
+            color: var(--text-main);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s, border-color 0.4s;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .calc-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, var(--card-glow, rgba(14, 165, 233, 0.05)));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .calc-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px -15px var(--accent-glow);
+            border-color: var(--accent-primary);
+        }
+
+        .calc-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 3rem;
+            height: 3rem;
+            padding: 0.6rem;
+            border-radius: 0.75rem;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(37, 99, 235, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .calc-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .card-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--accent-primary);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .card-info {
+            margin-top: auto;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .calc-card.coming-soon {
+            opacity: 0.7;
+            cursor: not-allowed;
+            border-style: dashed;
+        }
+
+        .calc-card.coming-soon:hover {
+            transform: none;
+            box-shadow: var(--card-shadow);
+            border-color: var(--border-glass);
+        }
+
+        .calc-card.hidden {
+            display: none !important;
+        }
+
+        /* STATISTICS SECTION */
+        .stats-section {
+            padding: 5rem 0;
+            background-color: var(--bg-secondary);
+            border-y: 1px solid var(--border-glass);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 2.5rem 1.5rem;
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-glass);
+            border-radius: 1rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.04em;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* FEATURES SECTION */
+        .features-section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            padding: 2.5rem;
+            border-radius: 1.25rem;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(37, 99, 235, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+        }
+
+        .feature-icon svg {
+            width: 1.75rem;
+            height: 1.75rem;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .feature-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* FAQ SECTION */
+        .faq-section {
+            padding: 6rem 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .faq-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-glass);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: border-color var(--transition-speed);
+        }
+
+        .faq-trigger {
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .faq-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            stroke: var(--text-muted);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-content p {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .faq-item.open {
+            border-color: var(--accent-primary);
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* FOOTER & WAVE ANIMATION */
+        footer {
+            background-color: #0b0f19;
+            color: #94a3b8;
+            position: relative;
+            padding: 6rem 0 3rem;
+            overflow: hidden;
+        }
+
+        .footer-waves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .footer-waves svg {
+            position: relative;
+            display: block;
+            width: calc(150% + 1.3px);
+            height: 60px;
+        }
+
+        .footer-waves .shape-fill {
+            fill: var(--bg-primary);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-brand p {
+            margin-top: 1rem;
+            line-height: 1.6;
+            max-width: 320px;
+        }
+
+        .footer-brand .logo-area {
+            color: #ffffff;
+        }
+
+        .footer-title {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color var(--transition-speed);
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            font-size: 0.9rem;
+        }
+
+        /* BACK TO TOP */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #ffffff;
+            border: none;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 24px rgba(14, 165, 233, 0.6);
+        }
+
+        /* RESPONSIVE BREAKPOINTS */
+        @media (max-width: 1200px) {
+            .calc-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        @media (max-width: 992px) {
+            .calc-grid { grid-template-columns: repeat(3, 1fr); }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+            .hero h1 { font-size: 2.75rem; }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 4.5rem;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-secondary);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border-glass);
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+                z-index: 999;
+            }
+            .nav-links.active { transform: translateY(0); }
+            .hero h1 { font-size: 2.25rem; }
+            .calc-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 1rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
 </head>
 <body>
-<a href="#main" class="skip-link">Skip to content</a>
-<div id="scroll-progress" role="progressbar" aria-hidden="true"></div>
 
-<!-- ================= HEADER ================= -->
-<header id="site-header">
-  <div class="container">
-    <nav class="nav-inner" aria-label="Primary navigation">
-      <a href="#top" class="brand" aria-label="Utilmint home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><text x="12" y="17" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#fff">∑</text></svg>
-        </span>
-        <span class="brand-name">Utilmint</span>
-      </a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#top">Home</a></li>
-        <li><a href="#calculators">Calculators</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="nav-right">
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 14.6A8.6 8.6 0 1 1 9.4 3.5a7 7 0 0 0 11.1 11.1z"/></svg>
-        </button>
-        <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
-      </div>
-    </nav>
-  </div>
-</header>
+    <div id="scroll-progress" aria-hidden="true"></div>
 
-<main id="main">
-<!-- ================= HERO ================= -->
-<section class="hero" id="top">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="grid-paper" aria-hidden="true"></div>
-  <canvas id="particle-canvas" aria-hidden="true"></canvas>
-  <div class="blob blob-1" id="blob1" aria-hidden="true"></div>
-  <div class="blob blob-2" id="blob2" aria-hidden="true"></div>
-  <div class="blob blob-3" id="blob3" aria-hidden="true"></div>
-  <div class="hero-glyphs" aria-hidden="true">
-    <span style="top:14%;left:6%;">π</span>
-    <span style="top:60%;right:6%;">∞</span>
-    <span style="bottom:6%;left:16%;font-size:80px;">√</span>
-  </div>
-  <div class="container hero-inner">
-    <span class="hero-kicker"><b>NEW</b> 50 calculators, one mint-fresh toolkit</span>
-    <h1>Utilmint<br><em>All-in-One Math</em> Calculator Suite</h1>
-    <p class="hero-sub serif">Every number, precisely struck.</p>
-    <p class="desc">From quick percentages to 3D solids and statistics — Utilmint gives you fifty focused, accurate calculators in one fast, distraction-free workspace. No sign-up, no clutter, just answers.</p>
-    <div class="hero-actions">
-      <a href="#calculators" class="btn btn-primary" data-ripple>
-        <span>Explore Calculators</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a href="#about" class="btn btn-ghost" data-ripple>
-        <span>How It Works</span>
-      </a>
-    </div>
-    <div class="scroll-down" id="scroll-down" role="button" tabindex="0" aria-label="Scroll down"><span></span></div>
-  </div>
-</section>
+    <!-- HEADER / NAVIGATION -->
+    <header id="main-header">
+        <div class="container nav-container">
+            <a href="#" class="logo-area" aria-label="Utilmint Home">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M4 7h16M4 12h16M4 17h16"/>
+                    <path d="M7 4v16M12 4v16M17 4v16" stroke-dasharray="1 3"/>
+                </svg>
+                <span>Utilmint</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#calculators">Calculators</a></li>
+                    <li><a href="#features">About</a></li>
+                    <li><a href="#faq">Contact</a></li>
+                </ul>
+            </nav>
 
-<!-- ================= SEARCH ================= -->
-<div class="container search-wrap">
-  <div class="search-box">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-    <label for="calc-search" class="sr-only">Search calculators</label>
-    <input type="text" id="calc-search" placeholder="Search 50 calculators — try “circle”, “fraction”, “sphere”…" autocomplete="off">
-    <button class="search-clear" id="search-clear" aria-label="Clear search">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-btn" aria-label="Toggle structural appearance mode">
+                    <svg class="sun-icon" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-11.314l.707.707m11.314 11.314l.707-.707M12 7a5 5 0 100 10 5 5 0 000-10z"/></svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                </button>
+                <button class="mobile-menu-toggle" id="menu-btn" aria-label="Toggle navigation map menu">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-bg-glows">
+            <div class="glow-circle glow-1"></div>
+            <div class="glow-circle glow-2"></div>
+        </div>
+        <div class="container hero-content">
+            <h1>Utilmint All-in-One Mathematics Calculator Suite</h1>
+            <p>Empower your daily computational workflows with our rapid, high-precision analytics engines engineered across fundamental arithmetic, complex structures, and statistics.</p>
+            <a href="#calculators" class="cta-btn">
+                <span>Explore Calculators</span>
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- SEARCH WORKFLOW BAR -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-wrapper">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                <input type="text" id="calc-search" class="search-input" placeholder="Search computational structures..." aria-label="Search across calculator collection modules">
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULATOR CARDS CONTAINER GRID -->
+    <main class="grid-section" id="calculators">
+        <div class="container">
+            <div class="calc-grid" id="grid-container">
+                <!-- Dynamically generated items injected here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- STATISTICS METRICS -->
+    <section class="stats-section reveal">
+        <div class="container stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-label">Math Calculators</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="100">0</div>
+                <div class="stat-label">Responsive Layout</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="60">0</div>
+                <div class="stat-label">FPS Animations</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="100">0</div>
+                <div class="stat-label">Precision Index</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAPABILITIES & FEATURES -->
+    <section class="features-section reveal" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Engineered Core Features</h2>
+                <p>Designed to deliver high performance compute workflows combined with optimized layout rendering ecosystems.</p>
+            </div>
+            <div class="features-grid" id="features-container">
+                <!-- Dynamically populated structural configurations -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ACCORDION FAQS -->
+    <section class="faq-section reveal" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common queries regarding processing architectures, mathematical verification, and system requirements.</p>
+            </div>
+            <div class="faq-wrapper" id="faq-container">
+                <!-- Dynamically configured FAQ data layout -->
+            </div>
+        </div>
+    </section>
+
+    <!-- APPLICATION FOOTER -->
+    <footer>
+        <div class="footer-waves">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V1200H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo-area" aria-label="Utilmint Home">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M4 7h16M4 12h16M4 17h16"/><path d="M7 4v16M12 4v16M17 4v16" stroke-dasharray="1 3"/>
+                    </svg>
+                    <span>Utilmint</span>
+                </a>
+                <p>High fidelity mathematics computing layout array delivering seamless standard computational transformations instantly.</p>
+            </div>
+            <div>
+                <h3 class="footer-title">Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home Base</a></li>
+                    <li><a href="#calculators">Compute Center</a></li>
+                    <li><a href="#features">Platform Features</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Legal Operations</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Paradigm</a></li>
+                    <li><a href="#">Service Terms</a></li>
+                    <li><a href="#">Security Protocol</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Connect Matrix</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Enterprise Support</a></li>
+                    <li><a href="#">Developer Network</a></li>
+                    <li><a href="#">API Framework</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Utilmint Platform Architecture. All system operations reserved.</p>
+            <p>Designed for multi-device computational execution layers.</p>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP HOIST ACTION -->
+    <button id="back-to-top" aria-label="Return back to the absolute top header boundary position">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
     </button>
-  </div>
-  <p class="search-count" id="search-count">Showing <b>50</b> of <b>50</b> calculators</p>
-</div>
 
-<!-- ================= CALCULATOR GRID ================= -->
-<section class="calc-section" id="calculators" aria-label="Calculator directory">
-  <div class="container">
-    <div class="section-head center">
-      <span class="section-eyebrow">The Directory</span>
-      <h2>Fifty tools. One mint.</h2>
-      <p>Arithmetic, algebra, geometry, 3D solids and statistics — organised, fast, and built to be precise.</p>
-    </div>
-    <div class="calc-grid" id="calc-grid" role="list"></div>
-    <div class="no-results" id="no-results">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8 8l6 6M14 8l-6 6"/></svg>
-      <p class="serif" style="font-size:19px;font-weight:600;">No calculators match your search</p>
-      <p style="margin-top:6px;font-size:14px;">Try a different keyword, like “percent” or “triangle”.</p>
-    </div>
-  </div>
-</section>
+    <!-- CORE LOGIC DATA & INTERACTION SCRIPTS -->
+    <script>
+        // CORE PLATFORM INITIALIZATION STATE DATA
+        const CALCULATOR_DATASET = [
+            { n: "Basic Calculator", u: "basic-calculator.html", d: "Standard operations across fundamental mathematical operators." },
+            { n: "Percentage Calculator", u: "percentage-calculator.html", d: "Compute baseline target percentages over general variables." },
+            { n: "Percentage Increase", u: "percentage-increase.html", d: "Calculate proportional appreciation scalar changes between variables." },
+            { n: "Percentage Decrease", u: "percentage-decrease.html", d: "Evaluate proportional structural degradation rates over integers." },
+            { n: "Average Calculator", u: "average-calculator.html", d: "Determine mean balances across variable width numeric distributions." },
+            { n: "Fraction Calculator", u: "fraction-calculator.html", d: "Execute arithmetic operations containing advanced dynamic rational parts." },
+            { n: "Ratio Calculator", u: "ratio-calculator.html", d: "Resolve proportion balances and equivalent fraction matching matrix sets." },
+            { n: "Proportion Calculator", u: "proportion-calculator.html", d: "Assess true equations relative to two complex numerical ratios." },
+            { n: "Decimal to Fraction", u: "decimal-to-fraction.html", d: "Transform precise float parameters into simple integer equivalents." },
+            { n: "Fraction to Decimal", u: "fraction-to-decimal.html", d: "Evaluate integer quotients to high-precision floating string forms." },
+            { n: "Prime Checker", u: "prime-checker.html", d: "Test individual values for prime structural division properties." },
+            { n: "Prime Factorization", u: "prime-factorization.html", d: "Deconstruct compound integer values into baseline core primes." },
+            { n: "LCM Calculator", u: "lcm-calculator.html", d: "Locate the smallest shared multiple matching input criteria groups." },
+            { n: "HCF Calculator", u: "hcf-calculator.html", d: "Isolate high common factors across massive arrays of datasets." },
+            { n: "Even or Odd Checker", u: "even-odd-checker.html", d: "Quick modular status verification check against basic numbers." },
+            { n: "Factorial Calculator", u: "factorial-calculator.html", d: "Perform standard sequential vector product operations up to limit bounds." },
+            { n: "Divisibility Checker", u: "divisibility-checker.html", d: "Verify division remainder balances dynamically against targets." },
+            { n: "Number Base Converter", u: "number-base-converter.html", d: "Translate representations from Binary, Octal, Hex, and Custom states." },
+            { n: "Roman Numeral Converter", u: "roman-numeral-converter.html", d: "Convert classic numerical layouts to modern Arabic forms and back." },
+            { n: "Random Number Generator", u: "random-number-generator.html", d: "Produce uniformly cryptographically sound isolated randomized values." },
+            { n: "Linear Equation Solver", u: "linear-equation.html", d: "Resolve isolated dimensional variables step-by-step from zero matrices." },
+            { n: "Quadratic Equation Solver", u: "quadratic-equation.html", d: "Isolate complex or real plane values from traditional structures." },
+            { n: "Cubic Equation Solver", u: "cubic-equation.html", d: "Extract three standard system variables from cubic polynomial sets." },
+            { n: "Exponent Calculator", u: "exponent-calculator.html", d: "Process power scaling factors involving extreme numeric boundaries." },
+            { n: "Logarithm Calculator", u: "logarithm-calculator.html", d: "Compute inverse exponent systems over varying base matrices." },
+            { n: "Scientific Calculator", u: "scientific-calculator.html", d: "Full floating engineering execution toolkit for deep math operations." },
+            { n: "Square Calculator", u: "square-calculator.html", d: "Multiply individual items by themselves to identify primary products." },
+            { n: "Square Root Evaluator", u: "square-root.html", d: "Isolate the fractional half power components of dynamic variables." },
+            { n: "Cube Root Evaluator", u: "cube-root.html", d: "Extract exact fractional cubic roots from dimensional variables." },
+            { n: "Circle Geometry Calculator", u: "circle-calculator.html", d: "Isolate circumference area values using pi coefficient scales." },
+            { n: "Triangle Geometry Solver", u: "triangle-calculator.html", d: "Verify lengths, parameters, and side areas via trigonometric rules." },
+            { n: "Rectangle Canvas Solver", u: "rectangle-calculator.html", d: "Calculate surface spatial boundaries given perimeter width dimensions." },
+            { n: "Square Shape Matrix", u: "square-shape.html", d: "Calculate parameter variants tracking perfect equal-sided entities." },
+            { n: "Trapezium Geometry Tool", u: "trapezium-calculator.html", d: "Resolve internal surfaces via unique parallel coordinate paths." },
+            { n: "Parallelogram Calculator", u: "parallelogram-calculator.html", d: "Calculate directional boundary dimensions matching alternate structures." },
+            { n: "Rhombus Geometry Engine", u: "rhombus-calculator.html", d: "Compute layout areas leveraging specific transverse dynamic lengths." },
+            { n: "Kite Calculator", u: "kite-calculator.html", d: "Evaluate quadrilateral spaces bounded by paired length dimensions." },
+            { n: "Ellipse Matrix Tool", u: "ellipse-calculator.html", d: "Calculate coordinate tracking values via focal focal axis models." },
+            { n: "Polygon Calculator", u: "polygon-calculator.html", d: "Assess large multidirectional structures across exterior angle rules." },
+            { n: "Cube 3D Spatial Volume", u: "cube-3d.html", d: "Determine storage metric outputs from geometric length arrays." },
+            { n: "Cuboid Volume Platform", u: "cuboid-calculator.html", d: "Compute spatial three-dimensional volumes matching specific length sets." },
+            { n: "Cylinder Volume Calculator", u: "cylinder-calculator.html", d: "Calculate radial vertical heights across continuous linear boundaries." },
+            { n: "Cone Volume Engine", u: "cone-calculator.html", d: "Isolate terminal tracking vectors for classic conical structural metrics." },
+            { n: "Sphere Volume Tool", u: "sphere-calculator.html", d: "Resolve internal capacities based strictly upon radial dimensions." },
+            { n: "Hemisphere Volume Matrix", u: "hemisphere-calculator.html", d: "Calculate targeted spatial values cut directly from spherical assets." },
+            { n: "Pyramid Structural Solver", u: "pyramid-calculator.html", d: "Solve standard height calculations extending from diverse structural bases." },
+            { n: "Prism Volume Tool", u: "prism-calculator.html", d: "Process parallel cross section geometries smoothly over length lines." },
+            { n: "Mean Median Mode Engine", u: "mean-median-mode.html", d: "Isolate general core trend vectors across multi-item numeric paths." },
+            { n: "Standard Deviation Matrix", u: "standard-deviation.html", d: "Calculate data variance dispersion configurations instantly." },
+            { n: "Future Core Module Expansion", u: "#", d: "Next generation enterprise calculation workflow matrix layer.", cs: true }
+        ];
 
-<!-- ================= STATS ================= -->
-<section class="stats">
-  <div class="container">
-    <div class="stats-inner reveal">
-      <div class="stats-grid">
-        <div class="stat">
-          <div class="stat-num mono"><span class="accent" data-count="50" data-suffix="+">0</span></div>
-          <div class="stat-label">Math Calculators</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num mono"><span class="accent" data-count="100" data-suffix="%">0</span></div>
-          <div class="stat-label">Responsive Design</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num mono"><span class="accent" data-count="60" data-suffix="fps">0</span></div>
-          <div class="stat-label">Fast &amp; Fluid</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num serif" style="font-size:clamp(28px,4vw,42px);">Free<span style="color:var(--gold);">.</span></div>
-          <div class="stat-label">Professional Grade</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        const FEATURES_DATASET = [
+            { t: "Fast Calculations", d: "Optimized assembly level execution mapping arrays for high frequency data throughput cycles.", i: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>' },
+            { t: "Accurate Results", d: "Leverages highly specific floating point computational paradigms for error-free math tracking layers.", i: '<path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>' },
+            { t: "Responsive Design", d: "Flawless screen real estate optimization transformations supporting varying viewports smoothly.", i: '<rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/>' },
+            { t: "Modern UI Layout", d: "Elegant micro-interaction configurations mapped over standard structural glassmorphism schemas.", i: '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>' },
+            { t: "Interactive Dynamics", d: "Provides structural sensory motion depth using hardware accelerated frame rate execution.", i: '<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>' },
+            { t: "Offline Functional", d: "Local environment persistence caching ensures continuous calculation framework performance anywhere.", i: '<path d="M16.72 11.06A10.94 10.94 0 0119 12.55M5 12.55a10.94 10.94 0 015.83-2.84M8.34 16.16a10.94 10.94 0 017.32 0M12 20h.01"/>' }
+        ];
 
-<!-- ================= FEATURES ================= -->
-<section class="features" id="about">
-  <div class="container">
-    <div class="section-head center">
-      <span class="section-eyebrow">Why Utilmint</span>
-      <h2>Built like a precision instrument</h2>
-      <p>Every calculator shares the same fast, accurate, accessible foundation.</p>
-    </div>
-    <div class="feat-grid" id="feat-grid"></div>
-  </div>
-</section>
+        const FAQ_DATASET = [
+            { q: "How do these mathematical calculations execute accurately?", a: "Calculations run via hardware-optimized JS architectures processing float points inside strict execution threads." },
+            { q: "Are computation workflows verified for enterprise production?", a: "Yes, every algorithm matches international precision specifications standard across engineering disciplines." },
+            { q: "Is the platform available during remote offline connection loss?", a: "Absolutely. The platform runs client-side inside standard browser memory pools, allowing offline runtime execution easily." },
+            { q: "Does the framework retain sensitive analytical data variables?", a: "No, all input layers undergo instantaneous local destruction inside system loops after calculations finish, guaranteeing total isolation." }
+        ];
 
-<!-- ================= FAQ ================= -->
-<section class="faq">
-  <div class="container">
-    <div class="section-head center">
-      <span class="section-eyebrow">Questions</span>
-      <h2>Frequently asked</h2>
-      <p>Everything you need to know about using Utilmint.</p>
-    </div>
-    <div class="faq-list" id="faq-list"></div>
-  </div>
-</section>
-</main>
+        // INJECT DOM CORE CONTENT
+        document.addEventListener("DOMContentLoaded", () => {
+            const grid = document.getElementById("grid-container");
+            const features = document.getElementById("features-container");
+            const faq = document.getElementById("faq-container");
 
-<!-- ================= FOOTER ================= -->
-<footer id="contact">
-  <div class="footer-wave" aria-hidden="true">
-    <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C280,100 480,0 720,30 C960,60 1160,100 1440,40 L1440,0 L0,0 Z" fill="var(--bg)"></path></svg>
-  </div>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#top" class="brand" style="color:var(--text-inv);">
-          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="17" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#fff">∑</text></svg></span>
-          <span class="brand-name">Utilmint</span>
-        </a>
-        <p>A free, professional all-in-one mathematics calculator suite — precise tools for arithmetic, algebra, geometry, solids and statistics.</p>
-        <div class="social-row">
-          <a href="#" aria-label="Utilmint on X"><svg viewBox="0 0 24 24" fill="currentColor" color="var(--text-inv)"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7l-5.5-7.2L4.5 22H1.3l8.1-9.3L1 2h7.2l5 6.6L18.9 2zm-1.2 18h1.7L7.4 3.9H5.6L17.7 20z"/></svg></a>
-          <a href="#" aria-label="Utilmint on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" color="var(--text-inv)"><path d="M12 2a10 10 0 0 0-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.1.39-1.99 1.03-2.69-.1-.26-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.66.64.7 1.03 1.59 1.03 2.69 0 3.85-2.35 4.7-4.58 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></a>
-          <a href="#" aria-label="Utilmint on YouTube"><svg viewBox="0 0 24 24" fill="currentColor" color="var(--text-inv)"><path d="M22 12s0-3.4-.44-5a2.9 2.9 0 0 0-2-2C17.9 4.5 12 4.5 12 4.5s-5.9 0-7.56.5a2.9 2.9 0 0 0-2 2C2 8.6 2 12 2 12s0 3.4.44 5a2.9 2.9 0 0 0 2 2c1.66.5 7.56.5 7.56.5s5.9 0 7.56-.5a2.9 2.9 0 0 0 2-2C22 15.4 22 12 22 12zM10 15.5v-7l6 3.5-6 3.5z"/></svg></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#top">Home</a></li>
-          <li><a href="#calculators">Calculators</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Popular Tools</h4>
-        <ul id="footer-calc-links"></ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-          <li><a href="#">Support</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© <span id="year"></span> Utilmint. All rights reserved.</p>
-      <div class="legal">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </div>
-</footer>
+            // Render Calculators
+            CALCULATOR_DATASET.forEach((c, idx) => {
+                const a = document.createElement("a");
+                a.href = c.u;
+                a.className = `calc-card reveal ${c.cs ? 'coming-soon' : ''}`;
+                a.setAttribute("aria-label", `${c.n}: ${c.d}`);
+                
+                // Color configuration mapping variations
+                const hue = (idx * 360 / CALCULATOR_DATASET.length).toFixed(0);
+                a.style.setProperty('--card-glow', `hsla(${hue}, 85%, 60%, 0.15)`);
+                a.style.setProperty('--accent-primary', `hsl(${hue}, 85%, 55%)`);
 
-<button id="back-to-top" aria-label="Back to top">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-</button>
+                a.innerHTML = `
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="9" y1="9" x2="15" y2="15"/>
+                            <line x1="15" y1="9" x2="9" y2="15"/>
+                        </svg>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">${c.n}</div>
+                        <div class="card-desc">${c.d}</div>
+                    </div>
+                `;
+                grid.appendChild(a);
+            });
 
-<script>
-(function(){
-"use strict";
+            // Render Platform Features
+            FEATURES_DATASET.forEach(f => {
+                const d = document.createElement("div");
+                d.className = "feature-card reveal";
+                d.innerHTML = `
+                    <div class="feature-icon"><svg viewBox="0 0 24 24">${f.i}</svg></div>
+                    <div class="feature-title">${f.t}</div>
+                    <div class="feature-desc">${f.d}</div>
+                `;
+                features.appendChild(d);
+            });
 
-/* ==========================================================================
-   1. CALCULATOR DATA
-   ========================================================================== */
-var CALCULATORS = [
-  {n:"Basic Calculator",d:"Add, subtract, multiply and divide instantly.",l:"basic-calculator.html",i:"grid"},
-  {n:"Percentage Calculator",d:"Find percentages of any number in seconds.",l:"percentage-calculator.html",i:"percent"},
-  {n:"Percentage Increase",d:"Calculate the percentage increase between values.",l:"percentage-increase.html",i:"percentUp"},
-  {n:"Percentage Decrease",d:"Calculate the percentage decrease between values.",l:"percentage-decrease.html",i:"percentDown"},
-  {n:"Average Calculator",d:"Get the mean of any list of numbers.",l:"average-calculator.html",i:"average"},
-  {n:"Fraction Calculator",d:"Add, subtract, multiply and divide fractions.",l:"fraction-calculator.html",i:"fraction"},
-  {n:"Ratio Calculator",d:"Simplify and compare ratios easily.",l:"ratio-calculator.html",i:"ratio"},
-  {n:"Proportion Calculator",d:"Solve for the missing value in a proportion.",l:"proportion-calculator.html",i:"proportion"},
-  {n:"Decimal to Fraction",d:"Convert any decimal into a simplified fraction.",l:"decimal-to-fraction.html",i:"decToFrac"},
-  {n:"Fraction to Decimal",d:"Convert any fraction into a precise decimal.",l:"fraction-to-decimal.html",i:"fracToDec"},
-  {n:"Prime Checker",d:"Check instantly whether a number is prime.",l:"prime-checker.html",i:"prime"},
-  {n:"Prime Factorization",d:"Break any number into its prime factors.",l:"prime-factorization.html",i:"primeFactor"},
-  {n:"LCM Calculator",d:"Find the least common multiple of numbers.",l:"lcm-calculator.html",i:"lcm"},
-  {n:"HCF Calculator",d:"Find the highest common factor of numbers.",l:"hcf-calculator.html",i:"hcf"},
-  {n:"Even / Odd Checker",d:"Instantly check if a number is even or odd.",l:"even-odd-checker.html",i:"evenOdd"},
-  {n:"Factorial Calculator",d:"Calculate the factorial of any number.",l:"factorial-calculator.html",i:"factorial"},
-  {n:"Divisibility Checker",d:"Check divisibility rules for any number.",l:"divisibility-checker.html",i:"divisibility"},
-  {n:"Number Base Converter",d:"Convert between binary, octal, decimal and hex.",l:"number-base-converter.html",i:"base"},
-  {n:"Roman Numeral Converter",d:"Convert numbers to and from Roman numerals.",l:"roman-numeral-converter.html",i:"roman"},
-  {n:"Random Number Generator",d:"Generate random numbers within a range.",l:"random-number-generator.html",i:"dice"},
-  {n:"Linear Equation Solver",d:"Solve linear equations step by step.",l:"linear-equation.html",i:"linear"},
-  {n:"Quadratic Equation Solver",d:"Solve quadratic equations and find roots.",l:"quadratic-equation.html",i:"quadratic"},
-  {n:"Cubic Equation Solver",d:"Solve cubic equations with real roots.",l:"cubic-equation.html",i:"cubic"},
-  {n:"Exponent Calculator",d:"Calculate powers and exponents fast.",l:"exponent-calculator.html",i:"exponent"},
-  {n:"Logarithm Calculator",d:"Calculate logarithms in any base.",l:"logarithm-calculator.html",i:"log"},
-  {n:"Scientific Calculator",d:"A full-featured scientific calculator.",l:"scientific-calculator.html",i:"scientific"},
-  {n:"Square Calculator",d:"Calculate the square of any number.",l:"square-calculator.html",i:"square"},
-  {n:"Square Root Calculator",d:"Find the square root of any number.",l:"square-root.html",i:"sqrt"},
-  {n:"Cube Root Calculator",d:"Find the cube root of any number.",l:"cube-root.html",i:"cbrt"},
-  {n:"Circle Calculator",d:"Area, circumference and radius of a circle.",l:"circle-calculator.html",i:"circle"},
-  {n:"Triangle Calculator",d:"Area, perimeter and angles of a triangle.",l:"triangle-calculator.html",i:"triangle"},
-  {n:"Rectangle Calculator",d:"Area and perimeter of a rectangle.",l:"rectangle-calculator.html",i:"rectangle"},
-  {n:"Square (Shape) Calculator",d:"Area and perimeter of a square.",l:"square-shape.html",i:"squareShape"},
-  {n:"Trapezium Calculator",d:"Area and perimeter of a trapezium.",l:"trapezium-calculator.html",i:"trapezium"},
-  {n:"Parallelogram Calculator",d:"Area and perimeter of a parallelogram.",l:"parallelogram-calculator.html",i:"parallelogram"},
-  {n:"Rhombus Calculator",d:"Area and perimeter of a rhombus.",l:"rhombus-calculator.html",i:"rhombus"},
-  {n:"Kite Calculator",d:"Area and perimeter of a kite shape.",l:"kite-calculator.html",i:"kite"},
-  {n:"Ellipse Calculator",d:"Area and perimeter of an ellipse.",l:"ellipse-calculator.html",i:"ellipse"},
-  {n:"Polygon Calculator",d:"Area and angles of a regular polygon.",l:"polygon-calculator.html",i:"polygon"},
-  {n:"Cube (3D) Calculator",d:"Volume and surface area of a cube.",l:"cube-3d.html",i:"cube"},
-  {n:"Cuboid Calculator",d:"Volume and surface area of a cuboid.",l:"cuboid-calculator.html",i:"cuboid"},
-  {n:"Cylinder Calculator",d:"Volume and surface area of a cylinder.",l:"cylinder-calculator.html",i:"cylinder"},
-  {n:"Cone Calculator",d:"Volume and surface area of a cone.",l:"cone-calculator.html",i:"cone"},
-  {n:"Sphere Calculator",d:"Volume and surface area of a sphere.",l:"sphere-calculator.html",i:"sphere"},
-  {n:"Hemisphere Calculator",d:"Volume and surface area of a hemisphere.",l:"hemisphere-calculator.html",i:"hemisphere"},
-  {n:"Pyramid Calculator",d:"Volume and surface area of a pyramid.",l:"pyramid-calculator.html",i:"pyramid"},
-  {n:"Prism Calculator",d:"Volume and surface area of a prism.",l:"prism-calculator.html",i:"prism"},
-  {n:"Mean, Median &amp; Mode",d:"Find mean, median and mode of a data set.",l:"mean-median-mode.html",i:"mmm"},
-  {n:"Standard Deviation",d:"Calculate variance and standard deviation.",l:"standard-deviation.html",i:"stddev"},
-  {n:"Coming Soon",d:"New calculators are being minted right now.",l:"#",i:"soon",soon:true}
-];
+            // Render FAQ Blocks
+            FAQ_DATASET.forEach(item => {
+                const div = document.createElement("div");
+                div.className = "faq-item";
+                div.innerHTML = `
+                    <button class="faq-trigger">
+                        <span>${item.q}</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-content"><p>${item.a}</p></div>
+                `;
+                faq.appendChild(div);
+            });
 
-/* ==========================================================================
-   2. ICON LIBRARY (unique hand-authored SVG per calculator)
-   ========================================================================== */
-var ICONS = {
-  grid:'<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',
-  percent:'<circle cx="7" cy="7" r="2.6"/><circle cx="17" cy="17" r="2.6"/><path d="M18 6L6 18"/>',
-  percentUp:'<circle cx="7" cy="16" r="2.4"/><circle cx="17" cy="8" r="2.4"/><path d="M6 18L18 6"/><path d="M13 4h6v6"/>',
-  percentDown:'<circle cx="7" cy="8" r="2.4"/><circle cx="17" cy="16" r="2.4"/><path d="M6 6L18 18"/><path d="M13 20h6v-6"/>',
-  average:'<path d="M4 8h16"/><path d="M4 8V6"/><path d="M20 8V6"/><path d="M7 12l3 6 4-10 3 6"/>',
-  fraction:'<circle cx="7" cy="6.5" r="2"/><circle cx="7" cy="17.5" r="2"/><path d="M4 12h16"/>',
-  ratio:'<circle cx="6.5" cy="12" r="2.6"/><circle cx="17.5" cy="12" r="2.6"/><path d="M11 8l2 8"/>',
-  proportion:'<circle cx="6" cy="6" r="1.8"/><circle cx="6" cy="18" r="1.8"/><path d="M3.5 12h5"/><circle cx="18" cy="6" r="1.8"/><circle cx="18" cy="18" r="1.8"/><path d="M15.5 12h5"/>',
-  decToFrac:'<text x="1" y="10" font-size="8" font-family="JetBrains Mono, monospace">0.5</text><path d="M4 15h16" stroke-linecap="round"/><path d="M15 13l4 4M19 13l-4 4"/>',
-  fracToDec:'<circle cx="5" cy="9" r="1.6"/><circle cx="5" cy="16" r="1.6"/><path d="M2.5 12.5h5"/><path d="M11 12.5h11"/>',
-  prime:'<circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.5l2.3 2.3L16 9.5"/>',
-  primeFactor:'<circle cx="12" cy="5" r="2"/><path d="M12 7v3"/><circle cx="6" cy="16" r="2"/><circle cx="18" cy="16" r="2"/><path d="M12 10L6 14M12 10l6 4"/>',
-  lcm:'<circle cx="9.5" cy="12" r="6.5"/><circle cx="15.5" cy="12" r="6.5" fill="var(--card-grad)" fill-opacity=".35"/>',
-  hcf:'<circle cx="9.5" cy="12" r="6.5"/><circle cx="15.5" cy="12" r="6.5"/><path d="M12 8v8" stroke-width="1.4" opacity=".6"/>',
-  evenOdd:'<circle cx="7" cy="9" r="1.6"/><circle cx="17" cy="9" r="1.6"/><circle cx="12" cy="16" r="1.6"/><path d="M4 4h6M14 4h6" stroke-linecap="round"/>',
-  factorial:'<text x="6" y="18" font-size="16" font-family="Fraunces, serif" font-weight="700">n!</text>',
-  divisibility:'<circle cx="9" cy="8" r="1.6"/><circle cx="9" cy="16" r="1.6"/><path d="M4 12h11"/><path d="M17 9l4 4-4 4"/>',
-  base:'<text x="2" y="11" font-size="7" font-family="JetBrains Mono, monospace">10</text><path d="M4 14h16" stroke-linecap="round"/><path d="M15 12l4 3-4 3"/><text x="17" y="10" font-size="6" font-family="JetBrains Mono, monospace" opacity=".0">2</text>',
-  roman:'<text x="3.5" y="17" font-size="13" font-family="Fraunces, serif" font-weight="700">IV</text>',
-  dice:'<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="8.5" cy="8.5" r="1.1" fill="#fff" stroke="none"/><circle cx="15.5" cy="8.5" r="1.1" fill="#fff" stroke="none"/><circle cx="12" cy="12" r="1.1" fill="#fff" stroke="none"/><circle cx="8.5" cy="15.5" r="1.1" fill="#fff" stroke="none"/><circle cx="15.5" cy="15.5" r="1.1" fill="#fff" stroke="none"/>',
-  linear:'<path d="M4 20L20 4"/><circle cx="4" cy="20" r="1.3" fill="#fff" stroke="none"/><circle cx="20" cy="4" r="1.3" fill="#fff" stroke="none"/>',
-  quadratic:'<path d="M4 6c4 14 12 14 16 0" fill="none"/>',
-  cubic:'<path d="M4 6c3 5 3 3 6 6s-3 5 6 6c2.5.3 3-1 4-1.8" fill="none"/>',
-  exponent:'<text x="2" y="17" font-size="15" font-family="Fraunces, serif" font-weight="700">x</text><text x="14" y="9" font-size="10" font-family="Fraunces, serif" font-weight="700">y</text>',
-  log:'<text x="0" y="16" font-size="10" font-family="JetBrains Mono, monospace" font-weight="700">log</text>',
-  scientific:'<rect x="4" y="3" width="16" height="18" rx="2.5"/><rect x="6.5" y="5.5" width="11" height="4" rx="1"/><circle cx="7.5" cy="14" r="1.1" fill="#fff" stroke="none"/><circle cx="12" cy="14" r="1.1" fill="#fff" stroke="none"/><circle cx="16.5" cy="14" r="1.1" fill="#fff" stroke="none"/><circle cx="7.5" cy="18" r="1.1" fill="#fff" stroke="none"/><circle cx="12" cy="18" r="1.1" fill="#fff" stroke="none"/><circle cx="16.5" cy="18" r="1.1" fill="#fff" stroke="none"/>',
-  square:'<text x="2" y="17" font-size="14" font-family="Fraunces, serif" font-weight="700">x</text><text x="13" y="9" font-size="9" font-family="Fraunces, serif" font-weight="700">2</text>',
-  sqrt:'<path d="M3 13l3 5 4-13h10"/>',
-  cbrt:'<path d="M3 13l3 5 4-13h10"/><text x="3" y="7" font-size="7" font-family="JetBrains Mono, monospace">3</text>',
-  circle:'<circle cx="12" cy="12" r="8"/><path d="M12 12h8" stroke-dasharray="2 2"/>',
-  triangle:'<path d="M12 4l8.5 15H3.5z"/>',
-  rectangle:'<rect x="3.5" y="7" width="17" height="10" rx="1.5"/>',
-  squareShape:'<rect x="5" y="5" width="14" height="14" rx="1.5"/>',
-  trapezium:'<path d="M6 18L8.5 6h7L20 18z"/>',
-  parallelogram:'<path d="M7 18L9.5 6h9L16 18z"/>',
-  rhombus:'<path d="M12 3l8 9-8 9-8-9z"/>',
-  kite:'<path d="M12 3l6 8-6 10-6-10z"/>',
-  ellipse:'<ellipse cx="12" cy="12" rx="9" ry="6"/>',
-  polygon:'<path d="M12 3l7.5 5.2-2.9 8.8H7.4L4.5 8.2z"/>',
-  cube:'<path d="M4 8l8-4 8 4-8 4z"/><path d="M4 8v8l8 4 8-4V8"/><path d="M12 12v8"/>',
-  cuboid:'<path d="M4 7l7-3 9 3-7 3z"/><path d="M4 7v9l7 3V10"/><path d="M20 7v9l-9 3"/>',
-  cylinder:'<ellipse cx="12" cy="6" rx="7" ry="2.6"/><path d="M5 6v11a7 2.6 0 0 0 14 0V6"/>',
-  cone:'<ellipse cx="12" cy="18.5" rx="7" ry="2.4"/><path d="M12 3L5 18.5M12 3l7 15.5"/>',
-  sphere:'<circle cx="12" cy="12" r="8"/><ellipse cx="12" cy="12" rx="8" ry="3" stroke-width="1.3"/><path d="M12 4v16" stroke-width="1.3"/>',
-  hemisphere:'<path d="M4 13a8 8 0 0 1 16 0"/><ellipse cx="12" cy="13" rx="8" ry="2.6"/>',
-  pyramid:'<path d="M12 3l9 15H3z"/><path d="M12 3l-3.3 15M12 3l3.3 15"/>',
-  prism:'<path d="M5 17V9l4-4 4 4v8"/><path d="M13 9l6-2v8l-6 2"/><path d="M5 9l4-4M9 17l4-4"/>',
-  mmm:'<path d="M4 20V10M9.5 20V4M15 20v13M20 20V8" stroke-linecap="round"/>',
-  stddev:'<path d="M3 16c3 0 3-9 6-9s3 9 6 9 3-9 6-9" fill="none"/>',
-  soon:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>'
-};
+            // INTERACTION & ENGINE SETUP CORE LAYERS
+            initPlatformLogic();
+        });
 
-function iconSvg(key){
-  var inner = ICONS[key] || ICONS.grid;
-  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+inner+'</svg>';
-}
+        // PLATFORM INTERACTIVE CONTROLLERS MAPPING EXECUTION
+        function initPlatformLogic() {
+            // Theme Engine Persist Settings
+            const themeBtn = document.getElementById("theme-btn");
+            const sysDark = window.matchMedia("(prefers-color-scheme: dark)");
+            
+            const setTheme = (mode) => {
+                document.documentElement.setAttribute("data-theme", mode);
+                localStorage.setItem("utilmint-theme", mode);
+            };
 
-/* Deterministic golden-angle hue distribution -> 50 distinct, harmonious gradients */
-function cardGradient(index){
-  var hue = Math.round((index * 137.508) % 360);
-  var hue2 = (hue + 34) % 360;
-  var c1 = 'hsl('+hue+', 68%, 52%)';
-  var c2 = 'hsl('+hue2+', 70%, 42%)';
-  return {css:'linear-gradient(135deg,'+c1+','+c2+')', shadow:'hsla('+hue+',70%,45%,.45)'};
-}
+            const savedTheme = localStorage.getItem("utilmint-theme");
+            if (savedTheme) setTheme(savedTheme);
+            else if (sysDark.matches) setTheme("dark");
 
-/* ==========================================================================
-   3. RENDER CARDS (with a brief skeleton-loading phase)
-   ========================================================================== */
-var grid = document.getElementById('calc-grid');
-var noResults = document.getElementById('no-results');
-var searchCount = document.getElementById('search-count');
+            themeBtn.addEventListener("click", () => {
+                const current = document.documentElement.getAttribute("data-theme");
+                setTheme(current === "dark" ? "light" : "dark");
+            });
 
-function renderSkeletons(n){
-  var html = '';
-  for (var i=0;i<n;i++){ html += '<div class="skeleton" aria-hidden="true"></div>'; }
-  grid.innerHTML = html;
-}
+            // Navigation Mobile Transformations toggle
+            const menuBtn = document.getElementById("menu-btn");
+            const navMenu = document.getElementById("nav-menu");
+            menuBtn.addEventListener("click", () => navMenu.classList.toggle("active"));
 
-function renderCards(){
-  var html = '';
-  CALCULATORS.forEach(function(c, idx){
-    var grad = cardGradient(idx);
-    html += '<a role="listitem" class="card'+(c.soon?' soon':'')+'" href="'+c.l+'" '+(c.soon?'aria-disabled="true" onclick="return false;"':'')+
-      ' style="--card-grad:'+grad.css+';--card-shadow:'+grad.shadow+';" data-name="'+c.n.toLowerCase()+'" data-desc="'+c.d.toLowerCase()+'" data-ripple>' +
-        '<span class="card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>' +
-        '<span class="card-icon">'+iconSvg(c.i)+'</span>' +
-        '<span class="card-body"><span class="card-name">'+c.n+'</span><span class="card-desc">'+c.d+'</span></span>' +
-      '</a>';
-  });
-  grid.innerHTML = html;
-  requestAnimationFrame(function(){
-    var cards = grid.querySelectorAll('.card');
-    cards.forEach(function(card, i){
-      setTimeout(function(){ card.classList.add('in'); }, Math.min(i,20) * 28);
-    });
-  });
-  bindCardTilt();
-  observeReveal(grid.querySelectorAll('.card'));
-}
+            // Fast Debounced Search Layout Filtering Interface Engine
+            const search = document.getElementById("calc-search");
+            const cards = document.querySelectorAll(".calc-card");
+            
+            search.addEventListener("input", (e) => {
+                const val = e.target.value.toLowerCase().trim();
+                cards.forEach(card => {
+                    const title = card.querySelector(".card-title").textContent.toLowerCase();
+                    const desc = card.querySelector(".card-desc").textContent.toLowerCase();
+                    if (title.includes(val) || desc.includes(val)) {
+                        card.classList.remove("hidden");
+                    } else {
+                        card.classList.add("hidden");
+                    }
+                });
+            });
 
-renderSkeletons(15);
-setTimeout(renderCards, 450);
+            // Scroll Tracking Presentation Indicators Engine
+            const header = document.getElementById("main-header");
+            const progress = document.getElementById("scroll-progress");
+            const btt = document.getElementById("back-to-top");
 
-/* ==========================================================================
-   4. LIVE SEARCH
-   ========================================================================== */
-var searchInput = document.getElementById('calc-search');
-var searchClear = document.getElementById('search-clear');
-var debounceTimer;
+            window.addEventListener("scroll", () => {
+                const total = document.documentElement.scrollHeight - window.innerHeight;
+                if (total > 0) {
+                    const pct = (window.scrollY / total) * 100;
+                    progress.style.width = `${pct}%`;
+                }
 
-function runSearch(){
-  var q = searchInput.value.trim().toLowerCase();
-  searchClear.classList.toggle('show', q.length > 0);
-  var cards = grid.querySelectorAll('.card');
-  var visible = 0;
-  cards.forEach(function(card){
-    var match = !q || card.dataset.name.indexOf(q) > -1 || card.dataset.desc.indexOf(q) > -1;
-    card.classList.toggle('hidden-item', !match);
-    if (match) visible++;
-  });
-  noResults.classList.toggle('show', visible === 0);
-  searchCount.innerHTML = 'Showing <b>'+visible+'</b> of <b>'+CALCULATORS.length+'</b> calculators';
-}
+                if (window.scrollY > 150) {
+                    header.classList.add("scrolled");
+                    btt.classList.add("visible");
+                } else {
+                    header.classList.remove("scrolled");
+                    btt.classList.remove("visible");
+                }
+            });
 
-searchInput.addEventListener('input', function(){
-  clearTimeout(debounceTimer);
-  debounceTimer = setTimeout(runSearch, 160);
-});
-searchInput.addEventListener('keydown', function(e){
-  if (e.key === 'Escape'){ searchInput.value=''; runSearch(); searchInput.blur(); }
-});
-searchClear.addEventListener('click', function(){
-  searchInput.value=''; runSearch(); searchInput.focus();
-});
+            btt.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-/* ==========================================================================
-   5. FEATURES
-   ========================================================================== */
-var FEATURES = [
-  {t:'Fast Calculations',d:'Instant results with zero lag, powered by lightweight vanilla JavaScript.',i:'<path d="M13 2L4 14h6l-1 8 9-12h-6z"/>'},
-  {t:'Accurate Results',d:'Every formula is tested for precision down to the decimal.',i:'<circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3L16 9.5"/>'},
-  {t:'Responsive Design',d:'A flawless layout on phones, tablets, laptops and ultrawide screens.',i:'<rect x="3" y="4" width="13" height="9" rx="1.3"/><rect x="17" y="8" width="4" height="12" rx="1"/>'},
-  {t:'Modern UI',d:'Clean glassmorphism, soft shadows and a refined type system throughout.',i:'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M4 10h16"/>'},
-  {t:'Interactive Animations',d:'Micro-interactions that make every click feel considered.',i:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/>'},
-  {t:'Offline Ready',d:'Once loaded, the whole suite runs without an internet connection.',i:'<path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z" opacity=".35"/><path d="M8 12l3 3 5-6"/>'},
-  {t:'Lightweight',d:'One file, no frameworks, no bloat — just HTML, CSS and JS.',i:'<path d="M6 3v18M18 3v18M3 8h6M15 8h6M3 16h6M15 16h6"/>'},
-  {t:'Easy Navigation',d:'A searchable directory gets you to the right tool in seconds.',i:'<circle cx="10" cy="10" r="6.5"/><path d="M19 19l-4.3-4.3"/>'},
-  {t:'Beautiful Icons',d:'Fifty hand-drawn icons, one for every calculator in the suite.',i:'<path d="M12 3l2.5 5.5L20 9l-4 4 1 5.5L12 16l-5 2.5L8 13 4 9l5.5-.5z"/>'},
-  {t:'Mobile Friendly',d:'Every button, card and input is tuned for touch.',i:'<rect x="7" y="2.5" width="10" height="19" rx="2.3"/><path d="M11 18.5h2"/>'}
-];
-var featGrid = document.getElementById('feat-grid');
-featGrid.innerHTML = FEATURES.map(function(f){
-  return '<div class="feat-card"><span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+f.i+'</svg></span><h3>'+f.t+'</h3><p>'+f.d+'</p></div>';
-}).join('');
-observeReveal(featGrid.querySelectorAll('.feat-card'));
+            // Advanced Intersection Observers for On-Screen Visual Presentation Reveals
+            const revealItems = document.querySelectorAll(".reveal");
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        // Trigger numerical calculation count counters once visible
+                        const counters = entry.target.querySelectorAll(".stat-number");
+                        counters.forEach(c => runStatCounter(c));
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
 
-/* ==========================================================================
-   6. FAQ ACCORDION
-   ========================================================================== */
-var FAQS = [
-  {q:'How do the calculators work?', a:'Each tool takes your inputs and runs a dedicated formula written and tested for that exact calculation — no generic guesswork, just the right math for the job.'},
-  {q:'Are the calculations accurate?', a:'Yes. Every calculator on Utilmint uses standard, verified mathematical formulas, and results are computed to full floating-point precision before being rounded for display.'},
-  {q:'Is Utilmint free to use?', a:'Completely free. There is no sign-up, no paywall and no limit on how many calculations you can run.'},
-  {q:'Can I use Utilmint on my phone?', a:'Absolutely — the entire suite is fully responsive and was designed mobile-first, so every calculator works comfortably on a small screen.'},
-  {q:'Do I need an internet connection?', a:'Only to load the page the first time. Once it is open, Utilmint runs entirely in your browser with no server round-trips required.'}
-];
-var faqList = document.getElementById('faq-list');
-faqList.innerHTML = FAQS.map(function(f,i){
-  return '<div class="faq-item" id="faq-'+i+'"><button class="faq-q" aria-expanded="false" aria-controls="faq-a-'+i+'"><span>'+f.q+'</span><span class="faq-plus" aria-hidden="true"></span></button><div class="faq-a" id="faq-a-'+i+'"><p>'+f.a+'</p></div></div>';
-}).join('');
-faqList.querySelectorAll('.faq-item').forEach(function(item){
-  var btn = item.querySelector('.faq-q');
-  var panel = item.querySelector('.faq-a');
-  btn.addEventListener('click', function(){
-    var isOpen = item.classList.contains('open');
-    faqList.querySelectorAll('.faq-item.open').forEach(function(openItem){
-      if (openItem !== item){
-        openItem.classList.remove('open');
-        openItem.querySelector('.faq-q').setAttribute('aria-expanded','false');
-        openItem.querySelector('.faq-a').style.maxHeight = null;
-      }
-    });
-    item.classList.toggle('open', !isOpen);
-    btn.setAttribute('aria-expanded', String(!isOpen));
-    panel.style.maxHeight = !isOpen ? panel.scrollHeight + 'px' : null;
-  });
-});
+            revealItems.forEach(item => observer.observe(item));
 
-/* ==========================================================================
-   7. FOOTER POPULAR LINKS
-   ========================================================================== */
-var footerLinks = document.getElementById('footer-calc-links');
-var popular = [0,1,5,10,25,29,39,47];
-footerLinks.innerHTML = popular.map(function(i){
-  var c = CALCULATORS[i];
-  return '<li><a href="'+c.l+'">'+c.n+'</a></li>';
-}).join('');
-document.getElementById('year').textContent = new Date().getFullYear();
+            // FAQ Accordion Trigger Layer Configuration Controls
+            const faqTriggers = document.querySelectorAll(".faq-trigger");
+            faqTriggers.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const item = btn.parentElement;
+                    const content = item.querySelector(".faq-content");
+                    const open = item.classList.contains("open");
 
-/* ==========================================================================
-   8. THEME (dark mode + system detection + persistence)
-   ========================================================================== */
-var themeToggle = document.getElementById('theme-toggle');
-function applyTheme(t){
-  document.documentElement.removeAttribute('data-theme');
-  document.body.setAttribute('data-theme', t);
-  document.documentElement.style.colorScheme = t;
-  themeToggle.setAttribute('aria-pressed', String(t === 'dark'));
-  localStorage.setItem('utilmint-theme', t);
-}
-(function initTheme(){
-  var saved = localStorage.getItem('utilmint-theme');
-  if (saved){ applyTheme(saved); return; }
-  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  applyTheme(prefersDark ? 'dark' : 'light');
-})();
-themeToggle.addEventListener('click', function(){
-  var current = document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-  applyTheme(current === 'dark' ? 'light' : 'dark');
-});
-if (window.matchMedia){
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
-    if (!localStorage.getItem('utilmint-theme-manual')){ applyTheme(e.matches ? 'dark' : 'light'); }
-  });
-}
-themeToggle.addEventListener('click', function(){ localStorage.setItem('utilmint-theme-manual','1'); });
+                    document.querySelectorAll(".faq-item").forEach(i => {
+                        i.classList.remove("open");
+                        i.querySelector(".faq-content").style.maxHeight = null;
+                    });
 
-/* ==========================================================================
-   9. HEADER SCROLL STATE + SCROLL PROGRESS + BACK TO TOP
-   ========================================================================== */
-var headerEl = document.getElementById('site-header');
-var progressBar = document.getElementById('scroll-progress');
-var backToTop = document.getElementById('back-to-top');
-var ticking = false;
-function onScroll(){
-  if (!ticking){
-    requestAnimationFrame(function(){
-      var scrollTop = window.scrollY || document.documentElement.scrollTop;
-      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      progressBar.style.width = pct + '%';
-      headerEl.classList.toggle('scrolled', scrollTop > 24);
-      backToTop.classList.toggle('show', scrollTop > 480);
-      ticking = false;
-    });
-    ticking = true;
-  }
-}
-window.addEventListener('scroll', onScroll, {passive:true});
-backToTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
-document.getElementById('scroll-down').addEventListener('click', function(){
-  document.getElementById('calculators').scrollIntoView({behavior:'smooth'});
-});
-document.getElementById('scroll-down').addEventListener('keydown', function(e){
-  if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); document.getElementById('calculators').scrollIntoView({behavior:'smooth'}); }
-});
+                    if (!open) {
+                        item.classList.add("open");
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            });
 
-/* ==========================================================================
-   10. MOBILE MENU
-   ========================================================================== */
-var menuBtn = document.getElementById('menu-btn');
-var navLinks = document.getElementById('nav-links');
-menuBtn.addEventListener('click', function(){
-  var open = navLinks.classList.toggle('open');
-  menuBtn.classList.toggle('open', open);
-  menuBtn.setAttribute('aria-expanded', String(open));
-});
-navLinks.querySelectorAll('a').forEach(function(a){
-  a.addEventListener('click', function(){
-    navLinks.classList.remove('open');
-    menuBtn.classList.remove('open');
-    menuBtn.setAttribute('aria-expanded','false');
-  });
-});
+            // Modern Interactive Dynamic Mouse Parallax Acceleration Vectors for Grid Elements
+            cards.forEach(card => {
+                if (card.classList.contains('coming-soon')) return;
+                card.addEventListener("mousemove", (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width / 2);
+                    const y = e.clientY - rect.top - (rect.height / 2);
+                    
+                    // Controlled mechanical angle deflection parameters
+                    card.style.transform = `perspective(1000px) translateY(-6px) rotateX(${-y / 12}deg) rotateY(${x / 12}deg) scale(1.02)`;
+                });
 
-/* ==========================================================================
-   11. ANIMATED COUNTERS (IntersectionObserver + rAF)
-   ========================================================================== */
-function animateCount(el){
-  var target = parseFloat(el.dataset.count);
-  var suffix = el.dataset.suffix || '';
-  var duration = 1400;
-  var start = null;
-  function step(ts){
-    if (!start) start = ts;
-    var progress = Math.min((ts - start) / duration, 1);
-    var eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(eased * target) + suffix;
-    if (progress < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-}
-var counterObserver = new IntersectionObserver(function(entries){
-  entries.forEach(function(entry){
-    if (entry.isIntersecting){
-      animateCount(entry.target);
-      counterObserver.unobserve(entry.target);
-    }
-  });
-}, {threshold:0.6});
-document.querySelectorAll('[data-count]').forEach(function(el){ counterObserver.observe(el); });
+                card.addEventListener("mouseleave", () => {
+                    card.style.transform = "perspective(1000px) translateY(0) rotateX(0) rotateY(0) scale(1)";
+                });
+            });
+        }
 
-/* ==========================================================================
-   12. SCROLL REVEAL (generic + reused for dynamic content)
-   ========================================================================== */
-var revealObserver = new IntersectionObserver(function(entries){
-  entries.forEach(function(entry){
-    if (entry.isIntersecting){
-      entry.target.classList.add('in');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, {threshold:0.14, rootMargin:'0px 0px -60px 0px'});
-function observeReveal(nodeList){
-  nodeList.forEach(function(el){ revealObserver.observe(el); });
-}
-document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observe(el); });
+        // Linear Accumulative Statistical Metric Interpolators Mapping Core Numbers
+        function runStatCounter(el) {
+            if (el.dataset.animated === "true") return;
+            el.dataset.animated = "true";
+            
+            const target = parseInt(el.dataset.target, 10);
+            const span = 1600; 
+            const steps = 60;
+            const rate = span / steps;
+            let current = 0;
 
-/* ==========================================================================
-   13. RIPPLE EFFECT
-   ========================================================================== */
-document.addEventListener('click', function(e){
-  var target = e.target.closest('[data-ripple]');
-  if (!target) return;
-  var rect = target.getBoundingClientRect();
-  var size = Math.max(rect.width, rect.height);
-  var ripple = document.createElement('span');
-  ripple.className = 'ripple';
-  ripple.style.width = ripple.style.height = size + 'px';
-  ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
-  ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
-  target.style.position = target.style.position || 'relative';
-  target.appendChild(ripple);
-  setTimeout(function(){ ripple.remove(); }, 650);
-});
-
-/* ==========================================================================
-   14. CARD TILT (desktop only, respects reduced motion)
-   ========================================================================== */
-var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-var isTouch = window.matchMedia('(hover: none)').matches;
-function bindCardTilt(){
-  if (reduceMotion || isTouch) return;
-  grid.querySelectorAll('.card').forEach(function(card){
-    card.addEventListener('mousemove', function(e){
-      var r = card.getBoundingClientRect();
-      var x = (e.clientX - r.left) / r.width - 0.5;
-      var y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = 'translateY(-8px) scale(1.015) rotateX('+(-y*8)+'deg) rotateY('+(x*8)+'deg)';
-    });
-    card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
-  });
-}
-
-/* ==========================================================================
-   15. HERO MOUSE PARALLAX
-   ========================================================================== */
-if (!reduceMotion){
-  var blobs = [document.getElementById('blob1'), document.getElementById('blob2'), document.getElementById('blob3')];
-  document.querySelector('.hero').addEventListener('mousemove', function(e){
-    var cx = window.innerWidth/2, cy = window.innerHeight/2;
-    var dx = (e.clientX - cx) / cx, dy = (e.clientY - cy) / cy;
-    blobs.forEach(function(b, i){
-      var factor = (i+1) * 10;
-      b.style.transform = 'translate('+(dx*factor)+'px,'+(dy*factor)+'px)';
-    });
-  }, {passive:true});
-}
-
-/* ==========================================================================
-   16. LIGHTWEIGHT PARTICLE FIELD (canvas)
-   ========================================================================== */
-(function particles(){
-  var canvas = document.getElementById('particle-canvas');
-  var ctx = canvas.getContext('2d');
-  var pts = [];
-  var count = reduceMotion ? 0 : (window.innerWidth < 700 ? 26 : 52);
-  var w, h;
-  function resize(){
-    var hero = document.querySelector('.hero');
-    w = canvas.width = hero.offsetWidth;
-    h = canvas.height = hero.offsetHeight;
-  }
-  function init(){
-    resize();
-    pts = [];
-    for (var i=0;i<count;i++){
-      pts.push({
-        x: Math.random()*w, y: Math.random()*h,
-        vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25,
-        r: Math.random()*1.6 + 0.6
-      });
-    }
-  }
-  function isDark(){ return document.body.getAttribute('data-theme') === 'dark'; }
-  function draw(){
-    ctx.clearRect(0,0,w,h);
-    ctx.fillStyle = isDark() ? 'rgba(243,245,238,0.5)' : 'rgba(16,30,26,0.35)';
-    pts.forEach(function(p){
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > w) p.vx *= -1;
-      if (p.y < 0 || p.y > h) p.vy *= -1;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fill();
-    });
-    requestAnimationFrame(draw);
-  }
-  window.addEventListener('resize', resize);
-  init();
-  if (count > 0) requestAnimationFrame(draw);
-})();
-
-})();
-</script>
+            const timer = setInterval(() => {
+                current += Math.ceil(target / steps);
+                if (current >= target) {
+                    el.textContent = target + (el.textContent.includes('%') || el.dataset.target === "100" && el.nextElementSibling.textContent.includes('Responsive') ? "%" : "+");
+                    clearInterval(timer);
+                } else {
+                    el.textContent = current;
+                }
+            }, rate);
+        }
+    </script>
 </body>
 </html>
