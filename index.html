@@ -1,2097 +1,2090 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Utilmint Premium | Advanced Scientific Workspace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Utilmint - All Your Favorite Apps. One Place.</title>
+    <meta name="title" content="Utilmint - All Your Favorite Apps. One Place.">
+    <meta name="description" content="Access Social Media, Chat, Videos, Music, Shopping, Payments, News, Travel, Food, and Jobs from one beautiful, fast, and unified Web Dashboard.">
+    <meta name="keywords" content="app directory, social media apps, web apps dashboard, productive bookmark manager, quick app launcher, utilmint">
+    <meta name="author" content="Utilmint">
+    <meta name="theme-color" content="#0F172A">
+    <link rel="canonical" href="https://utilmint.com">
+    
+    <!-- Favicon SVG -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%233B82F6'/><stop offset='100%' stop-color='%2310B981'/></linearGradient></defs><rect width='100' height='100' rx='28' fill='url(%23g)'/><path d='M30 32 L50 70 L70 32 M50 50 L50 70' stroke='white' stroke-width='10' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://utilmint.com/">
+    <meta property="og:title" content="Utilmint - All Your Favorite Apps. One Place.">
+    <meta property="og:description" content="Access Social Media, Chat, Videos, Music, Shopping, Payments, News, Travel, Food, and Jobs from one unified dashboard.">
+    <meta property="og:image" content="https://utilmint.com/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://utilmint.com/">
+    <meta property="twitter:title" content="Utilmint - All Your Favorite Apps. One Place.">
+    <meta property="twitter:description" content="Access Social Media, Chat, Videos, Music, Shopping, Payments, News, Travel, Food, and Jobs from one unified dashboard.">
+    <meta property="twitter:image" content="https://utilmint.com/og-image.png">
+
+    <!-- Schema.org WebSite Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Utilmint",
+      "url": "https://utilmint.com",
+      "description": "All Your Favorite Apps. One Place.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All"
+    }
+    </script>
+
     <style>
         /* ==========================================================================
-           CSS VARIABLES & SYSTEM DESIGN TOKENS
+           1. CSS VARIABLES & THEME SETUP
            ========================================================================== */
         :root {
-            /* Fonts */
-            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            --primary: #3B82F6;
+            --primary-hover: #2563EB;
+            --primary-glow: rgba(59, 130, 246, 0.35);
+            --accent: #10B981;
+            --accent-glow: rgba(16, 185, 129, 0.35);
             
-            /* Dark Theme (Default) - Deep Space */
-            --bg-gradient: linear-gradient(135deg, #090d16 0%, #11102b 50%, #030712 100%);
-            --panel-bg: rgba(15, 23, 42, 0.6);
-            --panel-border: rgba(255, 255, 255, 0.08);
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-dim: #64748b;
-            --terminal-display-bg: rgba(0, 0, 0, 0.3);
-            
-            /* Button Tones (Dark) */
-            --btn-fn-bg: rgba(99, 102, 241, 0.1);
-            --btn-fn-border: rgba(99, 102, 241, 0.25);
-            --btn-fn-text: #a5b4fc;
-            --btn-fn-hover: rgba(99, 102, 241, 0.2);
-            
-            --btn-op-bg: rgba(245, 158, 11, 0.08);
-            --btn-op-border: rgba(245, 158, 11, 0.2);
-            --btn-op-text: #fcd34d;
-            --btn-op-hover: rgba(245, 158, 11, 0.18);
-            
-            --btn-num-bg: rgba(255, 255, 255, 0.03);
-            --btn-num-border: rgba(255, 255, 255, 0.05);
-            --btn-num-text: #f1f5f9;
-            --btn-num-hover: rgba(255, 255, 255, 0.08);
-            
-            --btn-action-bg: rgba(239, 68, 68, 0.1);
-            --btn-action-border: rgba(239, 68, 68, 0.25);
-            --btn-action-text: #fca5a5;
-            --btn-action-hover: rgba(239, 68, 68, 0.2);
-            
-            --btn-eq-bg: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
-            --btn-eq-border: rgba(255, 255, 255, 0.15);
-            --btn-eq-text: #ffffff;
-            --btn-eq-hover: linear-gradient(135deg, #6366f1 0%, #60a5fa 100%);
-            
-            /* Accents & Effects */
-            --glow-color: rgba(99, 102, 241, 0.15);
-            --shadow-intensity: rgba(0, 0, 0, 0.5);
-            --blur-radius: 24px;
-            --transition-speed: 0.2s;
-            --neon-accent: #6366f1;
-            
-            /* UI States */
-            --active-indicator: #34d399;
-            --sidebar-tab-bg: rgba(0, 0, 0, 0.2);
-            --card-item-bg: rgba(255, 255, 255, 0.02);
-            --select-bg: rgba(0, 0, 0, 0.4);
+            --bg-base: #0F172A;
+            --bg-surface: #1E293B;
+            --bg-glass: rgba(30, 41, 59, 0.7);
+            --bg-glass-hover: rgba(51, 65, 85, 0.8);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.2);
+
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
+            --text-dim: #64748B;
+
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 10px;
+            --radius-full: 9999px;
+
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 25px var(--primary-glow);
+
+            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         [data-theme="light"] {
-            /* Light Theme - Lab Cleanroom */
-            --bg-gradient: linear-gradient(135deg, #e2e8f0 0%, #dde4ff 50%, #f1f5f9 100%);
-            --panel-bg: rgba(255, 255, 255, 0.75);
-            --panel-border: rgba(15, 23, 42, 0.08);
-            --text-primary: #0f172a;
-            --text-secondary: #334155;
-            --text-dim: #64748b;
-            --terminal-display-bg: rgba(255, 255, 255, 0.55);
-            
-            /* Button Tones (Light) */
-            --btn-fn-bg: rgba(79, 70, 229, 0.06);
-            --btn-fn-border: rgba(79, 70, 229, 0.15);
-            --btn-fn-text: #4f46e5;
-            --btn-fn-hover: rgba(79, 70, 229, 0.12);
-            
-            --btn-op-bg: rgba(180, 83, 9, 0.06);
-            --btn-op-border: rgba(180, 83, 9, 0.15);
-            --btn-op-text: #b45309;
-            --btn-op-hover: rgba(180, 83, 9, 0.12);
-            
-            --btn-num-bg: rgba(15, 23, 42, 0.04);
-            --btn-num-border: rgba(15, 23, 42, 0.06);
-            --btn-num-text: #0f172a;
-            --btn-num-hover: rgba(15, 23, 42, 0.09);
-            
-            --btn-action-bg: rgba(220, 38, 38, 0.06);
-            --btn-action-border: rgba(220, 38, 38, 0.15);
-            --btn-action-text: #c53030;
-            --btn-action-hover: rgba(220, 38, 38, 0.12);
-            
-            --btn-eq-bg: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            --btn-eq-border: rgba(0, 0, 0, 0.1);
-            --btn-eq-text: #ffffff;
-            --btn-eq-hover: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
-            
-            /* Accents & Effects */
-            --glow-color: rgba(79, 70, 229, 0.05);
-            --shadow-intensity: rgba(15, 23, 42, 0.08);
-            --neon-accent: #4f46e5;
-            
-            /* UI States */
-            --active-indicator: #059669;
-            --sidebar-tab-bg: rgba(15, 23, 42, 0.03);
-            --card-item-bg: rgba(15, 23, 42, 0.02);
-            --select-bg: rgba(255, 255, 255, 0.8);
+            --bg-base: #F8FAFC;
+            --bg-surface: #FFFFFF;
+            --bg-glass: rgba(255, 255, 255, 0.75);
+            --bg-glass-hover: rgba(241, 245, 249, 0.9);
+            --border-glass: rgba(0, 0, 0, 0.08);
+            --border-hover: rgba(0, 0, 0, 0.2);
+
+            --text-main: #0F172A;
+            --text-muted: #475569;
+            --text-dim: #94A3B8;
+
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
         }
 
         /* ==========================================================================
-           GLOBAL BASE STYLES & RESET
+           2. BASE RESETS & LAYOUT
            ========================================================================== */
-        * {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: var(--font-family);
-            user-select: none;
-            -webkit-user-select: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
         }
 
         body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.5;
+            overflow-x: hidden;
+            transition: background-color var(--transition-fast), color var(--transition-fast);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button, input, textarea {
+            font-family: inherit;
+            border: none;
+            outline: none;
+            background: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* Ambient Blobs background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100vw;
             height: 100vh;
-            height: 100dvh;
+            z-index: -1;
             overflow: hidden;
-            background: var(--bg-gradient);
-            background-size: 400% 400%;
-            animation: gradientBg 25s ease infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-primary);
-            perspective: 1000px;
-            padding: 12px;
-            transition: color var(--transition-speed);
-        }
-
-        @keyframes gradientBg {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* ==========================================================================
-           MAIN LAYER ARCHITECTURE (APPLICATION CONTAINER)
-           ========================================================================== */
-        .app-workspace {
-            width: 100%;
-            max-width: 1440px;
-            height: 100%;
-            max-height: 900px;
-            background: var(--panel-bg);
-            backdrop-filter: blur(var(--blur-radius));
-            -webkit-backdrop-filter: blur(var(--blur-radius));
-            border: 1px solid var(--panel-border);
-            border-radius: 24px;
-            box-shadow: 0 25px 50px -12px var(--shadow-intensity), 
-                        inset 0 1px 0 rgba(255,255,255,0.05);
-            display: grid;
-            grid-template-columns: 1fr 340px;
-            overflow: hidden;
-            animation: appEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-            position: relative;
-            transition: background var(--transition-speed), border-color var(--transition-speed);
-        }
-
-        @keyframes appEntrance {
-            0% { opacity: 0; transform: scale(0.96) translateY(20px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        /* ==========================================================================
-           LEFT WORKSPACE: CALCULATOR CORE
-           ========================================================================== */
-        .calculator-core {
-            display: grid;
-            grid-template-rows: auto auto 1fr;
-            border-right: 1px solid var(--panel-border);
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Header Bar */
-        .core-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 24px;
-            background: rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid var(--panel-border);
-        }
-
-        .brand-signature {
-            font-weight: 700;
-            font-size: 1.05rem;
-            letter-spacing: -0.02em;
-            background: linear-gradient(90deg, var(--text-primary), var(--text-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .system-status-indicators {
-            display: flex;
-            gap: 8px;
-        }
-
-        .status-pill {
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            background: rgba(0,0,0,0.15);
-            border: 1px solid var(--panel-border);
-            color: var(--text-secondary);
-            transition: all var(--transition-speed);
-        }
-
-        [data-theme="light"] .status-pill {
-            background: rgba(0, 0, 0, 0.04);
-        }
-
-        .status-pill.active {
-            color: var(--active-indicator);
-            border-color: rgba(16, 185, 129, 0.25);
-            background: rgba(16, 185, 129, 0.06);
-        }
-
-        .mobile-sidebar-toggle {
-            display: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--panel-border);
-            color: var(--text-primary);
-            cursor: pointer;
-        }
-
-        /* Unified Terminal Screen Display */
-        .display-terminal {
-            background: var(--terminal-display-bg);
-            padding: 20px 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: flex-end;
-            position: relative;
-            min-height: 140px;
-            max-height: 220px;
-            border-bottom: 1px solid var(--panel-border);
-            overflow: hidden;
-            transition: background var(--transition-speed);
-        }
-
-        .meta-line {
-            display: flex;
-            gap: 12px;
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            margin-bottom: 4px;
-            width: 100%;
-            justify-content: flex-end;
-            font-family: monospace;
-        }
-
-        .expression-stream {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            min-height: 1.8rem;
-            word-wrap: break-word;
-            word-break: break-all;
-            text-align: right;
-            width: 100%;
-            max-height: 3.6rem;
-            overflow-y: auto;
-            font-family: monospace;
-            line-height: 1.3;
-        }
-
-        .result-render-pipeline {
-            font-size: 2.8rem;
-            font-weight: 300;
-            color: var(--text-primary);
-            margin-top: 4px;
-            white-space: nowrap;
-            overflow-x: auto;
-            width: 100%;
-            text-align: right;
-            font-family: monospace;
-            scrollbar-width: none;
-            position: relative;
-            line-height: 1.1;
-        }
-
-        .result-render-pipeline::-webkit-scrollbar {
-            display: none;
-        }
-
-        .live-preview-subline {
-            font-size: 0.95rem;
-            color: var(--text-dim);
-            min-height: 1.2rem;
-            margin-top: 2px;
-            font-family: monospace;
-        }
-
-        /* Console Cursor Effect */
-        .terminal-cursor {
-            display: inline-block;
-            width: 6px;
-            height: 1.1em;
-            background: var(--neon-accent);
-            margin-left: 4px;
-            vertical-align: middle;
-            animation: cursorBlink 1s infinite;
-        }
-
-        @keyframes cursorBlink {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-
-        /* Matrix Core Input Workspace Matrix Grid Layout */
-        .input-matrix-grid {
-            display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            gap: 6px;
-            padding: 16px;
-            background: rgba(0,0,0,0.01);
-            overflow-y: auto;
-        }
-
-        /* Unified Keyboard Interface Units */
-        .key-unit {
-            border: 1px solid;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: background var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed), transform 0.1s;
-            position: relative;
-            overflow: hidden;
-            min-height: 42px;
-            outline: none;
-            padding: 4px;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        /* Key Theming & Class Specifiers */
-        .key-fn {
-            background: var(--btn-fn-bg);
-            border-color: var(--btn-fn-border);
-            color: var(--btn-fn-text);
-        }
-        .key-fn:hover { background: var(--btn-fn-hover); transform: translateY(-1px); }
-        .key-fn:active { transform: translateY(1px); }
-
-        .key-op {
-            background: var(--btn-op-bg);
-            border-color: var(--btn-op-border);
-            color: var(--btn-op-text);
-            font-weight: 600;
-        }
-        .key-op:hover { background: var(--btn-op-hover); transform: translateY(-1px); }
-        .key-op:active { transform: translateY(1px); }
-
-        .key-num {
-            background: var(--btn-num-bg);
-            border-color: var(--btn-num-border);
-            color: var(--btn-num-text);
-            font-size: 0.95rem;
-        }
-        .key-num:hover { background: var(--btn-num-hover); transform: translateY(-1px); }
-        .key-num:active { transform: translateY(1px); }
-
-        .key-action {
-            background: var(--btn-action-bg);
-            border-color: var(--btn-action-border);
-            color: var(--btn-action-text);
-        }
-        .key-action:hover { background: var(--btn-action-hover); transform: translateY(-1px); }
-        .key-action:active { transform: translateY(1px); }
-
-        .key-equal {
-            background: var(--btn-eq-bg);
-            border-color: var(--btn-eq-border);
-            color: var(--btn-eq-text);
-            font-weight: bold;
-            grid-column: span 2;
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
-        }
-        .key-equal:hover { background: var(--btn-eq-hover); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3); }
-        .key-equal:active { transform: translateY(1px); }
-
-        .key-unit:focus-visible {
-            box-shadow: 0 0 0 3px var(--neon-accent);
-        }
-
-        /* Keyboard Ripple Element */
-        .ripple-surface {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.15);
-            transform: scale(0);
-            animation: rippleEffect 0.4s linear;
             pointer-events: none;
         }
-        [data-theme="light"] .ripple-surface {
-            background: rgba(0,0,0,0.06);
-        }
 
-        @keyframes rippleEffect {
-            to { transform: scale(4); opacity: 0; }
-        }
-
-        /* ==========================================================================
-           RIGHT PANEL: METRICS, WORKSPACE LOGS, SYSTEM PREFERENCES
-           ========================================================================== */
-        .control-sidebar {
-            display: grid;
-            grid-template-rows: auto 1fr;
-            background: rgba(0,0,0,0.05);
-            overflow: hidden;
-            border-left: 1px solid var(--panel-border);
-        }
-
-        .sidebar-tabs {
-            display: flex;
-            border-bottom: 1px solid var(--panel-border);
-            background: var(--sidebar-tab-bg);
-        }
-
-        .tab-trigger {
-            flex: 1;
-            padding: 14px;
-            text-align: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            color: var(--text-secondary);
-            transition: all var(--transition-speed);
-            border-bottom: 2px solid transparent;
-        }
-
-        .tab-trigger.active {
-            color: var(--text-primary);
-            border-bottom-color: var(--neon-accent);
-            background: rgba(255,255,255,0.01);
-        }
-
-        .panel-content-viewport {
-            overflow-y: auto;
-            padding: 16px;
-            position: relative;
-            height: 100%;
-        }
-
-        .tab-panel {
-            display: none;
-            height: 100%;
-            flex-direction: column;
-        }
-
-        .tab-panel.active {
-            display: flex;
-        }
-
-        /* History Stream Architecture */
-        .history-search-bar {
-            width: 100%;
-            padding: 8px 12px;
-            border-radius: 8px;
-            background: rgba(0,0,0,0.15);
-            border: 1px solid var(--panel-border);
-            color: var(--text-primary);
-            font-size: 0.8rem;
-            margin-bottom: 12px;
-            outline: none;
-            transition: background var(--transition-speed), border-color var(--transition-speed);
-        }
-        
-        [data-theme="light"] .history-search-bar {
-            background: rgba(255,255,255,0.6);
-        }
-        
-        .history-search-bar:focus {
-            border-color: var(--neon-accent);
-            background: rgba(0,0,0,0.25);
-        }
-        [data-theme="light"] .history-search-bar:focus {
-            background: rgba(255,255,255,0.9);
-        }
-
-        .history-list-stream {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding-right: 2px;
-        }
-
-        .history-item-card {
-            background: var(--card-item-bg);
-            border: 1px solid var(--panel-border);
-            border-radius: 10px;
-            padding: 10px;
-            position: relative;
-            cursor: pointer;
-            transition: all var(--transition-speed);
-            animation: slideInUp 0.3s ease;
-        }
-
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .history-item-card:hover {
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(255,255,255,0.15);
-        }
-        [data-theme="light"] .history-item-card:hover {
-            background: rgba(0,0,0,0.03);
-            border-color: rgba(0,0,0,0.12);
-        }
-
-        .history-card-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.65rem;
-            color: var(--text-dim);
-            margin-bottom: 4px;
-        }
-
-        .history-card-expr {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            word-break: break-all;
-            text-align: right;
-            font-family: monospace;
-        }
-
-        .history-card-res {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-align: right;
-            margin-top: 2px;
-            word-break: break-all;
-            font-family: monospace;
-        }
-
-        .history-item-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 8px;
-            margin-top: 6px;
-            opacity: 0;
-            transition: opacity var(--transition-speed);
-        }
-
-        .history-item-card:hover .history-item-actions {
-            opacity: 1;
-        }
-
-        .hist-action-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-dim);
-            font-size: 0.7rem;
-            cursor: pointer;
-        }
-
-        .hist-action-btn:hover {
-            color: var(--text-primary);
-        }
-
-        .panel-action-footer {
-            margin-top: 12px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .footer-action-btn {
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            background: rgba(0,0,0,0.15);
-            border: 1px solid var(--panel-border);
-            color: var(--text-secondary);
-            transition: all var(--transition-speed);
-        }
-        [data-theme="light"] .footer-action-btn {
-            background: rgba(255,255,255,0.6);
-        }
-
-        .footer-action-btn:hover {
-            color: var(--text-primary);
-            background: rgba(255,255,255,0.05);
-        }
-        [data-theme="light"] .footer-action-btn:hover {
-            background: rgba(0,0,0,0.04);
-        }
-
-        /* Settings Sub-System Layout Architecture */
-        .settings-box-structure {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .setting-row-item {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .setting-row-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .setting-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .setting-desc {
-            font-size: 0.7rem;
-            color: var(--text-dim);
-        }
-
-        /* Control Switch Toggle Mechanism */
-        .toggle-switch-shell {
-            width: 40px;
-            height: 22px;
-            background: rgba(0,0,0,0.2);
-            border: 1px solid var(--panel-border);
-            border-radius: 12px;
-            position: relative;
-            cursor: pointer;
-            transition: background var(--transition-speed);
-            flex-shrink: 0;
-        }
-        [data-theme="light"] .toggle-switch-shell {
-            background: rgba(0,0,0,0.08);
-        }
-
-        .toggle-switch-shell::after {
-            content: '';
+        .blob {
             position: absolute;
-            width: 16px;
-            height: 16px;
             border-radius: 50%;
-            background: #ffffff;
-            top: 2px;
-            left: 2px;
-            transition: transform var(--transition-speed);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            filter: blur(100px);
+            opacity: 0.25;
+            animation: float 20s infinite alternate ease-in-out;
         }
 
-        .toggle-switch-shell.enabled {
-            background: var(--neon-accent);
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            top: -100px;
+            left: -100px;
         }
 
-        .toggle-switch-shell.enabled::after {
-            transform: translateX(18px);
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background: var(--accent);
+            bottom: -200px;
+            right: -100px;
+            animation-delay: -5s;
         }
 
-        .select-native-wrapper select {
+        .blob-3 {
+            width: 400px;
+            height: 400px;
+            background: #8B5CF6;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 80px) scale(1.1); }
+            100% { transform: translate(-40px, 30px) scale(0.95); }
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s linear;
+        }
+
+        .container {
             width: 100%;
-            padding: 6px 10px;
-            border-radius: 6px;
-            background: var(--select-bg);
-            border: 1px solid var(--panel-border);
-            color: var(--text-primary);
-            font-size: 0.8rem;
-            outline: none;
-            transition: background var(--transition-speed), color var(--transition-speed);
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Glass Utility */
+        .glass {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+        }
+
+        /* Ripple Effect Container */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple-ink {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple-anim 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-anim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
         }
 
         /* ==========================================================================
-           MODAL SYSTEM: TOAST NOTIFICATIONS & ERRORS
+           3. LOADING SCREEN
            ========================================================================== */
-        .toast-notification-system {
-            position: absolute;
-            bottom: 16px;
-            left: 16px;
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-base);
             z-index: 9999;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            pointer-events: none;
-            max-width: calc(100% - 32px);
-        }
-
-        .toast-unit {
-            padding: 10px 16px;
-            border-radius: 8px;
-            background: rgba(15, 23, 42, 0.95);
-            border-left: 4px solid var(--neon-accent);
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.4);
-            color: #f8fafc;
-            font-size: 0.8rem;
-            display: flex;
             align-items: center;
-            gap: 10px;
-            transform: translateX(-120%);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
-            opacity: 0;
-            pointer-events: auto;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
 
-        [data-theme="light"] .toast-unit {
-            background: rgba(255, 255, 255, 0.98);
-            color: #0f172a;
-            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
-            border-left-width: 4px;
+        .loader-logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
         }
 
-        .toast-unit.visible {
-            transform: translateX(0);
-            opacity: 1;
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--border-glass);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s infinite linear;
         }
 
-        .toast-unit.toast-error {
-            border-left-color: #ef4444;
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* ==========================================================================
-           RESPONSIVE DESIGN BREAKPOINTS (ADAPTIVE SYSTEM RE-ARCHITECTURE)
+           4. HEADER & NAVIGATION
            ========================================================================== */
-        
-        /* 1. Laptops and Smaller Desktops */
-        @media (max-width: 1200px) {
-            .app-workspace {
-                grid-template-columns: 1fr 300px;
-                height: 95vh;
-            }
-            .input-matrix-grid {
-                grid-template-columns: repeat(8, 1fr);
-            }
-            .key-equal {
-                grid-column: span 2;
-            }
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            padding: 16px 0;
+            transition: all var(--transition-fast);
         }
 
-        /* 2. Tablets and Medium Screens (Landscape/Portrait Switchers) */
+        .header.scrolled {
+            padding: 12px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: var(--radius-full);
+            padding: 8px 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            transition: color var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-main);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            transition: all var(--transition-fast);
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+        }
+
+        .icon-btn:hover {
+            background: var(--bg-glass-hover);
+            transform: translateY(-2px);
+            border-color: var(--border-hover);
+        }
+
+        .mobile-toggle {
+            display: none;
+        }
+
+        /* Mobile Drawer */
+        .mobile-nav {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-base);
+            z-index: 490;
+            padding: 100px 32px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-nav.open {
+            transform: translateX(0);
+        }
+
+        .mobile-nav .nav-link {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* ==========================================================================
+           5. HERO SECTION
+           ========================================================================== */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero-title-gradient {
+            background: linear-gradient(135deg, #60A5FA, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            max-width: 680px;
+            margin: 0 auto 40px;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Search Bar & Suggestions */
+        .search-wrapper {
+            max-width: 640px;
+            margin: 0 auto 32px;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 18px 24px 18px 56px;
+            border-radius: var(--radius-full);
+            font-size: 1.05rem;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-fast);
+        }
+
+        .search-bar:focus {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-glow);
+            background: var(--bg-surface);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            pointer-events: none;
+            width: 20px;
+            height: 20px;
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            cursor: pointer;
+            display: none;
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            border-radius: var(--radius-md);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+            text-align: left;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .search-suggestions.active {
+            display: block;
+        }
+
+        .suggestion-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: background var(--transition-fast);
+        }
+
+        .suggestion-item:hover {
+            background: var(--bg-glass-hover);
+        }
+
+        .suggestion-img {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all var(--transition-fast);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #2563EB);
+            color: white;
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--primary-glow);
+        }
+
+        .btn-secondary {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-glass-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Keyboard Shortcut Hint */
+        .kbd-hint {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--border-glass);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        /* ==========================================================================
+           6. STATS SECTION
+           ========================================================================== */
+        .stats {
+            padding: 20px 0 60px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            padding: 24px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            transition: transform var(--transition-fast);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-main), var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           7. CATEGORIES & APP GRID
+           ========================================================================== */
+        .categories-section {
+            padding: 40px 0 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        /* Filter Pills */
+        .category-pills {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 32px;
+            scrollbar-width: none;
+        }
+
+        .category-pills::-webkit-scrollbar {
+            display: none;
+        }
+
+        .pill {
+            padding: 8px 18px;
+            border-radius: var(--radius-full);
+            font-weight: 500;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            color: var(--text-muted);
+            transition: all var(--transition-fast);
+        }
+
+        .pill:hover, .pill.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .category-block {
+            margin-bottom: 48px;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .app-card {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            background: var(--bg-glass-hover);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .app-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .app-icon-wrapper {
+            width: 52px;
+            height: 52px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .app-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .fav-btn {
+            color: var(--text-dim);
+            transition: all var(--transition-fast);
+            padding: 4px;
+        }
+
+        .fav-btn:hover, .fav-btn.active {
+            color: #EF4444;
+            transform: scale(1.15);
+        }
+
+        .app-info {
+            margin-bottom: 20px;
+        }
+
+        .app-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .app-url {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .app-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .app-open-btn {
+            flex: 1;
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            background: var(--border-glass);
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .app-card:hover .app-open-btn {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .copy-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: var(--radius-sm);
+            background: var(--border-glass);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .copy-btn:hover {
+            background: var(--bg-surface);
+            color: var(--text-main);
+        }
+
+        /* No Results State */
+        .no-results {
+            text-align: center;
+            padding: 60px 0;
+            display: none;
+        }
+
+        .no-results.active {
+            display: block;
+        }
+
+        .no-results-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        /* ==========================================================================
+           8. ABOUT SECTION
+           ========================================================================== */
+        .about-section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .about-card {
+            padding: 48px;
+            border-radius: var(--radius-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .feature-box {
+            padding: 20px;
+            border-radius: var(--radius-md);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .feature-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           9. CONTACT SECTION
+           ========================================================================== */
+        .contact-section {
+            padding: 80px 0;
+        }
+
+        .contact-container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            font-size: 0.95rem;
+            transition: all var(--transition-fast);
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* ==========================================================================
+           10. FOOTER
+           ========================================================================== */
+        .footer {
+            border-top: 1px solid var(--border-glass);
+            padding: 60px 0 30px;
+            background: var(--bg-glass);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            margin-top: 12px;
+            max-width: 300px;
+            font-size: 0.9rem;
+        }
+
+        .footer-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-link:hover {
+            color: var(--text-main);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-glass);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* ==========================================================================
+           11. FLOATING ACTION BUTTON & BACK TO TOP
+           ========================================================================== */
+        .fab-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 400;
+        }
+
+        .fab {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-fast);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+        }
+
+        .fab.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .fab:hover {
+            transform: translateY(-4px) scale(1.05);
+            background: var(--primary-hover);
+        }
+
+        /* ==========================================================================
+           12. TOAST NOTIFICATIONS
+           ========================================================================== */
+        #toast-container {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .toast {
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-surface);
+            color: var(--text-main);
+            border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), fadeOut 0.3s ease 2.7s forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        /* ==========================================================================
+           13. RESPONSIVE MEDIA QUERIES
+           ========================================================================== */
         @media (max-width: 992px) {
-            body {
-                padding: 8px;
-            }
-            .app-workspace {
+            .about-grid {
                 grid-template-columns: 1fr;
-                height: 100%;
-                max-height: none;
-                border-radius: 16px;
             }
-            .calculator-core {
-                border-right: none;
-            }
-            .mobile-sidebar-toggle {
-                display: block;
-            }
-            
-            /* Reposition Side Panel into Overlay Modal Sheets */
-            .control-sidebar {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 320px;
-                height: 100%;
-                z-index: 1000;
-                transform: translateX(100%);
-                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                background: rgba(15, 23, 42, 0.95);
-                backdrop-filter: blur(25px);
-                -webkit-backdrop-filter: blur(25px);
-                border-left: 1px solid var(--panel-border);
-            }
-            [data-theme="light"] .control-sidebar {
-                background: rgba(255, 255, 255, 0.95);
-            }
-            .control-sidebar.sidebar-open {
-                transform: translateX(0);
-                box-shadow: -10px 0 30px rgba(0,0,0,0.3);
-            }
-            
-            .input-matrix-grid {
-                grid-template-columns: repeat(6, 1fr);
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
-        /* 3. Small Tablets and Large Smartphones */
         @media (max-width: 768px) {
-            .display-terminal {
-                padding: 16px 20px;
-                min-height: 120px;
-            }
-            .result-render-pipeline {
-                font-size: 2.3rem;
-            }
-            .input-matrix-grid {
-                grid-template-columns: repeat(5, 1fr);
-                gap: 5px;
-                padding: 12px;
-            }
-            .key-unit {
-                min-height: 44px;
-                font-size: 0.8rem;
-            }
-            .key-num {
-                font-size: 0.9rem;
-            }
-        }
-
-        /* 4. Ultra-Compact Mobile Architectures (Standard Phones Portrait) */
-        @media (max-width: 480px) {
-            body {
-                padding: 0;
-            }
-            .app-workspace {
-                border-radius: 0;
-                border: none;
-                height: 100dvh;
-            }
-            .core-header {
-                padding: 10px 16px;
-            }
-            .display-terminal {
-                padding: 12px 16px;
-                min-height: 100px;
-            }
-            .result-render-pipeline {
-                font-size: 2rem;
-            }
-            .expression-stream {
-                font-size: 1.1rem;
-            }
-            .input-matrix-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 4px;
-                padding: 8px;
-            }
-            .key-unit {
-                min-height: 40px;
-                border-radius: 6px;
-                font-size: 0.75rem;
-            }
-            .key-equal {
-                grid-column: span 1;
-            }
-            .control-sidebar {
-                width: 100%;
-            }
-        }
-
-        /* 5. Device Landscape Mode Visual Protection Adaptations */
-        @media (max-height: 520px) and (orientation: landscape) {
-            body {
-                padding: 0;
-            }
-            .app-workspace {
-                border-radius: 0;
-                height: 100vh;
-                grid-template-columns: 1fr;
-            }
-            .calculator-core {
-                grid-template-rows: auto 1fr;
-            }
-            .display-terminal {
-                padding: 6px 16px;
-                min-height: 65px;
-                max-height: 85px;
-            }
-            .result-render-pipeline {
-                font-size: 1.6rem;
-                margin-top: 0;
-            }
-            .expression-stream {
-                font-size: 0.95rem;
-                min-height: 1.2rem;
-            }
-            .live-preview-subline {
+            .nav-links {
                 display: none;
             }
-            .input-matrix-grid {
-                grid-template-columns: repeat(10, 1fr);
-                padding: 6px;
-                gap: 4px;
+            .mobile-toggle {
+                display: flex;
             }
-            .key-unit {
-                min-height: 32px;
-                font-size: 0.75rem;
+            .hero-title {
+                font-size: 2.2rem;
             }
-        }
-
-        /* Animation suppression utility logic */
-        .no-animations *, .no-animations {
-            animation: none !important;
-            transition: none !important;
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+            .kbd-hint {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="app-workspace" id="rootWorkspace">
-        <!-- CALCULATOR LOGICAL CORE CONTEXT -->
-        <main class="calculator-core">
-            <header class="core-header">
-                <div class="brand-signature">
-                    <span>Utilmint</span><span style="font-weight:300; opacity:0.7;">CALC</span>
-                </div>
-                <div class="system-status-indicators">
-                    <div class="status-pill" id="indicatorAngle">DEG</div>
-                    <div class="status-pill" id="indicatorMemory">MEM</div>
-                    <div class="status-pill" id="indicatorSci">SCI</div>
-                    <button class="mobile-sidebar-toggle" id="mobilePanelTrigger" aria-label="Toggle Navigation Panel">Menu</button>
-                </div>
-            </header>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
-            <section class="display-terminal" aria-label="Calculator Screen Display">
-                <div class="meta-line">
-                    <span id="screenMetaAns">ANS = 0</span>
-                </div>
-                <div class="expression-stream" id="displayExpression" role="textbox" aria-placeholder="0"></div>
-                <div class="result-render-pipeline" id="displayResult">0<span class="terminal-cursor"></span></div>
-                <div class="live-preview-subline" id="displayLivePreview"></div>
-            </section>
-
-            <!-- KEYBOARD WORKSPACE INTERFACE GRID MAP -->
-            <div class="input-matrix-grid" id="keyboardMatrixContainer" role="grid">
-                <!-- ROW 1: MEMORY & CONFIGURATION AGENTS -->
-                <button class="key-unit key-fn" data-token="MC" aria-label="Clear Memory">MC</button>
-                <button class="key-unit key-fn" data-token="MR" aria-label="Recall Memory">MR</button>
-                <button class="key-unit key-fn" data-token="MS" aria-label="Store Memory">MS</button>
-                <button class="key-unit key-fn" data-token="M+" aria-label="Memory Add">M+</button>
-                <button class="key-unit key-fn" data-token="M-" aria-label="Memory Subtract">M-</button>
-                <button class="key-unit key-fn" data-token="DEG" id="btnToggleAngle" aria-label="Toggle Angle Mode">DEG</button>
-                <button class="key-unit key-fn" data-token="SCI" id="btnToggleSci" aria-label="Toggle Scientific Mode">SCI</button>
-                <button class="key-unit key-action" data-token="UNDO" aria-label="Undo Actions">↰</button>
-                <button class="key-unit key-action" data-token="REDO" aria-label="Redo Actions">↱</button>
-                <button class="key-unit key-action" data-token="AC" aria-label="All Clear">AC</button>
-
-                <!-- ROW 2: ADVANCED MATHS & SCALING REPRESENTATIONS -->
-                <button class="key-unit key-fn" data-token="sin" aria-label="Sine">sin</button>
-                <button class="key-unit key-fn" data-token="cos" aria-label="Cosine">cos</button>
-                <button class="key-unit key-fn" data-token="tan" aria-label="Tangent">tan</button>
-                <button class="key-unit key-fn" data-token="asin" aria-label="Inverse Sine">asin</button>
-                <button class="key-unit key-fn" data-token="acos" aria-label="Inverse Cosine">acos</button>
-                <button class="key-unit key-fn" data-token="atan" aria-label="Inverse Tangent">atan</button>
-                <button class="key-unit key-fn" data-token="π" aria-label="Constant Pi">π</button>
-                <button class="key-unit key-fn" data-token="e" aria-label="Constant Euler Number">e</button>
-                <button class="key-unit key-action" data-token="CE" aria-label="Clear Entry">CE</button>
-                <button class="key-unit key-action" data-token="BACKSPACE" aria-label="Backspace">⌫</button>
-
-                <!-- ROW 3: HYPERBOLICS & ALGEBRAIC COMPLEXITY PACKETS -->
-                <button class="key-unit key-fn" data-token="sinh" aria-label="Hyperbolic Sine">sinh</button>
-                <button class="key-unit key-fn" data-token="cosh" aria-label="Hyperbolic Cosine">cosh</button>
-                <button class="key-unit key-fn" data-token="tanh" aria-label="Hyperbolic Tangent">tanh</button>
-                <button class="key-unit key-fn" data-token="asinh" aria-label="Inverse Hyperbolic Sine">asinh</button>
-                <button class="key-unit key-fn" data-token="acosh" aria-label="Inverse Hyperbolic Cosine">acosh</button>
-                <button class="key-unit key-fn" data-token="atanh" aria-label="Inverse Hyperbolic Tangent">atanh</button>
-                <button class="key-unit key-fn" data-token="x²" aria-label="Square">x²</button>
-                <button class="key-unit key-fn" data-token="x³" aria-label="Cube">x³</button>
-                <button class="key-unit key-fn" data-token="xʸ" aria-label="Power of Y">xʸ</button>
-                <button class="key-unit key-op" data-token="÷" aria-label="Divide">÷</button>
-
-                <!-- ROW 4: COSECANTS, INVERSES & CO-FUNCTIONS -->
-                <button class="key-unit key-fn" data-token="cot" aria-label="Cotangent">cot</button>
-                <button class="key-unit key-fn" data-token="sec" aria-label="Secant">sec</button>
-                <button class="key-unit key-fn" data-token="cosec" aria-label="Cosecant">cosec</button>
-                <button class="key-unit key-fn" data-token="acot" aria-label="Inverse Cotangent">acot</button>
-                <button class="key-unit key-fn" data-token="asec" aria-label="Inverse Secant">asec</button>
-                <button class="key-unit key-fn" data-token="acosec" aria-label="Inverse Cosecant">acosec</button>
-                <button class="key-unit key-num" data-token="7" aria-label="Digit 7">7</button>
-                <button class="key-unit key-num" data-token="8" aria-label="Digit 8">8</button>
-                <button class="key-unit key-num" data-token="9" aria-label="Digit 9">9</button>
-                <button class="key-unit key-op" data-token="×" aria-label="Multiply">×</button>
-
-                <!-- ROW 5: LOGARITHMIC STREAM MECHANICS & EXPONENTIALS -->
-                <button class="key-unit key-fn" data-token="ln" aria-label="Natural Logarithm">ln</button>
-                <button class="key-unit key-fn" data-token="log" aria-label="Base 10 Logarithm">log</button>
-                <button class="key-unit key-fn" data-token="log₂" aria-label="Base 2 Logarithm">log₂</button>
-                <button class="key-unit key-fn" data-token="logₐ" aria-label="Logarithm base A">logₐ</button>
-                <button class="key-unit key-fn" data-token="eˣ" aria-label="E to power X">eˣ</button>
-                <button class="key-unit key-fn" data-token="10ˣ" aria-label="10 to power X">10ˣ</button>
-                <button class="key-unit key-num" data-token="4" aria-label="Digit 4">4</button>
-                <button class="key-unit key-num" data-token="5" aria-label="Digit 5">5</button>
-                <button class="key-unit key-num" data-token="6" aria-label="Digit 6">6</button>
-                <button class="key-unit key-op" data-token="-" aria-label="Subtract">-</button>
-
-                <!-- ROW 6: ROOTS, RADICALS, GRAPH CONSTANTS -->
-                <button class="key-unit key-fn" data-token="2ˣ" aria-label="2 to power X">2ˣ</button>
-                <button class="key-unit key-fn" data-token="√" aria-label="Square Root">√</button>
-                <button class="key-unit key-fn" data-token="∛" aria-label="Cube Root">∛</button>
-                <button class="key-unit key-fn" data-token="ⁿ√" aria-label="Nth Root">ⁿ√</button>
-                <button class="key-unit key-fn" data-token="1/x" aria-label="Reciprocal">1/x</button>
-                <button class="key-unit key-fn" data-token="EXP" aria-label="Scientific Exponential">EXP</button>
-                <button class="key-unit key-num" data-token="1" aria-label="Digit 1">1</button>
-                <button class="key-unit key-num" data-token="2" aria-label="Digit 2">2</button>
-                <button class="key-unit key-num" data-token="3" aria-label="Digit 3">3</button>
-                <button class="key-unit key-op" data-token="+" aria-label="Add">+</button>
-
-                <!-- ROW 7: NUMBER FUNCTIONS & PARSER MODES -->
-                <button class="key-unit key-fn" data-token="!" aria-label="Factorial">n!</button>
-                <button class="key-unit key-fn" data-token="abs" aria-label="Absolute Value">abs</button>
-                <button class="key-unit key-fn" data-token="mod" aria-label="Modulo Operations">mod</button>
-                <button class="key-unit key-fn" data-token="rand" aria-label="Random Float Generator">rand</button>
-                <button class="key-unit key-fn" data-token="F⇄D" aria-label="Fraction to Decimal conversion">F⇄D</button>
-                <button class="key-unit key-fn" data-token="ANS" aria-label="Answer Cache Reference">ANS</button>
-                <button class="key-unit key-num" data-token="±" aria-label="Negate Value">±</button>
-                <button class="key-unit key-num" data-token="0" aria-label="Digit 0">0</button>
-                <button class="key-unit key-num" data-token="." aria-label="Decimal point">.</button>
-                <button class="key-unit key-op" data-token="%" aria-label="Percentage">%</button>
-
-                <!-- ROW 8: COMPLEX ALGEBRA GROUPERS & INVOCATION OPERATOR -->
-                <button class="key-unit key-fn" data-token="(" aria-label="Left Parenthesis">(</button>
-                <button class="key-unit key-fn" data-token=")" aria-label="Right Parenthesis">)</button>
-                <button class="key-unit key-fn" data-token="round" aria-label="Round Real Number">round</button>
-                <button class="key-unit key-fn" data-token="floor" aria-label="Floor Logic">floor</button>
-                <button class="key-unit key-fn" data-token="ceil" aria-label="Ceiling Logic">ceil</button>
-                <button class="key-unit key-fn" data-token="sign" aria-label="Signum Evaluation">sign</button>
-                <button class="key-unit key-fn" data-token="COPY" aria-label="Copy Result">COPY</button>
-                <button class="key-unit key-fn" data-token="PASTE" aria-label="Paste String Engine">PASTE</button>
-                <button class="key-unit key-equal" data-token="=" aria-label="Evaluate Expression">=</button>
-            </div>
-        </main>
-
-        <!-- CONTROL SIDEBAR INTERFACE FRAMEWORK -->
-        <aside class="control-sidebar" id="appSidebar" aria-label="Workspace Configurations and Log Trackers">
-            <nav class="sidebar-tabs" role="tablist">
-                <div class="tab-trigger active" id="tabTriggerHistory" role="tab" aria-selected="true">HISTORY</div>
-                <div class="tab-trigger" id="tabTriggerSettings" role="tab" aria-selected="false">SETTINGS</div>
-            </nav>
-
-            <div class="panel-content-viewport">
-                <!-- PANEL: HISTORICAL ENGINE STORAGE SYSTEM -->
-                <div class="tab-panel active" id="panelHistory" role="tabpanel">
-                    <input type="text" class="history-search-bar" id="historySearchEngine" placeholder="Search operational matrices...">
-                    <div class="history-list-stream" id="historyStreamTarget">
-                        <!-- Hydrated programmatically via History Engine Modules -->
-                    </div>
-                    <footer class="panel-action-footer">
-                        <button class="footer-action-btn" id="btnHistoryClearAll">Purge Memory Vault</button>
-                    </footer>
-                </div>
-
-                <!-- PANEL: SYSTEM PREFERENCES CONFIGURATION ARCHITECTURE -->
-                <div class="tab-panel" id="panelSettings" role="tabpanel">
-                    <div class="settings-box-structure">
-                        <div class="setting-row-item">
-                            <div class="setting-row-header">
-                                <div>
-                                    <div class="setting-label">Visual Theme Architecture</div>
-                                    <div class="setting-desc">Reconfigure system color tone spectrums</div>
-                                </div>
-                                <div class="select-native-wrapper">
-                                    <select id="settingThemeSelector">
-                                        <option value="dark">Deep Space (Dark)</option>
-                                        <option value="light">Lab Cleanroom (Light)</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="setting-row-item">
-                            <div class="setting-row-header">
-                                <div>
-                                    <div class="setting-label">Fluid Kinetic Framework</div>
-                                    <div class="setting-desc">Toggle premium motion canvas physics</div>
-                                </div>
-                                <div class="toggle-switch-shell enabled" id="settingToggleAnimations"></div>
-                            </div>
-                        </div>
-
-                        <div class="setting-row-item">
-                            <div class="setting-row-header">
-                                <div>
-                                    <div class="setting-label">Acoustic Feedback Channels</div>
-                                    <div class="setting-desc">Synthesize confirmation ticks on execution</div>
-                                </div>
-                                <div class="toggle-switch-shell" id="settingToggleAcoustics"></div>
-                            </div>
-                        </div>
-
-                        <div class="setting-row-item">
-                            <div class="setting-row-header">
-                                <div>
-                                    <div class="setting-label">Precision Mantissa Depth</div>
-                                    <div class="setting-desc">Define decimal resolution limits</div>
-                                </div>
-                                <div class="select-native-wrapper">
-                                    <select id="settingPrecisionLimit">
-                                        <option value="4">4 Decimals</option>
-                                        <option value="8">8 Decimals</option>
-                                        <option value="12" selected>12 Decimals</option>
-                                        <option value="16">16 Decimals</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="setting-row-item">
-                            <div class="setting-row-header">
-                                <div>
-                                    <div class="setting-label">System Storage Array</div>
-                                    <div class="setting-desc">Reset complete architectural footprint</div>
-                                </div>
-                                <button class="footer-action-btn" style="color:#ef4444; border-color:rgba(239,68,68,0.2);" id="btnResetConfigurationArray">Factory Reset</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </aside>
+    <!-- Background Ambient Blobs -->
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
 
-    <!-- NOTIFICATION SYSTEM FLOATING ELEMENT LAYER -->
-    <div class="toast-notification-system" id="systemToastNotificationLayer"></div>
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-logo">UTILMINT</div>
+        <div class="spinner"></div>
+    </div>
 
-    <!-- ==========================================================================
-         JAVASCRIPT RUNTIME EXECUTION ARCHITECTURE (ES2024 ENGINE CODES)
-         ========================================================================== */ -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner glass">
+                <a href="#" class="logo">
+                    <div class="logo-icon">U</div>
+                    <span>UTILMINT</span>
+                </a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#home" class="nav-link active">Home</a></li>
+                        <li><a href="#categories" class="nav-link">Categories</a></li>
+                        <li><a href="#about" class="nav-link">About</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+               <div class="header-actions">
 
-            /* ==========================================================================
-               1. DATA STATE CONTROL CENTER & STORAGE REGISTRY
-               ========================================================================== */
-            const STATE = {
-                expression: "",
-                result: "0",
-                lastAnswer: 0,
-                memory: 0,
-                angleMode: "DEG", // DEG, RAD, GRAD
-                scientificMode: false,
-                undoStack: [],
-                redoStack: [],
-                settings: {
-                    theme: "dark",
-                    animations: true,
-                    acoustics: false,
-                    precision: 12,
-                    historyLimit: 50
-                },
-                history: []
-            };
+<div class="header-actions">
 
-            /* ==========================================================================
-               2. DOM ELEMENT TARGET REGISTRY
-               ========================================================================== */
-            const DOM = {
-                root: document.getElementById("rootWorkspace"),
-                displayExpr: document.getElementById("displayExpression"),
-                displayRes: document.getElementById("displayResult"),
-                displayLive: document.getElementById("displayLivePreview"),
-                metaAns: document.getElementById("screenMetaAns"),
-                indAngle: document.getElementById("indicatorAngle"),
-                indMemory: document.getElementById("indicatorMemory"),
-                indSci: document.getElementById("indicatorSci"),
-                keyboardContainer: document.getElementById("keyboardMatrixContainer"),
-                toastLayer: document.getElementById("systemToastNotificationLayer"),
-                // Navigation Sidebar Elements
-                sidebar: document.getElementById("appSidebar"),
-                mobilePanelTrigger: document.getElementById("mobilePanelTrigger"),
-                tabHistory: document.getElementById("tabTriggerHistory"),
-                tabSettings: document.getElementById("tabTriggerSettings"),
-                panelHistory: document.getElementById("panelHistory"),
-                panelSettings: document.getElementById("panelSettings"),
-                historyStream: document.getElementById("historyStreamTarget"),
-                historySearch: document.getElementById("historySearchEngine"),
-                clearHistory: document.getElementById("btnHistoryClearAll"),
-                // Settings Controls
-                themeSelect: document.getElementById("settingThemeSelector"),
-                toggleAnim: document.getElementById("settingToggleAnimations"),
-                toggleAcoustic: document.getElementById("settingToggleAcoustics"),
-                precisionSelect: document.getElementById("settingPrecisionLimit"),
-                resetAll: document.getElementById("btnResetConfigurationArray"),
-                btnToggleAngle: document.getElementById("btnToggleAngle"),
-                btnToggleSci: document.getElementById("btnToggleSci")
-            };
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/utilmint"
+       target="_blank"
+       rel="noopener"
+       class="icon-btn"
+       title="Instagram">
 
-            /* ==========================================================================
-               3. MATHEMATICAL INTERPRETATION PARSER MATRIX ENGINE
-               ========================================================================== */
-            const MathEngine = {
-                constants: { "π": Math.PI, "e": Math.E },
-                
-                tokenize(str) {
-                    const tokens = [];
-                    let i = 0;
-                    str = str.replace(/×/g, "*").replace(/÷/g, "/").replace(/−/g, "-");
-                    
-                    while (i < str.length) {
-                        let c = str[i];
-                        
-                        if (/\s/.test(c)) { i++; continue; }
-                        
-                        if (/[0-9.]/.test(c)) {
-                            let numStr = "";
-                            while (i < str.length && /[0-9.]/.test(str[i])) {
-                                numStr += str[i];
-                                i++;
-                            }
-                            tokens.push({ type: "NUMBER", value: parseFloat(numStr) });
-                            continue;
-                        }
-                        
-                        if (/[a-zA-Z]/.test(c)) {
-                            let fnStr = "";
-                            while (i < str.length && /[a-zA-Z0-9₂ₐ]/.test(str[i])) {
-                                fnStr += str[i];
-                                i++;
-                            }
-                            if (fnStr === "mod") {
-                                tokens.push({ type: "OPERATOR", value: "mod", precedence: 2 });
-                            } else {
-                                tokens.push({ type: "FUNCTION", value: fnStr });
-                            }
-                            continue;
-                        }
-                        
-                        if (c === "(" || c === ")") {
-                            tokens.push({ type: "PAREN", value: c });
-                            i++;
-                            continue;
-                        }
-                        
-                        if (c === ",") {
-                            tokens.push({ type: "COMMA", value: "," });
-                            i++;
-                            continue;
-                        }
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37a4 4 0 1 1-7.99 1.13 4 4 0 0 1 7.99-1.13z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
 
-                        if (/[\+\-\*\/^!%]/.test(c)) {
-                            let prec = 1;
-                            if (c === "*" || c === "/") prec = 2;
-                            if (c === "^" || c === "!" || c === "%") prec = 3;
-                            tokens.push({ type: "OPERATOR", value: c, precedence: prec });
-                            i++;
-                            continue;
-                        }
-                        
-                        if (["√", "∛", "ⁿ√", "π", "e"].includes(c)) {
-                            if (this.constants[c]) {
-                                tokens.push({ type: "NUMBER", value: this.constants[c] });
-                            } else {
-                                tokens.push({ type: "FUNCTION", value: c });
-                            }
-                            i++;
-                            continue;
-                        }
+    </a>
 
-                        throw new Error(`Invalid Character Detected: ${c}`);
-                    }
-                    return tokens;
-                },
+    <!-- YouTube -->
+    <a href="https://www.youtube.com/@utilmint"
+       target="_blank"
+       rel="noopener"
+       class="icon-btn"
+       title="YouTube">
 
-                evaluate(expressionString) {
-                    if (!expressionString.trim()) return 0;
-                    try {
-                        const tokenStream = this.tokenize(expressionString);
-                        return this.parseAndCompute(tokenStream);
-                    } catch (err) {
-                        throw new Error(err.message || "Syntax Evaluation Failure");
-                    }
-                },
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             viewBox="0 0 24 24"
+             fill="currentColor">
+            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.8 31.8 0 0 0 0 12a31.8 31.8 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.8 31.8 0 0 0 24 12a31.8 31.8 0 0 0-.5-5.8z"/>
+            <path fill="#fff" d="M10 15.5V8.5L16 12z"/>
+        </svg>
 
-                parseAndCompute(tokens) {
-                    const outputQueue = [];
-                    const operatorStack = [];
-                    
-                    for (let j = 0; j < tokens.length; j++) {
-                        const token = tokens[j];
-                        
-                        if (token.type === "NUMBER") {
-                            outputQueue.push(token);
-                        } else if (token.type === "FUNCTION") {
-                            operatorStack.push(token);
-                        } else if (token.type === "COMMA") {
-                            while (operatorStack.length && operatorStack[operatorStack.length - 1].value !== "(") {
-                                outputQueue.push(operatorStack.pop());
-                            }
-                            if (!operatorStack.length) throw new Error("Comma mismatch error");
-                        } else if (token.type === "OPERATOR") {
-                            while (operatorStack.length && operatorStack[operatorStack.length - 1].type === "OPERATOR" && 
-                                   operatorStack[operatorStack.length - 1].precedence >= token.precedence) {
-                                outputQueue.push(operatorStack.pop());
-                            }
-                            operatorStack.push(token);
-                        } else if (token.type === "PAREN" && token.value === "(") {
-                            operatorStack.push(token);
-                        } else if (token.type === "PAREN" && token.value === ")") {
-                            while (operatorStack.length && operatorStack[operatorStack.length - 1].value !== "(") {
-                                outputQueue.push(outputQueue.pop());
-                                let top = operatorStack.pop();
-                                while(top && top.value !== "(") {
-                                    outputQueue.push(top);
-                                    top = operatorStack.pop();
-                                }
-                            }
-                            if (operatorStack.length && operatorStack[operatorStack.length - 1].value === "(") {
-                                operatorStack.pop();
-                            }
-                            if (operatorStack.length && operatorStack[operatorStack.length - 1].type === "FUNCTION") {
-                                outputQueue.push(operatorStack.pop());
-                            }
-                        }
-                    }
+    </a>
 
-                    while (operatorStack.length) {
-                        const topOp = operatorStack.pop();
-                        if (topOp.type === "PAREN") throw new Error("Parentheses Mismatch Variant");
-                        outputQueue.push(topOp);
-                    }
+    <!-- X (Twitter) -->
+    <a href="https://x.com/utilmint"
+       target="_blank"
+       rel="noopener"
+       class="icon-btn"
+       title="X">
 
-                    const processingStack = [];
-                    
-                    for (let k = 0; k < outputQueue.length; k++) {
-                        const node = outputQueue[k];
-                        
-                        if (node.type === "NUMBER") {
-                            processingStack.push(node.value);
-                        } else if (node.type === "OPERATOR") {
-                            if (node.value === "!" || node.value === "%") {
-                                const arg = processingStack.pop();
-                                if (arg === undefined) throw new Error("Unary Operator Parameter Deficit");
-                                processingStack.push(node.value === "!" ? this.execFactorial(arg) : arg / 100);
-                            } else {
-                                const b = processingStack.pop();
-                                const a = processingStack.pop();
-                                if (a === undefined || b === undefined) throw new Error("Binary Operator Evaluation Interrupted");
-                                processingStack.push(this.execBinaryOp(node.value, a, b));
-                            }
-                        } else if (node.type === "FUNCTION") {
-                            const arity = this.getFunctionArity(node.value);
-                            const args = [];
-                            for (let a = 0; a < arity; a++) {
-                                const popped = processingStack.pop();
-                                if (popped === undefined) throw new Error(`Missing argument for function: ${node.value}`);
-                                args.unshift(popped);
-                            }
-                            processingStack.push(this.execFunction(node.value, args));
-                        }
-                    }
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             viewBox="0 0 24 24"
+             fill="currentColor">
+            <path d="M18.9 2H22l-6.8 7.8L23 22h-6.3l-5-6.5L6 22H2.9l7.3-8.3L1 2h6.5l4.5 5.9L18.9 2zm-1.1 18h1.7L6.4 3.9H4.6L17.8 20z"/>
+        </svg>
 
-                    if (processingStack.length !== 1) throw new Error("Malformed Calculation Pipeline Terminal");
-                    return processingStack[0];
-                },
+    </a>
 
-                getFunctionArity(name) {
-                    if (["logₐ", "ⁿ√"].includes(name)) return 2;
-                    return 1;
-                },
+    <!-- Theme Toggle -->
+    <button class="icon-btn" id="themeToggle" title="Toggle Theme">
 
-                execBinaryOp(op, a, b) {
-                    switch(op) {
-                        case "+": return a + b;
-                        case "-": return a - b;
-                        case "*": return a * b;
-                        case "/": 
-                            if (b === 0) throw new Error("Division by zero configuration blocked");
-                            return a / b;
-                        case "^": return Math.pow(a, b);
-                        case "mod": return a % b;
-                        default: throw new Error(`Unknown Engine Operator Structure: ${op}`);
-                    }
-                },
+        <svg class="sun-icon"
+             width="20"
+             height="20"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
 
-                execFactorial(n) {
-                    if (n < 0 || !Number.isInteger(n)) throw new Error("Factorial domain space requires positive integers");
-                    if (n > 170) throw new Error("Arithmetic limit overflow on structural processing stack");
-                    let result = 1;
-                    for (let i = 2; i <= n; i++) result *= i;
-                    return result;
-                },
+    </button>
 
-                execFunction(name, args) {
-                    let val = args[0];
-                    const toRad = (v) => {
-                        if (STATE.angleMode === "DEG") return v * (Math.PI / 180);
-                        if (STATE.angleMode === "GRAD") return v * (Math.PI / 200);
-                        return v;
-                    };
-                    const fromRad = (v) => {
-                        if (STATE.angleMode === "DEG") return v * (180 / Math.PI);
-                        if (STATE.angleMode === "GRAD") return v * (200 / Math.PI);
-                        return v;
-                    };
+    <!-- Mobile Menu -->
+    <button class="icon-btn mobile-toggle"
+            id="mobileMenuBtn"
+            title="Menu">
 
-                    switch(name) {
-                        case "sin": return Math.sin(toRad(val));
-                        case "cos": return Math.cos(toRad(val));
-                        case "tan": return Math.tan(toRad(val));
-                        case "cot": return 1 / Math.tan(toRad(val));
-                        case "sec": return 1 / Math.cos(toRad(val));
-                        case "cosec": return 1 / Math.sin(toRad(val));
-                        case "asin": 
-                            if (val < -1 || val > 1) throw new Error("Domain range violation across inverse trig execution");
-                            return fromRad(Math.asin(val));
-                        case "acos": 
-                            if (val < -1 || val > 1) throw new Error("Domain range violation across inverse trig execution");
-                            return fromRad(Math.acos(val));
-                        case "atan": return fromRad(Math.atan(val));
-                        case "acot": return fromRad(Math.PI / 2 - Math.atan(val));
-                        case "asec": return fromRad(Math.acos(1 / val));
-                        case "acosec": return fromRad(Math.asin(1 / val));
-                        case "sinh": return Math.sinh(val);
-                        case "cosh": return Math.cosh(val);
-                        case "tanh": return Math.tanh(val);
-                        case "asinh": return Math.asinh(val);
-                        case "acosh": 
-                            if (val < 1) throw new Error("Domain limit exceeded for hyperbolic processing");
-                            return Math.acosh(val);
-                        case "atanh": 
-                            if (val <= -1 || val >= 1) throw new Error("Domain limit exceeded for hyperbolic processing");
-                            return Math.atanh(val);
-                        case "ln": 
-                            if (val <= 0) throw new Error("Logarithmic base range space constraints triggered");
-                            return Math.log(val);
-                        case "log": 
-                            if (val <= 0) throw new Error("Logarithmic base range space constraints triggered");
-                            return Math.log10(val);
-                        case "log₂": 
-                            if (val <= 0) throw new Error("Logarithmic base range space constraints triggered");
-                            return Math.log2(val);
-                        case "logₐ": 
-                            if (args[0] <= 0 || args[1] <= 0) throw new Error("Log base dynamic configurations error");
-                            return Math.log(args[1]) / Math.log(args[0]);
-                        case "√": 
-                            if (val < 0) throw new Error("Imaginary structural notation matrix space blocked");
-                            return Math.sqrt(val);
-                        case "∛": return Math.cbrt(val);
-                        case "ⁿ√": 
-                            if (args[0] === 0) throw new Error("Root index validation failed");
-                            return Math.pow(args[1], 1 / args[0]);
-                        case "eˣ": return Math.exp(val);
-                        case "10ˣ": return Math.pow(10, val);
-                        case "2ˣ": return Math.pow(2, val);
-                        case "1/x": 
-                            if (val === 0) throw new Error("Reciprocal resolution anomaly on zero spatial limit");
-                            return 1 / val;
-                        case "abs": return Math.abs(val);
-                        case "round": return Math.round(val);
-                        case "floor": return Math.floor(val);
-                        case "ceil": return Math.ceil(val);
-                        case "sign": return Math.sign(val);
-                        default: throw new Error(`Unknown target function: ${name}`);
-                    }
-                }
-            };
+        <svg width="20"
+             height="20"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             viewBox="0 0 24 24">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
 
-            /* ==========================================================================
-               4. FRACTION CONVERSION MODULES
-               ========================================================================== */
-            const FractionEngine = {
-                decimalToFraction(val) {
-                    if (isNaN(val) || !isFinite(val)) return "Invalid Operation Mapping";
-                    if (Number.isInteger(val)) return `${val}/1`;
-                    
-                    const tolerance = 1.0E-9;
-                    let h1 = 1, h2 = 0, k1 = 0, k2 = 1;
-                    let b = val;
-                    do {
-                        let a = Math.floor(b);
-                        let aux = h1; h1 = a * h1 + h2; h2 = aux;
-                        aux = k1; k1 = a * k1 + k2; k2 = aux;
-                        b = 1 / (b - a);
-                    } while (Math.abs(val - h1 / k1) > val * tolerance);
-                    
-                    return `${h1}/${k1}`;
-                },
-                
-                fractionToDecimal(str) {
-                    if (!str.includes("/")) return parseFloat(str);
-                    const parts = str.split("/");
-                    if (parts.length !== 2) return NaN;
-                    return parseFloat(parts[0]) / parseFloat(parts[1]);
-                }
-            };
+    </button>
 
-            /* ==========================================================================
-               5. USER INTERFACE DISPATCHERS & STATE HANDLERS
-               ========================================================================== */
-            const UI = {
-                init() {
-                    this.loadStorageContext();
-                    this.attachEventSystemListeners();
-                    this.syncSystemStateInterfaces();
-                    this.pushStateHistoryFrame();
-                    this.autoCloseSidebarOnOutsideClick();
-                },
+</div>
+    </header>
 
-                loadStorageContext() {
-                    const savedSettings = localStorage.getItem("qc_settings");
-                    if (savedSettings) {
-                        try { STATE.settings = { ...STATE.settings, ...JSON.parse(savedSettings) }; } catch(e) {}
-                    }
-                    const savedHistory = localStorage.getItem("qc_history");
-                    if (savedHistory) {
-                        try { STATE.history = JSON.parse(savedHistory); } catch(e) {}
-                    }
-                    const savedState = localStorage.getItem("qc_state_meta");
-                    if (savedState) {
-                        try {
-                            const parsed = JSON.parse(savedState);
-                            STATE.lastAnswer = parsed.lastAnswer || 0;
-                            STATE.memory = parsed.memory || 0;
-                            STATE.angleMode = parsed.angleMode || "DEG";
-                            STATE.scientificMode = parsed.scientificMode || false;
-                        } catch(e) {}
-                    }
-                },
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#home" class="nav-link mobile-link">Home</a>
+        <a href="#categories" class="nav-link mobile-link">Categories</a>
+        <a href="#about" class="nav-link mobile-link">About</a>
+        <a href="#contact" class="nav-link mobile-link">Contact</a>
+    </div>
 
-                saveStorageContext() {
-                    localStorage.setItem("qc_settings", JSON.stringify(STATE.settings));
-                    localStorage.setItem("qc_history", JSON.stringify(STATE.history));
-                    localStorage.setItem("qc_state_meta", JSON.stringify({
-                        lastAnswer: STATE.lastAnswer,
-                        memory: STATE.memory,
-                        angleMode: STATE.angleMode,
-                        scientificMode: STATE.scientificMode
-                    }));
-                },
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <h1 class="hero-title">
+                    All Your Favorite Apps.<br>
+                    <span class="hero-title-gradient">One Place.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Access Social Media, Chat, Videos, Music, Shopping, Payments, News, Travel, Food, and Jobs instantly from one integrated, high-speed Web Dashboard.
+                </p>
 
-                syncSystemStateInterfaces() {
-                    DOM.root.setAttribute("data-theme", STATE.settings.theme);
-                    DOM.themeSelect.value = STATE.settings.theme;
-                    
-                    if (STATE.settings.animations) {
-                        DOM.root.classList.remove("no-animations");
-                        DOM.toggleAnim.classList.add("enabled");
-                    } else {
-                        DOM.root.classList.add("no-animations");
-                        DOM.toggleAnim.classList.remove("enabled");
-                    }
+                <!-- Interactive Search Bar -->
+                <div class="search-wrapper">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <input type="text" id="searchInput" class="search-bar" placeholder="Search apps (e.g., Spotify, WhatsApp)..." autocomplete="off">
+                    <span class="search-clear" id="searchClear">✕</span>
+                    <span class="kbd-hint">/</span>
+                    <div class="search-suggestions glass" id="searchSuggestions"></div>
+                </div>
 
-                    if (STATE.settings.acoustics) DOM.toggleAcoustic.classList.add("enabled");
-                    else DOM.toggleAcoustic.classList.remove("enabled");
+                <div class="hero-buttons">
+                    <a href="#categories" class="btn btn-primary ripple">Browse Apps</a>
+                    <button class="btn btn-secondary ripple" id="exploreCategoriesBtn">Explore Categories</button>
+                </div>
+            </div>
+        </section>
 
-                    DOM.precisionSelect.value = STATE.settings.precision;
-                    
-                    DOM.indAngle.textContent = STATE.angleMode;
-                    DOM.btnToggleAngle.textContent = STATE.angleMode;
-                    
-                    if (STATE.memory !== 0) DOM.indMemory.classList.add("active");
-                    else DOM.indMemory.classList.remove("active");
-                    
-                    if (STATE.scientificMode) {
-                        DOM.indSci.classList.add("active");
-                        DOM.btnToggleSci.style.background = "var(--btn-fn-hover)";
-                    } else {
-                        DOM.indSci.classList.remove("active");
-                        DOM.btnToggleSci.style.background = "var(--btn-fn-bg)";
-                    }
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card glass">
+                        <div class="stat-number" data-target="170">0</div>
+                        <div class="stat-label">Apps Hosted</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-number" data-target="10">0</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-number" data-target="100">0</div>
+                        <div class="stat-label">Fast Access %</div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-number" data-target="100">0</div>
+                        <div class="stat-label">Responsive %</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    DOM.metaAns.textContent = `ANS = ${this.formatNumericalOutput(STATE.lastAnswer)}`;
-                    
-                    this.renderDisplayElements();
-                    this.hydrateHistoryStreamDOM();
-                },
+        <!-- Categories & Main App Grid -->
+        <section class="categories-section" id="categories">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Explore Applications</h2>
+                </div>
 
-                pushStateHistoryFrame() {
-                    const currentFrame = JSON.stringify({
-                        expr: STATE.expression,
-                        res: STATE.result
-                    });
-                    if (STATE.undoStack.length > 0 && JSON.stringify(STATE.undoStack[STATE.undoStack.length - 1]) === currentFrame) return;
-                    
-                    STATE.undoStack.push({ expression: STATE.expression, result: STATE.result });
-                    STATE.redoStack = [];
-                },
+                <!-- Category Filtering Pills -->
+                <div class="category-pills" id="categoryPills">
+                    <button class="pill active" data-category="all">All Apps</button>
+                    <button class="pill" data-category="favorites">⭐ Favorites</button>
+                    <!-- Injected dynamically -->
+                </div>
 
-                performUndoAction() {
-                    if (STATE.undoStack.length > 1) {
-                        const frame = STATE.undoStack.pop();
-                        STATE.redoStack.push(frame);
-                        const prevFrame = STATE.undoStack[STATE.undoStack.length - 1];
-                        STATE.expression = prevFrame.expression;
-                        STATE.result = prevFrame.result;
-                        this.renderDisplayElements();
-                        this.triggerAcousticFeedback();
-                    } else {
-                        this.spawnToastNotification("Undo bounds reached", "info");
-                    }
-                },
+                <!-- Container where categories and apps render -->
+                <div id="appsDisplayContainer"></div>
 
-                performRedoAction() {
-                    if (STATE.redoStack.length > 0) {
-                        const frame = STATE.redoStack.pop();
-                        STATE.undoStack.push(frame);
-                        STATE.expression = frame.expression;
-                        STATE.result = frame.result;
-                        this.renderDisplayElements();
-                        this.triggerAcousticFeedback();
-                    } else {
-                        this.spawnToastNotification("Redo tracks empty", "info");
-                    }
-                },
+                <!-- No Results Display -->
+                <div class="no-results" id="noResults">
+                    <div class="no-results-icon">🔍</div>
+                    <h3>No applications found</h3>
+                    <p style="color: var(--text-muted); margin-top: 8px;">Try searching for a different keyword or browse all categories.</p>
+                </div>
+            </div>
+        </section>
 
-                renderDisplayElements() {
-                    DOM.displayExpr.textContent = STATE.expression;
-                    
-                    if (STATE.result === "Error" || isNaN(STATE.result)) {
-                        DOM.displayRes.innerHTML = `<span style="color:#ef4444;">${STATE.result}</span><span class="terminal-cursor"></span>`;
-                    } else {
-                        DOM.displayRes.innerHTML = `${STATE.result}<span class="terminal-cursor"></span>`;
-                    }
-
-                    if (STATE.expression.trim().length > 0) {
-                        try {
-                            const evaluatedPreview = MathEngine.evaluate(STATE.expression);
-                            DOM.displayLive.textContent = `= ${this.formatNumericalOutput(evaluatedPreview)}`;
-                        } catch(e) {
-                            DOM.displayLive.textContent = "";
-                        }
-                    } else {
-                        DOM.displayLive.textContent = "";
-                    }
-                    
-                    DOM.displayRes.scrollLeft = DOM.displayRes.scrollWidth;
-                },
-
-                formatNumericalOutput(val) {
-                    if (typeof val !== "number" || isNaN(val) || !isFinite(val)) return val;
-                    
-                    if (STATE.scientificMode) {
-                        return val.toExponential(parseInt(STATE.settings.precision) - 4);
-                    }
-                    
-                    const fixedVal = parseFloat(val.toFixed(parseInt(STATE.settings.precision)));
-                    return fixedVal.toString();
-                },
-
-                appendExpressionToken(tok) {
-                    this.pushStateHistoryFrame();
-                    
-                    const map = {
-                        "x²": "^2", "x³": "^3", "xʸ": "^", 
-                        "eˣ": "e^", "10ˣ": "10^", "2ˣ": "2^",
-                        "logₐ": "logₐ(", "ⁿ√": "ⁿ√("
-                    };
-
-                    if (map[tok]) {
-                        STATE.expression += map[tok];
-                    } else if (["sin","cos","tan","asin","acos","atan","sinh","cosh","tanh","asinh","acosh","atanh","ln","log","log₂","√","∛","abs","round","floor","ceil","sign"].includes(tok)) {
-                        STATE.expression += tok + "(";
-                    } else if (tok === "1/x") {
-                        STATE.expression += "1/(";
-                    } else if (tok === "EXP") {
-                        STATE.expression += "*10^";
-                    } else {
-                        STATE.expression += tok;
-                    }
-
-                    this.renderDisplayElements();
-                },
-
-                handleCoreCommandInvocation(cmd) {
-                    this.triggerAcousticFeedback();
-
-                    switch(cmd) {
-                        case "AC":
-                            this.pushStateHistoryFrame();
-                            STATE.expression = "";
-                            STATE.result = "0";
-                            this.renderDisplayElements();
-                            break;
-                        case "CE":
-                            this.pushStateHistoryFrame();
-                            STATE.expression = "";
-                            this.renderDisplayElements();
-                            break;
-                        case "BACKSPACE":
-                            this.pushStateHistoryFrame();
-                            if (STATE.expression.length > 0) {
-                                STATE.expression = STATE.expression.slice(0, -1);
-                                this.renderDisplayElements();
-                            }
-                            break;
-                        case "=":
-                            this.executeCalculationPipeline();
-                            break;
-                        case "UNDO":
-                            this.performUndoAction();
-                            break;
-                        case "REDO":
-                            this.performRedoAction();
-                            break;
-                        case "DEG":
-                        case "RAD":
-                        case "GRAD":
-                            this.rotateSystemAngleMode();
-                            break;
-                        case "SCI":
-                            STATE.scientificMode = !STATE.scientificMode;
-                            this.spawnToastNotification(`Scientific rendering mode: ${STATE.scientificMode ? 'Active':'Inactive'}`, "info");
-                            this.syncSystemStateInterfaces();
-                            this.saveStorageContext();
-                            break;
-                        case "±":
-                            this.negateCurrentExpressionMatrix();
-                            break;
-                        case "F⇄D":
-                            this.toggleFractionalDecimalRepresentation();
-                            break;
-                        case "COPY":
-                            this.copyResultToClipboard();
-                            break;
-                        case "PASTE":
-                            this.readClipboardToInputBuffer();
-                            break;
-                        case "MC":
-                            STATE.memory = 0;
-                            this.spawnToastNotification("Memory Vault Purged", "info");
-                            this.syncSystemStateInterfaces();
-                            this.saveStorageContext();
-                            break;
-                        case "MR":
-                            this.appendExpressionToken(STATE.memory.toString());
-                            break;
-                        case "MS":
-                            try {
-                                const mVal = MathEngine.evaluate(STATE.expression || STATE.result);
-                                STATE.memory = mVal;
-                                this.spawnToastNotification(`Stored in Memory: ${this.formatNumericalOutput(mVal)}`, "success");
-                                this.syncSystemStateInterfaces();
-                                this.saveStorageContext();
-                            } catch(e) {
-                                this.spawnToastNotification("Cannot store invalid calculation matrices", "error");
-                            }
-                            break;
-                        case "M+":
-                            try {
-                                const addVal = MathEngine.evaluate(STATE.expression || STATE.result);
-                                STATE.memory += addVal;
-                                this.spawnToastNotification(`Memory Accumulation Level: ${this.formatNumericalOutput(STATE.memory)}`, "success");
-                                this.syncSystemStateInterfaces();
-                                this.saveStorageContext();
-                            } catch(e) {
-                                this.spawnToastNotification("Execution anomaly during memory aggregation", "error");
-                            }
-                            break;
-                        case "M-":
-                            try {
-                                const subVal = MathEngine.evaluate(STATE.expression || STATE.result);
-                                STATE.memory -= subVal;
-                                this.spawnToastNotification(`Memory Reduction Level: ${this.formatNumericalOutput(STATE.memory)}`, "success");
-                                this.syncSystemStateInterfaces();
-                                this.saveStorageContext();
-                            } catch(e) {
-                                this.spawnToastNotification("Execution anomaly during memory differentiation", "error");
-                            }
-                            break;
-                        default:
-                            this.appendExpressionToken(cmd);
-                            break;
-                    }
-                },
-
-                executeCalculationPipeline() {
-                    if (!STATE.expression.trim()) return;
-                    
-                    try {
-                        const computationalOutput = MathEngine.evaluate(STATE.expression);
-                        
-                        const historyPayloadItem = {
-                            id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
-                            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
-                            expression: STATE.expression,
-                            result: this.formatNumericalOutput(computationalOutput)
-                        };
-
-                        STATE.history.unshift(historyPayloadItem);
-                        if (STATE.history.length > STATE.settings.historyLimit) STATE.history.pop();
-                        
-                        STATE.lastAnswer = computationalOutput;
-                        STATE.result = this.formatNumericalOutput(computationalOutput);
-                        STATE.expression = ""; 
-                        
-                        this.pushStateHistoryFrame();
-                        this.syncSystemStateInterfaces();
-                        this.saveStorageContext();
-                    } catch (runtimeError) {
-                        STATE.result = "Error";
-                        this.spawnToastNotification(runtimeError.message || "Execution Interrupt Exception", "error");
-                        this.renderDisplayElements();
-                    }
-                },
-
-                rotateSystemAngleMode() {
-                    if (STATE.angleMode === "DEG") STATE.angleMode = "RAD";
-                    else if (STATE.angleMode === "RAD") STATE.angleMode = "GRAD";
-                    else STATE.angleMode = "DEG";
-                    
-                    this.spawnToastNotification(`Angular tracking reconfigured to: ${STATE.angleMode}`, "info");
-                    this.syncSystemStateInterfaces();
-                    this.saveStorageContext();
-                },
-
-                negateCurrentExpressionMatrix() {
-                    if (STATE.expression.startsWith("-(")) {
-                        STATE.expression = STATE.expression.slice(2, -1);
-                    } else if (STATE.expression) {
-                        STATE.expression = `-(${STATE.expression})`;
-                    } else {
-                        STATE.expression = `-${STATE.result}`;
-                    }
-                    this.renderDisplayElements();
-                },
-
-                toggleFractionalDecimalRepresentation() {
-                    if (STATE.result.includes("/")) {
-                        const numericRepresentation = FractionEngine.fractionToDecimal(STATE.result);
-                        STATE.result = this.formatNumericalOutput(numericRepresentation);
-                    } else {
-                        const decimalValue = parseFloat(STATE.result);
-                        if (!isNaN(decimalValue)) {
-                            STATE.result = FractionEngine.decimalToFraction(decimalValue);
-                        }
-                    }
-                    this.renderDisplayElements();
-                },
-
-                copyResultToClipboard() {
-                    navigator.clipboard.writeText(STATE.result).then(() => {
-                        this.spawnToastNotification("Data copied to system clipboard array", "success");
-                    }).catch(() => {
-                        this.spawnToastNotification("Clipboard access authorization denied", "error");
-                    });
-                },
-
-                readClipboardToInputBuffer() {
-                    navigator.clipboard.readText().then((clipString) => {
-                        const cleanString = clipString.replace(/[^0-9\+\-\*\/\(\)\.\s]/g, "");
-                        STATE.expression += cleanString;
-                        this.renderDisplayElements();
-                        this.spawnToastNotification("External clipboard string buffer ingested", "success");
-                    }).catch(() => {
-                        this.spawnToastNotification("Failed to fetch external memory segments", "error");
-                    });
-                },
-
-                hydrateHistoryStreamDOM() {
-                    DOM.historyStream.innerHTML = "";
-                    const queryFilter = DOM.historySearch.value.toLowerCase().trim();
-                    
-                    const filteredItems = STATE.history.filter(item => 
-                        item.expression.toLowerCase().includes(queryFilter) || 
-                        item.result.toLowerCase().includes(queryFilter)
-                    );
-
-                    if (filteredItems.length === 0) {
-                        DOM.historyStream.innerHTML = `<div style="text-align:center; color:var(--text-dim); font-size:0.85rem; margin-top:20px;">Logs Array Empty</div>`;
-                        return;
-                    }
-
-                    filteredItems.forEach(item => {
-                        const card = document.createElement("div");
-                        card.className = "history-item-card";
-                        card.setAttribute("role", "listitem");
-                        card.innerHTML = `
-                            <div class="history-card-meta">
-                                <span>LOG UNIT ${item.id.slice(0,4).toUpperCase()}</span>
-                                <span>${item.timestamp}</span>
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="about-card glass">
+                    <div class="about-grid">
+                        <div>
+                            <h2 class="section-title" style="margin-bottom: 16px;">Why Use Utilmint?</h2>
+                            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 24px;">
+                                Utilmint is designed to clear the clutter of bookmarks and open browser tabs. We bring together every web platform, tool, and utility into a single desktop-class portal built with speed, security, and extreme simplicity in mind.
+                            </p>
+                            <a href="#categories" class="btn btn-primary ripple">Start Exploring</a>
+                        </div>
+                        <div class="about-features">
+                            <div class="feature-box">
+                                <div class="feature-icon">⚡</div>
+                                <div class="feature-title">Fast</div>
+                                <div class="feature-desc">Zero bloat, instant filtering, and sub-millisecond execution times.</div>
                             </div>
-                            <div class="history-card-expr">${item.expression}</div>
-                            <div class="history-card-res">${item.result}</div>
-                            <div class="history-item-actions">
-                                <button class="hist-action-btn" data-action="load" data-id="${item.id}">Inject</button>
-                                <button class="hist-action-btn" data-action="delete" data-id="${item.id}" style="color:#f87171;">Purge</button>
+                            <div class="feature-box">
+                                <div class="feature-icon">🔒</div>
+                                <div class="feature-title">Secure</div>
+                                <div class="feature-desc">Direct official URLs. No middleman, zero data tracking.</div>
+                            </div>
+                            <div class="feature-box">
+                                <div class="feature-icon">✨</div>
+                                <div class="feature-title">Easy</div>
+                                <div class="feature-desc">Intuitive Apple + Notion inspired user interface.</div>
+                            </div>
+                            <div class="feature-box">
+                                <div class="feature-icon">🎁</div>
+                                <div class="feature-title">100% Free</div>
+                                <div class="feature-desc">Free forever. No subscriptions or hidden paywalls.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="contact-container glass">
+                    <h2 class="section-title" style="text-align: center; margin-bottom: 8px;">Get in Touch</h2>
+                    <p style="text-align: center; color: var(--text-muted); margin-bottom: 32px;">Questions, suggestions, or feedback? Send us a message.</p>
+                    
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label" for="contactName">Name</label>
+                            <input type="text" id="contactName" class="form-input" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" class="form-input" required placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="contactSubject">Subject</label>
+                            <input type="text" id="contactSubject" class="form-input" required placeholder="Feature Request">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="contactMessage">Message</label>
+                            <textarea id="contactMessage" class="form-textarea" required placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary ripple" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">U</div>
+                        <span>UTILMINT</span>
+                    </a>
+                    <p>All Your Favorite Apps. One Place. Streamlining your web experience with elegance and speed.</p>
+                </div>
+                <div>
+                    <div class="footer-title">Quick Links</div>
+                    <ul class="footer-links">
+                        <li><a href="#home" class="footer-link">Home</a></li>
+                        <li><a href="#categories" class="footer-link">Categories</a></li>
+                        <li><a href="#about" class="footer-link">About Us</a></li>
+                        <li><a href="#contact" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-title">Categories</div>
+                    <ul class="footer-links" id="footerCategories">
+                        <!-- Injected via JS -->
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-title">Connect</div>
+                    <ul class="footer-links">
+                        <li><a href="https://www.instagram.com/utilmint/" class="footer-link" target="_blank">Instagram</a></li>
+                        <li><a href="https://www.youtube.com/@utilmint" class="footer-link" target="_blank">YouTube</a></li>
+                        <li><a href="https://x.com/utilmint" class="footer-link" target="_blank">Twitter / X</a></li>
+                        <li><a href="mailto:support@utilmint.com" class="footer-link">Email Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 Utilmint. All Rights Reserved.</div>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/utilmint/" class="footer-link" target="_blank">Instagram</a> •
+                    <a href="https://www.youtube.com/@utilmint" class="footer-link" target="_blank">YouTube</a> •
+                    <a href="https://x.com/utilmint" class="footer-link" target="_blank">Twitter / X</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <button class="fab" id="backToTopBtn" title="Back to Top">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg>
+        </button>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <script>
+        /* ==========================================================================
+           1. APPLICATION DATA DIRECTORY
+           ========================================================================== */
+        const APP_DATA = [
+            {
+                category: "Social",
+                color: "🟢",
+                apps: [
+                    { name: "Facebook", url: "https://facebook.com", domain: "facebook.com" },
+                    { name: "Instagram", url: "https://instagram.com", domain: "instagram.com" },
+                    { name: "X (Twitter)", url: "https://x.com", domain: "x.com" },
+                    { name: "Threads", url: "https://threads.net", domain: "threads.net" },
+                    { name: "Bluesky", url: "https://bsky.app", domain: "bsky.app" },
+                    { name: "Mastodon", url: "https://joinmastodon.org", domain: "joinmastodon.org" },
+                    { name: "Snapchat", url: "https://snapchat.com", domain: "snapchat.com" },
+                    { name: "BeReal", url: "https://bereal.com", domain: "bereal.com" },
+                    { name: "Tumblr", url: "https://tumblr.com", domain: "tumblr.com" },
+                    { name: "Reddit", url: "https://reddit.com", domain: "reddit.com" },
+                    { name: "Pinterest", url: "https://pinterest.com", domain: "pinterest.com" },
+                    { name: "Lemon8", url: "https://lemon8-app.com", domain: "lemon8-app.com" },
+                    { name: "LinkedIn", url: "https://linkedin.com", domain: "linkedin.com" },
+                    { name: "Nextdoor", url: "https://nextdoor.com", domain: "nextdoor.com" },
+                    { name: "Weibo", url: "https://weibo.com", domain: "weibo.com" },
+                    { name: "VK", url: "https://vk.com", domain: "vk.com" },
+                    { name: "Koo", url: "https://kooapp.com", domain: "kooapp.com" },
+                    { name: "ShareChat", url: "https://sharechat.com", domain: "sharechat.com" },
+                    { name: "Moj", url: "https://mojapp.in", domain: "mojapp.in" },
+                    { name: "Chingari", url: "https://chingari.io", domain: "chingari.io" }
+                ]
+            },
+            {
+                category: "Chat",
+                color: "🔵",
+                apps: [
+                    { name: "WhatsApp", url: "https://web.whatsapp.com", domain: "whatsapp.com" },
+                    { name: "Telegram", url: "https://web.telegram.org", domain: "telegram.org" },
+                    { name: "Signal", url: "https://signal.org", domain: "signal.org" },
+                    { name: "Messenger", url: "https://messenger.com", domain: "messenger.com" },
+                    { name: "Discord", url: "https://discord.com", domain: "discord.com" },
+                    { name: "Slack", url: "https://slack.com", domain: "slack.com" },
+                    { name: "Microsoft Teams", url: "https://teams.microsoft.com", domain: "microsoft.com" },
+                    { name: "Google Chat", url: "https://chat.google.com", domain: "google.com" },
+                    { name: "LINE", url: "https://line.me", domain: "line.me" },
+                    { name: "WeChat", url: "https://wechat.com", domain: "wechat.com" },
+                    { name: "Viber", url: "https://viber.com", domain: "viber.com" },
+                    { name: "KakaoTalk", url: "https://kakaocorp.com", domain: "kakaocorp.com" },
+                    { name: "QQ", url: "https://im.qq.com", domain: "qq.com" },
+                    { name: "Session", url: "https://getsession.org", domain: "getsession.org" },
+                    { name: "Element", url: "https://element.io", domain: "element.io" },
+                    { name: "Threema", url: "https://threema.ch", domain: "threema.ch" },
+                    { name: "Wire", url: "https://wire.com", domain: "wire.com" },
+                    { name: "Skype", url: "https://web.skype.com", domain: "skype.com" }
+                ]
+            },
+            {
+                category: "Video",
+                color: "🔴",
+                apps: [
+                    { name: "YouTube", url: "https://youtube.com", domain: "youtube.com" },
+                    { name: "TikTok", url: "https://tiktok.com", domain: "tiktok.com" },
+                    { name: "Vimeo", url: "https://vimeo.com", domain: "vimeo.com" },
+                    { name: "Dailymotion", url: "https://dailymotion.com", domain: "dailymotion.com" },
+                    { name: "Twitch", url: "https://twitch.tv", domain: "twitch.tv" },
+                    { name: "Rumble", url: "https://rumble.com", domain: "rumble.com" },
+                    { name: "Kick", url: "https://kick.com", domain: "kick.com" },
+                    { name: "Bilibili", url: "https://bilibili.com", domain: "bilibili.com" },
+                    { name: "Likee", url: "https://likee.video", domain: "likee.video" },
+                    { name: "Josh", url: "https://myjosh.in", domain: "myjosh.in" },
+                    { name: "MX TakaTak", url: "https://mxtakatak.com", domain: "mxtakatak.com" },
+                    { name: "Triller", url: "https://triller.co", domain: "triller.co" },
+                    { name: "Facebook Watch", url: "https://facebook.com/watch", domain: "facebook.com" },
+                    { name: "Instagram Reels", url: "https://instagram.com/reels", domain: "instagram.com" },
+                    { name: "Snapchat Spotlight", url: "https://snapchat.com/spotlight", domain: "snapchat.com" }
+                ]
+            },
+            {
+                category: "Music",
+                color: "🟡",
+                apps: [
+                    { name: "Spotify", url: "https://open.spotify.com", domain: "spotify.com" },
+                    { name: "Apple Music", url: "https://music.apple.com", domain: "apple.com" },
+                    { name: "YouTube Music", url: "https://music.youtube.com", domain: "youtube.com" },
+                    { name: "Amazon Music", url: "https://music.amazon.com", domain: "amazon.com" },
+                    { name: "SoundCloud", url: "https://soundcloud.com", domain: "soundcloud.com" },
+                    { name: "Deezer", url: "https://deezer.com", domain: "deezer.com" },
+                    { name: "Tidal", url: "https://tidal.com", domain: "tidal.com" },
+                    { name: "Pandora", url: "https://pandora.com", domain: "pandora.com" },
+                    { name: "JioSaavn", url: "https://jiosaavn.com", domain: "jiosaavn.com" },
+                    { name: "Gaana", url: "https://gaana.com", domain: "gaana.com" },
+                    { name: "Wynk Music", url: "https://wynk.in", domain: "wynk.in" },
+                    { name: "Hungama Music", url: "https://hungama.com", domain: "hungama.com" },
+                    { name: "Audiomack", url: "https://audiomack.com", domain: "audiomack.com" },
+                    { name: "Boomplay", url: "https://boomplay.com", domain: "boomplay.com" },
+                    { name: "Napster", url: "https://napster.com", domain: "napster.com" },
+                    { name: "iHeartRadio", url: "https://iheart.com", domain: "iheart.com" }
+                ]
+            },
+            {
+                category: "Shopping",
+                color: "🟣",
+                apps: [
+                    { name: "Amazon", url: "https://amazon.com", domain: "amazon.com" },
+                    { name: "Flipkart", url: "https://flipkart.com", domain: "flipkart.com" },
+                    { name: "eBay", url: "https://ebay.com", domain: "ebay.com" },
+                    { name: "Etsy", url: "https://etsy.com", domain: "etsy.com" },
+                    { name: "Temu", url: "https://temu.com", domain: "temu.com" },
+                    { name: "AliExpress", url: "https://aliexpress.com", domain: "aliexpress.com" },
+                    { name: "Shein", url: "https://shein.com", domain: "shein.com" },
+                    { name: "Meesho", url: "https://meesho.com", domain: "meesho.com" },
+                    { name: "Myntra", url: "https://myntra.com", domain: "myntra.com" },
+                    { name: "AJIO", url: "https://ajio.com", domain: "ajio.com" },
+                    { name: "Nykaa", url: "https://nykaa.com", domain: "nykaa.com" },
+                    { name: "Tata CLiQ", url: "https://tatacliq.com", domain: "tatacliq.com" },
+                    { name: "Snapdeal", url: "https://snapdeal.com", domain: "snapdeal.com" },
+                    { name: "FirstCry", url: "https://firstcry.com", domain: "firstcry.com" },
+                    { name: "Pepperfry", url: "https://pepperfry.com", domain: "pepperfry.com" },
+                    { name: "IKEA", url: "https://ikea.com", domain: "ikea.com" },
+                    { name: "Shopify Shop", url: "https://shop.app", domain: "shop.app" },
+                    { name: "Noon", url: "https://noon.com", domain: "noon.com" },
+                    { name: "Lazada", url: "https://lazada.com", domain: "lazada.com" },
+                    { name: "Shopee", url: "https://shopee.com", domain: "shopee.com" }
+                ]
+            },
+            {
+                category: "Payments",
+                color: "🟠",
+                apps: [
+                    { name: "Google Pay", url: "https://pay.google.com", domain: "google.com" },
+                    { name: "PhonePe", url: "https://phonepe.com", domain: "phonepe.com" },
+                    { name: "Paytm", url: "https://paytm.com", domain: "paytm.com" },
+                    { name: "BHIM", url: "https://bhimupi.org.in", domain: "bhimupi.org.in" },
+                    { name: "PayPal", url: "https://paypal.com", domain: "paypal.com" },
+                    { name: "Cash App", url: "https://cash.app", domain: "cash.app" },
+                    { name: "Venmo", url: "https://venmo.com", domain: "venmo.com" },
+                    { name: "Wise", url: "https://wise.com", domain: "wise.com" },
+                    { name: "Revolut", url: "https://revolut.com", domain: "revolut.com" },
+                    { name: "Stripe Dashboard", url: "https://dashboard.stripe.com", domain: "stripe.com" },
+                    { name: "Amazon Pay", url: "https://amazon.com/amazonpay", domain: "amazon.com" },
+                    { name: "Samsung Wallet", url: "https://samsung.com/samsung-wallet", domain: "samsung.com" },
+                    { name: "Apple Wallet", url: "https://apple.com/apple-pay", domain: "apple.com" },
+                    { name: "Apple Pay", url: "https://apple.com/apple-pay", domain: "apple.com" },
+                    { name: "Alipay", url: "https://alipay.com", domain: "alipay.com" },
+                    { name: "WeChat Pay", url: "https://pay.weixin.qq.com", domain: "weixin.qq.com" },
+                    { name: "MobiKwik", url: "https://mobikwik.com", domain: "mobikwik.com" },
+                    { name: "Freecharge", url: "https://freecharge.in", domain: "freecharge.in" }
+                ]
+            },
+            {
+                category: "News",
+                color: "⚫",
+                apps: [
+                    { name: "Google News", url: "https://news.google.com", domain: "google.com" },
+                    { name: "Inshorts", url: "https://inshorts.com", domain: "inshorts.com" },
+                    { name: "Dailyhunt", url: "https://dailyhunt.in", domain: "dailyhunt.in" },
+                    { name: "SmartNews", url: "https://smartnews.com", domain: "smartnews.com" },
+                    { name: "Flipboard", url: "https://flipboard.com", domain: "flipboard.com" },
+                    { name: "BBC News", url: "https://bbc.com/news", domain: "bbc.com" },
+                    { name: "CNN", url: "https://cnn.com", domain: "cnn.com" },
+                    { name: "Reuters", url: "https://reuters.com", domain: "reuters.com" },
+                    { name: "AP News", url: "https://apnews.com", domain: "apnews.com" },
+                    { name: "NDTV", url: "https://ndtv.com", domain: "ndtv.com" },
+                    { name: "Times of India", url: "https://timesofindia.indiatimes.com", domain: "indiatimes.com" },
+                    { name: "Hindustan Times", url: "https://hindustantimes.com", domain: "hindustantimes.com" },
+                    { name: "The Hindu", url: "https://thehindu.com", domain: "thehindu.com" },
+                    { name: "Economic Times", url: "https://economictimes.indiatimes.com", domain: "indiatimes.com" },
+                    { name: "CNBC", url: "https://cnbc.com", domain: "cnbc.com" },
+                    { name: "Yahoo News", url: "https://news.yahoo.com", domain: "yahoo.com" }
+                ]
+            },
+            {
+                category: "Travel",
+                color: "🟤",
+                apps: [
+                    { name: "Google Maps", url: "https://maps.google.com", domain: "google.com" },
+                    { name: "Uber", url: "https://uber.com", domain: "uber.com" },
+                    { name: "Ola", url: "https://olacabs.com", domain: "olacabs.com" },
+                    { name: "Rapido", url: "https://rapido.bike", domain: "rapido.bike" },
+                    { name: "Airbnb", url: "https://airbnb.com", domain: "airbnb.com" },
+                    { name: "Booking.com", url: "https://booking.com", domain: "booking.com" },
+                    { name: "Agoda", url: "https://agoda.com", domain: "agoda.com" },
+                    { name: "MakeMyTrip", url: "https://makemytrip.com", domain: "makemytrip.com" },
+                    { name: "Goibibo", url: "https://goibibo.com", domain: "goibibo.com" },
+                    { name: "Expedia", url: "https://expedia.com", domain: "expedia.com" },
+                    { name: "Skyscanner", url: "https://skyscanner.com", domain: "skyscanner.com" },
+                    { name: "Trip.com", url: "https://trip.com", domain: "trip.com" },
+                    { name: "Tripadvisor", url: "https://tripadvisor.com", domain: "tripadvisor.com" },
+                    { name: "Rome2Rio", url: "https://rome2rio.com", domain: "rome2rio.com" },
+                    { name: "Trainline", url: "https://thetrainline.com", domain: "thetrainline.com" },
+                    { name: "ixigo", url: "https://ixigo.com", domain: "ixigo.com" },
+                    { name: "IRCTC Rail Connect", url: "https://irctc.co.in", domain: "irctc.co.in" }
+                ]
+            },
+            {
+                category: "Food",
+                color: "🟩",
+                apps: [
+                    { name: "Swiggy", url: "https://swiggy.com", domain: "swiggy.com" },
+                    { name: "Zomato", url: "https://zomato.com", domain: "zomato.com" },
+                    { name: "Uber Eats", url: "https://ubereats.com", domain: "ubereats.com" },
+                    { name: "DoorDash", url: "https://doordash.com", domain: "doordash.com" },
+                    { name: "Grubhub", url: "https://grubhub.com", domain: "grubhub.com" },
+                    { name: "Deliveroo", url: "https://deliveroo.co.uk", domain: "deliveroo.co.uk" },
+                    { name: "Just Eat", url: "https://just-eat.com", domain: "just-eat.com" },
+                    { name: "Foodpanda", url: "https://foodpanda.com", domain: "foodpanda.com" },
+                    { name: "Talabat", url: "https://talabat.com", domain: "talabat.com" },
+                    { name: "EatSure", url: "https://eatsure.com", domain: "eatsure.com" },
+                    { name: "Domino's", url: "https://dominos.com", domain: "dominos.com" },
+                    { name: "McDonald's", url: "https://mcdonalds.com", domain: "mcdonalds.com" },
+                    { name: "Starbucks", url: "https://starbucks.com", domain: "starbucks.com" },
+                    { name: "KFC", url: "https://kfc.com", domain: "kfc.com" },
+                    { name: "Pizza Hut", url: "https://pizzahut.com", domain: "pizzahut.com" },
+                    { name: "Blinkit", url: "https://blinkit.com", domain: "blinkit.com" },
+                    { name: "Zepto", url: "https://zeptonow.com", domain: "zeptonow.com" },
+                    { name: "Instamart", url: "https://swiggy.com/instamart", domain: "swiggy.com" },
+                    { name: "BigBasket", url: "https://bigbasket.com", domain: "bigbasket.com" }
+                ]
+            },
+            {
+                category: "Jobs",
+                color: "🔷",
+                apps: [
+                    { name: "LinkedIn Jobs", url: "https://linkedin.com/jobs", domain: "linkedin.com" },
+                    { name: "Indeed", url: "https://indeed.com", domain: "indeed.com" },
+                    { name: "Naukri", url: "https://naukri.com", domain: "naukri.com" },
+                    { name: "Glassdoor", url: "https://glassdoor.com", domain: "glassdoor.com" },
+                    { name: "ZipRecruiter", url: "https://ziprecruiter.com", domain: "ziprecruiter.com" },
+                    { name: "Monster", url: "https://monster.com", domain: "monster.com" },
+                    { name: "Wellfound", url: "https://wellfound.com", domain: "wellfound.com" },
+                    { name: "Dice", url: "https://dice.com", domain: "dice.com" },
+                    { name: "Hirect", url: "https://hirect.in", domain: "hirect.in" },
+                    { name: "Foundit", url: "https://foundit.in", domain: "foundit.in" },
+                    { name: "Internshala", url: "https://internshala.com", domain: "internshala.com" },
+                    { name: "Upwork", url: "https://upwork.com", domain: "upwork.com" },
+                    { name: "Fiverr", url: "https://fiverr.com", domain: "fiverr.com" },
+                    { name: "Freelancer", url: "https://freelancer.com", domain: "freelancer.com" },
+                    { name: "Toptal", url: "https://toptal.com", domain: "toptal.com" },
+                    { name: "FlexJobs", url: "https://flexjobs.com", domain: "flexjobs.com" },
+                    { name: "Remote OK", url: "https://remoteok.com", domain: "remoteok.com" },
+                    { name: "SimplyHired", url: "https://simplyhired.com", domain: "simplyhired.com" },
+                    { name: "AngelList Talent", url: "https://wellfound.com", domain: "wellfound.com" }
+                ]
+            }
+        ];
+
+        /* ==========================================================================
+           2. STATE MANAGEMENT & LOCAL STORAGE
+           ========================================================================== */
+        let favorites = JSON.parse(localStorage.getItem('utilmint_favorites')) || [];
+        let currentCategory = 'all';
+        let searchQuery = '';
+
+        /* Save Favorites to LocalStorage */
+        function toggleFavorite(appName) {
+            if (favorites.includes(appName)) {
+                favorites = favorites.filter(name => name !== appName);
+                showToast(`Removed ${appName} from favorites`);
+            } else {
+                favorites.push(appName);
+                showToast(`Added ${appName} to favorites ⭐`);
+            }
+            localStorage.setItem('utilmint_favorites', JSON.stringify(favorites));
+            renderApps();
+        }
+
+        /* Helper: High quality Google Favicon Resolver with SVGs fallback */
+        function getFaviconUrl(domain) {
+            return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+        }
+
+        /* ==========================================================================
+           3. UI RENDER ENGINE
+           ========================================================================== */
+        const appsDisplayContainer = document.getElementById('appsDisplayContainer');
+        const categoryPillsContainer = document.getElementById('categoryPills');
+        const footerCategoriesContainer = document.getElementById('footerCategories');
+
+        // Render Category Filter Pills and Footer Links
+        function setupCategoriesUI() {
+            APP_DATA.forEach(cat => {
+                // Filter pill
+                const pill = document.createElement('button');
+                pill.className = 'pill';
+                pill.dataset.category = cat.category;
+                pill.innerHTML = `${cat.color} ${cat.category}`;
+                pill.addEventListener('click', () => setCategory(cat.category));
+                categoryPillsContainer.appendChild(pill);
+
+                // Footer link
+                const footerLi = document.createElement('li');
+                footerLi.innerHTML = `<a href="#categories" class="footer-link">${cat.category}</a>`;
+                footerLi.addEventListener('click', () => setCategory(cat.category));
+                footerCategoriesContainer.appendChild(footerLi);
+            });
+        }
+
+        function setCategory(catName) {
+            currentCategory = catName;
+            document.querySelectorAll('.pill').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.category === catName);
+            });
+            renderApps();
+        }
+
+        // Main Render Function
+        function renderApps() {
+            appsDisplayContainer.innerHTML = '';
+            let totalMatchCount = 0;
+
+            APP_DATA.forEach(catGroup => {
+                // Filter by category
+                if (currentCategory !== 'all' && currentCategory !== 'favorites' && currentCategory !== catGroup.category) {
+                    return;
+                }
+
+                // Filter by search query & favorites
+                const filteredApps = catGroup.apps.filter(app => {
+                    const matchesSearch = app.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                          app.domain.toLowerCase().includes(searchQuery.toLowerCase());
+                    const matchesFav = currentCategory === 'favorites' ? favorites.includes(app.name) : true;
+                    return matchesSearch && matchesFav;
+                });
+
+                if (filteredApps.length > 0) {
+                    totalMatchCount += filteredApps.length;
+
+                    const catBlock = document.createElement('div');
+                    catBlock.className = 'category-block';
+
+                    const catTitle = document.createElement('h3');
+                    catTitle.className = 'category-title';
+                    catTitle.innerHTML = `<span>${catGroup.color}</span> ${catGroup.category}`;
+                    catBlock.appendChild(catTitle);
+
+                    const grid = document.createElement('div');
+                    grid.className = 'apps-grid';
+
+                    filteredApps.forEach(app => {
+                        const isFav = favorites.includes(app.name);
+                        const card = document.createElement('div');
+                        card.className = 'app-card';
+                        card.innerHTML = `
+                            <div class="app-top">
+                                <div class="app-icon-wrapper">
+                                    <img class="app-icon" src="${getFaviconUrl(app.domain)}" alt="${app.name} logo" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%233B82F6\'><rect width=\'24\' height=\'24\' rx=\'6\'/></svg>'">
+                                </div>
+                                <button class="fav-btn ${isFav ? 'active' : ''}" title="Toggle Favorite" onclick="toggleFavorite('${app.name}')">
+                                    <svg width="20" height="20" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                </button>
+                            </div>
+                            <div class="app-info">
+                                <div class="app-name">${app.name}</div>
+                                <div class="app-url">${app.domain}</div>
+                            </div>
+                            <div class="app-actions">
+                                <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="app-open-btn ripple">
+                                    Open Website
+                                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                                </a>
+                                <button class="copy-btn" title="Copy Website URL" onclick="copyLink('${app.url}')">
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                                </button>
                             </div>
                         `;
-                        
-                        card.addEventListener("click", (e) => {
-                            const btnAction = e.target.closest(".hist-action-btn");
-                            if (btnAction) {
-                                e.stopPropagation();
-                                const act = btnAction.getAttribute("data-action");
-                                if (act === "load") {
-                                    STATE.expression = item.expression;
-                                    this.renderDisplayElements();
-                                    this.spawnToastNotification("Expression log tracking recovered", "info");
-                                    DOM.sidebar.classList.remove("sidebar-open");
-                                } else if (act === "delete") {
-                                    STATE.history = STATE.history.filter(h => h.id !== item.id);
-                                    this.hydrateHistoryStreamDOM();
-                                    this.saveStorageContext();
-                                    this.spawnToastNotification("Log entry deleted", "info");
-                                }
-                            } else {
-                                STATE.expression = item.expression;
-                                this.renderDisplayElements();
-                                DOM.sidebar.classList.remove("sidebar-open");
-                            }
-                        });
-
-                        DOM.historyStream.appendChild(card);
-                    });
-                },
-
-                spawnToastNotification(message, type = "info") {
-                    const toast = document.createElement("div");
-                    toast.className = `toast-unit ${type === 'error' ? 'toast-error' : ''}`;
-                    toast.innerHTML = `<span>●</span><span>${message}</span>`;
-                    
-                    DOM.toastLayer.appendChild(toast);
-                    toast.offsetHeight;
-                    toast.classList.add("visible");
-                    
-                    setTimeout(() => {
-                        toast.classList.remove("visible");
-                        toast.addEventListener("transitionend", () => toast.remove());
-                    }, 3500);
-                },
-
-                triggerAcousticFeedback() {
-                    if (!STATE.settings.acoustics) return;
-                    try {
-                        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-                        const osc = ctx.createOscillator();
-                        const gainNode = ctx.createGain();
-                        
-                        osc.type = "sine";
-                        osc.frequency.setValueAtTime(1200, ctx.currentTime);
-                        
-                        gainNode.gain.setValueAtTime(0.02, ctx.currentTime);
-                        gainNode.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + 0.04);
-                        
-                        osc.connect(gainNode);
-                        gainNode.connect(ctx.destination);
-                        
-                        osc.start();
-                        osc.stop(ctx.currentTime + 0.05);
-                    } catch(e) {}
-                },
-
-                createKineticRippleEffect(event, element) {
-                    if (!STATE.settings.animations) return;
-                    const ripple = document.createElement("span");
-                    ripple.className = "ripple-surface";
-                    
-                    const clientRect = element.getBoundingClientRect();
-                    const diameter = Math.max(clientRect.width, clientRect.height);
-                    const radius = diameter / 2;
-                    
-                    ripple.style.width = ripple.style.height = `${diameter}px`;
-                    ripple.style.left = `${event.clientX - clientRect.left - radius}px`;
-                    ripple.style.top = `${event.clientY - clientRect.top - radius}px`;
-                    
-                    element.appendChild(ripple);
-                    ripple.addEventListener("animationend", () => ripple.remove());
-                },
-
-                autoCloseSidebarOnOutsideClick() {
-                    document.addEventListener("click", (e) => {
-                        if (window.innerWidth <= 992 && DOM.sidebar.classList.contains("sidebar-open")) {
-                            if (!DOM.sidebar.contains(e.target) && e.target !== DOM.mobilePanelTrigger) {
-                                DOM.sidebar.classList.remove("sidebar-open");
-                            }
-                        }
-                    });
-                },
-
-                attachEventSystemListeners() {
-                    DOM.keyboardContainer.addEventListener("click", (e) => {
-                        const targetKey = e.target.closest(".key-unit");
-                        if (!targetKey) return;
-                        
-                        const inputToken = targetKey.getAttribute("data-token");
-                        this.createKineticRippleEffect(e, targetKey);
-                        this.handleCoreCommandInvocation(inputToken);
+                        grid.appendChild(card);
                     });
 
-                    DOM.mobilePanelTrigger.addEventListener("click", (e) => {
-                        e.stopPropagation();
-                        DOM.sidebar.classList.toggle("sidebar-open");
-                    });
-
-                    DOM.tabHistory.addEventListener("click", () => {
-                        DOM.tabHistory.classList.add("active");
-                        DOM.tabSettings.classList.remove("active");
-                        DOM.panelHistory.classList.add("active");
-                        DOM.panelSettings.classList.remove("active");
-                    });
-
-                    DOM.tabSettings.addEventListener("click", () => {
-                        DOM.tabSettings.classList.add("active");
-                        DOM.tabHistory.classList.remove("active");
-                        DOM.panelSettings.classList.add("active");
-                        DOM.panelHistory.classList.remove("active");
-                    });
-
-                    DOM.historySearch.addEventListener("input", () => this.hydrateHistoryStreamDOM());
-                    
-                    DOM.clearHistory.addEventListener("click", () => {
-                        STATE.history = [];
-                        this.hydrateHistoryStreamDOM();
-                        this.saveStorageContext();
-                        this.spawnToastNotification("Historical storage arrays purged", "info");
-                    });
-
-                    DOM.themeSelect.addEventListener("change", (e) => {
-                        STATE.settings.theme = e.target.value;
-                        this.syncSystemStateInterfaces();
-                        this.saveStorageContext();
-                    });
-
-                    DOM.toggleAnim.addEventListener("click", () => {
-                        STATE.settings.animations = !STATE.settings.animations;
-                        this.syncSystemStateInterfaces();
-                        this.saveStorageContext();
-                        this.spawnToastNotification(`Animations configuration set to: ${STATE.settings.animations ? 'On':'Off'}`, "info");
-                    });
-
-                    DOM.toggleAcoustic.addEventListener("click", () => {
-                        STATE.settings.acoustics = !STATE.settings.acoustics;
-                        this.syncSystemStateInterfaces();
-                        this.saveStorageContext();
-                        this.spawnToastNotification(`Acoustics feedback set to: ${STATE.settings.acoustics ? 'On':'Off'}`, "info");
-                    });
-
-                    DOM.precisionSelect.addEventListener("change", (e) => {
-                        STATE.settings.precision = parseInt(e.target.value);
-                        this.syncSystemStateInterfaces();
-                        this.saveStorageContext();
-                    });
-
-                    DOM.resetAll.addEventListener("click", () => {
-                        localStorage.clear();
-                        STATE.expression = "";
-                        STATE.result = "0";
-                        STATE.history = [];
-                        STATE.settings = { theme: "dark", animations: true, acoustics: false, precision: 12, historyLimit: 50 };
-                        this.spawnToastNotification("Factory reset execution initialized successfully", "success");
-                        this.syncSystemStateInterfaces();
-                        DOM.sidebar.classList.remove("sidebar-open");
-                    });
-
-                    document.addEventListener("keydown", (nativeEvent) => {
-                        this.routeHardwareKeyboardMapping(nativeEvent);
-                    });
-                },
-
-                routeHardwareKeyboardMapping(event) {
-                    if (document.activeElement === DOM.historySearch) return;
-
-                    const keySignature = event.key;
-                    
-                    if (event.ctrlKey || event.metaKey) {
-                        if (keySignature.toLowerCase() === "c") { event.preventDefault(); this.handleCoreCommandInvocation("COPY"); }
-                        if (keySignature.toLowerCase() === "v") { event.preventDefault(); this.handleCoreCommandInvocation("PASTE"); }
-                        if (keySignature.toLowerCase() === "z") { event.preventDefault(); this.handleCoreCommandInvocation("UNDO"); }
-                        if (keySignature.toLowerCase() === "y") { event.preventDefault(); this.handleCoreCommandInvocation("REDO"); }
-                        return;
-                    }
-
-                    const inputMapping = {
-                        "0": "0", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8", "9": "9",
-                        ".": ".", "+": "+", "-": "-", "*": "×", "/": "÷", "(": "(", ")": ")", "%": "%",
-                        "Enter": "=", "=": "=", "Backspace": "BACKSPACE", "Escape": "AC", "Delete": "CE"
-                    };
-
-                    if (inputMapping[keySignature]) {
-                        event.preventDefault();
-                        const btnDomNode = DOM.keyboardContainer.querySelector(`[data-token="${inputMapping[keySignature]}"]`);
-                        if (btnDomNode) {
-                            btnDomNode.focus();
-                            setTimeout(() => btnDomNode.blur(), 120);
-                        }
-                        this.handleCoreCommandInvocation(inputMapping[keySignature]);
-                    }
+                    catBlock.appendChild(grid);
+                    appsDisplayContainer.appendChild(catBlock);
                 }
-            };
+            });
 
-            UI.init();
+            // Toggle No Results View
+            const noResults = document.getElementById('noResults');
+            if (totalMatchCount === 0) {
+                noResults.classList.add('active');
+            } else {
+                noResults.classList.remove('active');
+            }
+        }
+
+        /* Copy Link functionality */
+        function copyLink(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                showToast('URL copied to clipboard! 📋');
+            });
+        }
+
+        /* ==========================================================================
+           4. SEARCH & AUTO-SUGGESTIONS
+           ========================================================================== */
+        const searchInput = document.getElementById('searchInput');
+        const searchClear = document.getElementById('searchClear');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+
+        function handleSearch(e) {
+            searchQuery = e.target.value.trim();
+            searchClear.style.display = searchQuery.length > 0 ? 'block' : 'none';
+            
+            updateSuggestions(searchQuery);
+            renderApps();
+        }
+
+        function updateSuggestions(query) {
+            if (!query) {
+                searchSuggestions.classList.remove('active');
+                return;
+            }
+
+            const allApps = APP_DATA.flatMap(cat => cat.apps);
+            const matches = allApps.filter(app => 
+                app.name.toLowerCase().includes(query.toLowerCase()) || 
+                app.domain.toLowerCase().includes(query.toLowerCase())
+            ).slice(0, 5);
+
+            if (matches.length > 0) {
+                searchSuggestions.innerHTML = matches.map(app => `
+                    <div class="suggestion-item" onclick="selectSuggestion('${app.name}')">
+                        <img class="suggestion-img" src="${getFaviconUrl(app.domain)}">
+                        <div>
+                            <div style="font-weight:600; font-size:0.9rem;">${app.name}</div>
+                            <div style="font-size:0.75rem; color:var(--text-dim);">${app.domain}</div>
+                        </div>
+                    </div>
+                `).join('');
+                searchSuggestions.classList.add('active');
+            } else {
+                searchSuggestions.classList.remove('active');
+            }
+        }
+
+        function selectSuggestion(appName) {
+            searchInput.value = appName;
+            searchQuery = appName;
+            searchSuggestions.classList.remove('active');
+            renderApps();
+            document.getElementById('categories').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        searchInput.addEventListener('input', handleSearch);
+
+        searchClear.addEventListener('click', () => {
+            searchInput.value = '';
+            searchQuery = '';
+            searchClear.style.display = 'none';
+            searchSuggestions.classList.remove('active');
+            renderApps();
+        });
+
+        // Hide suggestions on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-wrapper')) {
+                searchSuggestions.classList.remove('active');
+            }
+        });
+
+        /* ==========================================================================
+           5. ANIMATED COUNTERS & SCROLL EVENTS
+           ========================================================================== */
+        function initCounters() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            let observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.dataset.target);
+                        let count = 0;
+                        const duration = 1500;
+                        const increment = target / (duration / 16);
+
+                        const timer = setInterval(() => {
+                            count += increment;
+                            if (count >= target) {
+                                entry.target.innerText = target + (target === 170 ? '+' : '%');
+                                clearInterval(timer);
+                            } else {
+                                entry.target.innerText = Math.floor(count) + (target === 170 ? '+' : '%');
+                            }
+                        }, 16);
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            statNumbers.forEach(num => observer.observe(num));
+        }
+
+        /* Scroll Progress and Floating Buttons */
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+
+            // Back to top button visibility
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            if (winScroll > 400) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+
+            // Sticky Header Glass Effect
+            const header = document.querySelector('.header');
+            if (winScroll > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        document.getElementById('backToTopBtn').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* ==========================================================================
+           6. THEME TOGGLE (DARK / LIGHT MODE)
+           ========================================================================== */
+        const themeToggle = document.getElementById('themeToggle');
+        
+        // Load saved theme preference
+        const savedTheme = localStorage.getItem('utilmint_theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('utilmint_theme', newTheme);
+            showToast(`Switched to ${newTheme} mode`);
+        });
+
+        /* ==========================================================================
+           7. RIPPLE BUTTON EFFECT
+           ========================================================================== */
+        document.addEventListener('click', (e) => {
+            const target = e.target.closest('.ripple');
+            if (target) {
+                const circle = document.createElement('span');
+                const diameter = Math.max(target.clientWidth, target.clientHeight);
+                const radius = diameter / 2;
+
+                const rect = target.getBoundingClientRect();
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${e.clientX - rect.left - radius}px`;
+                circle.style.top = `${e.clientY - rect.top - radius}px`;
+                circle.classList.add('ripple-ink');
+
+                const ripple = target.querySelector('.ripple-ink');
+                if (ripple) {
+                    ripple.remove();
+                }
+
+                target.appendChild(circle);
+            }
+        });
+
+        /* ==========================================================================
+           8. TOAST NOTIFICATIONS
+           ========================================================================== */
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<span>✨</span> <div>${message}</div>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        /* ==========================================================================
+           9. KEYBOARD SHORTCUTS
+           ========================================================================== */
+        document.addEventListener('keydown', (e) => {
+            // Focus Search Bar on '/' key
+            if (e.key === '/' && document.activeElement !== searchInput && document.activeElement.tagName !== 'TEXTAREA' && document.activeElement.tagName !== 'INPUT') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+            // Clear Search on Escape
+            if (e.key === 'Escape' && document.activeElement === searchInput) {
+                searchInput.value = '';
+                searchQuery = '';
+                searchSuggestions.classList.remove('active');
+                renderApps();
+                searchInput.blur();
+            }
+        });
+
+        /* ==========================================================================
+           10. CONTACT FORM SUBMISSION
+           ========================================================================== */
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Message sent successfully! We will get back to you soon. 🚀');
+            e.target.reset();
+        });
+
+        /* ==========================================================================
+           11. MOBILE MENU TOGGLE
+           ========================================================================== */
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+            });
+        });
+
+        document.getElementById('exploreCategoriesBtn').addEventListener('click', () => {
+            document.getElementById('categories').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        /* ==========================================================================
+           12. INITIALIZATION
+           ========================================================================== */
+        window.addEventListener('DOMContentLoaded', () => {
+            setupCategoriesUI();
+            renderApps();
+            initCounters();
+
+            // Hide Loader once page is ready
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 400);
         });
     </script>
 </body>
